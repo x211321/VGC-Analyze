@@ -6,7 +6,6 @@ import urllib.parse
 import urllib.request
 import http.cookiejar
 import getpass
-from datetime import datetime
 
 from VGC_Var import FILE_PREFIX
 from VGC_Img import IMG_CASHE_PATH
@@ -21,7 +20,7 @@ from VGC_Var import DOWNLOAD_FILE
 
 
 ######################
-# downloadCollection Function
+# downloadCollection
 # --------------------   
 def downloadCollection(filterData, username = "", password = ""):
     url_base  = "vgcollect.com"
@@ -93,6 +92,9 @@ def downloadCollection(filterData, username = "", password = ""):
             sys.exit()
         
         
+######################
+# downloadCovers
+# --------------------   
 def downloadCovers(itemId, refresh = False, coverType = ""):
     url_base  = "vgcollect.com"
     url_https = "https://" + url_base
@@ -108,33 +110,34 @@ def downloadCovers(itemId, refresh = False, coverType = ""):
         downloadCover(itemId, url_cart, IMG_CASHE_CART, refresh)
 
 
+######################
+# downloadCover
+# --------------------   
 def downloadCover(itemId, url, path, refresh):
 
     itemPath = path + str(itemId) + ".jpg"
 
-    # Prüfen ob Cover bereits vorhanden
+    # Check if cover already cashed
     if refresh == False:
         if os.path.exists(itemPath):
             print(itemPath + " already exists")
             return
 
-    # Request zusammenstellen
-    request  = urllib.request.Request(url)
+    # Create request
+    request = urllib.request.Request(url)
+    
+    # Check if target path exists
+    if os.path.exists(path) == False:
+        os.makedirs(path)
     
     try:
-        # Cover herunterladen
+        # Download cover
         response = urllib.request.urlopen(request)
         
         if response.getcode() == 200:
             print("\n  Download successful - "+ itemPath)
             contents = response.read()
-            
-            if os.path.exists(IMG_CASHE_PATH) == False:
-                os.mkdir(IMG_CASHE_PATH)
-            
-            if os.path.exists(path) == False:
-                os.mkdir(path)
-            
+
             file = open(itemPath, "wb")
             file.write(contents)
             file.close()
