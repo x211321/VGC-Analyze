@@ -15,7 +15,7 @@ IMG_COVER_NONE = IMG_PATH + "cover_placeholder.jpg"
 ######################
 # loadImage
 # --------------------
-def loadImage(path = "", width = 0, padx = 0):
+def loadImage(path, width = 0, padx = 0):
 
     if os.path.exists(path):
         img = Image.open(path)
