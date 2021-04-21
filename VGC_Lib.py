@@ -12,23 +12,23 @@ from VGC_Browser    import openItemInBrowser
 
 
 ######################
-# userInputBool Function
+# userInputBool
 # --------------------
 def userInputBool(query, default = True):
     value = input(query)
-    
+
     if default and len(value.strip()) == 0:
         return True
     if value.lower()[0:1] == "y" or value.lower()[0:1] == "j" or value == "1":
         return True
-        
+
 
 ######################
-# userInputString Function
+# userInputString
 # --------------------
 def userInputString(query, default = ""):
     value = input(query)
-    
+
     if len(value) == 0:
         return default
     else:
@@ -36,14 +36,14 @@ def userInputString(query, default = ""):
 
 
 ######################
-# getArgumentValue Function
+# getArgumentValue
 # --------------------
 def getArgumentValue(argument, argv, default = ""):
     value = getListString(argument, argv)
-        
+
     if len(value.split("=")) > 1:
         value = value.split("=")[1]
-        
+
         if len(value):
             return value
         else:
@@ -53,18 +53,18 @@ def getArgumentValue(argument, argv, default = ""):
 
 
 ######################
-# getListIndex Function
+# getListIndex
 # --------------------
 def getListString(string, list):
     for item in list:
         if item.lower()[0:len(string)] == string.lower():
             return item
-    
+
     return ""
-  
-    
+
+
 ######################
-# stringToYN Function
+# stringToYN
 # --------------------
 def stringToYN(s):
     s = s.lower()
@@ -76,7 +76,7 @@ def stringToYN(s):
 
 
 ######################
-# addOption Function
+# addOption
 # --------------------
 def addOption(short, long, description, descriptionValue = "", argument = False, default = ""):
     option = {}
@@ -87,18 +87,18 @@ def addOption(short, long, description, descriptionValue = "", argument = False,
     option["descriptionValue"]  = descriptionValue
     option["argument"]          = argument
     option["default"]           = default
-    
+
     options.append(option)
-    
-    
+
+
 ######################
-# initOptions Function
+# initOptions
 # --------------------
 def initOptions():
     addOption("h", "help"           , "Show this help screen")
     addOption("",  "interactive"    , "Run VGC_Analyze in interactive-mode (console)")
-    addOption("f", "file"           , "File to analyze (optional)\n" + 
-                                      "VGC_Analyze will search for latest file in directory", 
+    addOption("f", "file"           , "File to analyze (optional)\n" +
+                                      "VGC_Analyze will search for latest file in directory",
                                       "path/to/file.csv", True)
     addOption("i", "items"          , "Show individual items")
     addOption("d", "details"        , "Show item details (purchase date, price)")
@@ -107,13 +107,13 @@ def initOptions():
     addOption("" , "categories-days", "Include days in category list")
     addOption("c", "custom"         , "Combine all results in one category")
     addOption("", "item-lines"      , "Show horizontal lines between items")
-    addOption("" , "price-greater"  , "Only include items with a purchase price greater than", 
+    addOption("" , "price-greater"  , "Only include items with a purchase price greater than",
                                       "float", True)
-    addOption("" , "price-less"     , "Only include items with a purchase price less than", 
+    addOption("" , "price-less"     , "Only include items with a purchase price less than",
                                       "float", True)
-    addOption("" , "date-after"     , "Only include items purchased after date", 
+    addOption("" , "date-after"     , "Only include items purchased after date",
                                       "YYYY[-MM][-DD]", True)
-    addOption("" , "date-before"    , "Only include items purchased before date", 
+    addOption("" , "date-before"    , "Only include items purchased before date",
                                       "YYYY[-MM][-DD]", True)
     addOption("n", "item-name"      , "Only include items if item name matches filter",
                                       "string/RegEx", True)
@@ -133,7 +133,7 @@ def initOptions():
                                       "string/RegEx", True)
     addOption("o", "item-order"     , "Order items by specified attribute",
                                       "[name, price, date, region, platform]:[a, d]", True)
-    addOption("g", "item-group"     , "Group items by specified attribute\n" + 
+    addOption("g", "item-group"     , "Group items by specified attribute\n" +
                                       "Combine with -o for best results",
                                       "[year, month, day, name, region, platform]", True)
     addOption("" , "graph-style"    , "Set graph style (default: outline)",
@@ -141,19 +141,19 @@ def initOptions():
     addOption("" , "graph-steps"    , "Set step size for graphs",
                                       "integer", True)
     addOption("" , "graph-hide"     , "Hide graphs in date-categories")
-    addOption("" , "graph-zero"     , "Show \"zero\"-units in graphs\n" + 
-                                      "e.g. year 0000 or month 00\n" + 
+    addOption("" , "graph-zero"     , "Show \"zero\"-units in graphs\n" +
+                                      "e.g. year 0000 or month 00\n" +
                                       "those will include data with missing or incomplete dates")
     addOption("" , "screen-width"   , "Set screen width in columns",
                                       "integer", True)
     addOption("" , "open"           , "Open Item in web browser",
                                       "id", True)
     addOption("" , "download"       , "Download current colleciton file from vgcollect.com")
-    
+
 
 ######################
-# readOptions Function
-# --------------------       
+# readOptions
+# --------------------
 def readOptions():
     global options
 
@@ -165,8 +165,8 @@ def readOptions():
         shortOptions = ""
         longOption   = ""
         longOptions  = []
-        
-        
+
+
         for option in options:
             longOption = ""
 
@@ -178,9 +178,9 @@ def readOptions():
                 longOption += option["long"]
                 if option["argument"]:
                     longOption += "="
-                    
+
                 longOptions.append(longOption)
-        
+
         try:
             opts, args = getopt.gnu_getopt(sys.argv[1:],shortOptions,longOptions)
         except getopt.GetoptError:
@@ -267,15 +267,14 @@ def readOptions():
 
         # Read categories
         filterData.categoryFilterList = args
-        
+
         # Set screen width
         if not filterData.guiMode:
             setScreenWidth(filterData.screenWidth)
 
     # Return settings
     return filterData
-            
-            
 
 
-            
+
+

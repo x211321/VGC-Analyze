@@ -12,13 +12,13 @@ CONSOLE_COLUMNS  = 80
 CONSOLE_OVERHEAD = 6
 
 
-# Globale Variable zum zwischenspeichern
-# der Textdateiausgabe
+# Global variable to collect
+# text file output
 textOutput = ""
 
 
 ######################
-# setScreenWidth Function
+# setScreenWidth
 # --------------------
 def setScreenWidth(width):
     global CONSOLE_COLUMNS
@@ -31,7 +31,7 @@ def setScreenWidth(width):
 
 
 ######################
-# getTerminalSize_Windows Function
+# getTerminalSize_Windows
 # https://gist.github.com/jtriley/1108174
 # --------------------
 def getTerminalSize_Windows():
@@ -56,14 +56,14 @@ def getTerminalSize_Windows():
 
 
 ######################
-# getTextOutput Function
+# getTextOutput
 # --------------------
 def getTextOutput():
     return textOutput
 
 
 ######################
-# printCategories Function
+# printCategories
 # --------------------
 def printCategories(filterData, collectionData):
     printSubCategories({}             , "Collection", True)
@@ -76,7 +76,7 @@ def printCategories(filterData, collectionData):
 
 
 ######################
-# printSubCategories Function
+# printSubCategories
 # --------------------
 def printSubCategories(data, title, buildIn = False, columns = 2):
     count        = 0
@@ -91,10 +91,10 @@ def printSubCategories(data, title, buildIn = False, columns = 2):
         if count % columns == 0:
             consoleLine(categoryLine)
             categoryLine = ""
-    
+
     if len(categoryLine):
         consoleLine(categoryLine)
-        
+
     if buildIn:
         consoleLine(" - collection")
 
@@ -102,23 +102,23 @@ def printSubCategories(data, title, buildIn = False, columns = 2):
 
 
 ######################
-# printQuery Function
+# printQuery
 # --------------------
 def printQuery(filterData, collectionData):
     title = getCategoryTitle("Custom query result", filterData)
-        
+
     printSum(title, collectionData.totals, collectionData.collection_items, filterData.hideGraphs == False, filterData, "", "all")
-    
+
     if filterData.hideGraphs == False:
-        # Wenn die Daten über mehrere Jahre gehen -> Jahresdiagramme ausgeben
+        # Data over multiple years -> Show year graph
         if collectionData.totals.first.date[0:4] != collectionData.totals.last.date[0:4]:
             drawTimeGraph("Yearly spending", "total_price", "", collectionData.years, collectionData.totals, "total", filterData.graphStyle, filterData.graphStepSize, True, False, filterData.graphIncludeZero)
             drawTimeGraph("Yearly items", "item_count", "", collectionData.years, collectionData.totals, "total", filterData.graphStyle, filterData.graphStepSize, False, False, filterData.graphIncludeZero)
-        # Wenn die Daten nur einen monat betreffen -> Tagesdiagramme ausgeben
+        # Data over less then one month -> Show day graph
         elif collectionData.totals.first.date[0:7] == collectionData.totals.last.date[0:7]:
             drawTimeGraph("Daily spending", "total_price", collectionData.totals.first.date[0:7], collectionData.days, collectionData.totals, "month", filterData.graphStyle, filterData.graphStepSize, True, False, filterData.graphIncludeZero)
             drawTimeGraph("Daily items", "item_count", collectionData.totals.first.date[0:7], collectionData.days, collectionData.totals, "month", filterData.graphStyle, filterData.graphStepSize, False, False, filterData.graphIncludeZero)
-        # Wenn die Daten mehr als einen Monat aber nur ein Jahr betreffen -> Monatsdiagramm ausgeben
+        # Data over more than one month but less than one year -> Show month graph
         elif collectionData.totals.first.date[0:4] == collectionData.totals.last.date[0:4]:
             drawTimeGraph("Monthly spending", "total_price", collectionData.totals.first.date[0:4], collectionData.months, collectionData.totals, "year", filterData.graphStyle, filterData.graphStepSize, True, False, filterData.graphIncludeZero)
             drawTimeGraph("Monthly items", "item_count", collectionData.totals.first.date[0:4], collectionData.months, collectionData.totals, "year", filterData.graphStyle, filterData.graphStepSize, False, False, filterData.graphIncludeZero)
@@ -128,15 +128,15 @@ def printQuery(filterData, collectionData):
 # printSums Function
 # --------------------
 def printSums(filterData, collectionData):
-    # Plattformdaten ausgeben
+    # Print platform data
     for platform, data in sorted(collectionData.platforms.items()):
         title = getCategoryTitle(platform, filterData)
 
         if len(filterData.categoryFilterList) == 0 or searchListInString(filterData.categoryFilterList, platform):
             printSum(title, data, collectionData.collection_items, False, filterData, platform, "platform")
-        
-        
-    # Allgemeine Daten ausgeben
+
+
+    # Print general data
     for category, data in sorted(collectionData.categories.items()):
         title = getCategoryTitle(category + " totals", filterData)
 
@@ -144,50 +144,50 @@ def printSums(filterData, collectionData):
             printSum(title, data, collectionData.collection_items, False, filterData, category, "platform-right")
 
 
-    # Jahresdaten ausgeben
+    # Print yearly data
     for year, data in sorted(collectionData.years.items()):
         title = getCategoryTitle(year, filterData)
 
         if len(filterData.categoryFilterList) == 0 or searchListInString(filterData.categoryFilterList, year):
             printSum(title, data, collectionData.collection_items, filterData.hideGraphs == False, filterData, year, "year")
-            
+
             if filterData.hideGraphs == False:
                 drawTimeGraph("Monthly spending", "total_price", year, collectionData.months, data, "year", filterData.graphStyle, filterData.graphStepSize, True)
                 drawTimeGraph("Monthly items", "item_count", year, collectionData.months, data, "year", filterData.graphStyle, filterData.graphStepSize)
-   
-   
-    # Monatsdaten ausgeben
+
+
+    # Print monthly data
     for month, data in sorted(collectionData.months.items()):
         title = getCategoryTitle(month, filterData)
         if searchListInString(filterData.categoryFilterList, month, True):
             printSum(title, data, collectionData.collection_items, filterData.hideGraphs == False, filterData, month, "month")
-            
+
             if filterData.hideGraphs == False:
                 drawTimeGraph("Daily spending", "total_price", month, collectionData.days, data, "month", filterData.graphStyle, filterData.graphStepSize, True)
                 drawTimeGraph("Daily items", "item_count", month, collectionData.days, data, "month", filterData.graphStyle, filterData.graphStepSize)
 
-   
-    # Tagesdaten ausgeben
+
+    # Print daily data
     for day, data in sorted(collectionData.days.items()):
         title = getCategoryTitle(day, filterData)
         if searchListInString(filterData.categoryFilterList, day, True):
             printSum(title, data, collectionData.collection_items, False, filterData, day, "day")
 
 
-    # Gesamtdaten ausgeben
+    # Print total sums
     if len(filterData.categoryFilterList) == 0 or searchListInString(filterData.categoryFilterList, "Collection totals"):
-        title = getCategoryTitle("Collection totals", filterData)        
+        title = getCategoryTitle("Collection totals", filterData)
         printSum(title, collectionData.totals, collectionData.collection_items, filterData.hideGraphs == False, filterData)
-        
+
         if filterData.hideGraphs == False:
             drawTimeGraph("Yearly spending", "total_price", "", collectionData.years, collectionData.totals, "total", filterData.graphStyle, filterData.graphStepSize, True, False, filterData.graphIncludeZero)
             drawTimeGraph("Yearly items", "item_count", "", collectionData.years, collectionData.totals, "total", filterData.graphStyle, filterData.graphStepSize, True, False, filterData.graphIncludeZero)
             drawTimeGraph("Collection growth (value)", "total_price", "", collectionData.years, collectionData.totals, "total", filterData.graphStyle, filterData.graphStepSize, True, True, filterData.graphIncludeZero)
             drawTimeGraph("Collection growth (items)", "item_count", "", collectionData.years, collectionData.totals, "total", filterData.graphStyle, filterData.graphStepSize, False, True, filterData.graphIncludeZero)
-            
+
 
 ######################
-# printSum Function
+# printSum
 # --------------------
 def printSum(title, data, items, noEndLine, filterData, itemCategoryFilter = "", itemCategoryFilterValue = ""):
     outputLine()
@@ -201,11 +201,11 @@ def printSum(title, data, items, noEndLine, filterData, itemCategoryFilter = "",
     consoleLine("  - Last purchase  : " + data.last.date)
     consoleLine("                     " + data.last.name)
     consoleLine("                     " + data.last.platform + " " + data.last.region)
-    
+
     if filterData.listItems:
         consoleLine()
         consoleMidBlock("Items")
-        
+
         totalPrice          = 0.0
         totalCount          = 0
         sectionPrice        = 0.0
@@ -230,44 +230,44 @@ def printSum(title, data, items, noEndLine, filterData, itemCategoryFilter = "",
                 items = sorted(items, key=lambda item: item.region, reverse=filterData.orderItemsReverse)
             if filterData.orderItems.lower() == "platform" :
                 items = sorted(items, key=lambda item: item.platform, reverse=filterData.orderItemsReverse)
-    
+
         for item in items:
             if itemFilterValid(item, itemCategoryFilter, itemCategoryFilterValue):
-                        
+
                 if filterData.listVerbose:
-                    verboseAttr = ("  " + YNToX(item.cart) + " " + 
-                                   "  " + YNToX(item.box) + " " + 
-                                   "  " + YNToX(item.manual) + " " + 
-                                   "  " + YNToX(item.other) + " " + 
+                    verboseAttr = ("  " + YNToX(item.cart) + " " +
+                                   "  " + YNToX(item.box) + " " +
+                                   "  " + YNToX(item.manual) + " " +
+                                   "  " + YNToX(item.other) + " " +
                                    "   ")
                     verbose = str(item.id)[0:idWidth].ljust(idWidth) + item.platform[0:platformWidth].ljust(platformWidth) + verboseAttr + item.notes[0:notesWidth].ljust(notesWidth)
-                        
+
                 if filterData.listDetails:
                     details = verbose + item.region.ljust(2) + "  " + item.date + "  " + format(item.price, ".2f").rjust(7) + " "
 
                 itemTextLen = CONSOLE_COLUMNS-len(details)
-                
+
                 if filterData.listVerbose and totalCount == 0:
                     consoleLine("  Title".ljust(itemTextLen) + "ID".ljust(idWidth) + "Platform".ljust(platformWidth) + "  C   B   M   O    " + "Notes".ljust(notesWidth) + "RE  " + "Date".ljust(10) + "  " + "Price".rjust(7) + " ")
                     consoleLine("  " + "─" * (CONSOLE_COLUMNS-3) + " ")
-            
+
                 if sectionChange(item, lastItem, filterData.groupItems) and totalCount > 0:
                     printItemSum(getSectionTitle(lastItem, filterData.groupItems) + " total: ", sectionPrice, sectionCount, filterData.listDetails)
                     consoleLine()
                     sectionSumPrinted = True
                     sectionPrice      = 0.0
                     sectionCount      = 0
-            
+
                 if totalCount > 0 and filterData.itemLines:
                     consoleLine("  " + "─" * (CONSOLE_COLUMNS-3) + " ")
 
                 consoleLine((("  - " + item.name)[0:itemTextLen-2] + "  ").ljust(itemTextLen) + details)
-                
+
                 totalPrice   += item.price
                 totalCount   += 1
                 sectionPrice += item.price
                 sectionCount += 1
-                
+
                 lastItem = item
 
         if sectionSumPrinted:
@@ -279,10 +279,10 @@ def printSum(title, data, items, noEndLine, filterData, itemCategoryFilter = "",
 
     if noEndLine == False:
         consoleEndBlock()
-        
-        
+
+
 ######################
-# printItemSum Function
+# printItemSum
 # --------------------
 def printItemSum(text, price, count, showPrice, printAverage = False):
     itemsString   = ""
@@ -291,13 +291,13 @@ def printItemSum(text, price, count, showPrice, printAverage = False):
     sections      = 2
     priceFormated = format(price, ".2f")
 
-    # Anzahl items
+    # Item count
     itemsString = "    " + str(count) + " item" + ("s" if count > 1 else "")
-    
-    # Summe und durchschnitt
+
+    # Sum and average
     if showPrice == True:
         consoleLine(("─" * len(priceFormated) + " ").rjust(CONSOLE_COLUMNS))
-        
+
         if printAverage:
             if count > 0:
                 averageString = "Average price: " + format(price/count, ".2f")
@@ -305,11 +305,11 @@ def printItemSum(text, price, count, showPrice, printAverage = False):
         sumString = text + "  " + priceFormated + " "
     else:
         consoleLine()
-    
-    # Verfügbare Breite in mehrere abschnitte aufteilen
+
+    # Split available width in multiple section
     if printAverage:
         sections += 1
-        
+
     sectionLen    = int(CONSOLE_COLUMNS/sections)
     sectionLenSum = CONSOLE_COLUMNS - (sectionLen * (sections-1))
 
@@ -318,7 +318,7 @@ def printItemSum(text, price, count, showPrice, printAverage = False):
 
 
 ######################
-# itemFilterValid Function
+# itemFilterValid
 # --------------------
 def itemFilterValid(item, itemFilter, itemFilterValue):
     if itemFilterValue == "all":
@@ -335,52 +335,52 @@ def itemFilterValid(item, itemFilter, itemFilterValue):
         return item.date[0:7] == itemFilter
     if itemFilterValue == "day":
         return item.date == itemFilter
-        
-        
+
+
 ######################
-# sectionChange Function
+# sectionChange
 # --------------------
 def sectionChange(item, lastItem, group):
-    
+
     if group == "year" and item.date[0:4] != lastItem.date[0:4]:
         return True
-    
+
     if group == "month" and item.date[0:7] != lastItem.date[0:7]:
         return True
-        
+
     if group == "day" and item.date != lastItem.date:
         return True
-        
+
     if group == "region" and item.region != lastItem.region:
         return True
-        
+
     if group == "name" and item.name != lastItem.name:
         return True
-        
+
     if group == "platform" and item.platform != lastItem.platform:
         return True
 
 
 ######################
-# getCategoryTitle Function
+# getCategoryTitle
 # --------------------
 def getCategoryTitle(text, filterData):
     title = text
-    
+
     if len(filterData.itemFilter):
         title += " [Item: " + filterData.itemFilter + "]"
-        
+
     if len(filterData.platformFilter):
         title += " [Platform: " + filterData.platformFilter + "]"
 
     if len(filterData.regionFilter):
         title += " [Region: " + filterData.regionFilter + "]"
-        
+
     return title
-    
-    
+
+
 ######################
-# YNToX Function
+# YNToX
 # --------------------
 def YNToX(yn):
     yn = yn.lower()
@@ -389,10 +389,10 @@ def YNToX(yn):
         return "X"
     else:
         return " "
-    
-    
+
+
 ######################
-# outputLine Function
+# outputLine
 # --------------------
 def outputLine(line = ""):
     global textOutput
@@ -401,7 +401,7 @@ def outputLine(line = ""):
 
 
 ######################
-# consoleStartBlock Function
+# consoleStartBlock
 # --------------------
 def consoleStartBlock(title = ""):
     outputLine(" ┌" + ("─" + title[0:CONSOLE_COLUMNS]).ljust(CONSOLE_COLUMNS, "─") + "┐ ")
@@ -409,7 +409,7 @@ def consoleStartBlock(title = ""):
 
 
 ######################
-# consoleEndBlock Function
+# consoleEndBlock
 # --------------------
 def consoleEndBlock():
     consoleLine()
@@ -417,7 +417,7 @@ def consoleEndBlock():
 
 
 ######################
-# consoleMidBlock Function
+# consoleMidBlock
 # --------------------
 def consoleMidBlock(title = ""):
     outputLine(" ├" + ("─" + title[0:CONSOLE_COLUMNS]).ljust(CONSOLE_COLUMNS, "─") + "┤ ")
@@ -425,14 +425,14 @@ def consoleMidBlock(title = ""):
 
 
 ######################
-# consoleLine Function
+# consoleLine
 # --------------------
 def consoleLine(text = ""):
     outputLine(" │" + text[0:CONSOLE_COLUMNS].ljust(CONSOLE_COLUMNS) + "│ ")
-    
-    
+
+
 ######################
-# drawTimeGraph Function
+# drawTimeGraph
 # --------------------
 def drawTimeGraph(title, attribute, group, units, groupData, mode, graphStyle, stepSize = 0, noEndLine = False, addUp = False, includeZero = False):
     unitsOfGroup           = {}
@@ -444,17 +444,17 @@ def drawTimeGraph(title, attribute, group, units, groupData, mode, graphStyle, s
     unitCount              = 0
     totalSum               = 0.0
     graphPadding           = 3
-    
+
     if len(graphStyle) == 0:
         graphStyle = "outline"
-    
-    # Prüfen ob Gruppe gültig
+
+    # Check if group is valid
     if mode != "total" and len(group[0:4]) and int(group[0:4]) == 0:
         if noEndLine == False:
             consoleEndBlock()
             return
 
-    # Modus initialisieren
+    # Init mode
     if mode == "total":
         groupLen      = 0
         unitLen       = 4
@@ -480,25 +480,25 @@ def drawTimeGraph(title, attribute, group, units, groupData, mode, graphStyle, s
         endRange      = 31
         unitPartLen   =  2
 
-    # Leereinheiten generieren
+    # Generate dummy entries
     for i in range(startRange, endRange+1):
         unitsOfGroup[group + ("-" if len(group) else "") + format(i, "02")] = DataTotal()
-    
+
     if includeZero:
         unitsOfGroup[group + ("-" if len(group) else "") + "0" * unitPartLen] = DataTotal()
 
-    # Pro Gruppe Einheiten zusammensuchen
+    # Find units for each group
     for unit, data in sorted(unitsOfGroup.items()):
         currentGroup = unit[0:groupLen]
         currentUnit  = unit[-unitPartLen:len(unit)]
-        
-        # Ungültie Einheiten ignorieren
+
+        # Ignore invalid units
         if int(currentUnit) == 0 and includeZero != True:
             continue
-        
-        # Alle Daten übernehmen die zur aktuellen Gruppe gehören
+
+        # Include all data that belongs to the current group
         if currentGroup == group:
-            if unit in units.keys(): 
+            if unit in units.keys():
                 unitsOfGroup[unit] = units[unit]
 
             endUnit   = unit
@@ -507,88 +507,84 @@ def drawTimeGraph(title, attribute, group, units, groupData, mode, graphStyle, s
 
             if addUp:
                 setattr(unitsOfGroup[unit], attribute, totalSum)
-            
+
             if len(startUnit) == 0:
                 startUnit = unit
 
-            # Höchste Ausgaben ermitteln
-            # um später oberes Limit berechnen zu können
+            # Find highest output
+            # to calculate upper limit
             if getattr(unitsOfGroup[unit], attribute) > getattr(highestUnit, attribute):
                 highestUnit = unitsOfGroup[unit]
-                
-            # Niedrigste Ausgaben ermitteln
+
+            # Find lowest output
             if (getattr(unitsOfGroup[unit], attribute) > 0 and getattr(unitsOfGroup[unit], attribute) < getattr(lowestUnit, attribute)) or getattr(lowestUnit, attribute) == 0:
                 lowestUnit  = unitsOfGroup[unit]
-                
+
         if currentGroup > group:
             break
-    
-    # Benötigte breite für die Beschriftungen der Y-Achse berechnen
+
+    # Calculate required whidth for y-axis labels
     yCaptionWidth = max(len(str(int(getattr(highestUnit, attribute)))), len(str(stepSize))) + 1
-    
-    # Prüfen ob Screen breit genug um Diagramm zu zeichnen
-    # Min-Breite für einen Balken = 2
+
+    # Check whether screen is wide enough to draw the graph
+    # Min width per bar = 2
     if (endRange - startRange + 1) * 2 > CONSOLE_COLUMNS-(yCaptionWidth+(graphPadding*2)):
         consoleMidBlock("GRAPH ERROR")
         consoleLine(" - not enough screen width to draw graph")
         if noEndLine == False:
             consoleEndBlock()
         return
-    
-    # Maximale anzahl Einheiten berechnen
+
+    # Calculate max number of units
     maxUnits = endRange - startRange + 1
-    
-    # Breite der Balken berechnen
+
+    # Calculate graph bar with
     outerBarWidth = int((CONSOLE_COLUMNS-(yCaptionWidth+(graphPadding*2)))/maxUnits)
     barWidth      = outerBarWidth - 2
-    
-    # Prüfen ob eine gültige Einheits-Range ermittelt wurde
+
+    # Check whether a valid unit range was found
     if len(startUnit) == 0 or len(endUnit) == 0:
         if noEndLine == False:
             consoleEndBlock()
         return
 
-    # Oberes Limit für das Diagramm berechnen
+    # Calculate upper limit for the graph
     upperBound = int(math.ceil(getattr(highestUnit, attribute) / 10.0)) * 10
 
-    # Schrittgröße für das Diagramm berechnen
+    # Calculate step size
     if stepSize == 0:
         if len(str(int(getattr(highestUnit, attribute)))) == 1:
             stepSize = 1
         else:
             stepSize = int(int(10 ** (len(str(int(getattr(highestUnit, attribute))))-1))/5)
-        
-        # Sicherstellen, dass die Schrittgröße nicht zu fein ist
-        # und das Diagramm zu hoch wird
+
+        # Making sure the step size isnt too fine
         if upperBound / stepSize > 20:
             stepSize = int(upperBound/20)
 
-    # Sicherstellen, dass das obere Limit zur Schrittgröße passt
+    # Making sure the upper limit fits the step size
     if upperBound % stepSize != 0:
-        # Anonsten Limit so erweitern, dass sauber durch Schrittgröße teilbar
+        # Extend limit so it can be devided cleanly by the step size
         upperBound += stepSize - (upperBound % stepSize)
 
-    # Unteres Limit für die Metadaten berechnen
-    # Ein Step mehr als nötig für Beschriftung
+    # Calculate the lower limit for the meta data
     lowerBound = (stepSize*-1)-1
 
-    # Daten-Array initialisieren
+    # Init data list
     for i in range(upperBound, lowerBound, stepSize*-1):
         rows[i] = ""
-    
-    # Array nach unten hin erweitern damit eine 
-    # zeite Zeile für die Achsenbeschriftung
-    # verfügbar ist
+
+    # Make room for axis label in list
     rows[(stepSize*-2)] = ""
 
-    # Diagramm zeilenweise zusammenstellen
+    # Contruct graph row-wise
     for unit, data in sorted(unitsOfGroup.items()):
         b = False
 
         for i in range(upperBound, lowerBound, stepSize*-1):
 
             if i < 0:
-                # Beschriftungen der X-Achse
+                # X-axis labels
                 if mode == "total":
                     unitDescription = translateGraphUnit(unit[groupLen:len(unit)], mode, barWidth)
                 else:
@@ -598,16 +594,16 @@ def drawTimeGraph(title, attribute, group, units, groupData, mode, graphStyle, s
                     rows[i] += unitDescription.center(outerBarWidth)
                 else:
                     if len(unitDescription) / 2 <= barWidth:
-                        # Wenn die Beschriftung in zwei zeilen passt
+                        # When the label fits in two rows
                         rows[i]             += unitDescription[0:max(barWidth, 1)].center(outerBarWidth)
                         rows[i+stepSize*-1] += unitDescription[max(barWidth, 1):max(barWidth, 1)+max(barWidth, 1)].center(outerBarWidth)
                     else:
-                        # Wenn die Beschriftung nicht in zwei zeilen passt
-                        # nur die letzten zwei Zeichen in den beiden Zeilen drucken
+                        # When the label doesnt fit in two rows
+                        # only print the last two characters
                         rows[i]             += unitDescription[-2:-1].center(outerBarWidth)
                         rows[i+stepSize*-1] += unitDescription[-1:len(unitDescription)].center(outerBarWidth)
             else:
-                # Diagramm-Linien
+                # Graph lines
                 if getattr(data, attribute) <= i and getattr(data, attribute) > i - stepSize and getattr(data, attribute) != 0:
                     if graphStyle == "outline":
                         rows[i] += "┌"+"─"*barWidth+"┐"
@@ -631,18 +627,18 @@ def drawTimeGraph(title, attribute, group, units, groupData, mode, graphStyle, s
                                 rows[i] += "█"*outerBarWidth
                         else:
                             rows[i] += " "+" "*barWidth+" "
-                        
-    # Diagramm ausgeben
+
+    # Print graph
     consoleLine()
     consoleMidBlock(title)
 
     for row, data in rows.items():
         if row < 0:
-            # Beschriftung X-Achse ausgeben
+            # Print x-axis labels
             if len(data):
                 consoleLine(" " * (graphPadding + yCaptionWidth) + data)
         else:
-            # Diagramm ausgeben
+            # Print graph
             consoleLine(" " + str(row).rjust(yCaptionWidth-1) + " " * graphPadding + data)
 
     consoleLine()
@@ -651,40 +647,40 @@ def drawTimeGraph(title, attribute, group, units, groupData, mode, graphStyle, s
                 "  - Average: " + format(getattr(groupData, attribute)/unitCount, ".2f"))
     if noEndLine == False:
         consoleEndBlock()
-        
-        
+
+
 ######################
-# translateGraphUnit Function
+# translateGraphUnit
 # --------------------
 def translateGraphUnit(unit, mode, maxWidth):
     if mode == "year":
-    
+
         short = {
             "01": "JA", "02": "FE", "03": "MR",
             "04": "AP", "05": "MY", "06": "JN",
             "07": "JL", "08": "AU", "09": "SE",
             "10": "OC", "11": "NV", "12": "DE"
         }
-        
+
         long = {
             "01": "January", "02": "February", "03": "March",
             "04": "April"  , "05": "May"     , "06": "June",
             "07": "July"   , "08": "August"  , "09": "September",
             "10": "October", "11": "November", "12": "December"
         }
-        
+
         if maxWidth >= 9:
             return long.get(unit)
         if maxWidth >= 3:
             return long.get(unit)[0:3]
         else:
             return short.get(unit)
-        
+
     return unit
-    
+
 
 ######################
-# searchListInString Function
+# searchListInString
 # --------------------
 def searchListInString(list, string, exact = False):
     for item in list:
@@ -694,12 +690,12 @@ def searchListInString(list, string, exact = False):
         else:
             if re.search(item.lower().strip(), string.lower()) != None:
                 return True
-            
+
     return False
-            
-            
+
+
 ######################
-# searchStringInList Function
+# searchStringInList
 # --------------------
 def searchStringInList(string, list):
     for item in list:
@@ -707,40 +703,40 @@ def searchStringInList(string, list):
             return True
 
     return False
-    
-    
+
+
 ######################
-# getSectionTitle Function
+# getSectionTitle
 # --------------------
 def getSectionTitle(lastItem, group):
-    
+
     if group == "year":
         return lastItem.date[0:4]
-    
+
     if group == "month":
         return lastItem.date[0:7]
-        
+
     if group == "day":
         return lastItem.date
-        
+
     if group == "region":
         return lastItem.region
-        
+
     if group == "name":
         return lastItem.name
-        
+
     if group == "platform":
         return lastItem.platform
-        
+
     return ""
-    
-    
+
+
 ######################
-# printHelp Function
+# printHelp
 # --------------------
 def printHelp():
     global options
-    
+
     print()
     print("  Usage: VGC_Analyze.py <options> <categories>")
     print()
@@ -748,7 +744,7 @@ def printHelp():
 
     for option in options:
         helpString = "    "
-    
+
         if len(option["short"]):
             helpString += "-" + option["short"]
             if option["argument"]:
@@ -762,7 +758,7 @@ def printHelp():
         if len(helpString):
             helpString += "\n"
             helpString += "         " + option["description"].replace("\n", "\n         ")
-    
+
         if len(helpString.strip()):
             print(helpString + "\n")
 

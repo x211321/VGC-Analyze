@@ -1,19 +1,19 @@
 
 
-# Benötigte Python module importieren
+# Load required python modules
 import sys
 
 
-# Klassen aus VGC_Lib importieren
+# Import classes from VGC_Data
 from VGC_Data import CollectionData
 
 
-# Funktionen aus VGC_Lib importieren
+# Import functions from VGC_Lib
 from VGC_Lib import userInputBool
 from VGC_Lib import userInputString
 
 
-# Funktionen aus VGC_Print importieren
+# Import functions from VGC_Print
 from VGC_Print import getTextOutput
 from VGC_Print import printQuery
 from VGC_Print import printSums
@@ -21,11 +21,11 @@ from VGC_Print import printCategories
 
 
 ######################
-# main_console Function
-# --------------------   
+# main_console
+# --------------------
 def main_console(filterData):
 
-    # Interaktiver Modus
+    # Interactive mode
     #--------------------
     if filterData.interactiveMode:
         print("  VGCollect-Analyzer - interactive mode\n")
@@ -42,12 +42,12 @@ def main_console(filterData):
         filterData.orderItems         = userInputString("  Order items by [name, price, date, region, platform]: ")
         filterData.groupItems         = userInputString("  Group items by [year, month, day, name, region, platform]: ")
         filterData.skipCategories     = userInputBool("  Skip categories (combine all results) [y/N]: ", False)
-        
+
         if filterData.skipCategories == False:
             filterData.categoryFilterList = userInputString("  Category filter (comma separated) [wii, 3ds, 2020, ...]: ").split(",")
 
 
-    # Daten einlesen, parsen und summieren
+    # Read, parse and sum collection data
     #--------------------
     collectionData = CollectionData(filterData)
     collectionData.readData()
@@ -55,31 +55,31 @@ def main_console(filterData):
     collectionData.sumData()
 
 
-    # Kategorien auflisten
+    # List categories
     #--------------------
     if filterData.listCategories:
         printCategories(filterData, collectionData)
         exit()
 
 
-    # Daten ausgeben
+    # Print data
     #--------------------
     if filterData.skipCategories:
-        # Query-Daten ausgeben
+        # Print query data
         printQuery(filterData, collectionData)
     else:
-        # Summen ausgeben
+        # Print sums
         printSums(filterData, collectionData)
 
 
-    # Textdatei ausgeben
+    # Write text file
     #--------------------
     file = open("VGC_Analyze.txt", "w", encoding="utf-8")
     file.write(getTextOutput())
     file.close()
-    
-    
-    # Keine Daten gefunden?
+
+
+    # No result
     #--------------------
     if len(getTextOutput()) == 0:
         print("  No results for query")

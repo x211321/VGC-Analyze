@@ -21,13 +21,13 @@ from VGC_Var import DOWNLOAD_FILE
 
 ######################
 # downloadCollection
-# --------------------   
+# --------------------
 def downloadCollection(filterData, username = "", password = ""):
     url_base  = "vgcollect.com"
     url_https = "https://" + url_base
     url_auth  = url_https + "/login/authenticate"
     url_csv   = url_https + "/settings/export/collection"
-    
+
     if not filterData.guiMode:
         if len(username) == 0:
             username  = input("Username: ")
@@ -39,7 +39,7 @@ def downloadCollection(filterData, username = "", password = ""):
              "Host":url_base,
              "Origin":url_https,
              "Referer":url_https}
-             
+
     cookie_jar = http.cookiejar.CookieJar()
     opener     = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(cookie_jar))
     urllib.request.install_opener(opener)
@@ -48,13 +48,13 @@ def downloadCollection(filterData, username = "", password = ""):
         'username':username,
         'password':password
     }
-    
+
     data        = urllib.parse.urlencode(payload)
     binary_data = data.encode('UTF-8')
-    
+
     request  = urllib.request.Request(url_auth, binary_data, headers)
     response = urllib.request.urlopen(request)
-    
+
     if response.getcode() == 200:
         request  = urllib.request.Request(url_csv, binary_data, headers)
         response = urllib.request.urlopen(request)
@@ -62,9 +62,9 @@ def downloadCollection(filterData, username = "", password = ""):
             contents = response.read()
 
             if "\"VGC id\"" in str(contents[0:10]):
-            
+
                 print("\n  Download successful")
-                
+
                 # Save downloaded collection data
                 writeFile(DOWNLOAD_FILE, contents, "wb")
 
@@ -78,7 +78,7 @@ def downloadCollection(filterData, username = "", password = ""):
                     sys.exit()
         else:
             print("\n  Error downloading CSV - Code: " + str(response.getcode()))
-            
+
             if filterData.guiMode:
                 return "Download error - Code: " + str(response.getcode())
             else:
@@ -90,11 +90,11 @@ def downloadCollection(filterData, username = "", password = ""):
             return "Login error - Code: " + str(response.getcode())
         else:
             sys.exit()
-        
-        
+
+
 ######################
 # downloadCovers
-# --------------------   
+# --------------------
 def downloadCovers(itemId, refresh = False, coverType = ""):
     url_base  = "vgcollect.com"
     url_https = "https://" + url_base
@@ -112,7 +112,7 @@ def downloadCovers(itemId, refresh = False, coverType = ""):
 
 ######################
 # downloadCover
-# --------------------   
+# --------------------
 def downloadCover(itemId, url, path, refresh):
 
     itemPath = path + str(itemId) + ".jpg"
@@ -125,15 +125,15 @@ def downloadCover(itemId, url, path, refresh):
 
     # Create request
     request = urllib.request.Request(url)
-    
+
     # Check if target path exists
     if os.path.exists(path) == False:
         os.makedirs(path)
-    
+
     try:
         # Download cover
         response = urllib.request.urlopen(request)
-        
+
         if response.getcode() == 200:
             print("\n  Download successful - "+ itemPath)
             contents = response.read()
