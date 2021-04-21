@@ -1,5 +1,6 @@
 Duplikate finden
 Fehlende Cover auf Webseite finden
+Fehlende Barcodes auf Webseite finden
 Graphen ausgeben
 Dateiname anzeigen
 Filter hilfe (regex, datumsformat, etc.)
