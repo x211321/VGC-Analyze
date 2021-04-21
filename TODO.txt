@@ -1,0 +1,32 @@
+Duplikate finden
+Fehlende Cover auf Webseite finden
+Graphen ausgeben
+Dateiname anzeigen
+Filter hilfe (regex, datumsformat, etc.)
+Bookmark all (displayed)
+Remove all bookmarks (displayed)
+Dateiauswahl
+Missing covers index
+Eigene Messageboxen (positionierbar / Topmost)
+Einstellungsdialog
+	Währung
+	Datumsformat
+Datepicker
+About Dialog
+Listview Pos1 / Ende / Bild auf / Bild ab
+Multifilter (mehrere Regionen, Platformen, etc.)
+EXE bundle img
+EXE virus https://stackoverflow.com/questions/43777106/program-made-with-pyinstaller-now-seen-as-a-trojan-horse-by-avg
+
+
+
+===DONE===
+Gruppeninfos (Anzahl Gruppen / Durchschnittspreis)
+Suchfunktion (Strg + F - Suche im Listview ohne Filtern)
+Sort
+Group
+Summen ausgeben
+Durchschnittswerte ausgeben
+Letzes Downloaddatum anzeigen
+Downloader anzeigen wenn keine Daten
+Treeview gruppierungen
