@@ -18,6 +18,8 @@ Multifilter (mehrere Regionen, Platformen, etc.)
 EXE bundle img
 EXE virus https://stackoverflow.com/questions/43777106/program-made-with-pyinstaller-now-seen-as-a-trojan-horse-by-avg
 Cover mouse hover Buttons anzeigen
+Multiselect
+Sortieren über Treeview header
 
 
 ===DONE===
