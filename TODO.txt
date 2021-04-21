@@ -17,7 +17,7 @@ Listview Pos1 / Ende / Bild auf / Bild ab
 Multifilter (mehrere Regionen, Platformen, etc.)
 EXE bundle img
 EXE virus https://stackoverflow.com/questions/43777106/program-made-with-pyinstaller-now-seen-as-a-trojan-horse-by-avg
-
+Cover mouse hover Buttons anzeigen
 
 
 ===DONE===
