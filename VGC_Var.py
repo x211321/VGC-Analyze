@@ -1,8 +1,9 @@
 FILE_PREFIX        = "collection-"
 
-SETTINGS_PATH      = "./settings/"
-BOOKMARKS_PATH     = SETTINGS_PATH + "bookmarks"
-DOWNLOAD_PATH      = "./"
+DATA_PATH          = "./data/"
+SETTINGS_PATH      = DATA_PATH + "settings/"
+LOCAL_DATA         = DATA_PATH + "local/"
+DOWNLOAD_PATH      = DATA_PATH
 DOWNLOAD_FILE      = DOWNLOAD_PATH + FILE_PREFIX + "VGC-Analyze-Download.csv"
 LOCAL_DATA_FILE    = LOCAL_DATA + "VGC-Local-Data.json"
 
