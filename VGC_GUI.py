@@ -30,7 +30,6 @@ from VGC_Var import IMG_CASHE_BACK
 from VGC_Var import IMG_CASHE_CART
 from VGC_Var import IMG_COVER_NONE
 from VGC_Var import FILE_PREFIX
-from VGC_Var import BOOKMARKS_PATH
 from VGC_Var import DOWNLOAD_FILE
 
 COVER_WIDTH   = 120
@@ -215,7 +214,6 @@ class GUI(object):
         self.collectionData        = CollectionData(self.filterData)
         self.collectionDataDisplay = CollectionData(self.filterData)
         self.activeItem            = CollectionItem()
-        self.bookmarks             = []
 
         self.init()
 
@@ -532,34 +530,17 @@ class GUI(object):
     # readData
     # --------------------
     def readData(self):
-        # Read bookmarks
-        self.readBookmarks()
 
         # Read, parse and sum collection data
         #--------------------
         self.collectionData.readData()
-        self.collectionData.parseData(self.bookmarks)
+        self.collectionData.parseData()
         self.collectionData.sumData()
 
         self.fillPlatformCombobox()
         self.fillRegionCombobox()
         self.fillGroupCombobox()
         self.fillOrderCombobox()
-
-
-    ######################
-    # readBookmarks
-    # --------------------
-    def readBookmarks(self):
-        self.bookmarks = []
-
-        try:
-            file = open(BOOKMARKS_PATH, "r", encoding="utf-8")
-            for line in file:
-                self.bookmarks.append(int(line))
-            file.close()
-        except:
-            pass
 
 
     ######################
@@ -575,7 +556,7 @@ class GUI(object):
         self.collectionDataDisplay.setFilter(displayFilter)
 
         # Parse display data acording to the user filter
-        self.collectionDataDisplay.parseData(self.bookmarks)
+        self.collectionDataDisplay.parseData()
         self.collectionDataDisplay.sumData()
 
         # Show group column
@@ -662,7 +643,7 @@ class GUI(object):
                 YNToX(item.box),
                 YNToX(item.manual),
                 YNToX(item.other),
-                YNToX(item.bookmarked),
+                YNToX(item.getLocalData("bookmarked")),
                 item.notes)
 
 
@@ -725,18 +706,7 @@ class GUI(object):
         selection = self.item_view.focus()
 
         if self.activeItem.id > 0:
-            if self.activeItem.id in self.bookmarks:
-                self.bookmarks.remove(self.activeItem.id)
-                self.activeItem.bookmarked = "No"
-            else:
-                self.bookmarks.append(self.activeItem.id)
-                self.activeItem.bookmarked = "Yes"
-
             self.updateViewItem(selection, self.activeItem)
-
-            # Save bookmarks to file
-            temp = "\n"
-            writeFile(BOOKMARKS_PATH, temp.join(map(str, self.bookmarks)), "w")
 
             # Anzeigedaten aktualisieren
             self.collectionData.updateItem(self.activeItem)

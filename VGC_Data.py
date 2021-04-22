@@ -7,10 +7,14 @@ from enum        import IntEnum
 from collections import OrderedDict
 from os          import listdir
 
+from VGC_Json    import readJson
+
 from VGC_Var     import FILE_PREFIX
 from VGC_Var     import CAT_HARDWARE
 from VGC_Var     import CAT_ACCESSORY
 from VGC_Var     import CAT_ACCESSORIES
+from VGC_Var     import LOCAL_DATA
+from VGC_Var     import LOCAL_DATA_FILE
 
 # Global list for definition of
 # possible console arguments
@@ -61,8 +65,14 @@ class CollectionItem(object):
 
     # Constructor
     # Parses csv-line to CollectionItem
-    def __init__(self, csv_line = "", index = 0):
+    def __init__(self, csv_line = "", index = 0, localItemData_List = {}):
         csv_fields  = csv_line.split("\",\"")
+
+
+
+        for index, field in enumerate(csv_fields):
+            csv_fields[index] =field.strip(" ,\"\n")
+
 
         self.id         = 0
         self.name       = ""
@@ -75,25 +85,31 @@ class CollectionItem(object):
         self.manual     = ""
         self.other      = ""
         self.notes      = ""
-        self.bookmarked = ""
+        self.dateAdded  = ""
         self.index      = index
+        self.localData  = {}
+
 
         if csv_line != "":
-            self.id       = int(csv_fields[CSVColumns.id][1:].strip())
-            self.name     = csv_fields[CSVColumns.name].strip()
-            self.platform = self.getPlatformName(csv_fields[CSVColumns.platform].strip())
-            self.price    = float(csv_fields[CSVColumns.price].strip())
-            self.date     = csv_fields[CSVColumns.date].strip()
-            self.region   = self.getRegion(csv_fields[CSVColumns.platform].strip())
-            self.cart     = csv_fields[CSVColumns.cart].strip()
-            self.box      = csv_fields[CSVColumns.box].strip()
-            self.manual   = csv_fields[CSVColumns.manual].strip()
-            self.other    = csv_fields[CSVColumns.other].strip()
-            self.notes    = csv_fields[CSVColumns.notes].strip()
+            self.id       = int(csv_fields[CSVColumns.id])
+            self.name     = csv_fields[CSVColumns.name]
+            self.platform = self.getPlatformName(csv_fields[CSVColumns.platform])
+            self.price    = float(csv_fields[CSVColumns.price])
+            self.date     = csv_fields[CSVColumns.date]
+            self.region   = self.getRegion(csv_fields[CSVColumns.platform])
+            self.cart     = csv_fields[CSVColumns.cart]
+            self.box      = csv_fields[CSVColumns.box]
+            self.manual   = csv_fields[CSVColumns.manual]
+            self.other    = csv_fields[CSVColumns.other]
+            self.notes    = csv_fields[CSVColumns.notes]
+            self.dateAdded= csv_fields[CSVColumns.added]
 
             # Special case for categories that end on "Accessories" instead of "Accessory"
             if self.platform[-len(CAT_ACCESSORIES):] == CAT_ACCESSORIES:
                 self.platform = self.platform[0:len(self.platform)-len(CAT_ACCESSORIES)] + CAT_ACCESSORY
+
+            if self.getLocalDataID() in localItemData_List.keys():
+                self.localData = localItemData_List[self.getLocalDataID()]
 
     def getPlatformName(self, platformString):
         platformString = platformString.strip()
@@ -109,6 +125,17 @@ class CollectionItem(object):
             return platformString[-3:-1].strip()
         else:
             return ""
+
+    def getLocalDataID(self):
+        return str(self.id) + "-" + self.dateAdded
+
+    def getLocalData(self, key):
+        value = ""
+
+        if key in self.localData:
+            value = self.localData[key]
+
+        return value
 
 
 ######################
@@ -271,16 +298,12 @@ class CollectionData(object):
     # parseData
     def parseData(self, bookmarks = []):
         self.collection_items = []
+        self.localData_list   = readJson(LOCAL_DATA, LOCAL_DATA_FILE)
 
         index = 0
 
         for line in self.csv_lines[1:]:
-            item = CollectionItem(line)
-
-            if len(bookmarks) and item.id in bookmarks:
-                item.bookmarked = "Yes"
-            else:
-                item.bookmarked = "No"
+            item = CollectionItem(line, localItemData_List=self.localData_list)
 
             if (self.searchFilter(self.filterData.itemFilter, item.name) and
                self.searchFilter(self.filterData.platformFilter, item.platform) and
@@ -294,7 +317,7 @@ class CollectionData(object):
                self.stringEqual(self.filterData.boxFilter, item.box) and
                self.stringEqual(self.filterData.manualFilter, item.manual) and
                self.stringEqual(self.filterData.otherFilter, item.other) and
-               self.stringEqual(self.filterData.bookmarkedFilter, item.bookmarked)):
+               self.stringEqual(self.filterData.bookmarkedFilter, item.getLocalData("bookmarked"))):
 
                item.index = index
 

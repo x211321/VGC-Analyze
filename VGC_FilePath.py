@@ -8,7 +8,7 @@ def writeFile(filePath, content, mode = "w", encoding = ""):
     dir = os.path.dirname(filePath)
 
     if len(dir) and not os.path.exists(dir):
-        os.mkdir(dir)
+        os.makedirs(dir)
 
     if len(encoding):
         file = open(filePath, mode, encoding=encoding)

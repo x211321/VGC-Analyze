@@ -3,6 +3,7 @@ img/cashe/
 settings/
 *.csv
 *.exe
+*.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
