@@ -61,13 +61,15 @@ class GUI(object):
         self.view_frame  = Frame(self.main_window, width=600 , height=550, pady=0 , padx=0)
         self.item_frame  = Frame(self.main_window, width=200 , height=550, pady=0 , padx=0)
         self.tool_frame  = Frame(self.main_window, width=200 , height=10 , pady=0 , padx=0)
+        self.grph_frame  = Frame(self.main_window, width=1000, height=200, pady=10, padx=10)
         self.info_frame  = Frame(self.main_window, width=1000, height=200, pady=10, padx=10)
 
         self.fltr_frame.grid(row=1, column=0, sticky="nws ", rowspan=3)
         self.view_frame.grid(row=1, column=1, sticky="nwes", rowspan=2)
         self.tool_frame.grid(row=1, column=2, sticky="nwe ")
         self.item_frame.grid(row=2, column=2, sticky="nes ", rowspan=2)
-        self.info_frame.grid(row=3, column=1, sticky="nwes")
+        # self.grph_frame.grid(row=3, column=1, sticky="nwes") # off by default
+        self.info_frame.grid(row=4, column=1, sticky="nwes")
 
 
         # Treeview
@@ -78,12 +80,11 @@ class GUI(object):
 
         # Icons
         # ------------------
-        self.item_upd_ico = loadIcon("refresh-outline", 15, 15)
-        self.item_viw_ico = loadIcon("eye-outline", 15, 15)
-        self.item_lnk_ico = loadIcon("link-outline", 15, 15)
-        self.item_bok_ico = loadIcon("bookmark-outline", 15, 15)
-        self.view_bok_ico = loadIcon("bookmark-outline", 15, 15, 11)
-        self.item_non_ico = loadIcon("none", 15, 15)
+        self.item_refresh_ico  = loadIcon("refresh-outline", 15, 15)
+        self.item_view_ico     = loadIcon("eye-outline", 15, 15)
+        self.item_link_ico     = loadIcon("link-outline", 15, 15)
+        self.item_bookmark_ico = loadIcon("bookmark-outline", 15, 15)
+        self.item_graph_ico    = loadIcon("bar-chart-outline", 30, 30)
 
 
         # Item info
@@ -116,8 +117,8 @@ class GUI(object):
         self.item_cart_viw   = Button(self.item_cart.item)
 
         # Item Toolbar
-        self.item_open_website   = Button(self.tool_frame, relief="groove", image=self.item_lnk_ico)
-        self.item_bookmark       = Button(self.tool_frame, relief="groove", image=self.item_bok_ico)
+        self.item_open_website   = Button(self.tool_frame, relief="groove", image=self.item_link_ico)
+        self.item_bookmark       = Button(self.tool_frame, relief="groove", image=self.item_bookmark_ico)
         self.item_id             = Label_(self.tool_frame)
 
 
@@ -207,6 +208,10 @@ class GUI(object):
         self.info_grp_countLow       = Label_(self.info_frame)
         self.info_grp_countLow_name  = Label_(self.info_frame)
 
+        self.info_toggle_graph       = Button(self.info_frame)
+
+
+        # Data
         self.filterData = filterData
         self.collectionData        = CollectionData(self.filterData)
         self.collectionDataDisplay = CollectionData(self.filterData)
@@ -480,7 +485,21 @@ class GUI(object):
         self.info_grp_priceHigh.item.grid(row=2, column=8, sticky="ne", pady=(0, 5))
         self.info_grp_priceHigh_name.item.grid(row=2, column=9, sticky="nw", pady=(0, 5))
 
+        # Button to toggle the graph viewer
+        self.info_toggle_graph.config(command=self.toggleGraphFrame, image=self.item_graph_ico, relief="groove")
+        self.info_toggle_graph.grid(row=0, column=11, padx=7)
 
+        self.info_frame.grid_columnconfigure(9, weight=1)
+
+
+    ######################
+    # toggleGraphFrame
+    # --------------------
+    def toggleGraphFrame(self):
+        if self.grph_frame.winfo_ismapped():
+            self.grph_frame.grid_forget()
+        else:
+            self.grph_frame.grid(row=3, column=1, sticky="nwes")
 
 
     ######################
@@ -929,16 +948,16 @@ class GUI(object):
     # --------------------
     def showCoverToolbars(self, item = None):
         # Front Cover
-        self.item_front_upd.config(bg="white", image=self.item_upd_ico, relief="groove", command=lambda:self.updateCover("front", item))
-        self.item_front_viw.config(bg="white", image=self.item_viw_ico, relief="groove", command=lambda:self.pop_coverViewer.show("front", item))
+        self.item_front_upd.config(bg="white", image=self.item_refresh_ico, relief="groove", command=lambda:self.updateCover("front", item))
+        self.item_front_viw.config(bg="white", image=self.item_view_ico, relief="groove", command=lambda:self.pop_coverViewer.show("front", item))
 
         #Back Cover
-        self.item_back_upd.config(bg="white", image=self.item_upd_ico, relief="groove", command=lambda:self.updateCover("back", item))
-        self.item_back_viw.config(bg="white", image=self.item_viw_ico, relief="groove", command=lambda:self.pop_coverViewer.show("back", item))
+        self.item_back_upd.config(bg="white", image=self.item_refresh_ico, relief="groove", command=lambda:self.updateCover("back", item))
+        self.item_back_viw.config(bg="white", image=self.item_view_ico, relief="groove", command=lambda:self.pop_coverViewer.show("back", item))
 
         #Cart Cover
-        self.item_cart_upd.config(bg="white", image=self.item_upd_ico, relief="groove", command=lambda:self.updateCover("cart", item))
-        self.item_cart_viw.config(bg="white", image=self.item_viw_ico, relief="groove", command=lambda:self.pop_coverViewer.show("cart", item))
+        self.item_cart_upd.config(bg="white", image=self.item_refresh_ico, relief="groove", command=lambda:self.updateCover("cart", item))
+        self.item_cart_viw.config(bg="white", image=self.item_view_ico, relief="groove", command=lambda:self.pop_coverViewer.show("cart", item))
 
 
     ######################
