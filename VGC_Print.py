@@ -240,7 +240,7 @@ def printSum(title, data, items, noEndLine, filterData, itemCategoryFilter = "",
                                    "  " + YNToX(item.manual) + " " +
                                    "  " + YNToX(item.other) + " " +
                                    "   ")
-                    verbose = str(item.id)[0:idWidth].ljust(idWidth) + item.platform[0:platformWidth].ljust(platformWidth) + verboseAttr + item.notes[0:notesWidth].ljust(notesWidth)
+                    verbose = str(item.VGC_id)[0:idWidth].ljust(idWidth) + item.platform[0:platformWidth].ljust(platformWidth) + verboseAttr + item.notes[0:notesWidth].ljust(notesWidth)
 
                 if filterData.listDetails:
                     details = verbose + item.region.ljust(2) + "  " + item.date + "  " + format(item.price, ".2f").rjust(7) + " "

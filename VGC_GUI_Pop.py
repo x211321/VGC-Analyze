@@ -39,11 +39,11 @@ class Pop_CoverViewer(object):
         if not item == None:
             # Get cover path
             if coverType == "front":
-                img = IMG_CASHE_FRONT + str(item.id) + ".jpg"
+                img = IMG_CASHE_FRONT + str(item.VGC_id) + ".jpg"
             if coverType == "back":
-                img = IMG_CASHE_BACK + str(item.id) + ".jpg"
+                img = IMG_CASHE_BACK + str(item.VGC_id) + ".jpg"
             if coverType == "cart":
-                img = IMG_CASHE_CART + str(item.id) + ".jpg"
+                img = IMG_CASHE_CART + str(item.VGC_id) + ".jpg"
 
             # Calculate position relative to main parent
             x = self.parent.winfo_x() + self.parent.winfo_width() - 210 - coverSize

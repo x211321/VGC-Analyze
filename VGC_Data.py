@@ -45,7 +45,7 @@ def guessDate(date, mode):
 # CSVColumns
 # --------------------
 class CSVColumns(IntEnum):
-    id       =  0
+    VGC_id   =  0
     name     =  1
     platform =  2
     notes    =  3
@@ -74,7 +74,7 @@ class CollectionItem(object):
             csv_fields[index] =field.strip(" ,\"\n")
 
 
-        self.id         = 0
+        self.VGC_id     = 0
         self.name       = ""
         self.platform   = ""
         self.price      = 0.0
@@ -91,7 +91,7 @@ class CollectionItem(object):
 
 
         if csv_line != "":
-            self.id       = int(csv_fields[CSVColumns.id])
+            self.VGC_id   = int(csv_fields[CSVColumns.VGC_id])
             self.name     = csv_fields[CSVColumns.name]
             self.platform = self.getPlatformName(csv_fields[CSVColumns.platform])
             self.price    = float(csv_fields[CSVColumns.price])
@@ -108,8 +108,8 @@ class CollectionItem(object):
             if self.platform[-len(CAT_ACCESSORIES):] == CAT_ACCESSORIES:
                 self.platform = self.platform[0:len(self.platform)-len(CAT_ACCESSORIES)] + CAT_ACCESSORY
 
-            if self.getLocalDataID() in localItemData_List.keys():
-                self.localData = localItemData_List[self.getLocalDataID()]
+            if self.id() in localItemData_List.keys():
+                self.localData = localItemData_List[self.id()]
 
     def getPlatformName(self, platformString):
         platformString = platformString.strip()
@@ -126,8 +126,8 @@ class CollectionItem(object):
         else:
             return ""
 
-    def getLocalDataID(self):
-        return str(self.id) + "-" + self.dateAdded
+    def id(self):
+        return str(self.VGC_id) + "-" + self.dateAdded
 
     def getLocalData(self, key):
         value = ""
@@ -503,7 +503,7 @@ class CollectionData(object):
     # updateItem
     def updateItem(self, updatedItem):
         for item in self.collection_items:
-            if item.id == updatedItem.id:
+            if item.id() == updatedItem.id():
                 item = updatedItem
                 break
 

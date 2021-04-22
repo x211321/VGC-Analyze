@@ -695,8 +695,8 @@ class GUI(object):
     # openOnVGCollect
     # --------------------
     def openOnVGCollect(self):
-        if self.activeItem.id > 0:
-            openItemInBrowser(str(self.activeItem.id))
+        if self.activeItem.VGC_id > 0:
+            openItemInBrowser(str(self.activeItem.VGC_id))
 
 
     ######################
@@ -705,7 +705,7 @@ class GUI(object):
     def toggleBookmark(self):
         selection = self.item_view.focus()
 
-        if self.activeItem.id > 0:
+        if len(self.activeItem.id()):
             self.updateViewItem(selection, self.activeItem)
 
             # Anzeigedaten aktualisieren
@@ -807,16 +807,16 @@ class GUI(object):
         self.item_title.set(item.name)
         self.item_date.set(item.date)
         self.item_price.set("{:.2f}".format(item.price))
-        self.item_id.set("VGC ID: " + str(item.id))
+        self.item_id.set("VGC ID: " + str(item.VGC_id))
 
         # display covers
         self.showCovers(item)
 
         # download covers
-        downloadCovers(item.id)
+        downloadCovers(item.VGC_id)
 
         # display covers
-        if item.id == self.activeItem.id:
+        if item.VGC_id == self.activeItem.VGC_id:
             self.showCovers(item)
 
 
@@ -888,9 +888,9 @@ class GUI(object):
     # showCovers
     # --------------------
     def showCovers(self, item):
-        self.item_front.setImage(IMG_CASHE_FRONT + str(item.id) + ".jpg")
-        self.item_back.setImage(IMG_CASHE_BACK + str(item.id) + ".jpg")
-        self.item_cart.setImage(IMG_CASHE_CART + str(item.id) + ".jpg")
+        self.item_front.setImage(IMG_CASHE_FRONT + str(item.VGC_id) + ".jpg")
+        self.item_back.setImage(IMG_CASHE_BACK + str(item.VGC_id) + ".jpg")
+        self.item_cart.setImage(IMG_CASHE_CART + str(item.VGC_id) + ".jpg")
 
         self.showCoverToolbars(item)
 
@@ -934,7 +934,7 @@ class GUI(object):
     # --------------------
     def updateCover(self, coverType, item = None):
         if not item == None:
-            downloadCovers(item.id, True, coverType)
+            downloadCovers(item.VGC_id, True, coverType)
             self.showCovers(item)
 
 
