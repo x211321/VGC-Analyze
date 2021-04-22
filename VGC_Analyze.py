@@ -8,17 +8,17 @@ from VGC_Lib     import readOptions
 
 ######################
 # main Function
-# --------------------   
+# --------------------
 def main():
     # Define options
     #--------------------
     initOptions()
-                                      
+
 
     # Read options
     #--------------------
     filterData = readOptions()
-    
+
     # Start selected mode
     #--------------------
     if filterData.guiMode == True:

@@ -8,14 +8,13 @@ from collections import OrderedDict
 from os          import listdir
 
 from VGC_Var     import FILE_PREFIX
+from VGC_Var     import CAT_HARDWARE
+from VGC_Var     import CAT_ACCESSORY
+from VGC_Var     import CAT_ACCESSORIES
 
 # Global list for definition of
 # possible console arguments
 options    = []
-
-CAT_HARDWARE     = "Hardware"
-CAT_ACCESSORY    = "Accessory"
-CAT_ACCESSORIES  = "Accessories"
 
 
 ######################

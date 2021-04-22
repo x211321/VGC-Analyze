@@ -8,8 +8,8 @@ from VGC_Data import DataTotal
 from VGC_Data import CollectionItem
 from VGC_Data import options
 
-CONSOLE_COLUMNS  = 80
-CONSOLE_OVERHEAD = 6
+from VGC_Var import CONSOLE_COLUMNS
+from VGC_Var import CONSOLE_OVERHEAD
 
 
 # Global variable to collect

@@ -3,10 +3,11 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
 
-from VGC_Img import IMG_CASHE_FRONT
-from VGC_Img import IMG_CASHE_BACK
-from VGC_Img import IMG_CASHE_CART
-from VGC_Img import IMG_COVER_NONE
+from VGC_Var import IMG_CASHE_FRONT
+from VGC_Var import IMG_CASHE_BACK
+from VGC_Var import IMG_CASHE_CART
+from VGC_Var import IMG_COVER_NONE
+
 from VGC_Img import loadIcon
 
 from VGC_Widgets import Label_
