@@ -7,7 +7,6 @@ Filter hilfe (regex, datumsformat, etc.)
 Bookmark all (displayed)
 Remove all bookmarks (displayed)
 Dateiauswahl
-Missing covers index
 Eigene Messageboxen (positionierbar / Topmost)
 Einstellungsdialog
 	Währung
@@ -21,7 +20,11 @@ EXE virus https://stackoverflow.com/questions/43777106/program-made-with-pyinsta
 Cover mouse hover Buttons anzeigen
 Multiselect
 Sortieren über Treeview header
-Fertigstellung markieren
+Elementinformationen in Jason
+	Missing covers index
+	Mark finished games
+	Bookmarks
+
 
 
 ===DONE===
