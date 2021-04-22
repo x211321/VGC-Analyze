@@ -305,25 +305,36 @@ class CollectionData(object):
         for line in self.csv_lines[1:]:
             item = CollectionItem(line, localItemData_List=self.localData_list)
 
-            if (self.searchFilter(self.filterData.itemFilter, item.name) and
-               self.searchFilter(self.filterData.platformFilter, item.platform) and
-               self.searchFilter(self.filterData.notesFilter, item.notes) and
-               self.searchFilter(self.filterData.regionFilter, item.region) and
-               self.stringGreater(self.filterData.dateFilterStart, item.date) and
-               self.stringLess(self.filterData.dateFilterEnd, item.date) and
-               self.priceGreater(self.filterData.priceFilterStart, item.price, self.filterData.priceFilterStartSet) and
-               self.priceLess(self.filterData.priceFilterEnd, item.price, self.filterData.priceFilterEndSet) and
-               self.stringEqual(self.filterData.cartFilter, item.cart) and
-               self.stringEqual(self.filterData.boxFilter, item.box) and
-               self.stringEqual(self.filterData.manualFilter, item.manual) and
-               self.stringEqual(self.filterData.otherFilter, item.other) and
-               self.stringEqual(self.filterData.bookmarkedFilter, item.getLocalData("bookmarked"))):
+            item.index = index
 
-               item.index = index
+            self.collection_items.append(item)
 
-               self.collection_items.append(item)
+            index += 1
 
-               index += 1
+
+    def getFilteredData(self):
+        return list(filter(self.filter, self.collection_items))
+
+
+    def filter(self, item):
+        if (self.searchFilter(self.filterData.itemFilter, item.name) and
+            self.searchFilter(self.filterData.platformFilter, item.platform) and
+            self.searchFilter(self.filterData.notesFilter, item.notes) and
+            self.searchFilter(self.filterData.regionFilter, item.region) and
+            self.stringGreater(self.filterData.dateFilterStart, item.date) and
+            self.stringLess(self.filterData.dateFilterEnd, item.date) and
+            self.priceGreater(self.filterData.priceFilterStart, item.price, self.filterData.priceFilterStartSet) and
+            self.priceLess(self.filterData.priceFilterEnd, item.price, self.filterData.priceFilterEndSet) and
+            self.stringEqual(self.filterData.cartFilter, item.cart) and
+            self.stringEqual(self.filterData.boxFilter, item.box) and
+            self.stringEqual(self.filterData.manualFilter, item.manual) and
+            self.stringEqual(self.filterData.otherFilter, item.other) and
+            self.stringEqual(self.filterData.bookmarkedFilter, item.getLocalData("bookmarked"))):
+
+            return True
+        else:
+            return False
+
 
 
     def groupData(self):
@@ -334,7 +345,7 @@ class CollectionData(object):
         self.groupKey_countHigh = ""
         self.groupKey_countLow  = ""
 
-        for item in self.collection_items:
+        for item in self.getFilteredData():
             groupKey = self.getGroupKey(item)
 
             if not groupKey in self.groups.keys():
@@ -444,7 +455,7 @@ class CollectionData(object):
 
         # Sum data
         #--------------------
-        for item in self.collection_items:
+        for item in self.getFilteredData():
 
             # Sum platforms
             self.sumDataDict(item.platform, self.platforms, item)

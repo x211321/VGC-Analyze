@@ -212,7 +212,6 @@ class GUI(object):
         # Data
         self.filterData = filterData
         self.collectionData        = CollectionData(self.filterData)
-        self.collectionDataDisplay = CollectionData(self.filterData)
         self.activeItem            = CollectionItem()
 
         self.init()
@@ -548,20 +547,16 @@ class GUI(object):
     # --------------------
     def showData(self, a = None):
 
-        # Copy collection data to display data
-        self.collectionDataDisplay = self.collectionData
-
         # Get user inputs
         displayFilter = self.getFilterInput()
-        self.collectionDataDisplay.setFilter(displayFilter)
+        self.collectionData.setFilter(displayFilter)
 
-        # Parse display data acording to the user filter
-        self.collectionDataDisplay.parseData()
-        self.collectionDataDisplay.sumData()
+        # Sum data acording to the user filter
+        self.collectionData.sumData()
 
         # Show group column
         if len(displayFilter.groupItems):
-            self.collectionDataDisplay.groupData()
+            self.collectionData.groupData()
             self.item_view.column('#0', width=200, stretch="Yes")
         else:
             self.item_view.column('#0', width=0, stretch="No")
@@ -575,15 +570,15 @@ class GUI(object):
         # Show data
         tvIndex = 0
 
-        if len(self.collectionDataDisplay.collection_items):
+        if len(self.collectionData.getFilteredData()):
 
             if len(displayFilter.groupItems):
                 # Group display
 
                 # Show groups
-                for group in sorted(self.collectionDataDisplay.groups.keys()):
+                for group in sorted(self.collectionData.groups.keys()):
 
-                    groupData = self.collectionDataDisplay.groups[group]
+                    groupData = self.collectionData.groups[group]
 
                     self.item_view.insert(parent="",
                                           index = tvIndex,
@@ -598,15 +593,15 @@ class GUI(object):
                     tvIndex += 1
 
                 # Add items to groups
-                for group in sorted(self.collectionDataDisplay.groups.keys()):
-                    for item in self.sortViewItems(displayFilter, self.collectionDataDisplay.groups[group].items):
+                for group in sorted(self.collectionData.groups.keys()):
+                    for item in self.sortViewItems(displayFilter, self.collectionData.groups[group].items):
                         self.insertViewItem(tvIndex, item, "#"+group)
 
                         tvIndex += 1
 
             else:
                 # Normal display
-                for item in self.sortViewItems(displayFilter, self.collectionDataDisplay.collection_items):
+                for item in self.sortViewItems(displayFilter, self.collectionData.getFilteredData()):
                     self.insertViewItem(tvIndex, item, "")
                     tvIndex += 1
 
@@ -710,7 +705,6 @@ class GUI(object):
 
             # Anzeigedaten aktualisieren
             self.collectionData.updateItem(self.activeItem)
-            self.collectionDataDisplay.updateItem(self.activeItem)
 
 
     ######################
@@ -824,42 +818,42 @@ class GUI(object):
     # displayCollectionInfo
     # --------------------
     def displayCollectionInfo(self):
-        self.info_number.set(self.collectionDataDisplay.totals.item_count)
-        self.info_value.set("{:.2f}".format(self.collectionDataDisplay.totals.total_price))
-        if self.collectionDataDisplay.totals.item_count:
-            self.info_average.set("{:.2f}".format(self.collectionDataDisplay.totals.total_price/self.collectionDataDisplay.totals.item_count))
+        self.info_number.set(self.collectionData.totals.item_count)
+        self.info_value.set("{:.2f}".format(self.collectionData.totals.total_price))
+        if self.collectionData.totals.item_count:
+            self.info_average.set("{:.2f}".format(self.collectionData.totals.total_price/self.collectionData.totals.item_count))
         else:
             self.info_average.set("{:.2f}".format(0))
-        self.info_first.set(self.collectionDataDisplay.totals.first.date + "  -  " +
-                            self.collectionDataDisplay.totals.first.name)
-        self.info_last.set(self.collectionDataDisplay.totals.last.date + "  -  " +
-                            self.collectionDataDisplay.totals.last.name)
+        self.info_first.set(self.collectionData.totals.first.date + "  -  " +
+                            self.collectionData.totals.first.name)
+        self.info_last.set(self.collectionData.totals.last.date + "  -  " +
+                            self.collectionData.totals.last.name)
 
         if os.path.exists(self.collectionData.csv_file):
             self.info_update.set(str(datetime.fromtimestamp(os.path.getmtime(self.collectionData.csv_file))).split(".")[0])
 
-        if self.collectionDataDisplay.filterData.groupItems:
+        if self.collectionData.filterData.groupItems:
             self.info_grp_number_txt.set("Group count:")
-            self.info_grp_number.set(str(len(self.collectionDataDisplay.groups)))
+            self.info_grp_number.set(str(len(self.collectionData.groups)))
 
             self.info_grp_average_txt.set("Avg. group price:")
-            self.info_grp_average.set("{:.2f}".format(self.collectionDataDisplay.totals.total_price/len(self.collectionDataDisplay.groups)))
+            self.info_grp_average.set("{:.2f}".format(self.collectionData.totals.total_price/len(self.collectionData.groups)))
 
             self.info_grp_priceLow_txt.set("Lowest group price:")
-            self.info_grp_priceLow.set("{:.2f}".format(self.collectionDataDisplay.getGroupPriceLow().total_price))
-            self.info_grp_priceLow_name.set(" -  " + self.collectionDataDisplay.groupKey_priceLow)
+            self.info_grp_priceLow.set("{:.2f}".format(self.collectionData.getGroupPriceLow().total_price))
+            self.info_grp_priceLow_name.set(" -  " + self.collectionData.groupKey_priceLow)
 
             self.info_grp_priceHigh_txt.set("Highest group price:")
-            self.info_grp_priceHigh.set("{:.2f}".format(self.collectionDataDisplay.getGroupPriceHigh().total_price))
-            self.info_grp_priceHigh_name.set(" -  " + self.collectionDataDisplay.groupKey_priceHigh)
+            self.info_grp_priceHigh.set("{:.2f}".format(self.collectionData.getGroupPriceHigh().total_price))
+            self.info_grp_priceHigh_name.set(" -  " + self.collectionData.groupKey_priceHigh)
 
             self.info_grp_countLow_txt.set("Least group items:")
-            self.info_grp_countLow.set(self.collectionDataDisplay.getGroupCountLow().item_count)
-            self.info_grp_countLow_name.set(" -  " + self.collectionDataDisplay.groupKey_countLow)
+            self.info_grp_countLow.set(self.collectionData.getGroupCountLow().item_count)
+            self.info_grp_countLow_name.set(" -  " + self.collectionData.groupKey_countLow)
 
             self.info_grp_countHigh_txt.set("Most group items:")
-            self.info_grp_countHigh.set(self.collectionDataDisplay.getGroupCountHigh().item_count)
-            self.info_grp_countHigh_name.set(" -  " + self.collectionDataDisplay.groupKey_countHigh)
+            self.info_grp_countHigh.set(self.collectionData.getGroupCountHigh().item_count)
+            self.info_grp_countHigh_name.set(" -  " + self.collectionData.groupKey_countHigh)
         else:
             self.info_grp_number_txt.set("")
             self.info_grp_number.set("")
