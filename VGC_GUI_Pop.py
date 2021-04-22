@@ -196,8 +196,15 @@ class Pop_ItemSearch(object):
         w = 310
         h = 110
 
-        self.startIndex = -1
+        # Get selected row
+        selection = self.treeView.focus()
 
+        if len(selection):
+            self.startIndex = self.treeView.index(selection)
+        else:
+            self.startIndex = -1
+
+        # Close previous window
         self.close()
 
         # Calculate position relative to main parent
@@ -244,8 +251,13 @@ class Pop_ItemSearch(object):
 
     def search(self, a = None):
 
+        # Read user input
         searchString = self.input_search.get()
+
+        # Reset info label
         self.label_info.set("")
+
+        # Clear row IDs
         rowIDs = []
 
         if len(searchString.strip()) > 0:
