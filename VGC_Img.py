@@ -2,14 +2,13 @@
 import os
 from PIL import Image, ImageTk
 
-IMG_PATH         = "./img/"
-ICON_PATH        = IMG_PATH + "icons/"
-IMG_CASHE_PATH   = IMG_PATH + "cashe/"
-IMG_CASHE_FRONT  = IMG_CASHE_PATH + "front/"
-IMG_CASHE_BACK   = IMG_CASHE_PATH + "back/"
-IMG_CASHE_CART   = IMG_CASHE_PATH + "cart/"
-
-IMG_COVER_NONE = IMG_PATH + "cover_placeholder.jpg"
+from VGC_Var import IMG_PATH
+from VGC_Var import ICON_PATH
+from VGC_Var import IMG_CASHE_PATH
+from VGC_Var import IMG_CASHE_FRONT
+from VGC_Var import IMG_CASHE_BACK
+from VGC_Var import IMG_CASHE_CART
+from VGC_Var import IMG_COVER_NONE
 
 
 ######################

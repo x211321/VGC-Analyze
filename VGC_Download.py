@@ -8,14 +8,15 @@ import http.cookiejar
 import getpass
 
 from VGC_Var import FILE_PREFIX
-from VGC_Img import IMG_CASHE_PATH
-from VGC_Img import IMG_CASHE_FRONT
-from VGC_Img import IMG_CASHE_BACK
-from VGC_Img import IMG_CASHE_CART
-from VGC_Img import IMG_COVER_NONE
+from VGC_Var import IMG_CASHE_PATH
+from VGC_Var import IMG_CASHE_FRONT
+from VGC_Var import IMG_CASHE_BACK
+from VGC_Var import IMG_CASHE_CART
+from VGC_Var import IMG_COVER_NONE
+from VGC_Var import DOWNLOAD_FILE
+
 from VGC_FilePath import writeFile
 
-from VGC_Var import DOWNLOAD_FILE
 
 
 
