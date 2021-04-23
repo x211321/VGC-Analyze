@@ -19,8 +19,6 @@ EXE bundle img
 EXE virus https://stackoverflow.com/questions/43777106/program-made-with-pyinstaller-now-seen-as-a-trojan-horse-by-avg
 Multiselect
 Sortieren über Treeview header
-Elementinformationen in Json
-	Missing covers index
 Group by platfrom holder
 	Json keywords
 
@@ -40,3 +38,4 @@ Treeview gruppierungen
 Elementinformationen in Json
 	Mark finished games
 	Bookmarks
+	Missing covers index
