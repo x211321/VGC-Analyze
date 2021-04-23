@@ -170,6 +170,7 @@ class FilterData(object):
         self.manualFilter       = ""
         self.otherFilter        = ""
         self.bookmarkedFilter   = ""
+        self.finishedFilter   = ""
 
         self.orderItems         = ""
         self.orderItemsReverse  = False
@@ -230,6 +231,8 @@ class FilterData(object):
                 self.otherFilter       = inputs[key].get()
             if key == "bookmarked":
                 self.bookmarkedFilter  = inputs[key].get()
+            if key == "finished":
+                self.finishedFilter    = inputs[key].get()
             if key == "group":
                 self.groupItems        = inputs[key].get()
             if key == "order":
@@ -335,7 +338,8 @@ class CollectionData(object):
             self.stringEqual(self.filterData.boxFilter, item.box) and
             self.stringEqual(self.filterData.manualFilter, item.manual) and
             self.stringEqual(self.filterData.otherFilter, item.other) and
-            self.stringEqual(self.filterData.bookmarkedFilter, item.getLocalData("bookmarked"))):
+            self.stringEqual(self.filterData.bookmarkedFilter, item.getLocalData("bookmarked")) and
+            self.stringEqual(self.filterData.finishedFilter, item.getLocalData("finished"))):
 
             return True
         else:

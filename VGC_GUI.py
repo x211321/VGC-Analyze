@@ -75,6 +75,7 @@ class GUI(Tk):
         self.item_view_ico     = loadIcon("eye-outline", 15, 15)
         self.item_link_ico     = loadIcon("link-outline", 15, 15)
         self.item_bookmark_ico = loadIcon("bookmark-outline", 15, 15)
+        self.item_finished_ico = loadIcon("checkmark-circle-outline", 15, 15)
         self.item_graph_ico    = loadIcon("bar-chart-outline", 30, 30)
 
 
@@ -316,6 +317,7 @@ class GUI(Tk):
                 YNToX(item.manual),
                 YNToX(item.other),
                 YNToX(item.getLocalData("bookmarked")),
+                YNToX(item.getLocalData("finished")),
                 item.notes)
 
 
@@ -366,6 +368,18 @@ class GUI(Tk):
 
         if len(self.activeItem().id()):
             self.activeItem().localData["bookmarked"] = toggleYN(self.activeItem().getLocalData("bookmarked"))
+
+            self.updateViewItem(selection, self.activeItem())
+
+
+    ######################
+    # toggleFinished
+    # --------------------
+    def toggleFinished(self):
+        selection = self.item_view.focus()
+
+        if len(self.activeItem().id()):
+            self.activeItem().localData["finished"] = toggleYN(self.activeItem().getLocalData("finished"))
 
             self.updateViewItem(selection, self.activeItem())
 
@@ -449,7 +463,6 @@ class GUI(Tk):
         selection = self.item_view.focus()
         if len(self.item_view.item(selection)["values"]):
             self.index = self.item_view.item(selection)["values"][0]
-            print(self.index)
 
             if self.index >= 0:
                 thread = threading.Thread(target=self.selectViewItemThread, args=(self.activeItem(),))

@@ -66,11 +66,15 @@ def initItemInfo(gui):
     # Item Toolbar
     gui.item_open_website = Button(gui.item_tool_frame, relief="groove", image=gui.item_link_ico)
     gui.item_bookmark     = Button(gui.item_tool_frame, relief="groove", image=gui.item_bookmark_ico)
+    gui.item_finished     = Button(gui.item_tool_frame, relief="groove", image=gui.item_finished_ico)
     gui.item_id           = Label_(gui.item_tool_frame)
-    gui.item_id.grid(row=0, column=2, sticky="e")
+    gui.item_id.grid(row=0, column=3, sticky="e")
 
     gui.item_open_website.config(command=gui.openOnVGCollect)
-    gui.item_open_website.grid(row=0, column=0, sticky="nw", padx=5, pady=5)
+    gui.item_open_website.grid(row=0, column=0, sticky="nw", padx=3, pady=5)
 
     gui.item_bookmark.config(command=gui.toggleBookmark)
-    gui.item_bookmark.grid(row=0, column=1, sticky="nw", padx=(5, 25), pady=5)
+    gui.item_bookmark.grid(row=0, column=1, sticky="nw", padx=(3), pady=5)
+
+    gui.item_finished.config(command=gui.toggleFinished)
+    gui.item_finished.grid(row=0, column=2, sticky="nw", padx=(3, 15), pady=5)

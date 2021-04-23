@@ -23,6 +23,7 @@ def initTreeView(gui):
                                 'Manual',
                                 'Other',
                                 'Bookmark',
+                                'Finished',
                                 'Notes')
 
     # View columns
@@ -38,6 +39,7 @@ def initTreeView(gui):
     gui.item_view.column('Manual'  , anchor="w", width=5)
     gui.item_view.column('Other'   , anchor="w", width=5)
     gui.item_view.column('Bookmark', anchor="w", width=5)
+    gui.item_view.column('Finished', anchor="w", width=5)
     gui.item_view.column('Notes'   , anchor="w", width=100)
 
     # View column headers
@@ -53,6 +55,7 @@ def initTreeView(gui):
     gui.item_view.heading('Manual'  , text='Manual'  , anchor="w")
     gui.item_view.heading('Other'   , text='Other'   , anchor="w")
     gui.item_view.heading('Bookmark', text='Bookmark', anchor="w")
+    gui.item_view.heading('Finished', text='Finished', anchor="w")
     gui.item_view.heading('Notes'   , text='Notes'   , anchor="w")
 
     # View events
