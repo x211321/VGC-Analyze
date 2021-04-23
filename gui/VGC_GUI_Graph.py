@@ -147,7 +147,7 @@ def drawBarGraph(gui, data, canvas, graphContent, graphData):
             endY = startY - barHeight
 
             # Draw bar
-            index = canvas.create_rectangle(startX, startY, endX, endY, fill="#FF0", outline="black", activefill="#00F")
+            index = canvas.create_rectangle(startX, startY, endX, endY, fill="#FFD754", outline="#000", activefill="#547CFF")
 
             def handler(event, self=gui, group=groupKey, itemValue=itemValue):
                 return gui.onGraphEnter(event, group, itemValue)
