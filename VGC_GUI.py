@@ -8,6 +8,7 @@ from VGC_Data     import CollectionData
 from VGC_Download import downloadCovers
 from VGC_Print    import YNToX
 from VGC_Img      import loadIcon
+from VGC_Browser  import openItemInBrowser
 
 from gui.VGC_GUI_ItemInfo       import initItemInfo
 from gui.VGC_GUI_Filter         import initFilter
