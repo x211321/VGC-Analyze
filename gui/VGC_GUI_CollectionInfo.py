@@ -114,7 +114,7 @@ def initCollectionInfo(gui):
     # Graph functions sub-frame widgets
     gui.info_toggle_graph = Button(gui.info_tool_frame)
     gui.info_toggle_graph.config(command=gui.toggleGraphFrame, image=gui.item_graph_ico, relief="groove")
-    gui.info_toggle_graph.grid(row=0, column=0)
+    gui.info_toggle_graph.grid(row=0, column=0, padx=6)
 
 
 ######################

@@ -23,6 +23,7 @@ Elementinformationen in Json
 	Missing covers index
 Group by platfrom holder
 	Json keywords
+View double click -> detailed item view
 
 
 ===DONE===

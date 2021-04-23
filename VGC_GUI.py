@@ -493,8 +493,7 @@ class GUI(Tk):
     # displayGraphs
     # --------------------
     def displayGraphs(self, a = None):
-        self.collectionData.groupGraphData("year")
-        drawBarGraph(self, self.collectionData, self.graph_canvas, self.graph_content.get())
+        drawBarGraph(self, self.collectionData, self.graph_canvas, self.graph_content.get(), self.graph_data.get())
 
 
     ######################

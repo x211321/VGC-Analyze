@@ -23,8 +23,12 @@ IMG_COVER_NONE   = IMG_PATH + "cover_placeholder.jpg"
 COVER_WIDTH      = 120
 
 # Graph vars
-GRAPH_CONTENT_TOTALPRICE_YEAR = "total price/year"
-GRAPH_CONTENT_ITEMCOUNT_YEAR  = "item count/year"
+GRAPH_CONTENT_YEARS     = "Years"
+GRAPH_CONTENT_PLATFORMS = "Platforms"
+GRAPH_CONTENT_REGIONS   = "Regions"
+
+GRAPH_DATA_ITEMCOUNT    = "Item count"
+GRAPH_DATA_TOTALPRICE   = "Total price"
 
 # Console only
 CONSOLE_COLUMNS  = 80
