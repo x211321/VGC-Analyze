@@ -296,6 +296,7 @@ class Pop_ItemSearch(object):
 
             if found:
                 # Select row in treeview
+                self.treeView.focus(str(rowIDs[index]))
                 self.treeView.selection_set(str(rowIDs[index]))
                 self.treeView.see(str(rowIDs[index]))
             else:

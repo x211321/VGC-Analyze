@@ -56,8 +56,7 @@ def initTreeView(gui):
     gui.item_view.heading('Notes'   , text='Notes'   , anchor="w")
 
     # View events
-    gui.item_view.bind('<ButtonRelease-1>', gui.selectViewItem)
-    gui.item_view.bind('<KeyRelease>', gui.selectViewItem)
+    gui.item_view.bind('<<TreeviewSelect>>', gui.selectViewItem)
 
     # View scrollbar
     gui.item_view.config(yscrollcommand=gui.view_scroll.set)
