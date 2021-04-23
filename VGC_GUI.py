@@ -41,6 +41,8 @@ from VGC_Var import IMG_COVER_NONE
 from VGC_Var import FILE_PREFIX
 from VGC_Var import DOWNLOAD_FILE
 
+from VGC_Lib import toggleYN
+
 
 class GUI(object):
 
@@ -324,6 +326,8 @@ class GUI(object):
         selection = self.item_view.focus()
 
         if len(self.activeItem().id()):
+            self.activeItem().localData["bookmarked"] = toggleYN(self.activeItem().getLocalData("bookmarked"))
+
             self.updateViewItem(selection, self.activeItem())
 
 

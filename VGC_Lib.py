@@ -74,6 +74,11 @@ def stringToYN(s):
     else:
         return "No"
 
+def toggleYN(currentState):
+    if stringToYN(currentState) == "Yes":
+        return stringToYN("No")
+    else:
+        return stringToYN("Yes")
 
 ######################
 # addOption
