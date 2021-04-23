@@ -20,9 +20,10 @@ from gui.VGC_GUI_Menu           import initMainMenu
 from gui.VGC_GUI_Hotkeys        import initHotkeys
 from gui.VGC_GUI_Popups         import initPopups
 
-from VGC_Var import IMG_CASHE_FRONT
-from VGC_Var import IMG_CASHE_BACK
-from VGC_Var import IMG_CASHE_CART
+from VGC_Var import IMG_CACHE_FRONT
+from VGC_Var import IMG_CACHE_BACK
+from VGC_Var import IMG_CACHE_CART
+from VGC_Var import IMG_COVER_NONE
 from VGC_Var import LOCAL_DATA_FILE
 
 from VGC_Lib import toggleYN
@@ -465,7 +466,7 @@ class GUI(Tk):
         self.showCovers(item)
 
         # download covers
-        downloadCovers(item.VGC_id)
+        downloadCovers(item)
 
         # display covers
         if item.VGC_id == self.activeItem().VGC_id:
@@ -484,9 +485,20 @@ class GUI(Tk):
     # showCovers
     # --------------------
     def showCovers(self, item):
-        self.item_front.setImage(IMG_CASHE_FRONT + str(item.VGC_id) + ".jpg")
-        self.item_back.setImage(IMG_CASHE_BACK + str(item.VGC_id) + ".jpg")
-        self.item_cart.setImage(IMG_CASHE_CART + str(item.VGC_id) + ".jpg")
+        if not item.getLocalData("missingData-front"):
+            self.item_front.setImage(IMG_CACHE_FRONT + str(item.VGC_id) + ".jpg")
+        else:
+            self.item_cart.setImage(IMG_COVER_NONE + ".jpg")
+
+        if not item.getLocalData("missingData-back"):
+            self.item_back.setImage(IMG_CACHE_BACK + str(item.VGC_id) + ".jpg")
+        else:
+            self.item_cart.setImage(IMG_COVER_NONE + ".jpg")
+
+        if not item.getLocalData("missingData-cart"):
+            self.item_cart.setImage(IMG_CACHE_CART + str(item.VGC_id) + ".jpg")
+        else:
+            self.item_cart.setImage(IMG_COVER_NONE + ".jpg")
 
 
     ######################
@@ -494,7 +506,7 @@ class GUI(Tk):
     # --------------------
     def updateCover(self, coverType, item = None):
         if not item == None:
-            downloadCovers(item.VGC_id, True, coverType)
+            downloadCovers(item, True, coverType)
             self.showCovers(item)
 
 

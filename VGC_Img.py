@@ -4,10 +4,10 @@ from PIL import Image, ImageTk
 
 from VGC_Var import IMG_PATH
 from VGC_Var import ICON_PATH
-from VGC_Var import IMG_CASHE_PATH
-from VGC_Var import IMG_CASHE_FRONT
-from VGC_Var import IMG_CASHE_BACK
-from VGC_Var import IMG_CASHE_CART
+from VGC_Var import IMG_CACHE_PATH
+from VGC_Var import IMG_CACHE_FRONT
+from VGC_Var import IMG_CACHE_BACK
+from VGC_Var import IMG_CACHE_CART
 from VGC_Var import IMG_COVER_NONE
 
 

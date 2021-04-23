@@ -8,10 +8,10 @@ import http.cookiejar
 import getpass
 
 from VGC_Var import FILE_PREFIX
-from VGC_Var import IMG_CASHE_PATH
-from VGC_Var import IMG_CASHE_FRONT
-from VGC_Var import IMG_CASHE_BACK
-from VGC_Var import IMG_CASHE_CART
+from VGC_Var import IMG_CACHE_PATH
+from VGC_Var import IMG_CACHE_FRONT
+from VGC_Var import IMG_CACHE_BACK
+from VGC_Var import IMG_CACHE_CART
 from VGC_Var import IMG_COVER_NONE
 from VGC_Var import DOWNLOAD_FILE
 
@@ -96,7 +96,9 @@ def downloadCollection(filterData, username = "", password = ""):
 ######################
 # downloadCovers
 # --------------------
-def downloadCovers(itemId, refresh = False, coverType = ""):
+def downloadCovers(item, refresh = False, coverType = ""):
+    itemId = item.VGC_id
+
     url_base  = "vgcollect.com"
     url_https = "https://" + url_base
     url_front = url_https + "/images/front-box-art/" + str(itemId) + ".jpg"
@@ -104,24 +106,25 @@ def downloadCovers(itemId, refresh = False, coverType = ""):
     url_cart  = url_https + "/images/cart-art/" + str(itemId) + ".jpg"
 
     if len(coverType) == 0 or coverType == "front":
-        downloadCover(itemId, url_front, IMG_CASHE_FRONT, refresh)
+        downloadCover(item, url_front, IMG_CACHE_FRONT, refresh, coverType)
     if len(coverType) == 0 or coverType == "back":
-        downloadCover(itemId, url_back, IMG_CASHE_BACK, refresh)
+        downloadCover(item, url_back, IMG_CACHE_BACK, refresh, coverType)
     if len(coverType) == 0 or coverType == "cart":
-        downloadCover(itemId, url_cart, IMG_CASHE_CART, refresh)
+        downloadCover(item, url_cart, IMG_CACHE_CART, refresh, coverType)
 
 
 ######################
 # downloadCover
 # --------------------
-def downloadCover(itemId, url, path, refresh):
+def downloadCover(item, url, path, refresh, coverType):
+    itemId = item.VGC_id
 
     itemPath = path + str(itemId) + ".jpg"
 
-    # Check if cover already cashed
+    # Check if cover already cached
     if refresh == False:
-        if os.path.exists(itemPath):
-            print(itemPath + " already exists")
+        if os.path.exists(itemPath) or item.getLocalData("missingCover-" + coverType):
+            print("Skip download for " + itemPath)
             return
 
     # Create request
@@ -143,6 +146,6 @@ def downloadCover(itemId, url, path, refresh):
             file.write(contents)
             file.close()
     except:
-        shutil.copyfile(IMG_COVER_NONE, itemPath)
+        item.localData["missingCover-"+coverType] = "Yes"
         pass
 

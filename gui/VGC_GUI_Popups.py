@@ -2,9 +2,9 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
 
-from VGC_Var import IMG_CASHE_FRONT
-from VGC_Var import IMG_CASHE_BACK
-from VGC_Var import IMG_CASHE_CART
+from VGC_Var import IMG_CACHE_FRONT
+from VGC_Var import IMG_CACHE_BACK
+from VGC_Var import IMG_CACHE_CART
 
 from VGC_Img import loadIcon
 
@@ -43,11 +43,11 @@ class Pop_CoverViewer(object):
         if not item == None:
             # Get cover path
             if coverType == "front":
-                img = IMG_CASHE_FRONT + str(item.VGC_id) + ".jpg"
+                img = IMG_CACHE_FRONT + str(item.VGC_id) + ".jpg"
             if coverType == "back":
-                img = IMG_CASHE_BACK + str(item.VGC_id) + ".jpg"
+                img = IMG_CACHE_BACK + str(item.VGC_id) + ".jpg"
             if coverType == "cart":
-                img = IMG_CASHE_CART + str(item.VGC_id) + ".jpg"
+                img = IMG_CACHE_CART + str(item.VGC_id) + ".jpg"
 
             # Calculate position relative to main parent
             x = self.parent.winfo_x() + self.parent.winfo_width() - 210 - coverSize
