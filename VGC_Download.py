@@ -106,11 +106,11 @@ def downloadCovers(item, refresh = False, coverType = ""):
     url_cart  = url_https + "/images/cart-art/" + str(itemId) + ".jpg"
 
     if len(coverType) == 0 or coverType == "front":
-        downloadCover(item, url_front, IMG_CACHE_FRONT, refresh, coverType)
+        downloadCover(item, url_front, IMG_CACHE_FRONT, refresh, "Front")
     if len(coverType) == 0 or coverType == "back":
-        downloadCover(item, url_back, IMG_CACHE_BACK, refresh, coverType)
+        downloadCover(item, url_back, IMG_CACHE_BACK, refresh, "Back")
     if len(coverType) == 0 or coverType == "cart":
-        downloadCover(item, url_cart, IMG_CACHE_CART, refresh, coverType)
+        downloadCover(item, url_cart, IMG_CACHE_CART, refresh, "Cart")
 
 
 ######################
@@ -123,7 +123,7 @@ def downloadCover(item, url, path, refresh, coverType):
 
     # Check if cover already cached
     if refresh == False:
-        if os.path.exists(itemPath) or item.getLocalData("missingCover-" + coverType):
+        if os.path.exists(itemPath) or item.getLocalData("missingCover" + coverType):
             print("Skip download for " + itemPath)
             return
 
@@ -146,6 +146,6 @@ def downloadCover(item, url, path, refresh, coverType):
             file.write(contents)
             file.close()
     except:
-        item.localData["missingCover-"+coverType] = "Yes"
+        item.localData["missingCover"+coverType] = "Yes"
         pass
 

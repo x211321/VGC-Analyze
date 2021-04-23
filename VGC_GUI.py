@@ -485,20 +485,11 @@ class GUI(Tk):
     # showCovers
     # --------------------
     def showCovers(self, item):
-        if not item.getLocalData("missingData-front"):
             self.item_front.setImage(IMG_CACHE_FRONT + str(item.VGC_id) + ".jpg")
-        else:
-            self.item_cart.setImage(IMG_COVER_NONE + ".jpg")
 
-        if not item.getLocalData("missingData-back"):
             self.item_back.setImage(IMG_CACHE_BACK + str(item.VGC_id) + ".jpg")
-        else:
-            self.item_cart.setImage(IMG_COVER_NONE + ".jpg")
 
-        if not item.getLocalData("missingData-cart"):
             self.item_cart.setImage(IMG_CACHE_CART + str(item.VGC_id) + ".jpg")
-        else:
-            self.item_cart.setImage(IMG_COVER_NONE + ".jpg")
 
 
     ######################
