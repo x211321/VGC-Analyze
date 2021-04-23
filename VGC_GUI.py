@@ -4,20 +4,10 @@ import threading
 from tkinter import *
 from tkinter import ttk
 
-from VGC_Widgets  import Label_
-from VGC_Widgets  import Entry_
-from VGC_Widgets  import Combobox_
-
 from VGC_Data     import CollectionData
-from VGC_Data     import CollectionItem
-from VGC_Data     import FilterData
 from VGC_Download import downloadCovers
-from VGC_Browser  import openItemInBrowser
 from VGC_Print    import YNToX
-from VGC_Img      import loadCover
 from VGC_Img      import loadIcon
-from VGC_FilePath import writeFile
-from VGC_FilePath import readFile
 
 from gui.VGC_GUI_ItemInfo       import initItemInfo
 from gui.VGC_GUI_Filter         import initFilter
@@ -29,16 +19,10 @@ from gui.VGC_GUI_Graph          import drawBarGraph
 from gui.VGC_GUI_Menu           import initMainMenu
 from gui.VGC_GUI_Hotkeys        import initHotkeys
 from gui.VGC_GUI_Popups         import initPopups
-from gui.VGC_GUI_Popups         import Pop_CoverViewer
-from gui.VGC_GUI_Popups         import Pop_CollectionDownload
-from gui.VGC_GUI_Popups         import Pop_ItemSearch
 
 from VGC_Var import IMG_CASHE_FRONT
 from VGC_Var import IMG_CASHE_BACK
 from VGC_Var import IMG_CASHE_CART
-from VGC_Var import IMG_COVER_NONE
-from VGC_Var import FILE_PREFIX
-from VGC_Var import DOWNLOAD_FILE
 
 from VGC_Lib import toggleYN
 
