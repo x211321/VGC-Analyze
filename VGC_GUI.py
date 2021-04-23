@@ -19,11 +19,13 @@ from VGC_Browser  import openItemInBrowser
 from VGC_Print    import YNToX
 from VGC_Img      import loadCover
 from VGC_Img      import loadIcon
-from VGC_GUI_Pop  import Pop_CoverViewer
-from VGC_GUI_Pop  import Pop_CollectionDownload
-from VGC_GUI_Pop  import Pop_ItemSearch
 from VGC_FilePath import writeFile
 from VGC_FilePath import readFile
+
+from VGC_GUI_Pop   import Pop_CoverViewer
+from VGC_GUI_Pop   import Pop_CollectionDownload
+from VGC_GUI_Pop   import Pop_ItemSearch
+from VGC_GUI_Graph import drawBarGraph
 
 from VGC_Var import IMG_CASHE_FRONT
 from VGC_Var import IMG_CASHE_BACK
@@ -59,14 +61,14 @@ class GUI(object):
         self.view_frame  = Frame(self.main_window, width=600 , height=550, pady=0 , padx=0)
         self.item_frame  = Frame(self.main_window, width=200 , height=550, pady=0 , padx=0)
         self.tool_frame  = Frame(self.main_window, width=200 , height=10 , pady=0 , padx=0)
-        self.grph_frame  = Frame(self.main_window, width=1000, height=200, pady=10, padx=10)
+        self.grph_frame  = Frame(self.main_window, width=1000, height=200, pady=0 , padx=0)
         self.info_frame  = Frame(self.main_window, width=1000, height=200, pady=10, padx=10)
 
         self.fltr_frame.grid(row=1, column=0, sticky="nws ", rowspan=3)
         self.view_frame.grid(row=1, column=1, sticky="nwes", rowspan=2)
         self.tool_frame.grid(row=1, column=2, sticky="nwe ")
         self.item_frame.grid(row=2, column=2, sticky="nes ", rowspan=2)
-        # self.grph_frame.grid(row=3, column=1, sticky="nwes") # off by default
+        self.grph_frame.grid(row=3, column=1, sticky="nwes")
         self.info_frame.grid(row=4, column=1, sticky="nwes")
 
 
@@ -209,6 +211,11 @@ class GUI(object):
         self.info_toggle_graph       = Button(self.info_frame)
 
 
+        # Graph
+        # ------------------
+        self.graph_canvas            = Canvas(self.grph_frame, bg="#FFF", highlightthickness=1, highlightbackground="black")
+
+
         # Data
         self.filterData = filterData
         self.collectionData        = CollectionData(self.filterData)
@@ -246,9 +253,21 @@ class GUI(object):
         # ------------------
         self.initCollectionInfo()
 
+        # Graph
+        # ------------------
+        self.initGraph()
+
         # Hotkeys
         # ------------------
         self.initHotkeys()
+
+
+    ######################
+    # onGraphResiz
+    # --------------------
+    def onGraphResiz(self, event):
+        if self.grph_frame.winfo_ismapped:
+            self.displayGraphs()
 
 
     ######################
@@ -489,6 +508,15 @@ class GUI(object):
 
 
     ######################
+    # initGraph
+    # --------------------
+    def initGraph(self):
+        self.graph_canvas.pack(expand=True, fill="both", padx=(0, 17), pady=(10,0))
+        self.graph_canvas.bind("<Configure>", self.onGraphResiz)
+        self.grph_frame.grid_forget()
+
+
+    ######################
     # toggleGraphFrame
     # --------------------
     def toggleGraphFrame(self):
@@ -496,6 +524,8 @@ class GUI(object):
             self.grph_frame.grid_forget()
         else:
             self.grph_frame.grid(row=3, column=1, sticky="nwes")
+            self.main_window.update()
+            self.displayGraphs()
 
 
     ######################
@@ -563,6 +593,10 @@ class GUI(object):
 
         # Display totals
         self.displayCollectionInfo()
+
+        # Draw graphs
+        if self.grph_frame.winfo_ismapped():
+            self.displayGraphs()
 
         # Clear treeview
         self.item_view.delete(*self.item_view.get_children())
@@ -876,6 +910,14 @@ class GUI(object):
             self.info_grp_countHigh_txt.set("")
             self.info_grp_countHigh.set("")
             self.info_grp_countHigh_name.set("")
+
+
+    ######################
+    # displayGraphs
+    # --------------------
+    def displayGraphs(self):
+        self.collectionData.groupGraphData("year")
+        drawBarGraph(self.collectionData, self.graph_canvas)
 
 
     ######################

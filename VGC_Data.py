@@ -68,11 +68,8 @@ class CollectionItem(object):
     def __init__(self, csv_line = "", index = 0, localItemData_List = {}):
         csv_fields  = csv_line.split("\",\"")
 
-
-
         for index, field in enumerate(csv_fields):
             csv_fields[index] =field.strip(" ,\"\n")
-
 
         self.VGC_id     = 0
         self.name       = ""
@@ -260,15 +257,18 @@ class CollectionData(object):
     categories = OrderedDict()
     regions    = OrderedDict()
 
-    groups        = OrderedDict()
+    groups             = OrderedDict()
+    graph_groups       = OrderedDict()
     groupKey_priceHigh = ""
     groupKey_priceLow  = ""
     groupKey_countHigh = ""
     groupKey_countLow  = ""
 
+
     # Constructor
     def __init__(self, filterData):
         self.setFilter(filterData)
+
 
     # setFilter
     def setFilter(self, filterData):
@@ -278,6 +278,7 @@ class CollectionData(object):
         # Get newest csv-file
         if len(self.csv_file) == 0:
             self.csv_file = getCurrentVGCFile()
+
 
     # readData
     def readData(self):
@@ -312,10 +313,12 @@ class CollectionData(object):
             index += 1
 
 
+    # getFilteredData
     def getFilteredData(self):
         return list(filter(self.filter, self.collection_items))
 
 
+    # filter
     def filter(self, item):
         if (self.searchFilter(self.filterData.itemFilter, item.name) and
             self.searchFilter(self.filterData.platformFilter, item.platform) and
@@ -336,30 +339,14 @@ class CollectionData(object):
             return False
 
 
-
+    # groupData
     def groupData(self):
+        self.groups = self.group()
 
-        self.groups = OrderedDict()
         self.groupKey_priceHigh = ""
         self.groupKey_priceLow  = ""
         self.groupKey_countHigh = ""
         self.groupKey_countLow  = ""
-
-        for item in self.getFilteredData():
-            groupKey = self.getGroupKey(item)
-
-            if not groupKey in self.groups.keys():
-                self.groups[groupKey] = DataTotal()
-
-            self.groups[groupKey].items.append(item)
-            self.groups[groupKey].total_price += item.price
-            self.groups[groupKey].item_count  += 1
-
-            if item.date < self.groups[groupKey].first.date:
-                self.groups[groupKey].first.date = item.date
-
-            if item.date > self.groups[groupKey].last.date:
-                self.groups[groupKey].last.date = item.date
 
         for groupKey in self.groups.keys():
             if self.groupKey_priceHigh == "" or self.groups[groupKey].total_price > self.groups[self.groupKey_priceHigh].total_price:
@@ -372,27 +359,62 @@ class CollectionData(object):
                 self.groupKey_countLow  = groupKey
 
 
-    def getGroupKey(self, item):
+    # groupGraphData
+    def groupGraphData(self, groupBy):
+        self.graph_groups = self.group(groupBy, True)
 
-        if self.filterData.groupItems == "year":
+
+    # group
+    def group(self, groupBy = "", sumOnly = False):
+
+        result = OrderedDict()
+
+        for item in self.getFilteredData():
+            groupKey = self.getGroupKey(item, groupBy)
+
+            if not groupKey in result.keys():
+                result[groupKey] = DataTotal()
+
+            result[groupKey].total_price += item.price
+            result[groupKey].item_count  += 1
+
+            if sumOnly == False:
+                result[groupKey].items.append(item)
+
+            if item.date < result[groupKey].first.date:
+                result[groupKey].first.date = item.date
+
+            if item.date > result[groupKey].last.date:
+                result[groupKey].last.date = item.date
+
+        return result
+
+
+    # getGroupKey
+    def getGroupKey(self, item, groupBy):
+
+        if not len(groupBy):
+            groupBy = self.filterData.groupItems
+
+        if groupBy == "year":
             group =  item.date[0:4]
 
-        if self.filterData.groupItems == "month":
+        if groupBy == "month":
             group =  item.date[0:7]
 
-        if self.filterData.groupItems == "day":
+        if groupBy == "day":
             group =  item.date
 
-        if self.filterData.groupItems == "region":
+        if groupBy == "region":
             group =  item.region
 
-        if self.filterData.groupItems == "name":
+        if groupBy == "name":
             group =  item.name
 
-        if self.filterData.groupItems == "platform":
+        if groupBy == "platform":
             group =  item.platform
 
-        if self.filterData.groupItems == "notes":
+        if groupBy == "notes":
             group =  item.notes
 
         if len(group.strip()) == 0:
@@ -400,48 +422,68 @@ class CollectionData(object):
 
         return group
 
+
+    # getGroupPriceLow
     def getGroupPriceLow(self):
         return self.groups[self.groupKey_priceLow]
 
+
+    # getGroupPriceHigh
     def getGroupPriceHigh(self):
         return self.groups[self.groupKey_priceHigh]
 
+
+    # getGroupCountLow
     def getGroupCountLow(self):
         return self.groups[self.groupKey_countLow]
 
+
+    # getGroupCountHigh
     def getGroupCountHigh(self):
         return self.groups[self.groupKey_countHigh]
 
+
+    # searchFilter
     def searchFilter(self, filterVal, itemVal):
         if re.search(filterVal.lower(), itemVal.lower()) != None:
             return True
         else:
             return False
 
+
+    # stringGreater
     def stringGreater(self, filterVal, itemVal):
         if len(filterVal) == 0 or itemVal >= filterVal:
             return True
         else:
             return False
 
+
+    # stringLess
     def stringLess(self, filterVal, itemVal):
         if len(filterVal) == 0 or itemVal <= filterVal:
             return True
         else:
             return False
 
+
+    #priceGreater
     def priceGreater(self, filterVal, itemVal, filterActive):
         if filterActive == False or itemVal >= filterVal:
             return True
         else:
             return False
 
+
+    # priceLess
     def priceLess(self, filterVal, itemVal, filterActive):
         if filterActive == False or itemVal <= filterVal:
             return True
         else:
             return False
 
+
+    # stringEqual
     def stringEqual(fself, filterVal, itemVal):
         if len(filterVal) == 0 or filterVal == itemVal:
             return True
