@@ -11,6 +11,7 @@ Einstellungsdialog
 	Währung
 	Datumsformat
 	Platformhalter keywords
+	Anzahl heruntergeladener Dateien die aufbewahrt werden sollen
 Datepicker
 About Dialog
 Listview Pos1 / Ende / Bild auf / Bild ab
@@ -23,6 +24,7 @@ Group by platfrom holder
 	Json keywords
 View double click -> detailed item view
 Graph canvas scroll bar
+Download history
 
 ===DONE===
 Cover mouse hover Buttons anzeigen
