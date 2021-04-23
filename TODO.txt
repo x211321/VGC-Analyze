@@ -22,7 +22,7 @@ Sortieren über Treeview header
 Group by platfrom holder
 	Json keywords
 View double click -> detailed item view
-
+Graph canvas scroll bar
 
 ===DONE===
 Cover mouse hover Buttons anzeigen
