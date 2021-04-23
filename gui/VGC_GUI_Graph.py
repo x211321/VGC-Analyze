@@ -1,6 +1,12 @@
 from tkinter import *
 from tkinter import ttk
 
+from VGC_Var import GRAPH_CONTENT_TOTALPRICE_YEAR
+from VGC_Var import GRAPH_CONTENT_ITEMCOUNT_YEAR
+
+from VGC_Widgets import Label_
+from VGC_Widgets import Combobox_
+
 
 ######################
 # initGraph
@@ -9,10 +15,28 @@ def initGraph(gui):
 
     # Graph
     # ------------------
-    gui.graph_canvas = Canvas(gui.graph_frame, bg="#FFF", highlightthickness=1, highlightbackground="black")
+    gui.graph_tool_frame = Frame(gui.graph_frame)
+    gui.graph_sub_frame  = Frame(gui.graph_frame)
 
-    gui.graph_canvas.pack(expand=True, fill="both", padx=(0, 17), pady=(10,0))
+    gui.graph_tool_frame.grid(row=0, column=0, sticky="nwse", padx=10, pady=10)
+    gui.graph_sub_frame.grid(row=1, column=0, sticky="nwse")
+
+    gui.graph_frame.grid_rowconfigure(0, weight=1)
+    gui.graph_frame.grid_rowconfigure(1, weight=1)
+    gui.graph_frame.grid_columnconfigure(0, weight=1)
+
+    gui.graph_content_txt = Label_(gui.graph_tool_frame, text="Chart content:")
+    gui.graph_content     = Combobox_(gui.graph_tool_frame, values=(GRAPH_CONTENT_TOTALPRICE_YEAR, GRAPH_CONTENT_ITEMCOUNT_YEAR), width=15)
+    gui.graph_content.set(GRAPH_CONTENT_TOTALPRICE_YEAR)
+    gui.graph_content.item.bind("<<ComboboxSelected>>", gui.displayGraphs)
+
+    gui.graph_content_txt.item.grid(row=0, column=0, padx=(0,10))
+    gui.graph_content.item.grid(row=0, column=1)
+
+    gui.graph_canvas = Canvas(gui.graph_sub_frame, bg="#FFF", highlightthickness=1, highlightbackground="black")
+    gui.graph_canvas.pack(expand=True, fill="both", padx=(0, 17), pady=(0,0))
     gui.graph_canvas.bind("<Configure>", lambda x:onGraphResiz(gui))
+
     gui.graph_frame.grid_forget()
 
 
@@ -61,14 +85,12 @@ def drawBarGraph(data, canvas, mode):
 
     # Find maximum value to be displayed in the graph
     for groupKey in data.graph_groups.keys():
-        if mode == "count":
+        if mode == GRAPH_CONTENT_ITEMCOUNT_YEAR:
             if data.graph_groups[groupKey].item_count > maxValue:
                 maxValue = data.graph_groups[groupKey].item_count
-        if mode == "price":
+        if mode == GRAPH_CONTENT_TOTALPRICE_YEAR:
             if data.graph_groups[groupKey].total_price > maxValue:
                 maxValue = data.graph_groups[groupKey].total_price
-
-    print(maxValue)
 
     # Draw axes
     # X
@@ -86,22 +108,23 @@ def drawBarGraph(data, canvas, mode):
         canvas.create_text(startX-paddingYAxis-paddingYAxisLabel, startY-(stepSize*i), text=text, width=paddingLeft, anchor="e")
 
     # Draw graph
-    for groupKey in sorted(data.graph_groups.keys()):
+    if maxValue:
+        for groupKey in sorted(data.graph_groups.keys()):
 
-        if mode == "count":
-            itemValue = data.graph_groups[groupKey].item_count
-        if mode == "price":
-            itemValue = data.graph_groups[groupKey].total_price
+            if mode == GRAPH_CONTENT_ITEMCOUNT_YEAR:
+                itemValue = data.graph_groups[groupKey].item_count
+            if mode == GRAPH_CONTENT_TOTALPRICE_YEAR:
+                itemValue = data.graph_groups[groupKey].total_price
 
-        barHeight = int(maxBarHeight / maxValue * itemValue)
+            barHeight = int(maxBarHeight / maxValue * itemValue)
 
-        endX = startX + barWidth
-        endY = startY - barHeight
+            endX = startX + barWidth
+            endY = startY - barHeight
 
-        # Draw bar
-        canvas.create_rectangle(startX, startY, endX, endY, fill="#FF0", outline="black", activefill="#00F")
+            # Draw bar
+            canvas.create_rectangle(startX, startY, endX, endY, fill="#FF0", outline="black", activefill="#00F")
 
-        # Draw x-axis label
-        canvas.create_text(startX+(barWidth/2), startY+paddingXAxis+paddingXAxisLabel, text=groupKey, width=barWidth-2)
+            # Draw x-axis label
+            canvas.create_text(startX+(barWidth/2), startY+paddingXAxis+paddingXAxisLabel, text=groupKey, width=barWidth-2)
 
-        startX = endX
+            startX = endX

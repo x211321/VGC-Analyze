@@ -22,6 +22,9 @@ IMG_CASHE_CART   = IMG_CASHE_PATH + "cart/"
 IMG_COVER_NONE   = IMG_PATH + "cover_placeholder.jpg"
 COVER_WIDTH      = 120
 
+# Graph vars
+GRAPH_CONTENT_TOTALPRICE_YEAR = "total price/year"
+GRAPH_CONTENT_ITEMCOUNT_YEAR  = "item count/year"
 
 # Console only
 CONSOLE_COLUMNS  = 80

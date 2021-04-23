@@ -436,9 +436,9 @@ class GUI(object):
     ######################
     # displayGraphs
     # --------------------
-    def displayGraphs(self):
+    def displayGraphs(self, a = None):
         self.collectionData.groupGraphData("year")
-        drawBarGraph(self.collectionData, self.graph_canvas, "price")
+        drawBarGraph(self.collectionData, self.graph_canvas, self.graph_content.get())
 
 
     ######################
