@@ -164,7 +164,10 @@ class GUI(Tk):
     # onGraphEnter
     # --------------------
     def onGraphEnter(self, event, group, itemValue):
-        self.graph_hover_info.set(group + ": " + "{:.2f}".format(itemValue))
+        if int(itemValue) == itemValue:
+            self.graph_hover_info.set(group + ": " + str(itemValue))
+        else:
+            self.graph_hover_info.set(group + ": " + "{:.2f}".format(itemValue))
 
 
     ######################
