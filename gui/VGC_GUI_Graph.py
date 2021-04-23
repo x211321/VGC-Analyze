@@ -7,7 +7,6 @@ from VGC_Var import GRAPH_CONTENT_ITEMCOUNT_YEAR
 from VGC_Widgets import Label_
 from VGC_Widgets import Combobox_
 
-
 ######################
 # initGraph
 # --------------------
@@ -18,8 +17,10 @@ def initGraph(gui):
     gui.graph_tool_frame = Frame(gui.graph_frame)
     gui.graph_sub_frame  = Frame(gui.graph_frame)
 
-    gui.graph_tool_frame.grid(row=0, column=0, sticky="nwse", padx=10, pady=10)
+    gui.graph_tool_frame.grid(row=0, column=0, sticky="nwse", padx=(0,17), pady=10)
     gui.graph_sub_frame.grid(row=1, column=0, sticky="nwse")
+
+    gui.graph_tool_frame.grid_columnconfigure(1, weight=1)
 
     gui.graph_frame.grid_rowconfigure(0, weight=1)
     gui.graph_frame.grid_rowconfigure(1, weight=1)
@@ -27,15 +28,18 @@ def initGraph(gui):
 
     gui.graph_content_txt = Label_(gui.graph_tool_frame, text="Chart content:")
     gui.graph_content     = Combobox_(gui.graph_tool_frame, values=(GRAPH_CONTENT_TOTALPRICE_YEAR, GRAPH_CONTENT_ITEMCOUNT_YEAR), width=15)
+    gui.graph_hover_info  = Label_(gui.graph_tool_frame)
     gui.graph_content.set(GRAPH_CONTENT_TOTALPRICE_YEAR)
     gui.graph_content.item.bind("<<ComboboxSelected>>", gui.displayGraphs)
 
     gui.graph_content_txt.item.grid(row=0, column=0, padx=(0,10))
-    gui.graph_content.item.grid(row=0, column=1)
+    gui.graph_content.item.grid(row=0, column=1, sticky="w")
+    gui.graph_hover_info.item.grid(row=0, column=2)
 
     gui.graph_canvas = Canvas(gui.graph_sub_frame, bg="#FFF", highlightthickness=1, highlightbackground="black")
     gui.graph_canvas.pack(expand=True, fill="both", padx=(0, 17), pady=(0,0))
     gui.graph_canvas.bind("<Configure>", lambda x:onGraphResiz(gui))
+
 
     gui.graph_frame.grid_forget()
 
@@ -51,7 +55,7 @@ def onGraphResiz(gui):
 ######################
 # drawBarGraph
 # --------------------
-def drawBarGraph(data, canvas, mode):
+def drawBarGraph(gui, data, canvas, mode):
 
     # Get canvas dimensions
     canvasWidth  = canvas.winfo_width()
@@ -74,8 +78,8 @@ def drawBarGraph(data, canvas, mode):
 
     stepSize = 20
 
-    startX    = paddingLeft
-    startY    = canvasHeight - paddingBottom
+    startX = paddingLeft
+    startY = canvasHeight - paddingBottom
 
     maxBarWidth  = canvasWidth  - paddingLeft - paddingRight
     maxBarHeight = canvasHeight - paddingTop - paddingBottom
@@ -122,7 +126,13 @@ def drawBarGraph(data, canvas, mode):
             endY = startY - barHeight
 
             # Draw bar
-            canvas.create_rectangle(startX, startY, endX, endY, fill="#FF0", outline="black", activefill="#00F")
+            index = canvas.create_rectangle(startX, startY, endX, endY, fill="#FF0", outline="black", activefill="#00F")
+
+            def handler(event, self=gui, group=groupKey, itemValue=itemValue):
+                return gui.onGraphEnter(event, group, itemValue)
+
+            canvas.tag_bind(index, "<Enter>", handler)
+            canvas.tag_bind(index, "<Leave>", gui.onGraphLeave)
 
             # Draw x-axis label
             canvas.create_text(startX+(barWidth/2), startY+paddingXAxis+paddingXAxisLabel, text=groupKey, width=barWidth-2)

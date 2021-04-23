@@ -19,7 +19,6 @@ from VGC_Img      import loadIcon
 from VGC_FilePath import writeFile
 from VGC_FilePath import readFile
 
-
 from gui.VGC_GUI_ItemInfo       import initItemInfo
 from gui.VGC_GUI_Filter         import initFilter
 from gui.VGC_GUI_CollectionInfo import initCollectionInfo
@@ -92,6 +91,8 @@ class GUI(object):
         self.collectionData        = CollectionData(self.filterData)
         self.index                 = 0
 
+
+        # Init
         self.init()
 
 
@@ -154,9 +155,26 @@ class GUI(object):
         # Run main loop
         self.main_window.mainloop()
 
+
+    ######################
+    # activeItem
+    # --------------------
     def activeItem(self):
         return self.collectionData.collection_items[self.index]
 
+
+    ######################
+    # onGraphEnter
+    # --------------------
+    def onGraphEnter(self, event, group, itemValue):
+        self.graph_hover_info.set(group + ": " + "{:.2f}".format(itemValue))
+
+
+    ######################
+    # onGraphLeave
+    # --------------------
+    def onGraphLeave(self, event):
+        self.graph_hover_info.set("")
 
 
     ######################
@@ -442,7 +460,7 @@ class GUI(object):
     # --------------------
     def displayGraphs(self, a = None):
         self.collectionData.groupGraphData("year")
-        drawBarGraph(self.collectionData, self.graph_canvas, self.graph_content.get())
+        drawBarGraph(self, self.collectionData, self.graph_canvas, self.graph_content.get())
 
 
     ######################
