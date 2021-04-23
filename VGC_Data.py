@@ -554,14 +554,6 @@ class CollectionData(object):
         self.sumTotals(dataDict[key], item)
 
 
-    # updateItem
-    def updateItem(self, updatedItem):
-        for item in self.collection_items:
-            if item.id() == updatedItem.id():
-                item = updatedItem
-                break
-
-
 ######################
 # getCurrentVGCFile
 # --------------------

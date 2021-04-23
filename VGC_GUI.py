@@ -88,7 +88,7 @@ class GUI(object):
         # Data
         self.filterData = filterData
         self.collectionData        = CollectionData(self.filterData)
-        self.activeItem            = CollectionItem()
+        self.index                 = 0
 
         self.init()
 
@@ -151,6 +151,10 @@ class GUI(object):
 
         # Run main loop
         self.main_window.mainloop()
+
+    def activeItem(self):
+        return self.collectionData.collection_items[self.index]
+
 
 
     ######################
@@ -309,8 +313,8 @@ class GUI(object):
     # openOnVGCollect
     # --------------------
     def openOnVGCollect(self):
-        if self.activeItem.VGC_id > 0:
-            openItemInBrowser(str(self.activeItem.VGC_id))
+        if self.activeItem().VGC_id > 0:
+            openItemInBrowser(str(self.activeItem().VGC_id))
 
 
     ######################
@@ -319,11 +323,8 @@ class GUI(object):
     def toggleBookmark(self):
         selection = self.item_view.focus()
 
-        if len(self.activeItem.id()):
-            self.updateViewItem(selection, self.activeItem)
-
-            # Anzeigedaten aktualisieren
-            self.collectionData.updateItem(self.activeItem)
+        if len(self.activeItem().id()):
+            self.updateViewItem(selection, self.activeItem())
 
 
     ######################
@@ -404,12 +405,11 @@ class GUI(object):
     def selectViewItem(self, a = None):
         selection = self.item_view.focus()
         if len(self.item_view.item(selection)["values"]):
-            index = str(self.item_view.item(selection)["values"][0])
+            self.index = self.item_view.item(selection)["values"][0]
+            print(self.index)
 
-            if len(index) and index == str(int(index)):
-                self.activeItem = self.collectionData.collection_items[int(index)]
-
-                thread = threading.Thread(target=self.selectViewItemThread, args=(self.activeItem,))
+            if self.index >= 0:
+                thread = threading.Thread(target=self.selectViewItemThread, args=(self.activeItem(),))
                 thread.start()
 
 
@@ -429,7 +429,7 @@ class GUI(object):
         downloadCovers(item.VGC_id)
 
         # display covers
-        if item.VGC_id == self.activeItem.VGC_id:
+        if item.VGC_id == self.activeItem().VGC_id:
             self.showCovers(item)
 
 
