@@ -294,11 +294,15 @@ class CollectionData(object):
             # Close file
             file_handle.close()
 
+    def buildSaveData(self):
+        for item in self.collection_items:
+            if item.localData:
+                self.localData_list[item.id()] = item.localData
 
     # parseData
     def parseData(self, bookmarks = []):
         self.collection_items = []
-        self.localData_list   = readJson(LOCAL_DATA, LOCAL_DATA_FILE)
+        self.localData_list   = readJson(LOCAL_DATA_FILE)
 
         index = 0
 

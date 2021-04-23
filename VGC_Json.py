@@ -6,9 +6,9 @@ from VGC_Var import LOCAL_DATA_FILE
 ######################
 # readJson
 # --------------------
-def readJson(filePath, fileName):
+def readJson(fileName):
     result = {}
-    if os.path.exists(filePath):
+    if os.path.exists(fileName) and os.path.getsize(fileName) > 0:
         file = open(fileName, "r")
         result = json.load(file)
         file.close()
@@ -19,10 +19,10 @@ def readJson(filePath, fileName):
 ######################
 # writeJson
 # --------------------
-def writeJson(localDataList, filePath, fileName):
+def writeJson(localDataList, fileName):
 
-    if not os.path.exists(filePath):
-        os.makedirs(filePath)
+    if not os.path.exists(os.path.dirname(fileName)):
+        os.makedirs(os.path.dirname(fileName))
 
     file = open(fileName, "w")
     json.dump(localDataList, file, sort_keys=True, indent="\t")

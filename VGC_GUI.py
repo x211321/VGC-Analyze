@@ -23,8 +23,11 @@ from gui.VGC_GUI_Popups         import initPopups
 from VGC_Var import IMG_CASHE_FRONT
 from VGC_Var import IMG_CASHE_BACK
 from VGC_Var import IMG_CASHE_CART
+from VGC_Var import LOCAL_DATA_FILE
 
 from VGC_Lib import toggleYN
+
+from VGC_Json import writeJson
 
 
 class GUI(Tk):
@@ -43,6 +46,7 @@ class GUI(Tk):
         self.geometry('1000x750')
         self.iconphoto(False, loadIcon("game-controller-outline", 15, 15))
         self.state('zoomed')
+        self.protocol("WM_DELETE_WINDOW", self.onClose)
 
         self.grid_rowconfigure(0, weight=1)
         self.grid_columnconfigure(1, weight=1)
@@ -111,6 +115,11 @@ class GUI(Tk):
 
         # Main menu
         initMainMenu(self)
+
+    def onClose(self):
+        self.collectionData.buildSaveData()
+        writeJson(self.collectionData.localData_list, LOCAL_DATA_FILE)
+        self.destroy()
 
 
     ######################
