@@ -10,6 +10,7 @@ Eigene Messageboxen (positionierbar / Topmost)
 Einstellungsdialog
 	Währung
 	Datumsformat
+	Platformhalter keywords
 Datepicker
 About Dialog
 Listview Pos1 / Ende / Bild auf / Bild ab
