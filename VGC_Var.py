@@ -19,7 +19,8 @@ IMG_CASHE_PATH   = IMG_PATH + "cashe/"
 IMG_CASHE_FRONT  = IMG_CASHE_PATH + "front/"
 IMG_CASHE_BACK   = IMG_CASHE_PATH + "back/"
 IMG_CASHE_CART   = IMG_CASHE_PATH + "cart/"
-IMG_COVER_NONE = IMG_PATH + "cover_placeholder.jpg"
+IMG_COVER_NONE   = IMG_PATH + "cover_placeholder.jpg"
+COVER_WIDTH      = 120
 
 
 # Console only

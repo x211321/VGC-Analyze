@@ -1,3 +1,27 @@
+from tkinter import *
+from tkinter import ttk
+
+
+######################
+# initGraph
+# --------------------
+def initGraph(gui):
+
+    # Graph
+    # ------------------
+    gui.graph_canvas = Canvas(gui.graph_frame, bg="#FFF", highlightthickness=1, highlightbackground="black")
+
+    gui.graph_canvas.pack(expand=True, fill="both", padx=(0, 17), pady=(10,0))
+    gui.graph_canvas.bind("<Configure>", lambda x:onGraphResiz(gui))
+    gui.graph_frame.grid_forget()
+
+
+######################
+# onGraphResiz
+# --------------------
+def onGraphResiz(gui):
+    if gui.graph_frame.winfo_ismapped:
+        gui.displayGraphs()
 
 
 ######################

@@ -21,6 +21,15 @@ from VGC_Download import downloadCollection
 
 
 ######################
+# initPopups
+# --------------------
+def initPopups(gui):
+    gui.pop_coverViewer        = Pop_CoverViewer(gui.main_window)
+    gui.pop_collectionDownload = Pop_CollectionDownload(gui.main_window, gui.collectionDownload_callback)
+    gui.pop_itemSearch         = Pop_ItemSearch(gui.main_window, gui.item_view)
+
+
+######################
 # Pop_CoverViewer
 # --------------------
 class Pop_CoverViewer(object):

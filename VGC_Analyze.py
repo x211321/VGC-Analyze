@@ -1,5 +1,3 @@
-
-
 from VGC_Console import main_console
 from VGC_GUI     import GUI
 from VGC_Lib     import initOptions
