@@ -21,8 +21,6 @@ Multiselect
 Sortieren über Treeview header
 Elementinformationen in Json
 	Missing covers index
-	Mark finished games
-	Bookmarks
 Group by platfrom holder
 	Json keywords
 
@@ -39,3 +37,6 @@ Durchschnittswerte ausgeben
 Letzes Downloaddatum anzeigen
 Downloader anzeigen wenn keine Daten
 Treeview gruppierungen
+Elementinformationen in Json
+	Mark finished games
+	Bookmarks
