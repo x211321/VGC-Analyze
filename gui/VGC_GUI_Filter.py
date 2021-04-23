@@ -51,8 +51,6 @@ def initFilter(gui):
     gui.filter_apply = Button(gui.filter_frame, width=10, relief="groove", bg="#BDF593")
     gui.filter_reset = Button(gui.filter_frame, width=10, relief="groove", bg="#F59398")
 
-
-
     row = 0
     col = 0
 

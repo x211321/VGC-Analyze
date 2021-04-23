@@ -1,4 +1,3 @@
-
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
@@ -6,17 +5,13 @@ from tkinter import messagebox
 from VGC_Var import IMG_CASHE_FRONT
 from VGC_Var import IMG_CASHE_BACK
 from VGC_Var import IMG_CASHE_CART
-from VGC_Var import IMG_COVER_NONE
 
 from VGC_Img import loadIcon
 
-from VGC_Widgets import Label_
-from VGC_Widgets import Entry_
-
-from VGC_Data import FilterData
-
-from VGC_Browser import openUserProfileInBrowser
-
+from VGC_Widgets  import Label_
+from VGC_Widgets  import Entry_
+from VGC_Data     import FilterData
+from VGC_Browser  import openUserProfileInBrowser
 from VGC_Download import downloadCollection
 
 
