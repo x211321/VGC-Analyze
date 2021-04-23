@@ -43,31 +43,34 @@ from VGC_Var import DOWNLOAD_FILE
 from VGC_Lib import toggleYN
 
 
-class GUI(object):
+class GUI(Tk):
 
     ######################
     # __init__
     # --------------------
     def __init__(self, filterData):
+
+        super().__init__()
+
         # Main window
         # ------------------
-        self.main_window = Tk()
-        self.main_window.title('VGC Analyzer')
-        self.main_window.geometry('1000x750')
-        self.main_window.iconphoto(False, loadIcon("game-controller-outline", 15, 15))
-        self.main_window.state('zoomed')
+        # self = Tk()
+        self.title('VGC Analyzer')
+        self.geometry('1000x750')
+        self.iconphoto(False, loadIcon("game-controller-outline", 15, 15))
+        self.state('zoomed')
 
-        self.main_window.grid_rowconfigure(0, weight=1)
-        self.main_window.grid_columnconfigure(1, weight=1)
+        self.grid_rowconfigure(0, weight=1)
+        self.grid_columnconfigure(1, weight=1)
 
 
         # Frames
         # ------------------
-        self.filter_frame    = Frame(self.main_window, width=200 , height=550, pady=10, padx=10)
-        self.view_frame      = Frame(self.main_window, width=600 , height=550, pady=0 , padx=0)
-        self.item_frame      = Frame(self.main_window, width=200 , height=550, pady=0 , padx=0)
-        self.graph_frame     = Frame(self.main_window, width=1000, height=200, pady=0 , padx=0)
-        self.info_frame      = Frame(self.main_window, width=1000, height=200, pady=10, padx=10)
+        self.filter_frame    = Frame(self, width=200 , height=550, pady=10, padx=10)
+        self.view_frame      = Frame(self, width=600 , height=550, pady=0 , padx=0)
+        self.item_frame      = Frame(self, width=200 , height=550, pady=0 , padx=0)
+        self.graph_frame     = Frame(self, width=1000, height=200, pady=0 , padx=0)
+        self.info_frame      = Frame(self, width=1000, height=200, pady=10, padx=10)
 
 
         self.filter_frame.grid(row=0, column=0, sticky="nws", rowspan=3)
@@ -134,7 +137,7 @@ class GUI(object):
             self.graph_frame.grid_forget()
         else:
             self.graph_frame.grid(row=1, column=1, sticky="nwes")
-            self.main_window.update()
+            self.update()
             self.displayGraphs()
 
 
@@ -153,7 +156,7 @@ class GUI(object):
             self.pop_collectionDownload.show()
 
         # Run main loop
-        self.main_window.mainloop()
+        self.mainloop()
 
 
     ######################
