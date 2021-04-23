@@ -13,47 +13,59 @@ from VGC_Widgets import Label_
 def initCollectionInfo(gui):
     # Collection info
     # ------------------
-    gui.info_number_txt = Label_(gui.info_frame, text="Item count:")
-    gui.info_number     = Label_(gui.info_frame)
 
-    gui.info_value_txt  = Label_(gui.info_frame, text="Total price:")
-    gui.info_value      = Label_(gui.info_frame)
+    # Collection info sub-frame
+    gui.info_sub_frame = Frame(gui.info_frame)
+    gui.info_sub_frame.grid(row=0, column=1, sticky="nws", padx=(0,10))
 
-    gui.info_average_txt= Label_(gui.info_frame, text="Avg. price:")
-    gui.info_average    = Label_(gui.info_frame)
+    # Graph functions sub-frame
+    gui.info_tool_frame = Frame(gui.info_frame , width=200 , height=200, pady=0 , padx=0)
+    gui.info_tool_frame.grid(row=0, column=2, sticky="nes")
 
-    gui.info_first_txt  = Label_(gui.info_frame, text="First purchase:")
-    gui.info_first      = Label_(gui.info_frame)
+    gui.info_frame.grid_columnconfigure(1, weight=1)
 
-    gui.info_last_txt   = Label_(gui.info_frame, text="Last purchase:")
-    gui.info_last       = Label_(gui.info_frame)
+    # Info sub-frame widgets
+    gui.info_number_txt = Label_(gui.info_sub_frame, text="Item count:")
+    gui.info_number     = Label_(gui.info_sub_frame)
 
-    gui.info_update_txt = Label_(gui.info_frame, text="Database updated:")
-    gui.info_update     = Label_(gui.info_frame)
+    gui.info_value_txt  = Label_(gui.info_sub_frame, text="Total price:")
+    gui.info_value      = Label_(gui.info_sub_frame)
 
-    gui.info_grp_number_txt     = Label_(gui.info_frame)
-    gui.info_grp_number         = Label_(gui.info_frame)
-    gui.info_grp_number_spacer  = Label_(gui.info_frame)
+    gui.info_average_txt= Label_(gui.info_sub_frame, text="Avg. price:")
+    gui.info_average    = Label_(gui.info_sub_frame)
 
-    gui.info_grp_average_txt    = Label_(gui.info_frame)
-    gui.info_grp_average        = Label_(gui.info_frame)
-    gui.info_grp_average_spacer = Label_(gui.info_frame)
+    gui.info_first_txt  = Label_(gui.info_sub_frame, text="First purchase:")
+    gui.info_first      = Label_(gui.info_sub_frame)
 
-    gui.info_grp_priceHigh_txt  = Label_(gui.info_frame)
-    gui.info_grp_priceHigh      = Label_(gui.info_frame)
-    gui.info_grp_priceHigh_name = Label_(gui.info_frame)
+    gui.info_last_txt   = Label_(gui.info_sub_frame, text="Last purchase:")
+    gui.info_last       = Label_(gui.info_sub_frame)
 
-    gui.info_grp_priceLow_txt   = Label_(gui.info_frame)
-    gui.info_grp_priceLow       = Label_(gui.info_frame)
-    gui.info_grp_priceLow_name  = Label_(gui.info_frame)
+    gui.info_update_txt = Label_(gui.info_sub_frame, text="Database updated:")
+    gui.info_update     = Label_(gui.info_sub_frame)
 
-    gui.info_grp_countHigh_txt  = Label_(gui.info_frame)
-    gui.info_grp_countHigh      = Label_(gui.info_frame)
-    gui.info_grp_countHigh_name = Label_(gui.info_frame)
+    gui.info_grp_number_txt     = Label_(gui.info_sub_frame)
+    gui.info_grp_number         = Label_(gui.info_sub_frame)
+    gui.info_grp_number_spacer  = Label_(gui.info_sub_frame)
 
-    gui.info_grp_countLow_txt   = Label_(gui.info_frame)
-    gui.info_grp_countLow       = Label_(gui.info_frame)
-    gui.info_grp_countLow_name  = Label_(gui.info_frame)
+    gui.info_grp_average_txt    = Label_(gui.info_sub_frame)
+    gui.info_grp_average        = Label_(gui.info_sub_frame)
+    gui.info_grp_average_spacer = Label_(gui.info_sub_frame)
+
+    gui.info_grp_priceHigh_txt  = Label_(gui.info_sub_frame)
+    gui.info_grp_priceHigh      = Label_(gui.info_sub_frame)
+    gui.info_grp_priceHigh_name = Label_(gui.info_sub_frame)
+
+    gui.info_grp_priceLow_txt   = Label_(gui.info_sub_frame)
+    gui.info_grp_priceLow       = Label_(gui.info_sub_frame)
+    gui.info_grp_priceLow_name  = Label_(gui.info_sub_frame)
+
+    gui.info_grp_countHigh_txt  = Label_(gui.info_sub_frame)
+    gui.info_grp_countHigh      = Label_(gui.info_sub_frame)
+    gui.info_grp_countHigh_name = Label_(gui.info_sub_frame)
+
+    gui.info_grp_countLow_txt   = Label_(gui.info_sub_frame)
+    gui.info_grp_countLow       = Label_(gui.info_sub_frame)
+    gui.info_grp_countLow_name  = Label_(gui.info_sub_frame)
 
     gui.info_number_txt.item.grid(row=0, column=0, sticky="nw", pady=(0, 5))
     gui.info_number.item.grid(row=0, column=1, sticky="ne", pady=(0, 5), padx=(0, 30))
@@ -98,13 +110,8 @@ def initCollectionInfo(gui):
     gui.info_grp_priceHigh.item.grid(row=2, column=8, sticky="ne", pady=(0, 5))
     gui.info_grp_priceHigh_name.item.grid(row=2, column=9, sticky="nw", pady=(0, 5))
 
-    # Grapf functions toolbar
-    gui.info_tool_frame = Frame(gui.info_frame , width=200 , height=200, pady=0 , padx=0)
-    gui.info_tool_frame.grid(row=0, column=10, sticky="nes", rowspan=3)
 
-    gui.info_frame.grid_columnconfigure(10, weight=1)
-
-    # Button to toggle the graph viewer
+    # Graph functions sub-frame widgets
     gui.info_toggle_graph = Button(gui.info_tool_frame)
     gui.info_toggle_graph.config(command=gui.toggleGraphFrame, image=gui.item_graph_ico, relief="groove")
     gui.info_toggle_graph.grid(row=0, column=0)
