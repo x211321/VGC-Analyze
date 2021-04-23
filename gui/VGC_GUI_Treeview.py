@@ -8,8 +8,9 @@ from tkinter import ttk
 def initTreeView(gui):
     # Treeview
     # ------------------
-    gui.item_view   = ttk.Treeview(gui.view_frame)
-    gui.view_scroll = Scrollbar(gui.view_frame)
+    gui.item_view               = ttk.Treeview(gui.view_frame)
+    gui.view_scroll_vertical    = Scrollbar(gui.view_frame)
+    gui.view_scroll_horizontal  = Scrollbar(gui.view_frame)
 
     # Treeview definition
     gui.item_view['columns']=('Index',
@@ -62,9 +63,13 @@ def initTreeView(gui):
     gui.item_view.bind('<<TreeviewSelect>>', gui.selectViewItem)
 
     # View scrollbar
-    gui.item_view.config(yscrollcommand=gui.view_scroll.set)
-    gui.view_scroll.config(orient=VERTICAL, command=gui.item_view.yview)
+    gui.item_view.config(yscrollcommand=gui.view_scroll_vertical.set)
+    gui.view_scroll_vertical.config(orient=VERTICAL, command=gui.item_view.yview)
+
+    gui.item_view.config(xscrollcommand=gui.view_scroll_horizontal.set)
+    gui.view_scroll_horizontal.config(orient=HORIZONTAL, command=gui.item_view.xview)
 
     # Position view and scrollbar
-    gui.view_scroll.pack(side=RIGHT, fill=Y)
+    gui.view_scroll_vertical.pack(side=RIGHT, fill=Y)
     gui.item_view.pack(expand=True, fill="both")
+    gui.view_scroll_horizontal.pack(side=BOTTOM, fill=X)
