@@ -15,6 +15,7 @@ from VGC_Var     import CAT_ACCESSORY
 from VGC_Var     import CAT_ACCESSORIES
 from VGC_Var     import LOCAL_DATA
 from VGC_Var     import LOCAL_DATA_FILE
+from VGC_Var     import DATA_PATH
 
 # Global list for definition of
 # possible console arguments
@@ -565,14 +566,14 @@ class CollectionData(object):
 # getCurrentVGCFile
 # --------------------
 def getCurrentVGCFile():
-    file_list    = listdir()
+    file_list    = listdir(DATA_PATH)
     current_file = ""
 
     # Search for newest file
     for file in file_list:
         # Ignore files that don't start with the correct prefix
         if file[0 : len(FILE_PREFIX)] == FILE_PREFIX:
-            current_file = file
+            current_file = DATA_PATH + file
 
     return current_file
 
