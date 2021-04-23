@@ -1,7 +1,6 @@
 Duplikate finden
 Fehlende Cover auf Webseite finden
 Fehlende Barcodes auf Webseite finden
-Graphen ausgeben
 Dateiname anzeigen
 Filter hilfe (regex, datumsformat, etc.)
 Bookmark all (displayed)
@@ -17,7 +16,6 @@ Listview Pos1 / Ende / Bild auf / Bild ab
 Multifilter (mehrere Regionen, Platformen, etc.)
 EXE bundle img
 EXE virus https://stackoverflow.com/questions/43777106/program-made-with-pyinstaller-now-seen-as-a-trojan-horse-by-avg
-Cover mouse hover Buttons anzeigen
 Multiselect
 Sortieren über Treeview header
 Elementinformationen in Json
@@ -29,6 +27,8 @@ Group by platfrom holder
 
 
 ===DONE===
+Cover mouse hover Buttons anzeigen
+Graphen ausgeben
 Gruppeninfos (Anzahl Gruppen / Durchschnittspreis)
 Suchfunktion (Strg + F - Suche im Listview ohne Filtern)
 Sort

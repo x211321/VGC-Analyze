@@ -165,6 +165,27 @@ class GUI(Tk):
 
 
     ######################
+    # onCoverEnter
+    # --------------------
+    def onCoverEnter(self, label, type):
+        self.coverButton_coverViewer = Button(label, bg="white", image=self.item_view_ico,
+                                              relief="groove", command=lambda:self.pop_coverViewer.show(type, self.activeItem()))
+        self.coverButton_coverViewer.place(height=25, width=25, x=29, y=2)
+
+        self.coverButton_coverUpdate = Button(label, bg="white", image=self.item_refresh_ico,
+                                              relief="groove", command=lambda:self.updateCover(type, self.activeItem()))
+        self.coverButton_coverUpdate.place(height=25, width=25, x=2, y=2)
+
+
+    ######################
+    # onCoverLeave
+    # --------------------
+    def onCoverLeave(self, label):
+        self.coverButton_coverViewer.destroy()
+        self.coverButton_coverUpdate.destroy()
+
+
+    ######################
     # readData
     # --------------------
     def readData(self):
@@ -457,42 +478,6 @@ class GUI(Tk):
         self.item_front.setImage(IMG_CASHE_FRONT + str(item.VGC_id) + ".jpg")
         self.item_back.setImage(IMG_CASHE_BACK + str(item.VGC_id) + ".jpg")
         self.item_cart.setImage(IMG_CASHE_CART + str(item.VGC_id) + ".jpg")
-
-        self.showCoverToolbars(item)
-
-
-    ######################
-    # placeCoverToolbars
-    # --------------------
-    def placeCoverToolbars(self):
-        # Front Cover
-        self.item_front_upd.place(height=25, width=25, x=2, y=2)
-        self.item_front_viw.place(height=25, width=25, x=29, y=2)
-
-        # Back Cover
-        self.item_back_upd.place(height=25, width=25, x=2, y=2)
-        self.item_back_viw.place(height=25, width=25, x=29, y=2)
-
-        # Cart Cover
-        self.item_cart_upd.place(height=25, width=25, x=2, y=2)
-        self.item_cart_viw.place(height=25, width=25, x=29, y=2)
-
-
-    ######################
-    # showCoverToolbars
-    # --------------------
-    def showCoverToolbars(self, item = None):
-        # Front Cover
-        self.item_front_upd.config(bg="white", image=self.item_refresh_ico, relief="groove", command=lambda:self.updateCover("front", item))
-        self.item_front_viw.config(bg="white", image=self.item_view_ico, relief="groove", command=lambda:self.pop_coverViewer.show("front", item))
-
-        #Back Cover
-        self.item_back_upd.config(bg="white", image=self.item_refresh_ico, relief="groove", command=lambda:self.updateCover("back", item))
-        self.item_back_viw.config(bg="white", image=self.item_view_ico, relief="groove", command=lambda:self.pop_coverViewer.show("back", item))
-
-        #Cart Cover
-        self.item_cart_upd.config(bg="white", image=self.item_refresh_ico, relief="groove", command=lambda:self.updateCover("cart", item))
-        self.item_cart_viw.config(bg="white", image=self.item_view_ico, relief="groove", command=lambda:self.pop_coverViewer.show("cart", item))
 
 
     ######################

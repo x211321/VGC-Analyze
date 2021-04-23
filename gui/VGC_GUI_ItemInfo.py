@@ -25,20 +25,20 @@ def initItemInfo(gui):
     # Front cover widgets
     gui.item_front_txt  = Label_(gui.item_frame, text="Front cover", anchor="w")
     gui.item_front      = Label_(gui.item_frame, anchor="w", imgdef=IMG_COVER_NONE, imgwidth=COVER_WIDTH)
-    gui.item_front_upd  = Button(gui.item_front)
-    gui.item_front_viw  = Button(gui.item_front)
+    gui.item_front.bind("<Enter>", lambda x:gui.onCoverEnter(gui.item_front, "front"))
+    gui.item_front.bind("<Leave>", lambda x:gui.onCoverLeave(gui.item_front))
 
     # Back cover widgets
     gui.item_back_txt   = Label_(gui.item_frame, text="Back cover", anchor="w")
     gui.item_back       = Label_(gui.item_frame, anchor="w", imgdef=IMG_COVER_NONE, imgwidth=COVER_WIDTH)
-    gui.item_back_upd   = Button(gui.item_back)
-    gui.item_back_viw   = Button(gui.item_back)
+    gui.item_back.bind("<Enter>", lambda x:gui.onCoverEnter(gui.item_back, "back"))
+    gui.item_back.bind("<Leave>", lambda x:gui.onCoverLeave(gui.item_back))
 
     # Cart cover widgets
     gui.item_cart_txt   = Label_(gui.item_frame, text="Cart cover", anchor="w")
     gui.item_cart       = Label_(gui.item_frame, anchor="w", imgdef=IMG_COVER_NONE, imgwidth=COVER_WIDTH)
-    gui.item_cart_upd   = Button(gui.item_cart)
-    gui.item_cart_viw   = Button(gui.item_cart)
+    gui.item_cart.bind("<Enter>", lambda x:gui.onCoverEnter(gui.item_cart, "cart"))
+    gui.item_cart.bind("<Leave>", lambda x:gui.onCoverLeave(gui.item_cart))
 
     gui.item_title_txt.grid(row=1, column=0, columnspan=2, sticky="nwe")
     gui.item_spacer.grid(row=2, column=0, sticky="nwe")
@@ -74,7 +74,3 @@ def initItemInfo(gui):
 
     gui.item_bookmark.config(command=gui.toggleBookmark)
     gui.item_bookmark.grid(row=0, column=1, sticky="nw", padx=(5, 25), pady=5)
-
-    # Position cover toolbars
-    gui.placeCoverToolbars()
-    gui.showCoverToolbars()
