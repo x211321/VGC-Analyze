@@ -1,4 +1,3 @@
-
 import os
 
 from tkinter import *
@@ -10,17 +9,10 @@ from VGC_Img import loadImage
 ######################
 # Label_
 # --------------------
-class Label_(object):
-
-    id       = ""
-    text     = None
-    item     = None
-    image    = None
-    imgwidth = 0
-    imgdef   = ""
+class Label_(Label):
 
     # Constructor
-    def __init__(self, parent,
+    def __init__(self, master=None,
                  id="", text="",
                  anchor="nw", justify="left",
                  width=0, height=0,
@@ -29,24 +21,15 @@ class Label_(object):
                  img="", imgdef="", imgwidth=0,
                  bg=None, fg=None):
 
-        self.item = Label(parent,
-                          anchor=anchor,
-                          justify=justify,
-                          width=width,
-                          height=height,
-                          padx=padx,
-                          pady=pady,
-                          wraplength=wraplength,
-                          font=font,
-                          bg=bg,
-                          fg=fg)
+        super().__init__(master=master, width=width, height=height, anchor=anchor, justify=justify, padx=padx, pady=pady, wraplength=wraplength, bg=bg, fg=fg)
 
-        self.id          = id
-        self.imgdef      = imgdef
-        self.text        = StringVar(self.item, text, id)
-        self.item.config(textvariable=self.text)
+        self.id       = id
+        self.imgdef   = imgdef
+        self.text     = StringVar(self, text, id)
+        self.imgwidth = imgwidth
+        self.config(textvariable=self.text)
 
-        self.setImage(img, imgwidth)
+        self.setImage(img, self.imgwidth)
 
     def get(self):
         return self.text.get()
@@ -63,33 +46,25 @@ class Label_(object):
 
         if len(img) > 0:
             self.image = loadImage(img, self.imgwidth)
-            self.item.config(image=self.image)
-
+            self.config(image=self.image)
 
 
 ######################
 # Entry_
 # --------------------
-class Entry_(object):
-
-    id       = ""
-    text     = None
-    item     = None
+class Entry_(Entry):
 
     # Constructor
-    def __init__(self, parent,
+    def __init__(self, master=None,
                  id="", text="",
                  justify="left",
                  width=0, show=""):
 
-        self.item = Entry(parent,
-                          justify=justify,
-                          width=width,
-                          show=show)
+        super().__init__(master=master, justify=justify, width=width, show=show)
 
         self.id   = id
-        self.text = StringVar(self.item, text, id)
-        self.item.config(textvariable=self.text)
+        self.text = StringVar(self, text, id)
+        self.config(textvariable=self.text)
 
     def get(self):
         return self.text.get()
@@ -97,44 +72,23 @@ class Entry_(object):
     def set(self, text):
         self.text.set(text)
 
-    def delete(self, start, end):
-        self.item.delete(start, end)
-
-
 
 ######################
 # Combobox_
 # --------------------
-class Combobox_(object):
-
-    id   = ""
-    item = None
+class Combobox_(ttk.Combobox):
 
     # Constructor
-    def __init__(self, parent,
+    def __init__(self, master=None,
                  id="", text="",
                  justify="left",
                  width=0, height=10,
                  show="", values=None,
                  state=""):
 
-        self.item = ttk.Combobox(parent,
-                          justify=justify,
-                          width=width,
-                          height=height,
-                          values=values,
-                          state=state)
+        super().__init__(master=master, justify=justify, width=width, height=height, values=values, state=state)
 
         self.id = id
 
-    def get(self):
-        return self.item.get()
-
-    def set(self, text):
-        self.item.set(text)
-
-    def delete(self, start, end):
-        self.item.delete(start, end)
-
     def setValues(self, values):
-        self.item['values'] = values
+        self['values'] = values

@@ -25,39 +25,39 @@ def initItemInfo(gui):
     # Front cover widgets
     gui.item_front_txt  = Label_(gui.item_frame, text="Front cover", anchor="w")
     gui.item_front      = Label_(gui.item_frame, anchor="w", imgdef=IMG_COVER_NONE, imgwidth=COVER_WIDTH)
-    gui.item_front_upd  = Button(gui.item_front.item)
-    gui.item_front_viw  = Button(gui.item_front.item)
+    gui.item_front_upd  = Button(gui.item_front)
+    gui.item_front_viw  = Button(gui.item_front)
 
     # Back cover widgets
     gui.item_back_txt   = Label_(gui.item_frame, text="Back cover", anchor="w")
     gui.item_back       = Label_(gui.item_frame, anchor="w", imgdef=IMG_COVER_NONE, imgwidth=COVER_WIDTH)
-    gui.item_back_upd   = Button(gui.item_back.item)
-    gui.item_back_viw   = Button(gui.item_back.item)
+    gui.item_back_upd   = Button(gui.item_back)
+    gui.item_back_viw   = Button(gui.item_back)
 
     # Cart cover widgets
     gui.item_cart_txt   = Label_(gui.item_frame, text="Cart cover", anchor="w")
     gui.item_cart       = Label_(gui.item_frame, anchor="w", imgdef=IMG_COVER_NONE, imgwidth=COVER_WIDTH)
-    gui.item_cart_upd   = Button(gui.item_cart.item)
-    gui.item_cart_viw   = Button(gui.item_cart.item)
+    gui.item_cart_upd   = Button(gui.item_cart)
+    gui.item_cart_viw   = Button(gui.item_cart)
 
-    gui.item_title_txt.item.grid(row=1, column=0, columnspan=2, sticky="nwe")
+    gui.item_title_txt.grid(row=1, column=0, columnspan=2, sticky="nwe")
     gui.item_spacer.grid(row=2, column=0, sticky="nwe")
-    gui.item_title.item.grid(row=2, column=1, sticky="nwe")
+    gui.item_title.grid(row=2, column=1, sticky="nwe")
 
-    gui.item_date_txt.item.grid(row=3, column=0, columnspan=2, sticky="nwe")
-    gui.item_date.item.grid(row=4, column=1, sticky="nwe")
+    gui.item_date_txt.grid(row=3, column=0, columnspan=2, sticky="nwe")
+    gui.item_date.grid(row=4, column=1, sticky="nwe")
 
-    gui.item_price_txt.item.grid(row=5, column=0, columnspan=2, sticky="nwe")
-    gui.item_price.item.grid(row=6, column=1, sticky="nwe")
+    gui.item_price_txt.grid(row=5, column=0, columnspan=2, sticky="nwe")
+    gui.item_price.grid(row=6, column=1, sticky="nwe")
 
-    gui.item_front_txt.item.grid(row=7, column=0, columnspan=2, sticky="nwe")
-    gui.item_front.item.grid(row=8, column=1, sticky="nwe")
+    gui.item_front_txt.grid(row=7, column=0, columnspan=2, sticky="nwe")
+    gui.item_front.grid(row=8, column=1, sticky="nwe")
 
-    gui.item_back_txt.item.grid(row=9, column=0, columnspan=2, sticky="nwe")
-    gui.item_back.item.grid(row=10, column=1, sticky="nwe")
+    gui.item_back_txt.grid(row=9, column=0, columnspan=2, sticky="nwe")
+    gui.item_back.grid(row=10, column=1, sticky="nwe")
 
-    gui.item_cart_txt.item.grid(row=11, column=0, columnspan=2, sticky="nwe")
-    gui.item_cart.item.grid(row=12, column=1, sticky="nwe")
+    gui.item_cart_txt.grid(row=11, column=0, columnspan=2, sticky="nwe")
+    gui.item_cart.grid(row=12, column=1, sticky="nwe")
 
     # Frame for item toolbar
     gui.item_tool_frame = Frame(gui.item_frame , width=200 , height=10 , pady=0 , padx=0)
@@ -67,7 +67,7 @@ def initItemInfo(gui):
     gui.item_open_website = Button(gui.item_tool_frame, relief="groove", image=gui.item_link_ico)
     gui.item_bookmark     = Button(gui.item_tool_frame, relief="groove", image=gui.item_bookmark_ico)
     gui.item_id           = Label_(gui.item_tool_frame)
-    gui.item_id.item.grid(row=0, column=2, sticky="e")
+    gui.item_id.grid(row=0, column=2, sticky="e")
 
     gui.item_open_website.config(command=gui.openOnVGCollect)
     gui.item_open_website.grid(row=0, column=0, sticky="nw", padx=5, pady=5)

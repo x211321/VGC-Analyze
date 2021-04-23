@@ -69,7 +69,7 @@ class Pop_CoverViewer(object):
 
             # Create and place cover label
             coverViewer_cover = Label_(self.window, img=img, imgwidth=coverSize)
-            coverViewer_cover.item.pack(expand="Yes")
+            coverViewer_cover.pack(expand="Yes")
 
             # Run main loop of new window
             self.window.mainloop()
@@ -122,16 +122,16 @@ class Pop_CollectionDownload(object):
         label_info      = Label_(self.window, width=35)
         label_link      = Label_(self.window, width=35, anchor="center")
 
-        label_user.item.grid(row=0, column=0, pady=(15,10), padx=10, sticky="w")
-        self.input_user.item.grid(row=0, column=1, pady=(15,10), padx=10, sticky="w")
+        label_user.grid(row=0, column=0, pady=(15,10), padx=10, sticky="w")
+        self.input_user.grid(row=0, column=1, pady=(15,10), padx=10, sticky="w")
 
-        label_pass.item.grid(row=1, column=0, pady=(0,10), padx=10, sticky="w")
-        self.input_pass.item.grid(row=1, column=1, pady=(0,10), padx=10, sticky="w")
+        label_pass.grid(row=1, column=0, pady=(0,10), padx=10, sticky="w")
+        self.input_pass.grid(row=1, column=1, pady=(0,10), padx=10, sticky="w")
 
         btn_download.grid(row=2, column=0, pady=(0,10), padx=10, sticky="nwse", columnspan=2)
 
-        label_info.item.grid(row=3, column=0, pady=10, padx=10, sticky="nwse", columnspan=2)
-        label_link.item.grid(row=4, column=0, pady=(0, 10), padx=10, sticky="nwse", columnspan=2)
+        label_info.grid(row=3, column=0, pady=10, padx=10, sticky="nwse", columnspan=2)
+        label_link.grid(row=4, column=0, pady=(0, 10), padx=10, sticky="nwse", columnspan=2)
 
         label_info.set("The provided login credentials will be used to\n"
                        "download a backup of your collection from\n" +
@@ -146,14 +146,14 @@ class Pop_CollectionDownload(object):
                        " 3) \tRestart VGC Analyzer")
 
         label_link.set("VGCollect.com user profile")
-        label_link.item.config(fg="blue", cursor="hand2")
-        label_link.item.bind("<Button-1>", openUserProfileInBrowser)
+        label_link.config(fg="blue", cursor="hand2")
+        label_link.bind("<Button-1>", openUserProfileInBrowser)
 
-        self.input_pass.item.bind('<Return>', self.download)
+        self.input_pass.bind('<Return>', self.download)
 
         btn_download.config(command=self.download)
 
-        self.input_user.item.focus()
+        self.input_user.focus()
 
         # Run main loop of new window
         self.window.mainloop()
@@ -237,17 +237,17 @@ class Pop_ItemSearch(object):
         self.label_info   = Label_(self.window, anchor="w", fg="#F00")
         btn_search        = Button(self.window, text="Search", relief="groove")
 
-        label_search.item.grid(row=0, column=0, pady=(15,10), padx=10, sticky="w")
-        self.input_search.item.grid(row=0, column=1, pady=(15,10), padx=10, sticky="w")
-        self.label_info.item.grid(row=1, column=0, padx=10, sticky="nwse", columnspan=2)
+        label_search.grid(row=0, column=0, pady=(15,10), padx=10, sticky="w")
+        self.input_search.grid(row=0, column=1, pady=(15,10), padx=10, sticky="w")
+        self.label_info.grid(row=1, column=0, padx=10, sticky="nwse", columnspan=2)
 
         btn_search.grid(row=2, column=0, pady=(10,10), padx=10, sticky="nwse", columnspan=2)
 
-        self.input_search.item.bind('<Return>', self.search)
+        self.input_search.bind('<Return>', self.search)
 
         btn_search.config(command=self.search)
 
-        self.input_search.item.focus()
+        self.input_search.focus()
 
         # Run main loop of new window
         self.window.mainloop()

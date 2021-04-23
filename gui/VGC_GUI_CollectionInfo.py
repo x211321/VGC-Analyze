@@ -67,48 +67,48 @@ def initCollectionInfo(gui):
     gui.info_grp_countLow       = Label_(gui.info_sub_frame)
     gui.info_grp_countLow_name  = Label_(gui.info_sub_frame)
 
-    gui.info_number_txt.item.grid(row=0, column=0, sticky="nw", pady=(0, 5))
-    gui.info_number.item.grid(row=0, column=1, sticky="ne", pady=(0, 5), padx=(0, 30))
+    gui.info_number_txt.grid(row=0, column=0, sticky="nw", pady=(0, 5))
+    gui.info_number.grid(row=0, column=1, sticky="ne", pady=(0, 5), padx=(0, 30))
 
-    gui.info_value_txt.item.grid(row=1, column=0, sticky="nw")
-    gui.info_value.item.grid(row=1, column=1, sticky="ne", pady=(0, 5), padx=(0, 30))
+    gui.info_value_txt.grid(row=1, column=0, sticky="nw")
+    gui.info_value.grid(row=1, column=1, sticky="ne", pady=(0, 5), padx=(0, 30))
 
-    gui.info_average_txt.item.grid(row=2, column=0, sticky="nw")
-    gui.info_average.item.grid(row=2, column=1, sticky="ne", pady=(0, 5), padx=(0, 30))
+    gui.info_average_txt.grid(row=2, column=0, sticky="nw")
+    gui.info_average.grid(row=2, column=1, sticky="ne", pady=(0, 5), padx=(0, 30))
 
-    gui.info_first_txt.item.grid(row=0, column=2, sticky="nw", pady=(0, 5), padx=(0, 30))
-    gui.info_first.item.grid(row=0, column=3, sticky="nw", pady=(0, 5), padx=(0, 30))
+    gui.info_first_txt.grid(row=0, column=2, sticky="nw", pady=(0, 5), padx=(0, 30))
+    gui.info_first.grid(row=0, column=3, sticky="nw", pady=(0, 5), padx=(0, 30))
 
-    gui.info_last_txt.item.grid(row=1, column=2, sticky="nw", pady=(0, 5), padx=(0, 30))
-    gui.info_last.item.grid(row=1, column=3, sticky="nw", pady=(0, 5), padx=(0, 30))
+    gui.info_last_txt.grid(row=1, column=2, sticky="nw", pady=(0, 5), padx=(0, 30))
+    gui.info_last.grid(row=1, column=3, sticky="nw", pady=(0, 5), padx=(0, 30))
 
-    gui.info_update_txt.item.grid(row=2, column=2, sticky="nw", pady=(0, 5), padx=(0, 30))
-    gui.info_update.item.grid(row=2, column=3, sticky="nw", pady=(0, 5), padx=(0, 30))
+    gui.info_update_txt.grid(row=2, column=2, sticky="nw", pady=(0, 5), padx=(0, 30))
+    gui.info_update.grid(row=2, column=3, sticky="nw", pady=(0, 5), padx=(0, 30))
 
 
-    gui.info_grp_number_txt.item.grid(row=0, column=4, sticky="nw", pady=(0, 5))
-    gui.info_grp_number.item.grid(row=0, column=5, sticky="ne", pady=(0, 5))
-    gui.info_grp_number_spacer.item.grid(row=0, column=6, sticky="ne", pady=(0, 5), padx=(0, 30))
+    gui.info_grp_number_txt.grid(row=0, column=4, sticky="nw", pady=(0, 5))
+    gui.info_grp_number.grid(row=0, column=5, sticky="ne", pady=(0, 5))
+    gui.info_grp_number_spacer.grid(row=0, column=6, sticky="ne", pady=(0, 5), padx=(0, 30))
 
-    gui.info_grp_countLow_txt.item.grid(row=1, column=4, sticky="nw", pady=(0, 5))
-    gui.info_grp_countLow.item.grid(row=1, column=5, sticky="ne", pady=(0, 5))
-    gui.info_grp_countLow_name.item.grid(row=1, column=6, sticky="nw", pady=(0, 5), padx=(0, 30))
+    gui.info_grp_countLow_txt.grid(row=1, column=4, sticky="nw", pady=(0, 5))
+    gui.info_grp_countLow.grid(row=1, column=5, sticky="ne", pady=(0, 5))
+    gui.info_grp_countLow_name.grid(row=1, column=6, sticky="nw", pady=(0, 5), padx=(0, 30))
 
-    gui.info_grp_countHigh_txt.item.grid(row=2, column=4, sticky="nw", pady=(0, 5))
-    gui.info_grp_countHigh.item.grid(row=2, column=5, sticky="ne", pady=(0, 5))
-    gui.info_grp_countHigh_name.item.grid(row=2, column=6, sticky="nw", pady=(0, 5), padx=(0, 30))
+    gui.info_grp_countHigh_txt.grid(row=2, column=4, sticky="nw", pady=(0, 5))
+    gui.info_grp_countHigh.grid(row=2, column=5, sticky="ne", pady=(0, 5))
+    gui.info_grp_countHigh_name.grid(row=2, column=6, sticky="nw", pady=(0, 5), padx=(0, 30))
 
-    gui.info_grp_average_txt.item.grid(row=0, column=7, sticky="nw")
-    gui.info_grp_average.item.grid(row=0, column=8, sticky="ne", pady=(0, 5))
-    gui.info_grp_average_spacer.item.grid(row=0, column=9, sticky="ne", pady=(0, 5))
+    gui.info_grp_average_txt.grid(row=0, column=7, sticky="nw")
+    gui.info_grp_average.grid(row=0, column=8, sticky="ne", pady=(0, 5))
+    gui.info_grp_average_spacer.grid(row=0, column=9, sticky="ne", pady=(0, 5))
 
-    gui.info_grp_priceLow_txt.item.grid(row=1, column=7, sticky="nw", pady=(0, 5))
-    gui.info_grp_priceLow.item.grid(row=1, column=8, sticky="ne", pady=(0, 5))
-    gui.info_grp_priceLow_name.item.grid(row=1, column=9, sticky="nw", pady=(0, 5))
+    gui.info_grp_priceLow_txt.grid(row=1, column=7, sticky="nw", pady=(0, 5))
+    gui.info_grp_priceLow.grid(row=1, column=8, sticky="ne", pady=(0, 5))
+    gui.info_grp_priceLow_name.grid(row=1, column=9, sticky="nw", pady=(0, 5))
 
-    gui.info_grp_priceHigh_txt.item.grid(row=2, column=7, sticky="nw", pady=(0, 5))
-    gui.info_grp_priceHigh.item.grid(row=2, column=8, sticky="ne", pady=(0, 5))
-    gui.info_grp_priceHigh_name.item.grid(row=2, column=9, sticky="nw", pady=(0, 5))
+    gui.info_grp_priceHigh_txt.grid(row=2, column=7, sticky="nw", pady=(0, 5))
+    gui.info_grp_priceHigh.grid(row=2, column=8, sticky="ne", pady=(0, 5))
+    gui.info_grp_priceHigh_name.grid(row=2, column=9, sticky="nw", pady=(0, 5))
 
 
     # Graph functions sub-frame widgets

@@ -62,7 +62,7 @@ def initFilter(gui):
     rowWidth_current = 0
 
     for key in gui.filterInputs:
-        itemWidth = gui.filterInputs[key].item['width']
+        itemWidth = gui.filterInputs[key]['width']
 
         if rowWidth_current and (rowWidth_current + itemWidth <= rowWidth):
             col +=1
@@ -79,14 +79,14 @@ def initFilter(gui):
         else:
             colspan = 1
             if col == 0:
-                gui.filterInputs[key].item.grid(padx=(0, 18))
+                gui.filterInputs[key].grid(padx=(0, 18))
 
-        gui.filterInputs[key].item.grid(row=row, column=col, sticky="nw", columnspan=colspan)
+        gui.filterInputs[key].grid(row=row, column=col, sticky="nw", columnspan=colspan)
 
         if (row) % 2 == 0:
-            gui.filterInputs[key].item.grid(pady=(0,5))
+            gui.filterInputs[key].grid(pady=(0,5))
 
-        gui.filterInputs[key].item.bind('<Return>', gui.showData)
+        gui.filterInputs[key].bind('<Return>', gui.showData)
 
     gui.filter_reset.config(text="Reset filter", command=lambda:resetFilter(gui))
     gui.filter_reset.grid(row=100, column=0, sticky="nw", pady=(20, 5))
@@ -100,9 +100,10 @@ def initFilter(gui):
 # --------------------
 def resetFilter(gui):
     for key in gui.filterInputs:
-        if gui.filterInputs[key].item.__class__.__name__ == "Entry":
+        print(key, gui.filterInputs[key].__class__.__name__)
+        if gui.filterInputs[key].__class__.__name__ == "Entry_":
             gui.filterInputs[key].delete(0, END)
-        if gui.filterInputs[key].item.__class__.__name__ == "Combobox":
+        if gui.filterInputs[key].__class__.__name__ == "Combobox_":
             gui.filterInputs[key].set("")
 
     gui.showData()

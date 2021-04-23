@@ -30,11 +30,11 @@ def initGraph(gui):
     gui.graph_content     = Combobox_(gui.graph_tool_frame, values=(GRAPH_CONTENT_TOTALPRICE_YEAR, GRAPH_CONTENT_ITEMCOUNT_YEAR), width=15)
     gui.graph_hover_info  = Label_(gui.graph_tool_frame)
     gui.graph_content.set(GRAPH_CONTENT_TOTALPRICE_YEAR)
-    gui.graph_content.item.bind("<<ComboboxSelected>>", gui.displayGraphs)
+    gui.graph_content.bind("<<ComboboxSelected>>", gui.displayGraphs)
 
-    gui.graph_content_txt.item.grid(row=0, column=0, padx=(0,10))
-    gui.graph_content.item.grid(row=0, column=1, sticky="w")
-    gui.graph_hover_info.item.grid(row=0, column=2)
+    gui.graph_content_txt.grid(row=0, column=0, padx=(0,10))
+    gui.graph_content.grid(row=0, column=1, sticky="w")
+    gui.graph_hover_info.grid(row=0, column=2)
 
     gui.graph_canvas = Canvas(gui.graph_sub_frame, bg="#FFF", highlightthickness=1, highlightbackground="black")
     gui.graph_canvas.pack(expand=True, fill="both", padx=(0, 17), pady=(0,0))
