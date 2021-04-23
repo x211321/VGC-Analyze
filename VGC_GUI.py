@@ -51,25 +51,24 @@ class GUI(object):
         self.main_window.iconphoto(False, loadIcon("game-controller-outline", 15, 15))
         self.main_window.state('zoomed')
 
-        self.main_window.grid_rowconfigure(2, weight=1)
+        self.main_window.grid_rowconfigure(0, weight=1)
         self.main_window.grid_columnconfigure(1, weight=1)
 
 
         # Frames
         # ------------------
-        self.fltr_frame  = Frame(self.main_window, width=200 , height=550, pady=10, padx=10)
-        self.view_frame  = Frame(self.main_window, width=600 , height=550, pady=0 , padx=0)
-        self.item_frame  = Frame(self.main_window, width=200 , height=550, pady=0 , padx=0)
-        self.tool_frame  = Frame(self.main_window, width=200 , height=10 , pady=0 , padx=0)
-        self.grph_frame  = Frame(self.main_window, width=1000, height=200, pady=0 , padx=0)
-        self.info_frame  = Frame(self.main_window, width=1000, height=200, pady=10, padx=10)
+        self.filter_frame    = Frame(self.main_window, width=200 , height=550, pady=10, padx=10)
+        self.view_frame      = Frame(self.main_window, width=600 , height=550, pady=0 , padx=0)
+        self.item_frame      = Frame(self.main_window, width=200 , height=550, pady=0 , padx=0)
+        self.graph_frame     = Frame(self.main_window, width=1000, height=200, pady=0 , padx=0)
+        self.info_frame      = Frame(self.main_window, width=1000, height=200, pady=10, padx=10)
 
-        self.fltr_frame.grid(row=1, column=0, sticky="nws ", rowspan=3)
-        self.view_frame.grid(row=1, column=1, sticky="nwes", rowspan=2)
-        self.tool_frame.grid(row=1, column=2, sticky="nwe ")
-        self.item_frame.grid(row=2, column=2, sticky="nes ", rowspan=2)
-        self.grph_frame.grid(row=3, column=1, sticky="nwes")
-        self.info_frame.grid(row=4, column=1, sticky="nwes")
+
+        self.filter_frame.grid(row=0, column=0, sticky="nws", rowspan=3)
+        self.view_frame.grid(row=0, column=1, sticky="nwes")
+        self.item_frame.grid(row=0, column=2, sticky="nes", rowspan=3)
+        self.graph_frame.grid(row=1, column=1, sticky="nwes")
+        self.info_frame.grid(row=2, column=1, sticky="nwes")
 
 
         # Treeview
@@ -116,104 +115,51 @@ class GUI(object):
         self.item_cart_upd   = Button(self.item_cart.item)
         self.item_cart_viw   = Button(self.item_cart.item)
 
-        # Item Toolbar
-        self.item_open_website   = Button(self.tool_frame, relief="groove", image=self.item_link_ico)
-        self.item_bookmark       = Button(self.tool_frame, relief="groove", image=self.item_bookmark_ico)
-        self.item_id             = Label_(self.tool_frame)
-
 
         # Filter inputs
         # ------------------
         self.filterInputs = {}
 
-        self.filterInputs["name_txt"]       = Label_(self.fltr_frame, width=25, text="Title")
-        self.filterInputs["name"]           = Entry_(self.fltr_frame, width=30)
-        self.filterInputs["platform_txt"]   = Label_(self.fltr_frame, width=25, text="Platform")
-        self.filterInputs["platform"]       = Combobox_(self.fltr_frame, width=27)
-        self.filterInputs["region_txt"]     = Label_(self.fltr_frame, width=25, text="Region")
-        self.filterInputs["region"]         = Combobox_(self.fltr_frame, width=27)
-        self.filterInputs["notes_txt"]      = Label_(self.fltr_frame, width=25, text="Notes")
-        self.filterInputs["notes"]          = Entry_(self.fltr_frame, width=30)
-        self.filterInputs["dateStart_txt"]  = Label_(self.fltr_frame, width=25, text="Min. date")
-        self.filterInputs["dateStart"]      = Entry_(self.fltr_frame, width=30)
-        self.filterInputs["dateEnd_txt"]    = Label_(self.fltr_frame, width=25, text="Max. date")
-        self.filterInputs["dateEnd"]        = Entry_(self.fltr_frame, width=30)
-        self.filterInputs["priceStart_txt"] = Label_(self.fltr_frame, width=25, text="Min. price")
-        self.filterInputs["priceStart"]     = Entry_(self.fltr_frame, width=30)
-        self.filterInputs["priceEnd_txt"]   = Label_(self.fltr_frame, width=25, text="Max. price")
-        self.filterInputs["priceEnd"]       = Entry_(self.fltr_frame, width=30)
-        self.filterInputs["cart_txt"]       = Label_(self.fltr_frame, width=10, text="Cart")
-        self.filterInputs["box_txt"]        = Label_(self.fltr_frame, width=10, text="Box")
-        self.filterInputs["cart"]           = Combobox_(self.fltr_frame, values=("", "Yes", "No"), state="readonly", width=10)
-        self.filterInputs["box"]            = Combobox_(self.fltr_frame, values=("", "Yes", "No"), state="readonly", width=10)
-        self.filterInputs["manual_txt"]     = Label_(self.fltr_frame, width=10, text="Manual")
-        self.filterInputs["other_txt"]      = Label_(self.fltr_frame, width=10, text="Other")
-        self.filterInputs["manual"]         = Combobox_(self.fltr_frame, values=("", "Yes", "No"), state="readonly", width=10)
-        self.filterInputs["other"]          = Combobox_(self.fltr_frame, values=("", "Yes", "No"), state="readonly", width=10)
-        self.filterInputs["bookmarked_txt"] = Label_(self.fltr_frame, text="Bookmarked", width=10)
-        self.filterInputs["group_txt"]      = Label_(self.fltr_frame, text="Group by", width=10)
-        self.filterInputs["bookmarked"]     = Combobox_(self.fltr_frame, values=("", "Yes", "No"), state="readonly", width=10)
-        self.filterInputs["group"]          = Combobox_(self.fltr_frame, state="readonly", width=10)
-        self.filterInputs["order_txt"]      = Label_(self.fltr_frame, text="Sort by", width=10)
-        self.filterInputs["order_dir_txt"]  = Label_(self.fltr_frame, text="Sort direction", width=10)
-        self.filterInputs["order"]          = Combobox_(self.fltr_frame, state="readonly", width=10)
-        self.filterInputs["orderDirection"] = Combobox_(self.fltr_frame, values=("", "ascending", "descending"), state="readonly", width=10)
+        self.filterInputs["name_txt"]       = Label_(self.filter_frame, width=25, text="Title")
+        self.filterInputs["name"]           = Entry_(self.filter_frame, width=30)
+        self.filterInputs["platform_txt"]   = Label_(self.filter_frame, width=25, text="Platform")
+        self.filterInputs["platform"]       = Combobox_(self.filter_frame, width=27)
+        self.filterInputs["region_txt"]     = Label_(self.filter_frame, width=25, text="Region")
+        self.filterInputs["region"]         = Combobox_(self.filter_frame, width=27)
+        self.filterInputs["notes_txt"]      = Label_(self.filter_frame, width=25, text="Notes")
+        self.filterInputs["notes"]          = Entry_(self.filter_frame, width=30)
+        self.filterInputs["dateStart_txt"]  = Label_(self.filter_frame, width=25, text="Min. date")
+        self.filterInputs["dateStart"]      = Entry_(self.filter_frame, width=30)
+        self.filterInputs["dateEnd_txt"]    = Label_(self.filter_frame, width=25, text="Max. date")
+        self.filterInputs["dateEnd"]        = Entry_(self.filter_frame, width=30)
+        self.filterInputs["priceStart_txt"] = Label_(self.filter_frame, width=25, text="Min. price")
+        self.filterInputs["priceStart"]     = Entry_(self.filter_frame, width=30)
+        self.filterInputs["priceEnd_txt"]   = Label_(self.filter_frame, width=25, text="Max. price")
+        self.filterInputs["priceEnd"]       = Entry_(self.filter_frame, width=30)
+        self.filterInputs["cart_txt"]       = Label_(self.filter_frame, width=10, text="Cart")
+        self.filterInputs["box_txt"]        = Label_(self.filter_frame, width=10, text="Box")
+        self.filterInputs["cart"]           = Combobox_(self.filter_frame, values=("", "Yes", "No"), state="readonly", width=10)
+        self.filterInputs["box"]            = Combobox_(self.filter_frame, values=("", "Yes", "No"), state="readonly", width=10)
+        self.filterInputs["manual_txt"]     = Label_(self.filter_frame, width=10, text="Manual")
+        self.filterInputs["other_txt"]      = Label_(self.filter_frame, width=10, text="Other")
+        self.filterInputs["manual"]         = Combobox_(self.filter_frame, values=("", "Yes", "No"), state="readonly", width=10)
+        self.filterInputs["other"]          = Combobox_(self.filter_frame, values=("", "Yes", "No"), state="readonly", width=10)
+        self.filterInputs["bookmarked_txt"] = Label_(self.filter_frame, text="Bookmarked", width=10)
+        self.filterInputs["group_txt"]      = Label_(self.filter_frame, text="Group by", width=10)
+        self.filterInputs["bookmarked"]     = Combobox_(self.filter_frame, values=("", "Yes", "No"), state="readonly", width=10)
+        self.filterInputs["group"]          = Combobox_(self.filter_frame, state="readonly", width=10)
+        self.filterInputs["order_txt"]      = Label_(self.filter_frame, text="Sort by", width=10)
+        self.filterInputs["order_dir_txt"]  = Label_(self.filter_frame, text="Sort direction", width=10)
+        self.filterInputs["order"]          = Combobox_(self.filter_frame, state="readonly", width=10)
+        self.filterInputs["orderDirection"] = Combobox_(self.filter_frame, values=("", "ascending", "descending"), state="readonly", width=10)
 
-        self.filter_apply = Button(self.fltr_frame, width=10, relief="groove", bg="#BDF593")
-        self.filter_reset = Button(self.fltr_frame, width=10, relief="groove", bg="#F59398")
-
-
-        # Collection info
-        # ------------------
-        self.info_number_txt = Label_(self.info_frame, text="Item count:")
-        self.info_number     = Label_(self.info_frame)
-
-        self.info_value_txt  = Label_(self.info_frame, text="Total price:")
-        self.info_value      = Label_(self.info_frame)
-
-        self.info_average_txt= Label_(self.info_frame, text="Avg. price:")
-        self.info_average    = Label_(self.info_frame)
-
-        self.info_first_txt  = Label_(self.info_frame, text="First purchase:")
-        self.info_first      = Label_(self.info_frame)
-
-        self.info_last_txt   = Label_(self.info_frame, text="Last purchase:")
-        self.info_last       = Label_(self.info_frame)
-
-        self.info_update_txt = Label_(self.info_frame, text="Database updated:")
-        self.info_update     = Label_(self.info_frame)
-
-
-        self.info_grp_number_txt     = Label_(self.info_frame)
-        self.info_grp_number         = Label_(self.info_frame)
-        self.info_grp_number_spacer  = Label_(self.info_frame)
-
-        self.info_grp_average_txt    = Label_(self.info_frame)
-        self.info_grp_average        = Label_(self.info_frame)
-        self.info_grp_average_spacer = Label_(self.info_frame)
-
-        self.info_grp_priceHigh_txt  = Label_(self.info_frame)
-        self.info_grp_priceHigh      = Label_(self.info_frame)
-        self.info_grp_priceHigh_name = Label_(self.info_frame)
-
-        self.info_grp_priceLow_txt   = Label_(self.info_frame)
-        self.info_grp_priceLow       = Label_(self.info_frame)
-        self.info_grp_priceLow_name  = Label_(self.info_frame)
-
-        self.info_grp_countHigh_txt  = Label_(self.info_frame)
-        self.info_grp_countHigh      = Label_(self.info_frame)
-        self.info_grp_countHigh_name = Label_(self.info_frame)
-
-        self.info_grp_countLow_txt   = Label_(self.info_frame)
-        self.info_grp_countLow       = Label_(self.info_frame)
-        self.info_grp_countLow_name  = Label_(self.info_frame)
-
-        self.info_toggle_graph       = Button(self.info_frame)
+        self.filter_apply = Button(self.filter_frame, width=10, relief="groove", bg="#BDF593")
+        self.filter_reset = Button(self.filter_frame, width=10, relief="groove", bg="#F59398")
 
 
         # Graph
         # ------------------
-        self.graph_canvas            = Canvas(self.grph_frame, bg="#FFF", highlightthickness=1, highlightbackground="black")
+        self.graph_canvas            = Canvas(self.graph_frame, bg="#FFF", highlightthickness=1, highlightbackground="black")
 
 
         # Data
@@ -266,7 +212,7 @@ class GUI(object):
     # onGraphResiz
     # --------------------
     def onGraphResiz(self, event):
-        if self.grph_frame.winfo_ismapped:
+        if self.graph_frame.winfo_ismapped:
             self.displayGraphs()
 
 
@@ -375,14 +321,6 @@ class GUI(object):
     # --------------------
     def initItemInfo(self):
 
-        self.item_open_website.config(command=self.openOnVGCollect)
-        self.item_open_website.grid(row=0, column=0, sticky="nw", padx=5, pady=5)
-
-        self.item_bookmark.config(command=self.toggleBookmark)
-        self.item_bookmark.grid(row=0, column=1, sticky="nw", padx=(5, 25), pady=5)
-
-        self.item_id.item.grid(row=0, column=2, sticky="e")
-
         self.item_title_txt.item.grid(row=1, column=0, columnspan=2, sticky="nwe")
         self.item_spacer.grid(row=2, column=0, sticky="nwe")
         self.item_title.item.grid(row=2, column=1, sticky="nwe")
@@ -401,6 +339,22 @@ class GUI(object):
 
         self.item_cart_txt.item.grid(row=11, column=0, columnspan=2, sticky="nwe")
         self.item_cart.item.grid(row=12, column=1, sticky="nwe")
+
+        # Frame for item toolbar
+        self.item_tool_frame = Frame(self.item_frame , width=200 , height=10 , pady=0 , padx=0)
+        self.item_tool_frame.grid(row=0, column=0, sticky="nwe", columnspan=2)
+
+        # Item Toolbar
+        self.item_open_website = Button(self.item_tool_frame, relief="groove", image=self.item_link_ico)
+        self.item_bookmark     = Button(self.item_tool_frame, relief="groove", image=self.item_bookmark_ico)
+        self.item_id           = Label_(self.item_tool_frame)
+        self.item_id.item.grid(row=0, column=2, sticky="e")
+
+        self.item_open_website.config(command=self.openOnVGCollect)
+        self.item_open_website.grid(row=0, column=0, sticky="nw", padx=5, pady=5)
+
+        self.item_bookmark.config(command=self.toggleBookmark)
+        self.item_bookmark.grid(row=0, column=1, sticky="nw", padx=(5, 25), pady=5)
 
         # Position cover toolbars
         self.placeCoverToolbars()
@@ -457,6 +411,50 @@ class GUI(object):
     # initCollectionInfo
     # --------------------
     def initCollectionInfo(self):
+        # Collection info
+        # ------------------
+        self.info_number_txt = Label_(self.info_frame, text="Item count:")
+        self.info_number     = Label_(self.info_frame)
+
+        self.info_value_txt  = Label_(self.info_frame, text="Total price:")
+        self.info_value      = Label_(self.info_frame)
+
+        self.info_average_txt= Label_(self.info_frame, text="Avg. price:")
+        self.info_average    = Label_(self.info_frame)
+
+        self.info_first_txt  = Label_(self.info_frame, text="First purchase:")
+        self.info_first      = Label_(self.info_frame)
+
+        self.info_last_txt   = Label_(self.info_frame, text="Last purchase:")
+        self.info_last       = Label_(self.info_frame)
+
+        self.info_update_txt = Label_(self.info_frame, text="Database updated:")
+        self.info_update     = Label_(self.info_frame)
+
+        self.info_grp_number_txt     = Label_(self.info_frame)
+        self.info_grp_number         = Label_(self.info_frame)
+        self.info_grp_number_spacer  = Label_(self.info_frame)
+
+        self.info_grp_average_txt    = Label_(self.info_frame)
+        self.info_grp_average        = Label_(self.info_frame)
+        self.info_grp_average_spacer = Label_(self.info_frame)
+
+        self.info_grp_priceHigh_txt  = Label_(self.info_frame)
+        self.info_grp_priceHigh      = Label_(self.info_frame)
+        self.info_grp_priceHigh_name = Label_(self.info_frame)
+
+        self.info_grp_priceLow_txt   = Label_(self.info_frame)
+        self.info_grp_priceLow       = Label_(self.info_frame)
+        self.info_grp_priceLow_name  = Label_(self.info_frame)
+
+        self.info_grp_countHigh_txt  = Label_(self.info_frame)
+        self.info_grp_countHigh      = Label_(self.info_frame)
+        self.info_grp_countHigh_name = Label_(self.info_frame)
+
+        self.info_grp_countLow_txt   = Label_(self.info_frame)
+        self.info_grp_countLow       = Label_(self.info_frame)
+        self.info_grp_countLow_name  = Label_(self.info_frame)
+
         self.info_number_txt.item.grid(row=0, column=0, sticky="nw", pady=(0, 5))
         self.info_number.item.grid(row=0, column=1, sticky="ne", pady=(0, 5), padx=(0, 30))
 
@@ -500,11 +498,17 @@ class GUI(object):
         self.info_grp_priceHigh.item.grid(row=2, column=8, sticky="ne", pady=(0, 5))
         self.info_grp_priceHigh_name.item.grid(row=2, column=9, sticky="nw", pady=(0, 5))
 
-        # Button to toggle the graph viewer
-        self.info_toggle_graph.config(command=self.toggleGraphFrame, image=self.item_graph_ico, relief="groove")
-        self.info_toggle_graph.grid(row=0, column=11, padx=7)
+        # Grapf functions toolbar
+        self.info_tool_frame = Frame(self.info_frame , width=200 , height=200, pady=0 , padx=0)
+        self.info_tool_frame.grid(row=0, column=10, sticky="nes", rowspan=3)
 
-        self.info_frame.grid_columnconfigure(9, weight=1)
+        self.info_frame.grid_columnconfigure(10, weight=1)
+
+        # Button to toggle the graph viewer
+        self.info_toggle_graph = Button(self.info_tool_frame)
+        self.info_toggle_graph.config(command=self.toggleGraphFrame, image=self.item_graph_ico, relief="groove")
+        self.info_toggle_graph.grid(row=0, column=0)
+
 
 
     ######################
@@ -513,17 +517,17 @@ class GUI(object):
     def initGraph(self):
         self.graph_canvas.pack(expand=True, fill="both", padx=(0, 17), pady=(10,0))
         self.graph_canvas.bind("<Configure>", self.onGraphResiz)
-        self.grph_frame.grid_forget()
+        self.graph_frame.grid_forget()
 
 
     ######################
     # toggleGraphFrame
     # --------------------
     def toggleGraphFrame(self):
-        if self.grph_frame.winfo_ismapped():
-            self.grph_frame.grid_forget()
+        if self.graph_frame.winfo_ismapped():
+            self.graph_frame.grid_forget()
         else:
-            self.grph_frame.grid(row=3, column=1, sticky="nwes")
+            self.graph_frame.grid(row=1, column=1, sticky="nwes")
             self.main_window.update()
             self.displayGraphs()
 
@@ -595,7 +599,7 @@ class GUI(object):
         self.displayCollectionInfo()
 
         # Draw graphs
-        if self.grph_frame.winfo_ismapped():
+        if self.graph_frame.winfo_ismapped():
             self.displayGraphs()
 
         # Clear treeview
@@ -917,7 +921,7 @@ class GUI(object):
     # --------------------
     def displayGraphs(self):
         self.collectionData.groupGraphData("year")
-        drawBarGraph(self.collectionData, self.graph_canvas)
+        drawBarGraph(self.collectionData, self.graph_canvas, "price")
 
 
     ######################
