@@ -169,58 +169,61 @@ class FilterData(object):
 
     # Constructor
     def __init__(self):
-        self.itemFilter         = ""
-        self.platformFilter     = ""
-        self.regionFilter       = ""
-        self.notesFilter        = ""
-        self.dateFilterStart    = ""
-        self.dateFilterEnd      = ""
-        self.priceFilterStart   = 0.0
-        self.priceFilterEnd     = 0.0
-        self.priceFilterStartSet= False
-        self.priceFilterEndSet  = False
-        self.cartFilter         = ""
-        self.boxFilter          = ""
-        self.manualFilter       = ""
-        self.otherFilter        = ""
-        self.bookmarkedFilter   = ""
-        self.finishedFilter   = ""
+        self.itemFilter           = ""
+        self.platformFilter       = ""
+        self.platformHolderFilter = ""
+        self.regionFilter         = ""
+        self.notesFilter          = ""
+        self.dateFilterStart      = ""
+        self.dateFilterEnd        = ""
+        self.priceFilterStart     = 0.0
+        self.priceFilterEnd       = 0.0
+        self.priceFilterStartSet  = False
+        self.priceFilterEndSet    = False
+        self.cartFilter           = ""
+        self.boxFilter            = ""
+        self.manualFilter         = ""
+        self.otherFilter          = ""
+        self.bookmarkedFilter     = ""
+        self.finishedFilter       = ""
 
-        self.orderItems         = ""
-        self.orderItemsReverse  = False
-        self.groupItems         = ""
-        self.filePath           = ""
-        self.graphStyle         = ""
-        self.graphStepSize      = 0
-        self.screenWidth        = 0
-        self.skipCategories     = False
-        self.listItems          = False
-        self.listDetails        = False
-        self.listVerbose        = False
-        self.listCategories     = False
-        self.listCategoriesDays = False
-        self.hideGraphs         = False
-        self.graphIncludeZero   = False
-        self.itemLines          = False
-        self.categoryFilterList = []
-        self.guiMode            = False
-        self.interactiveMode    = False
+        self.orderItems           = ""
+        self.orderItemsReverse    = False
+        self.groupItems           = ""
+        self.filePath             = ""
+        self.graphStyle           = ""
+        self.graphStepSize        = 0
+        self.screenWidth          = 0
+        self.skipCategories       = False
+        self.listItems            = False
+        self.listDetails          = False
+        self.listVerbose          = False
+        self.listCategories       = False
+        self.listCategoriesDays   = False
+        self.hideGraphs           = False
+        self.graphIncludeZero     = False
+        self.itemLines            = False
+        self.categoryFilterList   = []
+        self.guiMode              = False
+        self.interactiveMode      = False
 
 
     def inputsToFilter(self, inputs):
         for key in inputs:
             if key == "name":
-                self.itemFilter      = inputs[key].get()
+                self.itemFilter           = inputs[key].get()
             if key == "platform":
-                self.platformFilter  = inputs[key].get()
+                self.platformFilter       = inputs[key].get()
+            if key == "platformHolder":
+                self.platformHolderFilter = inputs[key].get()
             if key == "region":
-                self.regionFilter    = inputs[key].get()
+                self.regionFilter         = inputs[key].get()
             if key == "notes":
-                self.notesFilter     = inputs[key].get()
+                self.notesFilter          = inputs[key].get()
             if key == "dateStart":
-                self.dateFilterStart = guessDate(inputs[key].get(), "start")
+                self.dateFilterStart      = guessDate(inputs[key].get(), "start")
             if key == "dateEnd":
-                self.dateFilterEnd   = guessDate(inputs[key].get(), "end")
+                self.dateFilterEnd        = guessDate(inputs[key].get(), "end")
 
             if key == "priceStart":
                 if len(inputs[key].get()) > 0:
@@ -265,13 +268,14 @@ class CollectionData(object):
     collection_items = []
 
     # Sums
-    totals     = DataTotal()
-    years      = OrderedDict()
-    months     = OrderedDict()
-    days       = OrderedDict()
-    platforms  = OrderedDict()
-    categories = OrderedDict()
-    regions    = OrderedDict()
+    totals          = DataTotal()
+    years           = OrderedDict()
+    months          = OrderedDict()
+    days            = OrderedDict()
+    platforms       = OrderedDict()
+    platformHolders = OrderedDict()
+    categories      = OrderedDict()
+    regions         = OrderedDict()
 
     groups             = OrderedDict()
     graph_groups       = OrderedDict()
@@ -343,6 +347,7 @@ class CollectionData(object):
     def filter(self, item):
         if (self.searchFilter(self.filterData.itemFilter, item.name) and
             self.searchFilter(self.filterData.platformFilter, item.platform) and
+            self.searchFilter(self.filterData.platformHolderFilter, item.platformHolder) and
             self.searchFilter(self.filterData.notesFilter, item.notes) and
             self.searchFilter(self.filterData.regionFilter, item.region) and
             self.stringGreater(self.filterData.dateFilterStart, item.date) and
@@ -526,6 +531,9 @@ class CollectionData(object):
 
             # Sum platforms
             self.sumDataDict(item.platform, self.platforms, item)
+
+            # Sum platform holders
+            self.sumDataDict(item.platformHolder, self.platformHolders, item)
 
             # Sum regions
             self.sumDataDict(item.region, self.regions, item)

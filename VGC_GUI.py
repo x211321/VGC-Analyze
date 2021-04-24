@@ -212,6 +212,7 @@ class GUI(Tk):
         self.collectionData.sumData()
 
         self.fillPlatformCombobox()
+        self.fillPlatformHolderCombobox()
         self.fillRegionCombobox()
         self.fillGroupCombobox()
         self.fillOrderCombobox()
@@ -405,6 +406,21 @@ class GUI(Tk):
             platforms.append(platform)
 
         self.filterInputs["platform"].setValues(platforms)
+
+
+    ######################
+    # fillPlatformHolderCombobox
+    # --------------------
+    def fillPlatformHolderCombobox(self):
+        platformHolders = []
+        self.filterInputs["platformHolder"].delete(0, END)
+
+        platformHolders.append("")
+
+        for platformHolder, data in sorted(self.collectionData.platformHolders.items()):
+            platformHolders.append(platformHolder)
+
+        self.filterInputs["platformHolder"].setValues(platformHolders)
 
 
     ######################
