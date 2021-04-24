@@ -21,6 +21,9 @@ EXE virus https://stackoverflow.com/questions/43777106/program-made-with-pyinsta
 Multiselect
 Sortieren über Treeview header
 View double click -> detailed item view
+	CSV data
+	Local data
+	Covers
 Graph canvas scroll bar
 Download history
 
