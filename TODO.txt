@@ -20,13 +20,13 @@ EXE bundle img
 EXE virus https://stackoverflow.com/questions/43777106/program-made-with-pyinstaller-now-seen-as-a-trojan-horse-by-avg
 Multiselect
 Sortieren über Treeview header
-Group by platfrom holder
-	Json keywords
 View double click -> detailed item view
 Graph canvas scroll bar
 Download history
 
 ===DONE===
+Group by platfrom holder
+	Json keywords
 Cover mouse hover Buttons anzeigen
 Graphen ausgeben
 Gruppeninfos (Anzahl Gruppen / Durchschnittspreis)
