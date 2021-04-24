@@ -30,7 +30,7 @@ def initGraph(gui):
     gui.graph_frame.grid_rowconfigure(1, weight=1)
     gui.graph_frame.grid_columnconfigure(0, weight=1)
 
-    gui.graph_content_txt = Label_(gui.graph_tool_frame, text="Chart content:")
+    gui.graph_content_txt = Label_(gui.graph_tool_frame, text="Graph content:")
     gui.graph_content     = Combobox_(gui.graph_tool_frame, values=(GRAPH_CONTENT_YEARS, GRAPH_CONTENT_PLATFORMS, GRAPH_CONTENT_PLATFORM_HOLDERS, GRAPH_CONTENT_REGIONS), width=15)
     gui.graph_content.set(GRAPH_CONTENT_YEARS)
     gui.graph_content.bind("<<ComboboxSelected>>", gui.displayGraphs)
