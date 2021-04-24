@@ -131,7 +131,11 @@ def drawBarGraph(gui, data, canvas, graphContent, graphData):
 
     for i in range(stepCount+1):
 
-        text = int((maxValue/stepCount) * i)
+        if i > 0 and str(int((maxValue/stepCount) * i)) == lastText:
+            text = ""
+        else:
+            text = str(int((maxValue/stepCount) * i))
+            lastText = text
 
         canvas.create_text(startX-paddingYAxis-paddingYAxisLabel, startY+paddingXAxis-(stepSize*i), text=text, width=paddingLeft, anchor="e")
 
