@@ -129,11 +129,11 @@ def drawBarGraph(gui, data, canvas, graphContent, graphData):
     # Draw y-axis labels
     stepCount = int((maxBarHeight) / stepSize) + 1
 
-    for i in range(stepCount):
+    for i in range(stepCount+1):
 
         text = int((maxValue/stepCount) * i)
 
-        canvas.create_text(startX-paddingYAxis-paddingYAxisLabel, startY-(stepSize*i), text=text, width=paddingLeft, anchor="e")
+        canvas.create_text(startX-paddingYAxis-paddingYAxisLabel, startY+paddingXAxis-(stepSize*i), text=text, width=paddingLeft, anchor="e")
 
     # Draw graph
     if maxValue:
@@ -150,7 +150,7 @@ def drawBarGraph(gui, data, canvas, graphContent, graphData):
             endY = startY - barHeight
 
             # Draw bar
-            index = canvas.create_rectangle(startX, startY, endX, endY, fill="#FFD754", outline="#000", activefill="#547CFF")
+            index = canvas.create_rectangle(startX, startY+paddingXAxis-1, endX, endY, fill="#FFD754", outline="#000", activefill="#547CFF")
 
             def handler(event, self=gui, group=groupKey, itemValue=itemValue):
                 return gui.onGraphEnter(event, group, itemValue)
