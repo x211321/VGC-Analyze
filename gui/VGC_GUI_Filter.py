@@ -31,6 +31,8 @@ def initFilter(gui):
     gui.filterInputs["priceStart"]     = Entry_(gui.filter_frame, width=30)
     gui.filterInputs["priceEnd_txt"]   = Label_(gui.filter_frame, width=25, text="Max. purchase price")
     gui.filterInputs["priceEnd"]       = Entry_(gui.filter_frame, width=30)
+    gui.filterInputs["group_txt"]      = Label_(gui.filter_frame, text="Group by", width=25)
+    gui.filterInputs["group"]          = Combobox_(gui.filter_frame, state="readonly", width=27)
     gui.filterInputs["cart_txt"]       = Label_(gui.filter_frame, width=10, text="Cart")
     gui.filterInputs["box_txt"]        = Label_(gui.filter_frame, width=10, text="Box")
     gui.filterInputs["cart"]           = Combobox_(gui.filter_frame, values=("", "Yes", "No"), state="readonly", width=10)
@@ -47,9 +49,7 @@ def initFilter(gui):
     gui.filterInputs["order_dir_txt"]  = Label_(gui.filter_frame, text="Sort direction", width=10)
     gui.filterInputs["order"]          = Combobox_(gui.filter_frame, state="readonly", width=10)
     gui.filterInputs["orderDirection"] = Combobox_(gui.filter_frame, values=("", "ascending", "descending"), state="readonly", width=10)
-    gui.filterInputs["group_txt"]      = Label_(gui.filter_frame, text="Group by", width=10)
     gui.filterInputs["dummy_txt"]      = Label_(gui.filter_frame, text="", width=10)
-    gui.filterInputs["group"]          = Combobox_(gui.filter_frame, state="readonly", width=10)
 
     gui.filter_apply = Button(gui.filter_frame, width=10, relief="groove", bg="#BDF593")
     gui.filter_reset = Button(gui.filter_frame, width=10, relief="groove", bg="#F59398")

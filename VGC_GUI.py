@@ -434,6 +434,7 @@ class GUI(Tk):
         groups.append("name")
         groups.append("region")
         groups.append("platform")
+        groups.append("platform holder")
         groups.append("notes")
 
         self.filterInputs["group"].setValues(groups)

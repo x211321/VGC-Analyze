@@ -3,7 +3,7 @@ img/cache/
 settings/
 *.csv
 *.exe
-*.json
+VGC-Local-Data.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

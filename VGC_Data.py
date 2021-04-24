@@ -13,6 +13,7 @@ from VGC_Var     import CAT_ACCESSORY
 from VGC_Var     import CAT_ACCESSORIES
 from VGC_Var     import LOCAL_DATA
 from VGC_Var     import LOCAL_DATA_FILE
+from VGC_Var     import PLATFORM_KEYWORDS_FILE
 from VGC_Var     import DATA_PATH
 
 # Global list for definition of
@@ -64,7 +65,7 @@ class CollectionItem(object):
 
     # Constructor
     # Parses csv-line to CollectionItem
-    def __init__(self, csv_line = "", index = 0, localItemData_List = {}):
+    def __init__(self, csv_line = "", index = 0, localItemData_List = {}, platformKeywords_List = {}):
         csv_fields  = csv_line.split("\",\"")
 
         for index, field in enumerate(csv_fields):
@@ -85,7 +86,6 @@ class CollectionItem(object):
         self.index      = index
         self.localData  = {}
 
-
         if csv_line != "":
             self.VGC_id   = int(csv_fields[CSVColumns.VGC_id])
             self.name     = csv_fields[CSVColumns.name]
@@ -99,6 +99,20 @@ class CollectionItem(object):
             self.other    = csv_fields[CSVColumns.other]
             self.notes    = csv_fields[CSVColumns.notes]
             self.dateAdded= csv_fields[CSVColumns.added]
+
+            # Find platform holder
+            found = False
+
+            for platformHolder in platformKeywords_List:
+                for keyword in platformKeywords_List[platformHolder]:
+                    if keyword in self.platform.lower():
+                        self.platformHolder = platformHolder
+                        found = True
+                        break
+                if found:
+                    break
+            if found == False:
+                self.platformHolder = "[Other]"
 
             # Special case for categories that end on "Accessories" instead of "Accessory"
             if self.platform[-len(CAT_ACCESSORIES):] == CAT_ACCESSORIES:
@@ -304,13 +318,14 @@ class CollectionData(object):
 
     # parseData
     def parseData(self, bookmarks = []):
-        self.collection_items = []
-        self.localData_list   = readJson(LOCAL_DATA_FILE)
+        self.collection_items      = []
+        self.localData_list        = readJson(LOCAL_DATA_FILE)
+        self.platformKeywords_List = readJson(PLATFORM_KEYWORDS_FILE)
 
         index = 0
 
         for line in self.csv_lines[1:]:
-            item = CollectionItem(line, localItemData_List=self.localData_list)
+            item = CollectionItem(line, localItemData_List=self.localData_list, platformKeywords_List=self.platformKeywords_List)
 
             item.index = index
 
@@ -420,6 +435,9 @@ class CollectionData(object):
 
         if groupBy == "platform":
             group =  item.platform
+
+        if groupBy == "platform holder":
+            group =  item.platformHolder
 
         if groupBy == "notes":
             group =  item.notes
