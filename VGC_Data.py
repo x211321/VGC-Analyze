@@ -21,6 +21,7 @@ from VGC_Var     import DATA_PATH
 options    = []
 
 
+
 ######################
 # guessDate
 # --------------------
@@ -515,7 +516,7 @@ class CollectionData(object):
 
     # stringEqual
     def stringEqual(fself, filterVal, itemVal):
-        if len(filterVal) == 0 or filterVal == itemVal:
+        if len(filterVal) == 0 or filterVal == itemVal or (not len(itemVal) and filterVal == "No"):
             return True
         else:
             return False
