@@ -9,6 +9,7 @@ from tkinter import ttk
 
 from VGC_Var import GRAPH_TYPE_BAR
 from VGC_Var import GRAPH_TYPE_PIE
+from VGC_Var import GRAPH_TYPE_STACK
 from VGC_Var import GRAPH_CONTENT_YEARS
 from VGC_Var import GRAPH_CONTENT_MONTHS
 from VGC_Var import GRAPH_CONTENT_PLATFORMS
@@ -16,6 +17,8 @@ from VGC_Var import GRAPH_CONTENT_REGIONS
 from VGC_Var import GRAPH_CONTENT_PLATFORM_HOLDERS
 from VGC_Var import GRAPH_DATA_ITEMCOUNT
 from VGC_Var import GRAPH_DATA_TOTALPRICE
+from VGC_Var import GRAPH_DATA_ITEMCOUNTGROWTH
+from VGC_Var import GRAPH_DATA_TOTALPRICEGROWTH
 from VGC_Var import GRAPH_BAR_COLOR
 from VGC_Var import GRAPH_BAR_COLOR_ACTIVE
 
@@ -42,19 +45,17 @@ def initGraph(gui):
     gui.graph_frame.grid_columnconfigure(0, weight=1)
 
     gui.graph_type_txt = Label_(gui.graph_tool_frame, text="Graph type:")
-    gui.graph_type     = Combobox_(gui.graph_tool_frame, values=(GRAPH_TYPE_BAR, GRAPH_TYPE_PIE), width=5)
-    gui.graph_type.set(GRAPH_TYPE_BAR)
-    gui.graph_type.bind("<<ComboboxSelected>>", gui.displayGraphs)
+    gui.graph_type     = Combobox_(gui.graph_tool_frame, width=10)
+    gui.graph_type.bind("<<ComboboxSelected>>", gui.onGraphTypeSelect)
 
     gui.graph_content_txt = Label_(gui.graph_tool_frame, text="Content:")
-    gui.graph_content     = Combobox_(gui.graph_tool_frame, values=(GRAPH_CONTENT_YEARS, GRAPH_CONTENT_MONTHS, GRAPH_CONTENT_PLATFORMS, GRAPH_CONTENT_PLATFORM_HOLDERS, GRAPH_CONTENT_REGIONS), width=15)
-    gui.graph_content.set(GRAPH_CONTENT_YEARS)
-    gui.graph_content.bind("<<ComboboxSelected>>", gui.displayGraphs)
+    gui.graph_content     = Combobox_(gui.graph_tool_frame, width=20)
+    gui.graph_content.bind("<<ComboboxSelected>>", gui.onGraphContentSelect)
 
     gui.graph_data_txt    = Label_(gui.graph_tool_frame, text="Data:")
-    gui.graph_data        = Combobox_(gui.graph_tool_frame, values=(GRAPH_DATA_ITEMCOUNT, GRAPH_DATA_TOTALPRICE), width=15)
+    gui.graph_data        = Combobox_(gui.graph_tool_frame, width=20)
     gui.graph_data.set(GRAPH_DATA_ITEMCOUNT)
-    gui.graph_data.bind("<<ComboboxSelected>>", gui.displayGraphs)
+    gui.graph_data.bind("<<ComboboxSelected>>", gui.onGraphDataSelect)
 
     gui.graph_hover_info  = Label_(gui.graph_tool_frame)
 
@@ -75,27 +76,107 @@ def initGraph(gui):
 
     gui.graph_frame.grid_forget()
 
+    fillGraphTypeCombobox(gui)
+    fillGraphContentCombobox(gui, gui.graph_type.get())
+    fillGraphDataCombobox(gui, gui.graph_type.get())
+
+    gui.activeGraphType = gui.graph_type.get()
+
+
+######################
+# fillGraphTypeCombobox
+# --------------------
+def fillGraphTypeCombobox(gui):
+    types = []
+    gui.graph_type.delete(0, END)
+
+    types.append(GRAPH_TYPE_BAR)
+    types.append(GRAPH_TYPE_PIE)
+    types.append(GRAPH_TYPE_STACK)
+
+    gui.graph_type.setValues(types)
+    gui.graph_type.set(GRAPH_TYPE_BAR)
+
+
+######################
+# fillGraphContentCombobox
+# --------------------
+def fillGraphContentCombobox(gui, graphType):
+    content = []
+    gui.graph_content.delete(0, END)
+
+    if not graphType == GRAPH_TYPE_STACK:
+        content.append(GRAPH_CONTENT_YEARS)
+        content.append(GRAPH_CONTENT_MONTHS)
+    content.append(GRAPH_CONTENT_REGIONS)
+    content.append(GRAPH_CONTENT_PLATFORMS)
+    content.append(GRAPH_CONTENT_PLATFORM_HOLDERS)
+
+    gui.graph_content.setValues(content)
+
+    if len(gui.activeGraphContent) and gui.activeGraphContent in gui.graph_content["values"]:
+        gui.graph_content.set(gui.activeGraphContent)
+    else:
+        if not graphType == GRAPH_TYPE_STACK:
+            gui.graph_content.set(GRAPH_CONTENT_YEARS)
+        else:
+            gui.graph_content.set(GRAPH_CONTENT_REGIONS)
+
+    gui.activeGraphContent = gui.graph_content.get()
+
+
+######################
+# fillGraphDataCombobox
+# --------------------
+def fillGraphDataCombobox(gui, graphType):
+    data = []
+    gui.graph_data.delete(0, END)
+
+    if graphType == GRAPH_TYPE_STACK:
+        data.append(GRAPH_DATA_ITEMCOUNTGROWTH)
+        data.append(GRAPH_DATA_TOTALPRICEGROWTH)
+        gui.graph_data.set(GRAPH_DATA_ITEMCOUNTGROWTH)
+    else:
+        data.append(GRAPH_DATA_ITEMCOUNT)
+        data.append(GRAPH_DATA_TOTALPRICE)
+        gui.graph_data.set(GRAPH_DATA_ITEMCOUNT)
+
+    gui.graph_data.setValues(data)
+
 
 ######################
 # drawGraph
 # --------------------
 def drawGraph(gui, data, canvas, graphType, graphContent, graphData):
+    group    = ""
+    subGroup = ""
+
     # Group data
     if graphContent == GRAPH_CONTENT_YEARS:
-        data.groupGraphData("year")
+        group = "year"
     if graphContent == GRAPH_CONTENT_MONTHS:
-        data.groupGraphData("month")
+        group = "month"
     if graphContent == GRAPH_CONTENT_PLATFORMS:
-        data.groupGraphData("platform")
+        group = "platform"
+        if graphData == GRAPH_DATA_ITEMCOUNTGROWTH or graphData == GRAPH_DATA_TOTALPRICEGROWTH:
+            subGroup = "year"
     if graphContent == GRAPH_CONTENT_REGIONS:
-        data.groupGraphData("region")
+        group = "region"
+        if graphData == GRAPH_DATA_ITEMCOUNTGROWTH or graphData == GRAPH_DATA_TOTALPRICEGROWTH:
+            subGroup = "year"
     if graphContent == GRAPH_CONTENT_PLATFORM_HOLDERS:
-        data.groupGraphData("platform holder")
+        group = "platform holder"
+        if graphData == GRAPH_DATA_ITEMCOUNTGROWTH or graphData == GRAPH_DATA_TOTALPRICEGROWTH:
+            subGroup = "year"
+
+    data.groupGraphData(group, subGroup = subGroup)
 
     if graphType == GRAPH_TYPE_BAR:
         drawBarGraph(gui, data, canvas, graphContent, graphData)
     if graphType == GRAPH_TYPE_PIE:
         drawPieChart(gui, data, canvas, graphContent, graphData)
+    if graphType == GRAPH_TYPE_STACK:
+        drawStackPlot(gui, data, canvas, graphContent, graphData)
 
 
 ######################
@@ -277,4 +358,58 @@ def drawPieChart(gui, data, canvas, graphContent, graphData):
 
     canvas.figure = fig
     canvas.mpl_connect("motion_notify_event", onNotify)
+    canvas.draw()
+
+
+######################
+# drawStackPlot
+# --------------------
+def drawStackPlot(gui, data, canvas, graphContent, graphData):
+
+    # Get canvas dimensions
+    canvasWidth  = canvas.get_tk_widget().winfo_width()
+    canvasHeight = canvas.get_tk_widget().winfo_height()
+
+    dates  = []
+    values = {}
+
+    # Find all dates
+    for groupKey in sorted(data.graph_groups.keys()):
+        for subGroup in sorted(data.graph_groups[groupKey].sub.keys()):
+            dates.append(subGroup)
+
+    # Remove duplicated dates
+    dates = sorted(list(set(dates)))
+
+    for groupKey in sorted(data.graph_groups.keys()):
+        values[groupKey] = []
+        sum = 0
+
+        for date in dates:
+            if date in data.graph_groups[groupKey].sub.keys():
+                if graphData == GRAPH_DATA_ITEMCOUNTGROWTH:
+                    sum += data.graph_groups[groupKey].sub[date].item_count
+                if graphData == GRAPH_DATA_TOTALPRICEGROWTH:
+                    sum += data.graph_groups[groupKey].sub[date].total_price
+
+            values[groupKey].append(sum)
+
+    # Setup graph
+    fig = Figure(figsize=(canvasWidth/100, canvasHeight/100), dpi=100)
+    fig.tight_layout()
+    fig.subplots_adjust(left   = widthPercentage(canvasWidth, 90),
+                        bottom = widthPercentage(canvasHeight, 40),
+                        right  = (1-widthPercentage(canvasWidth, 20)),
+                        top    = (1-widthPercentage(canvasHeight, 35)))
+
+    ax = fig.add_subplot()
+    ax.margins(x=0, y=0)
+    ax.autoscale(True)
+    ax.set_ylabel(graphData)
+    ax.set_title(graphContent)
+    stacks = ax.stackplot(dates, values.values(), labels=values.keys())
+
+    ax.legend(loc='upper left', ncol=5, fontsize=6)
+
+    canvas.figure = fig
     canvas.draw()

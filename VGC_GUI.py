@@ -17,6 +17,8 @@ from gui.VGC_GUI_CollectionInfo import displayCollectionInfo
 from gui.VGC_GUI_Treeview       import initTreeView
 from gui.VGC_GUI_Graph          import initGraph
 from gui.VGC_GUI_Graph          import drawGraph
+from gui.VGC_GUI_Graph          import fillGraphContentCombobox
+from gui.VGC_GUI_Graph          import fillGraphDataCombobox
 from gui.VGC_GUI_Menu           import initMainMenu
 from gui.VGC_GUI_Hotkeys        import initHotkeys
 from gui.VGC_GUI_Popups         import initPopups
@@ -26,6 +28,10 @@ from VGC_Var import IMG_CACHE_BACK
 from VGC_Var import IMG_CACHE_CART
 from VGC_Var import IMG_COVER_NONE
 from VGC_Var import LOCAL_DATA_FILE
+
+from VGC_Var import GRAPH_TYPE_BAR
+from VGC_Var import GRAPH_TYPE_PIE
+from VGC_Var import GRAPH_TYPE_STACK
 
 from VGC_Lib import toggleYN
 
@@ -86,6 +92,8 @@ class GUI(Tk):
         self.filterData = filterData
         self.collectionData        = CollectionData(self.filterData)
         self.index                 = 0
+        self.activeGraphType       = ""
+        self.activeGraphContent    = ""
 
 
         # Init
@@ -493,9 +501,41 @@ class GUI(Tk):
 
 
     ######################
+    # onGraphTypeSelect
+    # --------------------
+    def onGraphTypeSelect(self, a = None):
+        newType =self.graph_type.get()
+
+        if ((newType == GRAPH_TYPE_STACK and (self.activeGraphType == GRAPH_TYPE_BAR or self.activeGraphType == GRAPH_TYPE_PIE)) or
+           (self.activeGraphType == GRAPH_TYPE_STACK and (newType == GRAPH_TYPE_BAR or newType == GRAPH_TYPE_PIE))):
+
+            fillGraphContentCombobox(self, self.graph_type.get())
+            fillGraphDataCombobox(self, self.graph_type.get())
+
+        self.activeGraphType = self.graph_type.get()
+
+        self.displayGraphs()
+
+
+    ######################
+    # onGraphContentSelect
+    # --------------------
+    def onGraphContentSelect(self, a = None):
+        self.activeGraphContent = self.graph_content.get()
+        self.displayGraphs()
+
+
+    ######################
+    # onGraphDataSelect
+    # --------------------
+    def onGraphDataSelect(self, a = None):
+        self.displayGraphs()
+
+
+    ######################
     # displayGraphs
     # --------------------
-    def displayGraphs(self, a = None):
+    def displayGraphs(self):
         drawGraph(self, self.collectionData, self.graph_canvas, self.graph_type.get(), self.graph_content.get(), self.graph_data.get())
 
 
