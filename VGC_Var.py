@@ -27,6 +27,7 @@ COVER_WIDTH      = 120
 GRAPH_TYPE_BAR                  = "Bar"
 GRAPH_TYPE_PIE                  = "Pie"
 GRAPH_CONTENT_YEARS             = "Years"
+GRAPH_CONTENT_MONTHS            = "Months"
 GRAPH_CONTENT_PLATFORMS         = "Platforms"
 GRAPH_CONTENT_REGIONS           = "Regions"
 GRAPH_CONTENT_PLATFORM_HOLDERS  = "Platform holders"

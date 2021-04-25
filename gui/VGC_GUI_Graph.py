@@ -10,6 +10,7 @@ from tkinter import ttk
 from VGC_Var import GRAPH_TYPE_BAR
 from VGC_Var import GRAPH_TYPE_PIE
 from VGC_Var import GRAPH_CONTENT_YEARS
+from VGC_Var import GRAPH_CONTENT_MONTHS
 from VGC_Var import GRAPH_CONTENT_PLATFORMS
 from VGC_Var import GRAPH_CONTENT_REGIONS
 from VGC_Var import GRAPH_CONTENT_PLATFORM_HOLDERS
@@ -46,7 +47,7 @@ def initGraph(gui):
     gui.graph_type.bind("<<ComboboxSelected>>", gui.displayGraphs)
 
     gui.graph_content_txt = Label_(gui.graph_tool_frame, text="Content:")
-    gui.graph_content     = Combobox_(gui.graph_tool_frame, values=(GRAPH_CONTENT_YEARS, GRAPH_CONTENT_PLATFORMS, GRAPH_CONTENT_PLATFORM_HOLDERS, GRAPH_CONTENT_REGIONS), width=15)
+    gui.graph_content     = Combobox_(gui.graph_tool_frame, values=(GRAPH_CONTENT_YEARS, GRAPH_CONTENT_MONTHS, GRAPH_CONTENT_PLATFORMS, GRAPH_CONTENT_PLATFORM_HOLDERS, GRAPH_CONTENT_REGIONS), width=15)
     gui.graph_content.set(GRAPH_CONTENT_YEARS)
     gui.graph_content.bind("<<ComboboxSelected>>", gui.displayGraphs)
 
@@ -82,6 +83,8 @@ def drawGraph(gui, data, canvas, graphType, graphContent, graphData):
     # Group data
     if graphContent == GRAPH_CONTENT_YEARS:
         data.groupGraphData("year")
+    if graphContent == GRAPH_CONTENT_MONTHS:
+        data.groupGraphData("month")
     if graphContent == GRAPH_CONTENT_PLATFORMS:
         data.groupGraphData("platform")
     if graphContent == GRAPH_CONTENT_REGIONS:
