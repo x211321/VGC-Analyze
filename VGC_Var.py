@@ -24,10 +24,15 @@ IMG_COVER_NONE   = IMG_PATH + "cover_placeholder.jpg"
 COVER_WIDTH      = 120
 
 # Graph vars
+GRAPH_TYPE_BAR                  = "Bar"
+GRAPH_TYPE_PIE                  = "Pie"
 GRAPH_CONTENT_YEARS             = "Years"
 GRAPH_CONTENT_PLATFORMS         = "Platforms"
 GRAPH_CONTENT_REGIONS           = "Regions"
 GRAPH_CONTENT_PLATFORM_HOLDERS  = "Platform holders"
+
+GRAPH_BAR_COLOR        = "#FFD754"
+GRAPH_BAR_COLOR_ACTIVE = "#547CFF"
 
 GRAPH_DATA_ITEMCOUNT    = "Item count"
 GRAPH_DATA_TOTALPRICE   = "Total price"

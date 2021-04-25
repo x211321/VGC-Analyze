@@ -16,7 +16,7 @@ from gui.VGC_GUI_CollectionInfo import initCollectionInfo
 from gui.VGC_GUI_CollectionInfo import displayCollectionInfo
 from gui.VGC_GUI_Treeview       import initTreeView
 from gui.VGC_GUI_Graph          import initGraph
-from gui.VGC_GUI_Graph          import drawBarGraph
+from gui.VGC_GUI_Graph          import drawGraph
 from gui.VGC_GUI_Menu           import initMainMenu
 from gui.VGC_GUI_Hotkeys        import initHotkeys
 from gui.VGC_GUI_Popups         import initPopups
@@ -50,9 +50,6 @@ class GUI(Tk):
         self.state('zoomed')
         self.protocol("WM_DELETE_WINDOW", self.onClose)
 
-        self.grid_rowconfigure(0, weight=1)
-        self.grid_columnconfigure(1, weight=1)
-
 
         # Frames
         # ------------------
@@ -68,6 +65,11 @@ class GUI(Tk):
         self.item_frame.grid(row=0, column=2, sticky="nes", rowspan=3)
         self.graph_frame.grid(row=1, column=1, sticky="nwes")
         self.info_frame.grid(row=2, column=1, sticky="nwes")
+
+
+        self.grid_rowconfigure(0, weight=1)
+        self.grid_rowconfigure(1, weight=0)
+        self.grid_columnconfigure(1, weight=1)
 
 
         # Icons
@@ -160,23 +162,6 @@ class GUI(Tk):
     # --------------------
     def activeItem(self):
         return self.collectionData.collection_items[self.index]
-
-
-    ######################
-    # onGraphEnter
-    # --------------------
-    def onGraphEnter(self, event, group, itemValue):
-        if int(itemValue) == itemValue:
-            self.graph_hover_info.set(group + ": " + str(itemValue))
-        else:
-            self.graph_hover_info.set(group + ": " + "{:.2f}".format(itemValue))
-
-
-    ######################
-    # onGraphLeave
-    # --------------------
-    def onGraphLeave(self, event):
-        self.graph_hover_info.set("")
 
 
     ######################
@@ -511,7 +496,7 @@ class GUI(Tk):
     # displayGraphs
     # --------------------
     def displayGraphs(self, a = None):
-        drawBarGraph(self, self.collectionData, self.graph_canvas, self.graph_content.get(), self.graph_data.get())
+        drawGraph(self, self.collectionData, self.graph_canvas, self.graph_type.get(), self.graph_content.get(), self.graph_data.get())
 
 
     ######################

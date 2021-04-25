@@ -1,12 +1,22 @@
+
+from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
+import matplotlib.gridspec as gridspec
+from matplotlib.figure import Figure
+import numpy as np
+
 from tkinter import *
 from tkinter import ttk
 
+from VGC_Var import GRAPH_TYPE_BAR
+from VGC_Var import GRAPH_TYPE_PIE
 from VGC_Var import GRAPH_CONTENT_YEARS
 from VGC_Var import GRAPH_CONTENT_PLATFORMS
 from VGC_Var import GRAPH_CONTENT_REGIONS
 from VGC_Var import GRAPH_CONTENT_PLATFORM_HOLDERS
 from VGC_Var import GRAPH_DATA_ITEMCOUNT
 from VGC_Var import GRAPH_DATA_TOTALPRICE
+from VGC_Var import GRAPH_BAR_COLOR
+from VGC_Var import GRAPH_BAR_COLOR_ACTIVE
 
 from VGC_Widgets import Label_
 from VGC_Widgets import Combobox_
@@ -19,18 +29,23 @@ def initGraph(gui):
     # Graph
     # ------------------
     gui.graph_tool_frame = Frame(gui.graph_frame)
-    gui.graph_sub_frame  = Frame(gui.graph_frame)
+    gui.graph_sub_frame  = Frame(gui.graph_frame, highlightthickness=1, highlightbackground="black", height=350)
 
     gui.graph_tool_frame.grid(row=0, column=0, sticky="nwse", padx=(0,17), pady=10)
-    gui.graph_sub_frame.grid(row=1, column=0, sticky="nwse")
+    gui.graph_sub_frame.grid(row=1, column=0, sticky="nwse", padx=(0,17))
 
-    gui.graph_tool_frame.grid_columnconfigure(3, weight=1)
+    gui.graph_tool_frame.grid_columnconfigure(5, weight=1)
 
     gui.graph_frame.grid_rowconfigure(0, weight=1)
-    gui.graph_frame.grid_rowconfigure(1, weight=1)
+    gui.graph_frame.grid_rowconfigure(1, weight=0)
     gui.graph_frame.grid_columnconfigure(0, weight=1)
 
-    gui.graph_content_txt = Label_(gui.graph_tool_frame, text="Graph content:")
+    gui.graph_type_txt = Label_(gui.graph_tool_frame, text="Graph type:")
+    gui.graph_type     = Combobox_(gui.graph_tool_frame, values=(GRAPH_TYPE_BAR, GRAPH_TYPE_PIE), width=5)
+    gui.graph_type.set(GRAPH_TYPE_BAR)
+    gui.graph_type.bind("<<ComboboxSelected>>", gui.displayGraphs)
+
+    gui.graph_content_txt = Label_(gui.graph_tool_frame, text="Content:")
     gui.graph_content     = Combobox_(gui.graph_tool_frame, values=(GRAPH_CONTENT_YEARS, GRAPH_CONTENT_PLATFORMS, GRAPH_CONTENT_PLATFORM_HOLDERS, GRAPH_CONTENT_REGIONS), width=15)
     gui.graph_content.set(GRAPH_CONTENT_YEARS)
     gui.graph_content.bind("<<ComboboxSelected>>", gui.displayGraphs)
@@ -42,28 +57,49 @@ def initGraph(gui):
 
     gui.graph_hover_info  = Label_(gui.graph_tool_frame)
 
-    gui.graph_content_txt.grid(row=0, column=0, padx=(0,10))
-    gui.graph_content.grid(row=0, column=1, sticky="w", padx=(0,20))
+    gui.graph_type_txt.grid(row=0, column=0, padx=(0,10))
+    gui.graph_type.grid(row=0, column=1, sticky="w", padx=(0,20))
 
-    gui.graph_data_txt.grid(row=0, column=2, padx=(0,10))
-    gui.graph_data.grid(row=0, column=3, sticky="w")
+    gui.graph_content_txt.grid(row=0, column=2, padx=(0,10))
+    gui.graph_content.grid(row=0, column=3, sticky="w", padx=(0,20))
 
-    gui.graph_hover_info.grid(row=0, column=4)
+    gui.graph_data_txt.grid(row=0, column=4, padx=(0,10))
+    gui.graph_data.grid(row=0, column=5, sticky="w")
 
-    gui.graph_canvas = Canvas(gui.graph_sub_frame, bg="#FFF", highlightthickness=1, highlightbackground="black")
-    gui.graph_canvas.pack(expand=True, fill="both", padx=(0, 17), pady=(0,0))
-    gui.graph_canvas.bind("<Configure>", lambda x:onGraphResiz(gui))
+    gui.graph_hover_info.grid(row=0, column=6)
 
+    gui.graph_canvas = FigureCanvasTkAgg(master=gui.graph_sub_frame)
+    gui.graph_sub_frame.pack_propagate(False)
+    gui.graph_canvas.get_tk_widget().pack(expand=True, fill="both")
 
     gui.graph_frame.grid_forget()
 
 
 ######################
-# onGraphResiz
+# drawGraph
 # --------------------
-def onGraphResiz(gui):
-    if gui.graph_frame.winfo_ismapped:
-        gui.displayGraphs()
+def drawGraph(gui, data, canvas, graphType, graphContent, graphData):
+    # Group data
+    if graphContent == GRAPH_CONTENT_YEARS:
+        data.groupGraphData("year")
+    if graphContent == GRAPH_CONTENT_PLATFORMS:
+        data.groupGraphData("platform")
+    if graphContent == GRAPH_CONTENT_REGIONS:
+        data.groupGraphData("region")
+    if graphContent == GRAPH_CONTENT_PLATFORM_HOLDERS:
+        data.groupGraphData("platform holder")
+
+    if graphType == GRAPH_TYPE_BAR:
+        drawBarGraph(gui, data, canvas, graphContent, graphData)
+    if graphType == GRAPH_TYPE_PIE:
+        drawPieChart(gui, data, canvas, graphContent, graphData)
+
+
+######################
+# widthPercentage
+# --------------------
+def widthPercentage(canvasWidth, width):
+    return (1 / canvasWidth) * width
 
 
 ######################
@@ -71,76 +107,133 @@ def onGraphResiz(gui):
 # --------------------
 def drawBarGraph(gui, data, canvas, graphContent, graphData):
 
+    # Notification handler
+    def onNotify(event):
+        active = False
+
+        if event.inaxes == ax:
+            for i, bar in enumerate(bars):
+                if bar.contains_point([event.x, event.y]):
+                    active = True
+                    value  = str(values[i])
+
+                    if not int(values[i]) == values[i]:
+                        value = "{:.2f}".format(values[i])
+
+                    # Set hover info
+                    gui.graph_hover_info.set(labels[i] + ": " + value)
+                    # Set active color
+                    bar.set_facecolor(GRAPH_BAR_COLOR_ACTIVE)
+                else:
+                    bar.set_facecolor(GRAPH_BAR_COLOR)
+
+            if active == False:
+                # Reset hover info
+                gui.graph_hover_info.set("")
+
+            # Update graph
+            canvas.draw_idle()
+
+
     # Get canvas dimensions
-    canvasWidth  = canvas.winfo_width()
-    canvasHeight = canvas.winfo_height()
+    canvasWidth  = canvas.get_tk_widget().winfo_width()
+    canvasHeight = canvas.get_tk_widget().winfo_height()
 
-    # Group data
-    if graphContent == GRAPH_CONTENT_YEARS:
-        gui.collectionData.groupGraphData("year")
-    if graphContent == GRAPH_CONTENT_PLATFORMS:
-        gui.collectionData.groupGraphData("platform")
-    if graphContent == GRAPH_CONTENT_REGIONS:
-        gui.collectionData.groupGraphData("region")
-    if graphContent == GRAPH_CONTENT_PLATFORM_HOLDERS:
-        gui.collectionData.groupGraphData("platform holder")
+    values = []
+    labels = []
 
-    # Clear canvas
-    canvas.delete("all")
+    maxLabelLen = 0
+    barWidth    = int(canvasWidth/len(data.graph_groups))
 
-    paddingTop    = 20
-    paddingBottom = 60
-    paddingLeft   = 50
-    paddingRight  = 20
+    # Get values and labels
+    for groupKey in sorted(data.graph_groups.keys()):
+        if graphData == GRAPH_DATA_ITEMCOUNT:
+            itemValue = data.graph_groups[groupKey].item_count
+        if graphData == GRAPH_DATA_TOTALPRICE:
+            itemValue = data.graph_groups[groupKey].total_price
 
-    paddingXAxis      = 10
-    paddingXAxisLabel =  5
-    paddingYAxis      = 10
-    paddingYAxisLabel = 10
+        values.append(itemValue)
+        labels.append(groupKey)
 
-    maxValue = 0
+        if len(groupKey) > maxLabelLen:
+            maxLabelLen = len(groupKey)
 
-    stepSize = 20
 
-    startX = paddingLeft
-    startY = canvasHeight - paddingBottom
+    # Setup graph
+    fig = Figure(figsize=(canvasWidth/100, canvasHeight/100), dpi=100)
+    fig.tight_layout()
+    fig.subplots_adjust(left   = widthPercentage(canvasWidth, 90),
+                        bottom = widthPercentage(canvasHeight, 40) + widthPercentage(canvasHeight, maxLabelLen*2),
+                        right  = (1-widthPercentage(canvasWidth, 20)),
+                        top    = (1-widthPercentage(canvasHeight, 35)))
 
-    maxBarWidth  = canvasWidth  - paddingLeft - paddingRight
-    maxBarHeight = canvasHeight - paddingTop - paddingBottom
+    ax = fig.add_subplot()
+    ax.grid(color="#95A5A6", linestyle="--", linewidth=2, axis="y", alpha=0.7)
+    ax.margins(x=0.005, y=0.05)
+    ax.autoscale(True)
+    ax.set_ylabel(graphData)
+    ax.set_title(graphContent)
+    ax.set_xticks(np.arange(len(values)))
+    ax.set_xticklabels(labels, rotation=330, ha="left", fontsize=6)
+    bars = ax.bar(range(len(values)), values, color=GRAPH_BAR_COLOR, alpha=1)
 
-    barWidth  = int(maxBarWidth/len(data.graph_groups))
-    barHeight = 0
+    canvas.figure = fig
+    canvas.mpl_connect("motion_notify_event", onNotify)
+    canvas.draw()
 
-    # Find maximum value to be displayed in the graph
+
+######################
+# drawPieChart
+# --------------------
+def drawPieChart(gui, data, canvas, graphContent, graphData):
+
+    # Notification handler
+    def onNotify(event):
+        active = False
+
+        if event.inaxes == ax:
+            for i, wedge in enumerate(wedges):
+                if wedge.contains_point([event.x, event.y]):
+                    active = True
+                    value  = str(values[i])
+
+                    if not int(values[i]) == values[i]:
+                        value = "{:.2f}".format(values[i])
+
+                    # Set hover info
+                    gui.graph_hover_info.set(labels[i] + ": " + value + " (" + "{:.2f}".format(percentages[i]) + "%)")
+                    # Set active color
+                    wedge.set_alpha(1)
+                else:
+                    wedge.set_alpha(0.75)
+
+            if active == False:
+                # Reset hover info
+                gui.graph_hover_info.set("")
+
+            # Update graph
+            canvas.draw_idle()
+
+
+    # Get canvas dimensions
+    canvasWidth  = canvas.get_tk_widget().winfo_width()
+    canvasHeight = canvas.get_tk_widget().winfo_height()
+
+    displayLabels = []
+    values        = []
+    percentages   = []
+    explode       = []
+
+    totalValue = 0
+
+    # Find total value to be displayed in the chart
     for groupKey in data.graph_groups.keys():
         if graphData == GRAPH_DATA_ITEMCOUNT:
-            if data.graph_groups[groupKey].item_count > maxValue:
-                maxValue = data.graph_groups[groupKey].item_count
+            totalValue += data.graph_groups[groupKey].item_count
         if graphData == GRAPH_DATA_TOTALPRICE:
-            if data.graph_groups[groupKey].total_price > maxValue:
-                maxValue = data.graph_groups[groupKey].total_price
+            totalValue += data.graph_groups[groupKey].total_price
 
-    # Draw axes
-    # X
-    canvas.create_line(startX-paddingYAxis, startY+paddingXAxis, startX+maxBarWidth, startY+paddingXAxis, width="2")
-    # Y
-    canvas.create_line(startX-paddingYAxis, startY+paddingXAxis, startX-paddingYAxis, startY-maxBarHeight, width="2")
-
-    # Draw y-axis labels
-    stepCount = int((maxBarHeight) / stepSize) + 1
-
-    for i in range(stepCount+1):
-
-        if i > 0 and str(int((maxValue/stepCount) * i)) == lastText:
-            text = ""
-        else:
-            text = str(int((maxValue/stepCount) * i))
-            lastText = text
-
-        canvas.create_text(startX-paddingYAxis-paddingYAxisLabel, startY+paddingXAxis-(stepSize*i), text=text, width=paddingLeft, anchor="e")
-
-    # Draw graph
-    if maxValue:
+    if totalValue:
         for groupKey in sorted(data.graph_groups.keys()):
 
             if graphData == GRAPH_DATA_ITEMCOUNT:
@@ -148,28 +241,34 @@ def drawBarGraph(gui, data, canvas, graphContent, graphData):
             if graphData == GRAPH_DATA_TOTALPRICE:
                 itemValue = data.graph_groups[groupKey].total_price
 
-            barHeight = int(maxBarHeight / maxValue * itemValue)
+            # Calculate group percentage
+            percent = 100 / totalValue * itemValue
 
-            endX = startX + barWidth
-            endY = startY - barHeight
+            percentages.append(percent)
+            values.append(itemValue)
+            explode.append(0.1)
 
-            # Draw bar
-            index = canvas.create_rectangle(startX, startY+paddingXAxis-1, endX, endY, fill="#FFD754", outline="#000", activefill="#547CFF")
-
-            def handler(event, self=gui, group=groupKey, itemValue=itemValue):
-                return gui.onGraphEnter(event, group, itemValue)
-
-            canvas.tag_bind(index, "<Enter>", handler)
-            canvas.tag_bind(index, "<Leave>", gui.onGraphLeave)
-
-            # Draw x-axis label
-            if barWidth < 40 and len(groupKey) > 4:
-                words   = groupKey.replace("(", "").replace("-", "").replace("/", " ").split()
-                letters = [word[0] for word in words]
-                text    =  "".join(letters)[0:4]
+            if percent > 5:
+                displayLabels.append(groupKey)
             else:
-                text = groupKey
+                displayLabels.append("")
 
-            canvas.create_text(startX+(barWidth/2), startY+paddingXAxis+paddingXAxisLabel, text=text, width=barWidth-2, anchor="n", font=("", 8))
+    # Setup graph
+    fig = Figure(figsize=(canvasWidth/100, canvasHeight/100), dpi=100)
+    fig.tight_layout()
+    fig.subplots_adjust(left   = widthPercentage(canvasWidth, 90),
+                        bottom = widthPercentage(canvasHeight, 35),
+                        right  = (1-widthPercentage(canvasWidth, 20)),
+                        top    = (1-widthPercentage(canvasHeight, 35)))
 
-            startX = endX
+    ax = fig.add_subplot()
+    ax.margins(x=0.005, y=0.05)
+    ax.autoscale(True)
+    ax.set_title(graphContent)
+    wedges, temp = ax.pie(percentages, labels=displayLabels, explode=explode, startangle=90, normalize=True, wedgeprops={'alpha':0.75})
+
+    colors = [w.get_facecolor() for w in wedges]
+
+    canvas.figure = fig
+    canvas.mpl_connect("motion_notify_event", onNotify)
+    canvas.draw()
