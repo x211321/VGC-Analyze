@@ -219,6 +219,7 @@ def drawPieChart(gui, data, canvas, graphContent, graphData):
     canvasWidth  = canvas.get_tk_widget().winfo_width()
     canvasHeight = canvas.get_tk_widget().winfo_height()
 
+    labels        = []
     displayLabels = []
     values        = []
     percentages   = []
@@ -247,6 +248,8 @@ def drawPieChart(gui, data, canvas, graphContent, graphData):
             percentages.append(percent)
             values.append(itemValue)
             explode.append(0.1)
+
+            labels.append(groupKey)
 
             if percent > 5:
                 displayLabels.append(groupKey)
