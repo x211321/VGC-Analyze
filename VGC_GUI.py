@@ -512,6 +512,11 @@ class GUI(Tk):
             fillGraphContentCombobox(self, self.graph_type.get())
             fillGraphDataCombobox(self, self.graph_type.get())
 
+        if newType == GRAPH_TYPE_PIE:
+            self.graph_show_grid.config(state=DISABLED)
+        else:
+            self.graph_show_grid.config(state=NORMAL)
+
         self.activeGraphType = self.graph_type.get()
 
         self.displayGraphs()

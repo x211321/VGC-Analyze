@@ -24,6 +24,7 @@ from VGC_Var import GRAPH_BAR_COLOR_ACTIVE
 
 from VGC_Widgets import Label_
 from VGC_Widgets import Combobox_
+from VGC_Widgets import Checkbutton_
 
 ######################
 # initGraph
@@ -38,7 +39,7 @@ def initGraph(gui):
     gui.graph_tool_frame.grid(row=0, column=0, sticky="nwse", padx=(0,17), pady=10)
     gui.graph_sub_frame.grid(row=1, column=0, sticky="nwse", padx=(0,17))
 
-    gui.graph_tool_frame.grid_columnconfigure(5, weight=1)
+    gui.graph_tool_frame.grid_columnconfigure(6, weight=1)
 
     gui.graph_frame.grid_rowconfigure(0, weight=1)
     gui.graph_frame.grid_rowconfigure(1, weight=0)
@@ -57,6 +58,8 @@ def initGraph(gui):
     gui.graph_data.set(GRAPH_DATA_ITEMCOUNT)
     gui.graph_data.bind("<<ComboboxSelected>>", gui.onGraphDataSelect)
 
+    gui.graph_show_grid   = Checkbutton_(gui.graph_tool_frame, label="Show grid", command=gui.displayGraphs)
+
     gui.graph_hover_info  = Label_(gui.graph_tool_frame)
 
     gui.graph_type_txt.grid(row=0, column=0, padx=(0,10))
@@ -66,9 +69,11 @@ def initGraph(gui):
     gui.graph_content.grid(row=0, column=3, sticky="w", padx=(0,20))
 
     gui.graph_data_txt.grid(row=0, column=4, padx=(0,10))
-    gui.graph_data.grid(row=0, column=5, sticky="w")
+    gui.graph_data.grid(row=0, column=5, sticky="w", padx=(0,20))
 
-    gui.graph_hover_info.grid(row=0, column=6)
+    gui.graph_show_grid.grid(row=0, column=6, sticky="w")
+
+    gui.graph_hover_info.grid(row=0, column=7)
 
     gui.graph_canvas = FigureCanvasTkAgg(master=gui.graph_sub_frame)
     gui.graph_sub_frame.pack_propagate(False)
@@ -252,7 +257,9 @@ def drawBarGraph(gui, data, canvas, graphContent, graphData):
                         top    = (1-widthPercentage(canvasHeight, 35)))
 
     ax = fig.add_subplot()
-    ax.grid(color="#95A5A6", linestyle="--", linewidth=2, axis="y", alpha=0.7)
+
+    if gui.graph_show_grid.get():
+        ax.grid(color="#95A5A6", linestyle="--", linewidth=2, axis="y", alpha=0.7)
     ax.margins(x=0.005, y=0.05)
     ax.autoscale(True)
     ax.set_ylabel(graphData)
@@ -352,6 +359,7 @@ def drawPieChart(gui, data, canvas, graphContent, graphData):
     ax.margins(x=0.005, y=0.05)
     ax.autoscale(True)
     ax.set_title(graphContent)
+
     wedges, temp = ax.pie(percentages, labels=displayLabels, explode=explode, startangle=90, normalize=True, wedgeprops={'alpha':0.75})
 
     colors = [w.get_facecolor() for w in wedges]
@@ -407,6 +415,10 @@ def drawStackPlot(gui, data, canvas, graphContent, graphData):
     ax.autoscale(True)
     ax.set_ylabel(graphData)
     ax.set_title(graphContent)
+
+    if gui.graph_show_grid.get():
+        ax.grid(color="#95A5A6", linestyle="--", linewidth=2, axis="y", alpha=0.7)
+
     stacks = ax.stackplot(dates, values.values(), labels=values.keys())
 
     ax.legend(loc='upper left', ncol=5, fontsize=6)

@@ -74,6 +74,31 @@ class Entry_(Entry):
 
 
 ######################
+# Checkbutton_
+# --------------------
+class Checkbutton_(Checkbutton):
+
+    # Constructor
+    def __init__(self, master=None,
+                 id="", check=0,
+                 label="",
+                 justify="left",
+                 width=0, command=None):
+
+        super().__init__(master=master, text=label, justify=justify, width=width, command=command)
+
+        self.id   = id
+        self.value = IntVar(self, check, id)
+        self.config(variable=self.value)
+
+    def get(self):
+        return self.value.get()
+
+    def set(self, text):
+        self.value.set(text)
+
+
+######################
 # Combobox_
 # --------------------
 class Combobox_(ttk.Combobox):
