@@ -13,8 +13,7 @@ from VGC_Browser  import openItemInBrowser
 
 from gui.VGC_GUI_ItemInfo       import initItemInfo
 from gui.VGC_GUI_Filter         import initFilter
-from gui.VGC_GUI_CollectionInfo import initCollectionInfo
-from gui.VGC_GUI_CollectionInfo import displayCollectionInfo
+from gui.VGC_GUI_CollectionInfo import GUI_CollectionInfo
 from gui.VGC_GUI_Treeview       import initTreeView
 from gui.VGC_GUI_Treeview       import treeviewSort
 from gui.VGC_GUI_Graph          import initGraph
@@ -69,7 +68,7 @@ class GUI(Tk):
         self.file_frame      = Frame(self.view_frame, width=1000, height=100, pady=10, padx=10)
         self.item_frame      = Frame(self, width=200 , height=550, pady=0 , padx=0)
         self.graph_frame     = Frame(self, width=1000, height=200, pady=0 , padx=0)
-        self.info_frame      = Frame(self, width=1000, height=200, pady=10, padx=10)
+        self.info_frame      = GUI_CollectionInfo(self, self.toggleGraphFrame, width=1000, height=200, pady=10, padx=10)
 
 
         self.filter_frame.grid(row=0, column=0, sticky="nws", rowspan=3)
@@ -92,7 +91,6 @@ class GUI(Tk):
         self.item_link_ico     = loadIcon("link-outline", 15, 15)
         self.item_bookmark_ico = loadIcon("bookmark-outline", 15, 15)
         self.item_finished_ico = loadIcon("checkmark-circle-outline", 15, 15)
-        self.item_graph_ico    = loadIcon("bar-chart-outline", 30, 30)
 
 
         # Data
@@ -125,7 +123,7 @@ class GUI(Tk):
         initFilter(self)
 
         # Collection info
-        initCollectionInfo(self)
+        self.info_frame.init()
 
         # Graph
         initGraph(self)
@@ -241,7 +239,7 @@ class GUI(Tk):
             self.item_view.column('#0', width=0, stretch="No")
 
         # Display totals
-        displayCollectionInfo(self)
+        self.info_frame.update(self)
 
         # Draw graphs
         if self.graph_frame.winfo_ismapped():
