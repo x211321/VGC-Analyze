@@ -12,11 +12,11 @@ from VGC_Img     import loadIcon
 # GUI_CollectionInfo
 # --------------------
 class GUI_CollectionInfo(Frame):
-    def __init__(self, master, toggleGraphFunc, width=0, height=0, pady=0, padx=0):
+    def __init__(self, master, gui, width=0, height=0, pady=0, padx=0):
         super().__init__(master=master, width=width, height=height, pady=pady, padx=padx)
 
-        self.toggleGraphFunc = toggleGraphFunc
-        self.toggleGraphIcon = loadIcon("bar-chart-outline", 30, 30)
+        self.toggleGraphFrame = gui.toggleGraphFrame
+        self.toggleGraphIcon  = loadIcon("bar-chart-outline", 30, 30)
 
         self.init()
 
@@ -124,7 +124,7 @@ class GUI_CollectionInfo(Frame):
 
         # Graph functions sub-frame widgets
         self.info_toggle_graph = Button(self.info_tool_frame)
-        self.info_toggle_graph.config(command=self.toggleGraphFunc, image=self.toggleGraphIcon, relief="groove")
+        self.info_toggle_graph.config(command=self.toggleGraphFrame, image=self.toggleGraphIcon, relief="groove")
         self.info_toggle_graph.grid(row=0, column=0, padx=6)
 
 

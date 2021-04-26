@@ -1,17 +1,14 @@
 import os
-import threading
 
 from tkinter import *
 from tkinter import ttk
 
 from VGC_Data     import CollectionData
 from VGC_Data     import FilterData
-from VGC_Download import downloadCovers
 from VGC_Lib      import YNToX
 from VGC_Img      import loadIcon
-from VGC_Browser  import openItemInBrowser
 
-from gui.VGC_GUI_ItemInfo       import initItemInfo
+from gui.VGC_GUI_ItemInfo       import GUI_ItemInfo
 from gui.VGC_GUI_Filter         import initFilter
 from gui.VGC_GUI_CollectionInfo import GUI_CollectionInfo
 from gui.VGC_GUI_Treeview       import initTreeView
@@ -25,10 +22,6 @@ from gui.VGC_GUI_Hotkeys        import initHotkeys
 from gui.VGC_GUI_Popups         import initPopups
 from gui.VGC_GUI_Fileselect     import initFileSelect
 
-from VGC_Var import IMG_CACHE_FRONT
-from VGC_Var import IMG_CACHE_BACK
-from VGC_Var import IMG_CACHE_CART
-from VGC_Var import IMG_COVER_NONE
 from VGC_Var import LOCAL_DATA_FILE
 from VGC_Var import DATA_PATH
 
@@ -63,12 +56,12 @@ class GUI(Tk):
 
         # Frames
         # ------------------
-        self.filter_frame    = Frame(self, width=200 , height=550, pady=10, padx=10)
-        self.view_frame      = Frame(self, width=600 , height=550, pady=0 , padx=0)
-        self.file_frame      = Frame(self.view_frame, width=1000, height=100, pady=10, padx=10)
-        self.item_frame      = Frame(self, width=200 , height=550, pady=0 , padx=0)
-        self.graph_frame     = Frame(self, width=1000, height=200, pady=0 , padx=0)
-        self.info_frame      = GUI_CollectionInfo(self, self.toggleGraphFrame, width=1000, height=200, pady=10, padx=10)
+        self.filter_frame = Frame(self, width=200 , height=550, pady=10, padx=10)
+        self.view_frame   = Frame(self, width=600 , height=550, pady=0 , padx=0)
+        self.file_frame   = Frame(self.view_frame, width=1000, height=100, pady=10, padx=10)
+        self.item_frame   = GUI_ItemInfo(self, self, width=200 , height=550, pady=0 , padx=0)
+        self.graph_frame  = Frame(self, width=1000, height=200, pady=0 , padx=0)
+        self.info_frame   = GUI_CollectionInfo(self, self, width=1000, height=200, pady=10, padx=10)
 
 
         self.filter_frame.grid(row=0, column=0, sticky="nws", rowspan=3)
@@ -82,15 +75,6 @@ class GUI(Tk):
         self.grid_rowconfigure(0, weight=1)
         self.grid_rowconfigure(1, weight=0)
         self.grid_columnconfigure(1, weight=1)
-
-
-        # Icons
-        # ------------------
-        self.item_refresh_ico  = loadIcon("refresh-outline", 15, 15)
-        self.item_view_ico     = loadIcon("eye-outline", 15, 15)
-        self.item_link_ico     = loadIcon("link-outline", 15, 15)
-        self.item_bookmark_ico = loadIcon("bookmark-outline", 15, 15)
-        self.item_finished_ico = loadIcon("checkmark-circle-outline", 15, 15)
 
 
         # Data
@@ -116,14 +100,8 @@ class GUI(Tk):
         # Item treeview
         initTreeView(self)
 
-        # Item info
-        initItemInfo(self)
-
         # Filter
         initFilter(self)
-
-        # Collection info
-        self.info_frame.init()
 
         # Graph
         initGraph(self)
@@ -178,27 +156,6 @@ class GUI(Tk):
     # --------------------
     def activeItem(self):
         return self.collectionData.collection_items[self.index]
-
-
-    ######################
-    # onCoverEnter
-    # --------------------
-    def onCoverEnter(self, label, type):
-        self.coverButton_coverViewer = Button(label, bg="white", image=self.item_view_ico,
-                                              relief="groove", command=lambda:self.pop_coverViewer.show(type, self.activeItem()))
-        self.coverButton_coverViewer.place(height=25, width=25, x=29, y=2)
-
-        self.coverButton_coverUpdate = Button(label, bg="white", image=self.item_refresh_ico,
-                                              relief="groove", command=lambda:self.updateCover(type, self.activeItem()))
-        self.coverButton_coverUpdate.place(height=25, width=25, x=2, y=2)
-
-
-    ######################
-    # onCoverLeave
-    # --------------------
-    def onCoverLeave(self, label):
-        self.coverButton_coverViewer.destroy()
-        self.coverButton_coverUpdate.destroy()
 
 
     ######################
@@ -358,38 +315,6 @@ class GUI(Tk):
 
 
     ######################
-    # openOnVGCollect
-    # --------------------
-    def openOnVGCollect(self):
-        if self.activeItem().VGC_id > 0:
-            openItemInBrowser(str(self.activeItem().VGC_id))
-
-
-    ######################
-    # toggleBookmark
-    # --------------------
-    def toggleBookmark(self):
-        selection = self.item_view.focus()
-
-        if len(self.activeItem().id()):
-            self.activeItem().localData["bookmarked"] = toggleYN(self.activeItem().getLocalData("bookmarked"))
-
-            self.updateViewItem(selection, self.activeItem())
-
-
-    ######################
-    # toggleFinished
-    # --------------------
-    def toggleFinished(self):
-        selection = self.item_view.focus()
-
-        if len(self.activeItem().id()):
-            self.activeItem().localData["finished"] = toggleYN(self.activeItem().getLocalData("finished"))
-
-            self.updateViewItem(selection, self.activeItem())
-
-
-    ######################
     # showAbout
     # --------------------
     def showAbout(self):
@@ -481,33 +406,39 @@ class GUI(Tk):
     # selectViewItem
     # --------------------
     def selectViewItem(self, a = None):
+
         selection = self.item_view.focus()
+
         if len(self.item_view.item(selection)["values"]):
             self.index = self.item_view.item(selection)["values"][0]
 
             if self.index >= 0:
-                thread = threading.Thread(target=self.selectViewItemThread, args=(self.activeItem(),))
-                thread.start()
+                # Update item info
+                self.item_frame.update()
 
 
     ######################
-    # selectViewItemThread
+    # toggleBookmark
     # --------------------
-    def selectViewItemThread(self, item):
-        self.item_title.set(item.name)
-        self.item_date.set(item.date)
-        self.item_price.set("{:.2f}".format(item.price))
-        self.item_id.set("VGC ID: " + str(item.VGC_id))
+    def toggleBookmark(self):
+        selection = self.item_view.focus()
 
-        # display covers
-        self.showCovers(item)
+        if len(self.activeItem().id()):
+            self.activeItem().localData["bookmarked"] = toggleYN(self.activeItem().getLocalData("bookmarked"))
 
-        # download covers
-        downloadCovers(item)
+            self.updateViewItem(selection, self.activeItem())
 
-        # display covers
-        if item.VGC_id == self.activeItem().VGC_id:
-            self.showCovers(item)
+
+    ######################
+    # toggleFinished
+    # --------------------
+    def toggleFinished(self):
+        selection = self.item_view.focus()
+
+        if len(self.activeItem().id()):
+            self.activeItem().localData["finished"] = toggleYN(self.activeItem().getLocalData("finished"))
+
+            self.updateViewItem(selection, self.activeItem())
 
 
     ######################
@@ -552,26 +483,6 @@ class GUI(Tk):
     # --------------------
     def displayGraphs(self):
         drawGraph(self, self.collectionData, self.graph_canvas, self.graph_type.get(), self.graph_content.get(), self.graph_data.get())
-
-
-    ######################
-    # showCovers
-    # --------------------
-    def showCovers(self, item):
-            self.item_front.setImage(IMG_CACHE_FRONT + str(item.VGC_id) + ".jpg")
-
-            self.item_back.setImage(IMG_CACHE_BACK + str(item.VGC_id) + ".jpg")
-
-            self.item_cart.setImage(IMG_CACHE_CART + str(item.VGC_id) + ".jpg")
-
-
-    ######################
-    # updateCover
-    # --------------------
-    def updateCover(self, coverType, item = None):
-        if not item == None:
-            downloadCovers(item, True, coverType)
-            self.showCovers(item)
 
 
     ######################

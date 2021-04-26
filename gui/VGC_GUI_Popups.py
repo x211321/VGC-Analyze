@@ -19,7 +19,6 @@ from VGC_Download import downloadCollection
 # initPopups
 # --------------------
 def initPopups(gui):
-    gui.pop_coverViewer        = Pop_CoverViewer(gui)
     gui.pop_collectionDownload = Pop_CollectionDownload(gui, gui.collectionDownload_callback)
     gui.pop_itemSearch         = Pop_ItemSearch(gui, gui.item_view)
 

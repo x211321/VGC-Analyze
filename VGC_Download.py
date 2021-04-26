@@ -12,7 +12,6 @@ from VGC_Var import IMG_CACHE_PATH
 from VGC_Var import IMG_CACHE_FRONT
 from VGC_Var import IMG_CACHE_BACK
 from VGC_Var import IMG_CACHE_CART
-from VGC_Var import IMG_COVER_NONE
 from VGC_Var import DOWNLOAD_FILE
 
 from VGC_FilePath import writeFile
