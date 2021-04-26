@@ -180,5 +180,5 @@ class GUI_ItemInfo(Frame):
     def updateCover(self, coverType, item = None):
         if not item == None:
             downloadCovers(item, True, coverType)
-            self.update(item)
+            self.update()
 
