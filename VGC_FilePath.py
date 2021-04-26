@@ -1,6 +1,9 @@
 
 import os
 
+from tkinter import Tk
+from tkinter.filedialog import askopenfilename
+
 ######################
 # writeFile
 # --------------------
@@ -39,3 +42,13 @@ def readFile(filePath, mode = "r", encoding = ""):
 
     return result
 
+
+
+######################
+# chooseFile
+# --------------------
+def chooseFile():
+    # hide main-window of Tk
+    Tk().withdraw()
+    # show selection dialog and return it to caller
+    return askopenfilename()

@@ -289,6 +289,7 @@ class CollectionData(object):
     # Constructor
     def __init__(self, filterData):
         self.setFilter(filterData)
+        self.localData_list        = readJson(LOCAL_DATA_FILE)
 
 
     # setFilter
@@ -324,7 +325,6 @@ class CollectionData(object):
     # parseData
     def parseData(self, bookmarks = []):
         self.collection_items      = []
-        self.localData_list        = readJson(LOCAL_DATA_FILE)
         self.platformKeywords_List = readJson(PLATFORM_KEYWORDS_FILE)
 
         index = 0

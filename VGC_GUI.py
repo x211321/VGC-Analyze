@@ -22,12 +22,14 @@ from gui.VGC_GUI_Graph          import fillGraphDataCombobox
 from gui.VGC_GUI_Menu           import initMainMenu
 from gui.VGC_GUI_Hotkeys        import initHotkeys
 from gui.VGC_GUI_Popups         import initPopups
+from gui.VGC_GUI_Fileselect     import initFileSelect
 
 from VGC_Var import IMG_CACHE_FRONT
 from VGC_Var import IMG_CACHE_BACK
 from VGC_Var import IMG_CACHE_CART
 from VGC_Var import IMG_COVER_NONE
 from VGC_Var import LOCAL_DATA_FILE
+from VGC_Var import DATA_PATH
 
 from VGC_Var import GRAPH_TYPE_BAR
 from VGC_Var import GRAPH_TYPE_PIE
@@ -61,6 +63,7 @@ class GUI(Tk):
         # ------------------
         self.filter_frame    = Frame(self, width=200 , height=550, pady=10, padx=10)
         self.view_frame      = Frame(self, width=600 , height=550, pady=0 , padx=0)
+        self.file_frame      = Frame(self.view_frame, width=1000, height=100, pady=10, padx=10)
         self.item_frame      = Frame(self, width=200 , height=550, pady=0 , padx=0)
         self.graph_frame     = Frame(self, width=1000, height=200, pady=0 , padx=0)
         self.info_frame      = Frame(self, width=1000, height=200, pady=10, padx=10)
@@ -68,9 +71,10 @@ class GUI(Tk):
 
         self.filter_frame.grid(row=0, column=0, sticky="nws", rowspan=3)
         self.view_frame.grid(row=0, column=1, sticky="nwes")
+        self.file_frame.pack(side=TOP, fill=X)
         self.item_frame.grid(row=0, column=2, sticky="nes", rowspan=3)
-        self.graph_frame.grid(row=1, column=1, sticky="nwes")
-        self.info_frame.grid(row=2, column=1, sticky="nwes")
+        self.graph_frame.grid(row=2, column=1, sticky="nwes")
+        self.info_frame.grid(row=3, column=1, sticky="nwes")
 
 
         self.grid_rowconfigure(0, weight=1)
@@ -104,6 +108,9 @@ class GUI(Tk):
     # init
     # --------------------
     def init(self):
+
+        # File selection
+        initFileSelect(self)
 
         # Item treeview
         initTreeView(self)
@@ -572,4 +579,10 @@ class GUI(Tk):
 
         self.collectionData.setFilter(self.filterData)
         self.readData()
+        self.showData()
+
+    def setCurrentVGCFile(self, event):
+        self.collectionData.csv_file = DATA_PATH + self.item_select.get()
+        self.readData()
+
         self.showData()
