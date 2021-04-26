@@ -161,24 +161,21 @@ class Pop_CollectionDownload(object):
         self.callback = callback
 
     def download(self, a = None):
-        temp     = FilterData()
         user     = self.input_user.get()
         password = self.input_pass.get()
-
-        temp.guiMode = True
 
         if len(user) == 0 or len(password) == 0:
             messagebox.showerror("Collection download", "Login credentials incomplete", parent=self.window)
             return
 
-        result = downloadCollection(temp, user, password)
+        result, path = downloadCollection(user, password)
 
         if result == None:
             self.window.destroy()
             messagebox.showinfo("Collection download", "Download successful", parent=self.parent)
 
             if not self.callback == None:
-                self.callback(result, temp.filePath)
+                self.callback(result, path)
         else:
             messagebox.showerror("Collection download", result, parent=self.window)
 

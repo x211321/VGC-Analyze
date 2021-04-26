@@ -5,8 +5,9 @@ from tkinter import *
 from tkinter import ttk
 
 from VGC_Data     import CollectionData
+from VGC_Data     import FilterData
 from VGC_Download import downloadCovers
-from VGC_Print    import YNToX
+from VGC_Lib      import YNToX
 from VGC_Img      import loadIcon
 from VGC_Browser  import openItemInBrowser
 
@@ -47,7 +48,7 @@ class GUI(Tk):
     ######################
     # __init__
     # --------------------
-    def __init__(self, filterData):
+    def __init__(self):
 
         super().__init__()
 
@@ -95,7 +96,7 @@ class GUI(Tk):
 
 
         # Data
-        self.filterData = filterData
+        self.filterData = FilterData()
         self.collectionData        = CollectionData(self.filterData)
         self.index                 = 0
         self.activeGraphType       = ""
@@ -585,8 +586,11 @@ class GUI(Tk):
         self.readData()
         self.showData()
 
+
+    ######################
+    # setCurrentVGCFile
+    # --------------------
     def setCurrentVGCFile(self, event):
         self.collectionData.csv_file = DATA_PATH + self.item_select.get()
         self.readData()
-
         self.showData()

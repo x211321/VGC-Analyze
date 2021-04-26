@@ -18,22 +18,14 @@ from VGC_Var import DOWNLOAD_FILE
 from VGC_FilePath import writeFile
 
 
-
-
 ######################
 # downloadCollection
 # --------------------
-def downloadCollection(filterData, username = "", password = ""):
+def downloadCollection(username = "", password = ""):
     url_base  = "vgcollect.com"
     url_https = "https://" + url_base
     url_auth  = url_https + "/login/authenticate"
     url_csv   = url_https + "/settings/export/collection"
-
-    if not filterData.guiMode:
-        if len(username) == 0:
-            username  = input("Username: ")
-        if len(password) == 0:
-            password  = getpass.getpass(prompt='Password: ', stream=None)
 
     headers={"Content-Type":"application/x-www-form-urlencoded",
              "User-agent":"Mozilla/5.0 Chrome/81.0.4044.92",    # Chrome 80+ as per web search
@@ -63,34 +55,16 @@ def downloadCollection(filterData, username = "", password = ""):
             contents = response.read()
 
             if "\"VGC id\"" in str(contents[0:10]):
-
-                print("\n  Download successful")
-
                 # Save downloaded collection data
                 writeFile(DOWNLOAD_FILE, contents, "wb")
 
-                filterData.filePath = DOWNLOAD_FILE
+                return None, DOWNLOAD_FILE
             else:
-                print("\n  Login error")
-
-                if filterData.guiMode:
-                    return "Login error"
-                else:
-                    sys.exit()
+                return "Login error"
         else:
-            print("\n  Error downloading CSV - Code: " + str(response.getcode()))
-
-            if filterData.guiMode:
-                return "Download error - Code: " + str(response.getcode())
-            else:
-                sys.exit()
+            return "Download error - Code: " + str(response.getcode())
     else:
-        print("\n  Login error - Code: " + str(response.getcode()))
-
-        if filterData.guiMode:
-            return "Login error - Code: " + str(response.getcode())
-        else:
-            sys.exit()
+        return "Login error - Code: " + str(response.getcode())
 
 
 ######################
@@ -148,4 +122,3 @@ def downloadCover(item, url, path, refresh, coverType):
     except:
         item.localData["missingCover"+coverType] = "Yes"
         pass
-

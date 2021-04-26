@@ -42,7 +42,3 @@ GRAPH_DATA_ITEMCOUNT        = "Item count"
 GRAPH_DATA_TOTALPRICE       = "Total price"
 GRAPH_DATA_ITEMCOUNTGROWTH  = "Item count growth"
 GRAPH_DATA_TOTALPRICEGROWTH = "Total price growth"
-
-# Console only
-CONSOLE_COLUMNS  = 80
-CONSOLE_OVERHEAD = 6

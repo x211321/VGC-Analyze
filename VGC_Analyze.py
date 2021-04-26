@@ -1,29 +1,13 @@
-from VGC_Console import main_console
 from VGC_GUI     import GUI
-from VGC_Lib     import initOptions
-from VGC_Lib     import readOptions
 
 
 ######################
 # main Function
 # --------------------
 def main():
-    # Define options
-    #--------------------
-    initOptions()
-
-
-    # Read options
-    #--------------------
-    filterData = readOptions()
-
-    # Start selected mode
-    #--------------------
-    if filterData.guiMode == True:
-        gui = GUI(filterData)
-        gui.show()
-    else:
-        main_console(filterData)
+    # Show GUI
+    gui = GUI()
+    gui.show()
 
 
 # Call Main function

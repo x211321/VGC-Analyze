@@ -16,11 +16,6 @@ from VGC_Var     import LOCAL_DATA_FILE
 from VGC_Var     import PLATFORM_KEYWORDS_FILE
 from VGC_Var     import DATA_PATH
 
-# Global list for definition of
-# possible console arguments
-options    = []
-
-
 
 ######################
 # guessDate
@@ -296,7 +291,6 @@ class CollectionData(object):
     # setFilter
     def setFilter(self, filterData):
         self.filterData = filterData
-        self.csv_file   = filterData.filePath
 
         # Get newest csv-file
         if len(self.csv_file) == 0:
