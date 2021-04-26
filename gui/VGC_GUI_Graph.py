@@ -10,6 +10,7 @@ from tkinter import ttk
 from VGC_Var import GRAPH_TYPE_BAR
 from VGC_Var import GRAPH_TYPE_PIE
 from VGC_Var import GRAPH_TYPE_STACK
+from VGC_Var import GRAPH_TYPE_LINE
 from VGC_Var import GRAPH_CONTENT_YEARS
 from VGC_Var import GRAPH_CONTENT_MONTHS
 from VGC_Var import GRAPH_CONTENT_PLATFORMS
@@ -98,6 +99,7 @@ def fillGraphTypeCombobox(gui):
     types.append(GRAPH_TYPE_BAR)
     types.append(GRAPH_TYPE_PIE)
     types.append(GRAPH_TYPE_STACK)
+    types.append(GRAPH_TYPE_LINE)
 
     gui.graph_type.setValues(types)
     gui.graph_type.set(GRAPH_TYPE_BAR)
@@ -110,7 +112,7 @@ def fillGraphContentCombobox(gui, graphType):
     content = []
     gui.graph_content.delete(0, END)
 
-    if not graphType == GRAPH_TYPE_STACK:
+    if not graphType == GRAPH_TYPE_STACK and not graphType == GRAPH_TYPE_LINE:
         content.append(GRAPH_CONTENT_YEARS)
         content.append(GRAPH_CONTENT_MONTHS)
     content.append(GRAPH_CONTENT_REGIONS)
@@ -122,7 +124,7 @@ def fillGraphContentCombobox(gui, graphType):
     if len(gui.activeGraphContent) and gui.activeGraphContent in gui.graph_content["values"]:
         gui.graph_content.set(gui.activeGraphContent)
     else:
-        if not graphType == GRAPH_TYPE_STACK:
+        if not graphType == GRAPH_TYPE_STACK and not graphType == GRAPH_TYPE_LINE:
             gui.graph_content.set(GRAPH_CONTENT_YEARS)
         else:
             gui.graph_content.set(GRAPH_CONTENT_REGIONS)
@@ -137,7 +139,7 @@ def fillGraphDataCombobox(gui, graphType):
     data = []
     gui.graph_data.delete(0, END)
 
-    if graphType == GRAPH_TYPE_STACK:
+    if graphType == GRAPH_TYPE_STACK or graphType == GRAPH_TYPE_LINE:
         data.append(GRAPH_DATA_ITEMCOUNTGROWTH)
         data.append(GRAPH_DATA_TOTALPRICEGROWTH)
         gui.graph_data.set(GRAPH_DATA_ITEMCOUNTGROWTH)
@@ -182,6 +184,8 @@ def drawGraph(gui, data, canvas, graphType, graphContent, graphData):
         drawPieChart(gui, data, canvas, graphContent, graphData)
     if graphType == GRAPH_TYPE_STACK:
         drawStackPlot(gui, data, canvas, graphContent, graphData)
+    if graphType == GRAPH_TYPE_LINE:
+        drawLinePlot(gui, data, canvas, graphContent, graphData)
 
 
 ######################
@@ -389,6 +393,7 @@ def drawStackPlot(gui, data, canvas, graphContent, graphData):
     # Remove duplicated dates
     dates = sorted(list(set(dates)))
 
+    # Sum data
     for groupKey in sorted(data.graph_groups.keys()):
         values[groupKey] = []
         sum = 0
@@ -420,6 +425,67 @@ def drawStackPlot(gui, data, canvas, graphContent, graphData):
         ax.grid(color="#95A5A6", linestyle="--", linewidth=2, axis="y", alpha=0.7)
 
     stacks = ax.stackplot(dates, values.values(), labels=values.keys())
+
+    ax.legend(loc='upper left', ncol=5, fontsize=6)
+
+    canvas.figure = fig
+    canvas.draw()
+
+
+######################
+# drawLinePlot
+# --------------------
+def drawLinePlot(gui, data, canvas, graphContent, graphData):
+
+    # Get canvas dimensions
+    canvasWidth  = canvas.get_tk_widget().winfo_width()
+    canvasHeight = canvas.get_tk_widget().winfo_height()
+
+    dates  = []
+    values = {}
+
+    # Find all dates
+    for groupKey in sorted(data.graph_groups.keys()):
+        for subGroup in sorted(data.graph_groups[groupKey].sub.keys()):
+            dates.append(subGroup)
+
+    # Remove duplicated dates
+    dates = sorted(list(set(dates)))
+
+    # Sum Data
+    for groupKey in sorted(data.graph_groups.keys()):
+        values[groupKey] = []
+        sum = 0
+
+        for date in dates:
+            if date in data.graph_groups[groupKey].sub.keys():
+                if graphData == GRAPH_DATA_ITEMCOUNTGROWTH:
+                    sum += data.graph_groups[groupKey].sub[date].item_count
+                if graphData == GRAPH_DATA_TOTALPRICEGROWTH:
+                    sum += data.graph_groups[groupKey].sub[date].total_price
+
+            values[groupKey].append(sum)
+
+    # Setup graph
+    fig = Figure(figsize=(canvasWidth/100, canvasHeight/100), dpi=100)
+    fig.tight_layout()
+    fig.subplots_adjust(left   = widthPercentage(canvasWidth, 90),
+                        bottom = widthPercentage(canvasHeight, 40),
+                        right  = (1-widthPercentage(canvasWidth, 20)),
+                        top    = (1-widthPercentage(canvasHeight, 35)))
+
+    ax = fig.add_subplot()
+    ax.margins(x=0, y=0)
+    ax.autoscale(True)
+    ax.set_ylabel(graphData)
+    ax.set_title(graphContent)
+
+    if gui.graph_show_grid.get():
+        ax.grid(color="#95A5A6", linestyle="--", linewidth=2, axis="y", alpha=0.7)
+
+
+    for groupKey in sorted(data.graph_groups.keys()):
+        ax.plot(dates, values[groupKey], label=groupKey, alpha=0.5)
 
     ax.legend(loc='upper left', ncol=5, fontsize=6)
 

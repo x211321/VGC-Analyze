@@ -24,6 +24,7 @@ View double click -> detailed item view
 	Covers
 Graph canvas scroll bar
 Download history
+Combine platforms (x + x hardware + x accessories)
 Bugs
 	klammern in filter strings -> regex kein ergebnis
 

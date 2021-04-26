@@ -161,6 +161,7 @@ class DataTotal(object):
         self.total_price = 0.0
         self.first       = CollectionItem()
         self.last        = CollectionItem()
+        self.sub         = OrderedDict()
 
 
 ######################
@@ -388,12 +389,12 @@ class CollectionData(object):
 
 
     # groupGraphData
-    def groupGraphData(self, groupBy):
-        self.graph_groups = self.group(groupBy, True)
+    def groupGraphData(self, groupBy, subGroup = ""):
+        self.graph_groups = self.group(groupBy, True, subGroup)
 
 
     # group
-    def group(self, groupBy = "", sumOnly = False):
+    def group(self, groupBy = "", sumOnly = False, subGroup = ""):
 
         result = OrderedDict()
 
@@ -414,6 +415,24 @@ class CollectionData(object):
 
             if item.date > result[groupKey].last.date:
                 result[groupKey].last.date = item.date
+
+            if len(subGroup):
+                subKey = self.getGroupKey(item, subGroup)
+
+                if not subKey in result[groupKey].sub.keys():
+                    result[groupKey].sub[subKey] = DataTotal()
+
+                result[groupKey].sub[subKey].total_price += item.price
+                result[groupKey].sub[subKey].item_count  += 1
+
+                if sumOnly == False:
+                    result[groupKey].sub[subKey].items.append(item)
+
+                if item.date < result[groupKey].sub[subKey].first.date:
+                    result[groupKey].sub[subKey].first.date = item.date
+
+                if item.date > result[groupKey].sub[subKey].last.date:
+                    result[groupKey].sub[subKey].last.date = item.date
 
         return result
 

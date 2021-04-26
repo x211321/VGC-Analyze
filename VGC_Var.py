@@ -27,6 +27,7 @@ COVER_WIDTH      = 120
 GRAPH_TYPE_BAR                  = "Bar"
 GRAPH_TYPE_PIE                  = "Pie"
 GRAPH_TYPE_STACK                = "Stack"
+GRAPH_TYPE_LINE                 = "Line"
 
 GRAPH_CONTENT_YEARS             = "Years"
 GRAPH_CONTENT_MONTHS            = "Months"

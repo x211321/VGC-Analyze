@@ -35,6 +35,7 @@ from VGC_Var import DATA_PATH
 from VGC_Var import GRAPH_TYPE_BAR
 from VGC_Var import GRAPH_TYPE_PIE
 from VGC_Var import GRAPH_TYPE_STACK
+from VGC_Var import GRAPH_TYPE_LINE
 
 from VGC_Lib import toggleYN
 
@@ -516,8 +517,8 @@ class GUI(Tk):
     def onGraphTypeSelect(self, a = None):
         newType =self.graph_type.get()
 
-        if ((newType == GRAPH_TYPE_STACK and (self.activeGraphType == GRAPH_TYPE_BAR or self.activeGraphType == GRAPH_TYPE_PIE)) or
-           (self.activeGraphType == GRAPH_TYPE_STACK and (newType == GRAPH_TYPE_BAR or newType == GRAPH_TYPE_PIE))):
+        if (((newType == GRAPH_TYPE_STACK or newType == GRAPH_TYPE_LINE) and (self.activeGraphType == GRAPH_TYPE_BAR or self.activeGraphType == GRAPH_TYPE_PIE)) or
+           ((self.activeGraphType == GRAPH_TYPE_STACK or self.activeGraphType == GRAPH_TYPE_LINE) and (newType == GRAPH_TYPE_BAR or newType == GRAPH_TYPE_PIE))):
 
             fillGraphContentCombobox(self, self.graph_type.get())
             fillGraphDataCombobox(self, self.graph_type.get())
