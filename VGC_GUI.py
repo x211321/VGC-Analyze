@@ -59,9 +59,9 @@ class GUI(Tk):
         self.filter_frame = Frame(self, width=200 , height=550, pady=10, padx=10)
         self.view_frame   = Frame(self, width=600 , height=550, pady=0 , padx=0)
         self.file_frame   = Frame(self.view_frame, width=1000, height=100, pady=10, padx=10)
-        self.item_frame   = GUI_ItemInfo(self, self, width=200 , height=550, pady=0 , padx=0)
+        self.item_frame   = GUI_ItemInfo(self, width=200 , height=550, pady=0 , padx=0)
         self.graph_frame  = Frame(self, width=1000, height=200, pady=0 , padx=0)
-        self.info_frame   = GUI_CollectionInfo(self, self, width=1000, height=200, pady=10, padx=10)
+        self.info_frame   = GUI_CollectionInfo(self, width=1000, height=200, pady=10, padx=10)
 
 
         self.filter_frame.grid(row=0, column=0, sticky="nws", rowspan=3)

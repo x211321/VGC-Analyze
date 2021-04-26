@@ -21,7 +21,7 @@ from VGC_Var import IMG_COVER_NONE
 # --------------------
 class GUI_ItemInfo(Frame):
 
-    def __init__(self, master, gui, width=0, height=0, pady=0, padx=0):
+    def __init__(self, master, width=0, height=0, pady=0, padx=0):
         super().__init__(master=master, width=width, height=height, pady=pady, padx=padx)
 
         # Icons
@@ -32,9 +32,9 @@ class GUI_ItemInfo(Frame):
         self.item_view_ico     = loadIcon("eye-outline", 15, 15)
         self.item_link_ico     = loadIcon("link-outline", 15, 15)
 
-        self.activeItem     = gui.activeItem
-        self.toggleBookmark = gui.toggleBookmark
-        self.toggleFinished = gui.toggleFinished
+        self.activeItem     = master.activeItem
+        self.toggleBookmark = master.toggleBookmark
+        self.toggleFinished = master.toggleFinished
 
         self.pop_coverViewer = Pop_CoverViewer(self)
 
