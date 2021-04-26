@@ -1,5 +1,8 @@
 import threading
 
+import re
+import urllib.request
+
 from tkinter import *
 from tkinter import ttk
 
@@ -31,6 +34,7 @@ class GUI_ItemInfo(Frame):
         self.item_refresh_ico  = loadIcon("refresh-outline", 15, 15)
         self.item_view_ico     = loadIcon("eye-outline", 15, 15)
         self.item_link_ico     = loadIcon("link-outline", 15, 15)
+        self.item_itemdata_ico = loadIcon("file-tray-full-outline", 15, 15)
 
         self.activeItem     = master.activeItem
         self.toggleBookmark = master.toggleBookmark
@@ -98,17 +102,21 @@ class GUI_ItemInfo(Frame):
         self.item_open_website = Button(self.item_tool_frame, relief="groove", image=self.item_link_ico)
         self.item_bookmark     = Button(self.item_tool_frame, relief="groove", image=self.item_bookmark_ico)
         self.item_finished     = Button(self.item_tool_frame, relief="groove", image=self.item_finished_ico)
+        self.item_itemdata     = Button(self.item_tool_frame, relief="groove", image=self.item_itemdata_ico)
         self.item_id           = Label_(self.item_tool_frame)
-        self.item_id.grid(row=0, column=3, sticky="e")
+        self.item_id.grid(row=0, column=0, columnspan=4, sticky="e")
 
         self.item_open_website.config(command=self.openOnVGCollect)
-        self.item_open_website.grid(row=0, column=0, sticky="nw", padx=3, pady=5)
+        self.item_open_website.grid(row=1, column=0, sticky="nw", padx=3, pady=5)
 
         self.item_bookmark.config(command=self.toggleBookmark)
-        self.item_bookmark.grid(row=0, column=1, sticky="nw", padx=(3), pady=5)
+        self.item_bookmark.grid(row=1, column=1, sticky="nw", padx=(3), pady=5)
 
         self.item_finished.config(command=self.toggleFinished)
-        self.item_finished.grid(row=0, column=2, sticky="nw", padx=(3, 15), pady=5)
+        self.item_finished.grid(row=1, column=2, sticky="nw", padx=(3), pady=5)
+
+        self.item_itemdata.config(command=self.getItemData)
+        self.item_itemdata.grid(row=1, column=3, sticky="nw", padx=(3), pady=5)
 
 
     def update(self):
@@ -182,3 +190,32 @@ class GUI_ItemInfo(Frame):
             downloadCovers(item, True, coverType)
             self.update()
 
+
+    ######################
+    # getItemData
+    # --------------------
+    def getItemData(self):
+        result = {}
+        url = "https://vgcollect.com/item/" + str(self.activeItem().VGC_id)
+
+        # Create request
+        request = urllib.request.Request(url)
+
+
+        # Get Page
+        response = urllib.request.urlopen(request)
+
+        # Parsing page text
+        tableBodies = str(response.read()).split("<table class=\"table\">")
+        tableBody = tableBodies[1].replace("\\r\\n", "")
+
+        data = re.split("</*tbody>", tableBody)
+
+        for line in re.split("<tr> * *<td.*?>", re.sub(" +", " ", data[1])):
+            values = re.split("</td> * *<td>", line)
+
+            if len(values) >= 2:
+                result[values[0].strip(": ")] = values[1].replace("</td>", "").replace("</tr>", "").strip()
+
+        print(result)
+        return result
