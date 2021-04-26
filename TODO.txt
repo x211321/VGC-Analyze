@@ -27,6 +27,8 @@ Download history
 Combine platforms (x + x hardware + x accessories)
 Bugs
 	klammern in filter strings -> regex kein ergebnis
+Treeview contextmenu
+	Bookmark, finished, open on VGC, details, online info
 
 ===DONE===
 Group by platfrom holder
