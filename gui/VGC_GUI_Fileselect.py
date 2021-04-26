@@ -11,8 +11,7 @@ from VGC_Var     import FILE_PREFIX
 
 def initFileSelect(gui):
     gui.item_select               = Combobox_(gui.file_frame, width=40, values=[os.path.basename(x) for x in glob.glob(DATA_PATH+FILE_PREFIX+"*.csv")])
-
-    gui.item_select_text          = Label_(gui.file_frame, width=10, text="Chosen file:")
+    gui.item_select_text          = Label_(gui.file_frame, anchor="e", padx=5, text="Active VGC file:")
 
     gui.item_select.pack(side=RIGHT, padx=8)
     gui.item_select.sorted = True

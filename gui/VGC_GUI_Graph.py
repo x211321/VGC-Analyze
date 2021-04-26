@@ -47,15 +47,15 @@ def initGraph(gui):
     gui.graph_frame.grid_columnconfigure(0, weight=1)
 
     gui.graph_type_txt = Label_(gui.graph_tool_frame, text="Graph type:")
-    gui.graph_type     = Combobox_(gui.graph_tool_frame, width=10)
+    gui.graph_type     = Combobox_(gui.graph_tool_frame, width=10, state="readonly")
     gui.graph_type.bind("<<ComboboxSelected>>", gui.onGraphTypeSelect)
 
     gui.graph_content_txt = Label_(gui.graph_tool_frame, text="Content:")
-    gui.graph_content     = Combobox_(gui.graph_tool_frame, width=20)
+    gui.graph_content     = Combobox_(gui.graph_tool_frame, width=20, state="readonly")
     gui.graph_content.bind("<<ComboboxSelected>>", gui.onGraphContentSelect)
 
     gui.graph_data_txt    = Label_(gui.graph_tool_frame, text="Data:")
-    gui.graph_data        = Combobox_(gui.graph_tool_frame, width=20)
+    gui.graph_data        = Combobox_(gui.graph_tool_frame, width=20, state="readonly")
     gui.graph_data.set(GRAPH_DATA_ITEMCOUNT)
     gui.graph_data.bind("<<ComboboxSelected>>", gui.onGraphDataSelect)
 

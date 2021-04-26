@@ -409,12 +409,14 @@ class GUI(Tk):
 
         selection = self.item_view.focus()
 
-        if len(self.item_view.item(selection)["values"]):
-            self.index = self.item_view.item(selection)["values"][0]
+        # Item with text = Group item
+        if not len(self.item_view.item(selection)["text"]):
+            if len(self.item_view.item(selection)["values"]):
+                self.index = self.item_view.item(selection)["values"][0]
 
-            if self.index >= 0:
-                # Update item info
-                self.item_frame.update()
+                if self.index >= 0:
+                    # Update item info
+                    self.item_frame.update()
 
 
     ######################
