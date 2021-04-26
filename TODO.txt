@@ -18,7 +18,6 @@ Multifilter (mehrere Regionen, Platformen, etc.)
 EXE bundle img
 EXE virus https://stackoverflow.com/questions/43777106/program-made-with-pyinstaller-now-seen-as-a-trojan-horse-by-avg
 Multiselect
-Sortieren über Treeview header
 View double click -> detailed item view
 	CSV data
 	Local data
@@ -47,3 +46,4 @@ Elementinformationen in Json
 	Bookmarks
 	Missing covers index
 Dateiauswahl
+Sortieren über Treeview header

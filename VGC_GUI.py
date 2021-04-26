@@ -15,6 +15,7 @@ from gui.VGC_GUI_Filter         import initFilter
 from gui.VGC_GUI_CollectionInfo import initCollectionInfo
 from gui.VGC_GUI_CollectionInfo import displayCollectionInfo
 from gui.VGC_GUI_Treeview       import initTreeView
+from gui.VGC_GUI_Treeview       import treeviewSort
 from gui.VGC_GUI_Graph          import initGraph
 from gui.VGC_GUI_Graph          import drawGraph
 from gui.VGC_GUI_Graph          import fillGraphContentCombobox
@@ -281,9 +282,11 @@ class GUI(Tk):
 
             else:
                 # Normal display
-                for item in self.sortViewItems(displayFilter, self.collectionData.getFilteredData()):
+                for item in self.collectionData.getFilteredData():
                     self.insertViewItem(tvIndex, item, "")
                     tvIndex += 1
+
+                treeviewSort(self.item_view, "Title", False)
 
 
     ######################
