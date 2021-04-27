@@ -156,8 +156,10 @@ class GUI_Graph(Frame):
     def onGraphTypeSelect(self, a = None):
         newType =self.graph_type.get()
 
-        if (((newType == VAR.GRAPH_TYPE_STACK or newType == VAR.GRAPH_TYPE_LINE) and (self.activeGraphType == VAR.GRAPH_TYPE_BAR or self.activeGraphType == VAR.GRAPH_TYPE_PIE)) or
-           ((self.activeGraphType == VAR.GRAPH_TYPE_STACK or self.activeGraphType == VAR.GRAPH_TYPE_LINE) and (newType == VAR.GRAPH_TYPE_BAR or newType == VAR.GRAPH_TYPE_PIE))):
+        if (((newType == VAR.GRAPH_TYPE_STACK or newType == VAR.GRAPH_TYPE_LINE) and
+           (self.activeGraphType == VAR.GRAPH_TYPE_BAR or self.activeGraphType == VAR.GRAPH_TYPE_PIE or self.activeGraphType == "")) or
+           ((self.activeGraphType == VAR.GRAPH_TYPE_STACK or self.activeGraphType == VAR.GRAPH_TYPE_LINE) and
+           (newType == VAR.GRAPH_TYPE_BAR or newType == VAR.GRAPH_TYPE_PIE))):
 
             self.fillGraphContentCombobox()
             self.fillGraphDataCombobox()
