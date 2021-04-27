@@ -179,8 +179,8 @@ class FilterData(object):
     # Constructor
     def __init__(self):
         self.itemFilter           = ""
-        self.platformFilter       = ""
-        self.platformHolderFilter = ""
+        self.platformFilter       = []
+        self.platformHolderFilter = []
         self.regionFilter         = ""
         self.notesFilter          = ""
         self.dateFilterStart      = ""
@@ -217,16 +217,19 @@ class FilterData(object):
         self.interactiveMode      = False
 
 
-    def inputsToFilter(self, inputs):
+    def inputsToFilter(self, inputs, multiFilter):
+
+        for key in multiFilter:
+            if key == "platforms":
+                self.platformFilter       = multiFilter[key]
+            if key == "platformHolders":
+                self.platformHolderFilter = multiFilter[key]
+            if key == "regions":
+                self.regionFilter         = multiFilter[key]
+
         for key in inputs:
             if key == "name":
                 self.itemFilter           = inputs[key].get()
-            if key == "platform":
-                self.platformFilter       = inputs[key].get()
-            if key == "platformHolder":
-                self.platformHolderFilter = inputs[key].get()
-            if key == "region":
-                self.regionFilter         = inputs[key].get()
             if key == "notes":
                 self.notesFilter          = inputs[key].get()
             if key == "dateStart":
@@ -344,10 +347,10 @@ class CollectionData(object):
     # filter
     def filter(self, item):
         if (self.searchFilter(self.filterData.itemFilter, item.name) and
-            self.searchFilter(self.filterData.platformFilter, item.platform) and
-            self.searchFilter(self.filterData.platformHolderFilter, item.platformHolder) and
+            (len(self.filterData.platformFilter) == 0 or item.platform in self.filterData.platformFilter) and
+            (len(self.filterData.platformHolderFilter) == 0 or item.platformHolder in self.filterData.platformHolderFilter) and
+            (len(self.filterData.regionFilter) == 0 or item.region in self.filterData.regionFilter) and
             self.searchFilter(self.filterData.notesFilter, item.notes) and
-            self.searchFilter(self.filterData.regionFilter, item.region) and
             self.stringGreater(self.filterData.dateFilterStart, item.date) and
             self.stringLess(self.filterData.dateFilterEnd, item.date) and
             self.priceGreater(self.filterData.priceFilterStart, item.price, self.filterData.priceFilterStartSet) and
@@ -550,7 +553,7 @@ class CollectionData(object):
 
         # Sum data
         #--------------------
-        for item in self.getFilteredData():
+        for item in self.collection_items:
             # Sum platforms
             self.sumDataDict(item.platform, self.platforms, item)
 

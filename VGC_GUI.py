@@ -162,9 +162,6 @@ class GUI(Tk):
         self.collectionData.parseData(self.view_frame.file_frame.combine_platforms.get())
         self.collectionData.sumData()
 
-        self.filter_frame.fillPlatformCombobox()
-        self.filter_frame.fillPlatformHolderCombobox()
-        self.filter_frame.fillRegionCombobox()
         self.filter_frame.fillGroupCombobox()
         self.filter_frame.fillOrderCombobox()
 
@@ -319,7 +316,7 @@ class GUI(Tk):
     # --------------------
     def getFilterInput(self):
         filterInput = self.filterData
-        filterInput.inputsToFilter(self.filter_frame.filterInputs)
+        filterInput.inputsToFilter(self.filter_frame.filterInputs, self.filter_frame.multiFilter)
 
         return filterInput
 

@@ -5,6 +5,8 @@ from VGC_Widgets import Label_
 from VGC_Widgets import Entry_
 from VGC_Widgets import Combobox_
 
+from gui.VGC_GUI_Popups import Pop_FilterSelect
+
 
 ######################
 # GUI_Filter
@@ -21,46 +23,53 @@ class GUI_Filter(Frame):
 
 
     def init(self):
+        # Multi filter
+        # ------------------
+        self.multiFilter  = {}
+        self.multiFilter["platforms"] = []
+        self.multiFilter["platformHolders"] = []
+        self.multiFilter["regions"] = []
+
         # Filter inputs
         # ------------------
         self.filterInputs = {}
 
-        self.filterInputs["name_txt"]           = Label_(self, width=25, text="Title")
-        self.filterInputs["name"]               = Entry_(self, width=30)
-        self.filterInputs["platform_txt"]       = Label_(self, width=25, text="Platform")
-        self.filterInputs["platform"]           = Combobox_(self, width=27)
-        self.filterInputs["platformHolder_txt"] = Label_(self, width=25, text="Platform holder")
-        self.filterInputs["platformHolder"]     = Combobox_(self, width=27)
-        self.filterInputs["region_txt"]         = Label_(self, width=25, text="Region")
-        self.filterInputs["region"]             = Combobox_(self, width=27)
-        self.filterInputs["notes_txt"]          = Label_(self, width=25, text="Notes")
-        self.filterInputs["notes"]              = Entry_(self, width=30)
-        self.filterInputs["dateStart_txt"]      = Label_(self, width=25, text="Min. purchase date")
-        self.filterInputs["dateStart"]          = Entry_(self, width=30)
-        self.filterInputs["dateEnd_txt"]        = Label_(self, width=25, text="Max. purchase date")
-        self.filterInputs["dateEnd"]            = Entry_(self, width=30)
-        self.filterInputs["priceStart_txt"]     = Label_(self, width=25, text="Min. purchase price")
-        self.filterInputs["priceStart"]         = Entry_(self, width=30)
-        self.filterInputs["priceEnd_txt"]       = Label_(self, width=25, text="Max. purchase price")
-        self.filterInputs["priceEnd"]           = Entry_(self, width=30)
-        self.filterInputs["group_txt"]          = Label_(self, text="Group by", width=25)
-        self.filterInputs["group"]              = Combobox_(self, state="readonly", width=27)
-        self.filterInputs["cart_txt"]           = Label_(self, width=10, text="Cart")
-        self.filterInputs["box_txt"]            = Label_(self, width=10, text="Box")
-        self.filterInputs["cart"]               = Combobox_(self, values=("", "Yes", "No"), state="readonly", width=10)
-        self.filterInputs["box"]                = Combobox_(self, values=("", "Yes", "No"), state="readonly", width=10)
-        self.filterInputs["manual_txt"]         = Label_(self, width=10, text="Manual")
-        self.filterInputs["other_txt"]          = Label_(self, width=10, text="Other")
-        self.filterInputs["manual"]             = Combobox_(self, values=("", "Yes", "No"), state="readonly", width=10)
-        self.filterInputs["other"]              = Combobox_(self, values=("", "Yes", "No"), state="readonly", width=10)
-        self.filterInputs["bookmarked_txt"]     = Label_(self, text="Bookmarked", width=10)
-        self.filterInputs["finished_txt"]       = Label_(self, text="Finished", width=10)
-        self.filterInputs["bookmarked"]         = Combobox_(self, values=("", "Yes", "No"), state="readonly", width=10)
-        self.filterInputs["finished"]           = Combobox_(self, values=("", "Yes", "No"), state="readonly", width=10)
-        self.filterInputs["order_txt"]          = Label_(self, text="Sort by", width=10)
-        self.filterInputs["order_dir_txt"]      = Label_(self, text="Sort direction", width=10)
-        self.filterInputs["order"]              = Combobox_(self, state="readonly", width=10)
-        self.filterInputs["orderDirection"]     = Combobox_(self, values=("", "ascending", "descending"), state="readonly", width=10)
+        self.filterInputs["name_txt"]               = Label_(self, width=25, text="Title")
+        self.filterInputs["name"]                   = Entry_(self, width=30)
+        self.filterInputs["platforms_txt"]          = Label_(self, width=25, text="Platforms")
+        self.filterInputs["platforms_select"]       = Button(self, width=25, text="Select", relief="groove", command=self.selectPlatforms)
+        self.filterInputs["platformHolders_txt"]    = Label_(self, width=25, text="Platform holders")
+        self.filterInputs["platformHolders_select"] = Button(self, width=25, text="Select", relief="groove", command=self.selectPlatformHolders)
+        self.filterInputs["regions_txt"]            = Label_(self, width=25, text="Regions")
+        self.filterInputs["regions_select"]         = Button(self, width=25, text="Select", relief="groove", command=self.selectRegions)
+        self.filterInputs["notes_txt"]              = Label_(self, width=25, text="Notes")
+        self.filterInputs["notes"]                  = Entry_(self, width=30)
+        self.filterInputs["dateStart_txt"]          = Label_(self, width=25, text="Min. purchase date")
+        self.filterInputs["dateStart"]              = Entry_(self, width=30)
+        self.filterInputs["dateEnd_txt"]            = Label_(self, width=25, text="Max. purchase date")
+        self.filterInputs["dateEnd"]                = Entry_(self, width=30)
+        self.filterInputs["priceStart_txt"]         = Label_(self, width=25, text="Min. purchase price")
+        self.filterInputs["priceStart"]             = Entry_(self, width=30)
+        self.filterInputs["priceEnd_txt"]           = Label_(self, width=25, text="Max. purchase price")
+        self.filterInputs["priceEnd"]               = Entry_(self, width=30)
+        self.filterInputs["group_txt"]              = Label_(self, text="Group by", width=25)
+        self.filterInputs["group"]                  = Combobox_(self, state="readonly", width=27)
+        self.filterInputs["cart_txt"]               = Label_(self, width=10, text="Cart")
+        self.filterInputs["box_txt"]                = Label_(self, width=10, text="Box")
+        self.filterInputs["cart"]                   = Combobox_(self, values=("", "Yes", "No"), state="readonly", width=10)
+        self.filterInputs["box"]                    = Combobox_(self, values=("", "Yes", "No"), state="readonly", width=10)
+        self.filterInputs["manual_txt"]             = Label_(self, width=10, text="Manual")
+        self.filterInputs["other_txt"]              = Label_(self, width=10, text="Other")
+        self.filterInputs["manual"]                 = Combobox_(self, values=("", "Yes", "No"), state="readonly", width=10)
+        self.filterInputs["other"]                  = Combobox_(self, values=("", "Yes", "No"), state="readonly", width=10)
+        self.filterInputs["bookmarked_txt"]         = Label_(self, text="Bookmarked", width=10)
+        self.filterInputs["finished_txt"]           = Label_(self, text="Finished", width=10)
+        self.filterInputs["bookmarked"]             = Combobox_(self, values=("", "Yes", "No"), state="readonly", width=10)
+        self.filterInputs["finished"]               = Combobox_(self, values=("", "Yes", "No"), state="readonly", width=10)
+        self.filterInputs["order_txt"]              = Label_(self, text="Sort by", width=10)
+        self.filterInputs["order_dir_txt"]          = Label_(self, text="Sort direction", width=10)
+        self.filterInputs["order"]                  = Combobox_(self, state="readonly", width=10)
+        self.filterInputs["orderDirection"]         = Combobox_(self, values=("", "ascending", "descending"), state="readonly", width=10)
 
         self.filter_apply = Button(self, width=10, relief="groove", bg="#BDF593")
         self.filter_reset = Button(self, width=10, relief="groove", bg="#F59398")
@@ -116,51 +125,80 @@ class GUI_Filter(Frame):
                 self.filterInputs[key].delete(0, END)
             if self.filterInputs[key].__class__.__name__ == "Combobox_":
                 self.filterInputs[key].set("")
+            if self.filterInputs[key].__class__.__name__ == "Button":
+                self.filterInputs[key].config(text="Select")
+
+        self.multiFilter["platforms"] = []
+        self.multiFilter["platformHolders"] = []
+        self.multiFilter["regions"] = []
 
         self.showData()
 
 
     ######################
-    # fillPlatformCombobox
+    # selectPlatforms
     # --------------------
-    def fillPlatformCombobox(self):
-        platforms = []
-        self.filterInputs["platform"].delete(0, END)
-
-        platforms.append("")
-
-        for platform, data in sorted(self.collectionData.platforms.items()):
-            platforms.append(platform)
-
-        self.filterInputs["platform"].setValues(platforms)
+    def selectPlatforms(self):
+        self.platformSelect = Pop_FilterSelect(self, self.collectionData.platforms.items(),
+                                                     self.multiFilter["platforms"],
+                                                     "platforms",
+                                                     self.selectPlatformsCallback)
 
 
     ######################
-    # fillPlatformHolderCombobox
+    # selectPlatformsCallback
     # --------------------
-    def fillPlatformHolderCombobox(self):
-        platformHolders = []
-        self.filterInputs["platformHolder"].delete(0, END)
+    def selectPlatformsCallback(self, platforms):
+        self.multiFilter["platforms"] = platforms
 
-        platformHolders.append("")
-
-        for platformHolder, data in sorted(self.collectionData.platformHolders.items()):
-            platformHolders.append(platformHolder)
-
-        self.filterInputs["platformHolder"].setValues(platformHolders)
+        if len(platforms):
+            self.filterInputs["platforms_select"].config(text=str(len(platforms)) + " selected")
+        else:
+            self.filterInputs["platforms_select"].config(text="Select")
 
 
     ######################
-    # fillRegionCombobox
+    # selectPlatformHolders
     # --------------------
-    def fillRegionCombobox(self):
-        regions = []
-        self.filterInputs["region"].delete(0, END)
+    def selectPlatformHolders(self):
+        self.platformHolderSelect = Pop_FilterSelect(self, self.collectionData.platformHolders.items(),
+                                                           self.multiFilter["platformHolders"],
+                                                           "platform holders",
+                                                           self.selectPlatformHoldersCallback)
 
-        for region, data in sorted(self.collectionData.regions.items()):
-            regions.append(region)
 
-        self.filterInputs["region"].setValues(regions)
+    ######################
+    # selectPlatformHoldersCallback
+    # --------------------
+    def selectPlatformHoldersCallback(self, platformHolders):
+        self.multiFilter["platformHolders"] = platformHolders
+
+        if len(platformHolders):
+            self.filterInputs["platformHolders_select"].config(text=str(len(platformHolders)) + " selected")
+        else:
+            self.filterInputs["platformHolders_select"].config(text="Select")
+
+
+    ######################
+    # selectRegions
+    # --------------------
+    def selectRegions(self):
+        self.regionSelect = Pop_FilterSelect(self, self.collectionData.regions.items(),
+                                                   self.multiFilter["regions"],
+                                                   "regions",
+                                                   self.selectRegionsCallback)
+
+
+    ######################
+    # selectRegionsCallback
+    # --------------------
+    def selectRegionsCallback(self, regions):
+        self.multiFilter["regions"] = regions
+
+        if len(regions):
+            self.filterInputs["regions_select"].config(text=str(len(regions)) + " selected")
+        else:
+            self.filterInputs["regions_select"].config(text="Select")
 
 
     ######################
@@ -168,7 +206,7 @@ class GUI_Filter(Frame):
     # --------------------
     def fillGroupCombobox(self):
         groups = []
-        self.filterInputs["region"].delete(0, END)
+        self.filterInputs["group"].delete(0, END)
 
         groups.append("")
         groups.append("year")
