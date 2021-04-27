@@ -271,53 +271,57 @@ class GUI_Graph(Frame):
                 canvas.draw_idle()
 
 
-        # Get canvas dimensions
-        canvasWidth  = canvas.get_tk_widget().winfo_width()
-        canvasHeight = canvas.get_tk_widget().winfo_height()
+        if not len(data.graph_groups):
+            canvas.figure = Figure()
+            canvas.draw()
+        else:
+            # Get canvas dimensions
+            canvasWidth  = canvas.get_tk_widget().winfo_width()
+            canvasHeight = canvas.get_tk_widget().winfo_height()
 
-        values = []
-        labels = []
+            values = []
+            labels = []
 
-        maxLabelLen = 0
-        barWidth    = int(canvasWidth/len(data.graph_groups))
+            maxLabelLen = 0
+            barWidth    = int(canvasWidth/len(data.graph_groups))
 
-        # Get values and labels
-        for groupKey in sorted(data.graph_groups.keys()):
-            if graphData == VAR.GRAPH_DATA_ITEMCOUNT:
-                itemValue = data.graph_groups[groupKey].item_count
-            if graphData == VAR.GRAPH_DATA_TOTALPRICE:
-                itemValue = data.graph_groups[groupKey].total_price
+            # Get values and labels
+            for groupKey in sorted(data.graph_groups.keys()):
+                if graphData == VAR.GRAPH_DATA_ITEMCOUNT:
+                    itemValue = data.graph_groups[groupKey].item_count
+                if graphData == VAR.GRAPH_DATA_TOTALPRICE:
+                    itemValue = data.graph_groups[groupKey].total_price
 
-            values.append(itemValue)
-            labels.append(groupKey)
+                values.append(itemValue)
+                labels.append(groupKey)
 
-            if len(groupKey) > maxLabelLen:
-                maxLabelLen = len(groupKey)
+                if len(groupKey) > maxLabelLen:
+                    maxLabelLen = len(groupKey)
 
 
-        # Setup graph
-        fig = Figure(figsize=(canvasWidth/100, canvasHeight/100), dpi=100)
-        fig.tight_layout()
-        fig.subplots_adjust(left   = self.widthPercentage(canvasWidth, 90),
-                            bottom = self.widthPercentage(canvasHeight, 40) + self.widthPercentage(canvasHeight, maxLabelLen*2),
-                            right  = (1-self.widthPercentage(canvasWidth, 20)),
-                            top    = (1-self.widthPercentage(canvasHeight, 35)))
+            # Setup graph
+            fig = Figure(figsize=(canvasWidth/100, canvasHeight/100), dpi=100)
+            fig.tight_layout()
+            fig.subplots_adjust(left   = self.widthPercentage(canvasWidth, 90),
+                                bottom = self.widthPercentage(canvasHeight, 40) + self.widthPercentage(canvasHeight, maxLabelLen*2),
+                                right  = (1-self.widthPercentage(canvasWidth, 20)),
+                                top    = (1-self.widthPercentage(canvasHeight, 35)))
 
-        ax = fig.add_subplot()
+            ax = fig.add_subplot()
 
-        if self.graph_show_grid.get():
-            ax.grid(color="#95A5A6", linestyle="--", linewidth=2, axis="y", alpha=0.7)
-        ax.margins(x=0.005, y=0.05)
-        ax.autoscale(True)
-        ax.set_ylabel(graphData)
-        ax.set_title(graphContent)
-        ax.set_xticks(np.arange(len(values)))
-        ax.set_xticklabels(labels, rotation=330, ha="left", fontsize=6)
-        bars = ax.bar(range(len(values)), values, color=VAR.GRAPH_BAR_COLOR, alpha=1)
+            if self.graph_show_grid.get():
+                ax.grid(color="#95A5A6", linestyle="--", linewidth=2, axis="y", alpha=0.7)
+            ax.margins(x=0.005, y=0.05)
+            ax.autoscale(True)
+            ax.set_ylabel(graphData)
+            ax.set_title(graphContent)
+            ax.set_xticks(np.arange(len(values)))
+            ax.set_xticklabels(labels, rotation=330, ha="left", fontsize=6)
+            bars = ax.bar(range(len(values)), values, color=VAR.GRAPH_BAR_COLOR, alpha=1)
 
-        canvas.figure = fig
-        canvas.mpl_connect("motion_notify_event", onNotify)
-        canvas.draw()
+            canvas.figure = fig
+            canvas.mpl_connect("motion_notify_event", onNotify)
+            canvas.draw()
 
 
     ######################
@@ -352,68 +356,72 @@ class GUI_Graph(Frame):
                 # Update graph
                 canvas.draw_idle()
 
+        if not len(data.graph_groups):
+            canvas.figure = Figure()
+            canvas.draw()
+        else:
 
-        # Get canvas dimensions
-        canvasWidth  = canvas.get_tk_widget().winfo_width()
-        canvasHeight = canvas.get_tk_widget().winfo_height()
+            # Get canvas dimensions
+            canvasWidth  = canvas.get_tk_widget().winfo_width()
+            canvasHeight = canvas.get_tk_widget().winfo_height()
 
-        labels        = []
-        displayLabels = []
-        values        = []
-        percentages   = []
-        explode       = []
+            labels        = []
+            displayLabels = []
+            values        = []
+            percentages   = []
+            explode       = []
 
-        totalValue = 0
+            totalValue = 0
 
-        # Find total value to be displayed in the chart
-        for groupKey in data.graph_groups.keys():
-            if graphData == VAR.GRAPH_DATA_ITEMCOUNT:
-                totalValue += data.graph_groups[groupKey].item_count
-            if graphData == VAR.GRAPH_DATA_TOTALPRICE:
-                totalValue += data.graph_groups[groupKey].total_price
-
-        if totalValue:
-            for groupKey in sorted(data.graph_groups.keys()):
-
+            # Find total value to be displayed in the chart
+            for groupKey in data.graph_groups.keys():
                 if graphData == VAR.GRAPH_DATA_ITEMCOUNT:
-                    itemValue = data.graph_groups[groupKey].item_count
+                    totalValue += data.graph_groups[groupKey].item_count
                 if graphData == VAR.GRAPH_DATA_TOTALPRICE:
-                    itemValue = data.graph_groups[groupKey].total_price
+                    totalValue += data.graph_groups[groupKey].total_price
 
-                # Calculate group percentage
-                percent = 100 / totalValue * itemValue
+            if totalValue:
+                for groupKey in sorted(data.graph_groups.keys()):
 
-                percentages.append(percent)
-                values.append(itemValue)
-                explode.append(0.1)
+                    if graphData == VAR.GRAPH_DATA_ITEMCOUNT:
+                        itemValue = data.graph_groups[groupKey].item_count
+                    if graphData == VAR.GRAPH_DATA_TOTALPRICE:
+                        itemValue = data.graph_groups[groupKey].total_price
 
-                labels.append(groupKey)
+                    # Calculate group percentage
+                    percent = 100 / totalValue * itemValue
 
-                if percent > 5:
-                    displayLabels.append(groupKey)
-                else:
-                    displayLabels.append("")
+                    percentages.append(percent)
+                    values.append(itemValue)
+                    explode.append(0.1)
 
-        # Setup graph
-        fig = Figure(figsize=(canvasWidth/100, canvasHeight/100), dpi=100)
-        fig.tight_layout()
-        fig.subplots_adjust(left   = self.widthPercentage(canvasWidth, 90),
-                            bottom = self.widthPercentage(canvasHeight, 35),
-                            right  = (1-self.widthPercentage(canvasWidth, 20)),
-                            top    = (1-self.widthPercentage(canvasHeight, 35)))
+                    labels.append(groupKey)
 
-        ax = fig.add_subplot()
-        ax.margins(x=0.005, y=0.05)
-        ax.autoscale(True)
-        ax.set_title(graphContent)
+                    if percent > 5:
+                        displayLabels.append(groupKey)
+                    else:
+                        displayLabels.append("")
 
-        wedges, temp = ax.pie(percentages, labels=displayLabels, explode=explode, startangle=90, normalize=True, wedgeprops={'alpha':0.75})
+            # Setup graph
+            fig = Figure(figsize=(canvasWidth/100, canvasHeight/100), dpi=100)
+            fig.tight_layout()
+            fig.subplots_adjust(left   = self.widthPercentage(canvasWidth, 90),
+                                bottom = self.widthPercentage(canvasHeight, 35),
+                                right  = (1-self.widthPercentage(canvasWidth, 20)),
+                                top    = (1-self.widthPercentage(canvasHeight, 35)))
 
-        colors = [w.get_facecolor() for w in wedges]
+            ax = fig.add_subplot()
+            ax.margins(x=0.005, y=0.05)
+            ax.autoscale(True)
+            ax.set_title(graphContent)
 
-        canvas.figure = fig
-        canvas.mpl_connect("motion_notify_event", onNotify)
-        canvas.draw()
+            wedges, temp = ax.pie(percentages, labels=displayLabels, explode=explode, startangle=90, normalize=True, wedgeprops={'alpha':0.75})
+
+            colors = [w.get_facecolor() for w in wedges]
+
+            canvas.figure = fig
+            canvas.mpl_connect("motion_notify_event", onNotify)
+            canvas.draw()
 
 
     ######################
@@ -421,58 +429,63 @@ class GUI_Graph(Frame):
     # --------------------
     def drawStackPlot(self, data, canvas, graphContent, graphData):
 
-        # Get canvas dimensions
-        canvasWidth  = canvas.get_tk_widget().winfo_width()
-        canvasHeight = canvas.get_tk_widget().winfo_height()
+        if not len(data.graph_groups):
+            canvas.figure = Figure()
+            canvas.draw()
+        else:
 
-        dates  = []
-        values = {}
+            # Get canvas dimensions
+            canvasWidth  = canvas.get_tk_widget().winfo_width()
+            canvasHeight = canvas.get_tk_widget().winfo_height()
 
-        # Find all dates
-        for groupKey in sorted(data.graph_groups.keys()):
-            for subGroup in sorted(data.graph_groups[groupKey].sub.keys()):
-                dates.append(subGroup)
+            dates  = []
+            values = {}
 
-        # Remove duplicated dates
-        dates = sorted(list(set(dates)))
+            # Find all dates
+            for groupKey in sorted(data.graph_groups.keys()):
+                for subGroup in sorted(data.graph_groups[groupKey].sub.keys()):
+                    dates.append(subGroup)
 
-        # Sum data
-        for groupKey in sorted(data.graph_groups.keys()):
-            values[groupKey] = []
-            sum = 0
+            # Remove duplicated dates
+            dates = sorted(list(set(dates)))
 
-            for date in dates:
-                if date in data.graph_groups[groupKey].sub.keys():
-                    if graphData == VAR.GRAPH_DATA_ITEMCOUNTGROWTH:
-                        sum += data.graph_groups[groupKey].sub[date].item_count
-                    if graphData == VAR.GRAPH_DATA_TOTALPRICEGROWTH:
-                        sum += data.graph_groups[groupKey].sub[date].total_price
+            # Sum data
+            for groupKey in sorted(data.graph_groups.keys()):
+                values[groupKey] = []
+                sum = 0
 
-                values[groupKey].append(sum)
+                for date in dates:
+                    if date in data.graph_groups[groupKey].sub.keys():
+                        if graphData == VAR.GRAPH_DATA_ITEMCOUNTGROWTH:
+                            sum += data.graph_groups[groupKey].sub[date].item_count
+                        if graphData == VAR.GRAPH_DATA_TOTALPRICEGROWTH:
+                            sum += data.graph_groups[groupKey].sub[date].total_price
 
-        # Setup graph
-        fig = Figure(figsize=(canvasWidth/100, canvasHeight/100), dpi=100)
-        fig.tight_layout()
-        fig.subplots_adjust(left   = self.widthPercentage(canvasWidth, 90),
-                            bottom = self.widthPercentage(canvasHeight, 40),
-                            right  = (1-self.widthPercentage(canvasWidth, 20)),
-                            top    = (1-self.widthPercentage(canvasHeight, 35)))
+                    values[groupKey].append(sum)
 
-        ax = fig.add_subplot()
-        ax.margins(x=0, y=0)
-        ax.autoscale(True)
-        ax.set_ylabel(graphData)
-        ax.set_title(graphContent)
+            # Setup graph
+            fig = Figure(figsize=(canvasWidth/100, canvasHeight/100), dpi=100)
+            fig.tight_layout()
+            fig.subplots_adjust(left   = self.widthPercentage(canvasWidth, 90),
+                                bottom = self.widthPercentage(canvasHeight, 40),
+                                right  = (1-self.widthPercentage(canvasWidth, 20)),
+                                top    = (1-self.widthPercentage(canvasHeight, 35)))
 
-        if self.graph_show_grid.get():
-            ax.grid(color="#95A5A6", linestyle="--", linewidth=2, axis="y", alpha=0.7)
+            ax = fig.add_subplot()
+            ax.margins(x=0, y=0)
+            ax.autoscale(True)
+            ax.set_ylabel(graphData)
+            ax.set_title(graphContent)
 
-        stacks = ax.stackplot(dates, values.values(), labels=values.keys())
+            if self.graph_show_grid.get():
+                ax.grid(color="#95A5A6", linestyle="--", linewidth=2, axis="y", alpha=0.7)
 
-        ax.legend(loc='upper left', ncol=5, fontsize=6)
+            stacks = ax.stackplot(dates, values.values(), labels=values.keys())
 
-        canvas.figure = fig
-        canvas.draw()
+            ax.legend(loc='upper left', ncol=5, fontsize=6)
+
+            canvas.figure = fig
+            canvas.draw()
 
 
     ######################
@@ -480,57 +493,62 @@ class GUI_Graph(Frame):
     # --------------------
     def drawLinePlot(self, data, canvas, graphContent, graphData):
 
-        # Get canvas dimensions
-        canvasWidth  = canvas.get_tk_widget().winfo_width()
-        canvasHeight = canvas.get_tk_widget().winfo_height()
+        if not len(data.graph_groups):
+            canvas.figure = Figure()
+            canvas.draw()
+        else:
 
-        dates  = []
-        values = {}
+            # Get canvas dimensions
+            canvasWidth  = canvas.get_tk_widget().winfo_width()
+            canvasHeight = canvas.get_tk_widget().winfo_height()
 
-        # Find all dates
-        for groupKey in sorted(data.graph_groups.keys()):
-            for subGroup in sorted(data.graph_groups[groupKey].sub.keys()):
-                dates.append(subGroup)
+            dates  = []
+            values = {}
 
-        # Remove duplicated dates
-        dates = sorted(list(set(dates)))
+            # Find all dates
+            for groupKey in sorted(data.graph_groups.keys()):
+                for subGroup in sorted(data.graph_groups[groupKey].sub.keys()):
+                    dates.append(subGroup)
 
-        # Sum Data
-        for groupKey in sorted(data.graph_groups.keys()):
-            values[groupKey] = []
-            sum = 0
+            # Remove duplicated dates
+            dates = sorted(list(set(dates)))
 
-            for date in dates:
-                if date in data.graph_groups[groupKey].sub.keys():
-                    if graphData == VAR.GRAPH_DATA_ITEMCOUNTGROWTH:
-                        sum += data.graph_groups[groupKey].sub[date].item_count
-                    if graphData == VAR.GRAPH_DATA_TOTALPRICEGROWTH:
-                        sum += data.graph_groups[groupKey].sub[date].total_price
+            # Sum Data
+            for groupKey in sorted(data.graph_groups.keys()):
+                values[groupKey] = []
+                sum = 0
 
-                values[groupKey].append(sum)
+                for date in dates:
+                    if date in data.graph_groups[groupKey].sub.keys():
+                        if graphData == VAR.GRAPH_DATA_ITEMCOUNTGROWTH:
+                            sum += data.graph_groups[groupKey].sub[date].item_count
+                        if graphData == VAR.GRAPH_DATA_TOTALPRICEGROWTH:
+                            sum += data.graph_groups[groupKey].sub[date].total_price
 
-        # Setup graph
-        fig = Figure(figsize=(canvasWidth/100, canvasHeight/100), dpi=100)
-        fig.tight_layout()
-        fig.subplots_adjust(left   = self.widthPercentage(canvasWidth, 90),
-                            bottom = self.widthPercentage(canvasHeight, 40),
-                            right  = (1-self.widthPercentage(canvasWidth, 20)),
-                            top    = (1-self.widthPercentage(canvasHeight, 35)))
+                    values[groupKey].append(sum)
 
-        ax = fig.add_subplot()
-        ax.margins(x=0, y=0)
-        ax.autoscale(True)
-        ax.set_ylabel(graphData)
-        ax.set_title(graphContent)
+            # Setup graph
+            fig = Figure(figsize=(canvasWidth/100, canvasHeight/100), dpi=100)
+            fig.tight_layout()
+            fig.subplots_adjust(left   = self.widthPercentage(canvasWidth, 90),
+                                bottom = self.widthPercentage(canvasHeight, 40),
+                                right  = (1-self.widthPercentage(canvasWidth, 20)),
+                                top    = (1-self.widthPercentage(canvasHeight, 35)))
 
-        if self.graph_show_grid.get():
-            ax.grid(color="#95A5A6", linestyle="--", linewidth=2, axis="y", alpha=0.7)
+            ax = fig.add_subplot()
+            ax.margins(x=0, y=0)
+            ax.autoscale(True)
+            ax.set_ylabel(graphData)
+            ax.set_title(graphContent)
+
+            if self.graph_show_grid.get():
+                ax.grid(color="#95A5A6", linestyle="--", linewidth=2, axis="y", alpha=0.7)
 
 
-        for groupKey in sorted(data.graph_groups.keys()):
-            ax.plot(dates, values[groupKey], label=groupKey, alpha=0.5)
+            for groupKey in sorted(data.graph_groups.keys()):
+                ax.plot(dates, values[groupKey], label=groupKey, alpha=0.5)
 
-        ax.legend(loc='upper left', ncol=5, fontsize=6)
+            ax.legend(loc='upper left', ncol=5, fontsize=6)
 
-        canvas.figure = fig
-        canvas.draw()
+            canvas.figure = fig
+            canvas.draw()

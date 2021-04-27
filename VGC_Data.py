@@ -61,7 +61,7 @@ class CollectionItem(object):
 
     # Constructor
     # Parses csv-line to CollectionItem
-    def __init__(self, csv_line = "", index = 0, localItemData_List = {}, platformKeywords_List = {}):
+    def __init__(self, csv_line = "", index = 0, localItemData_List = {}, platformKeywords_List = {}, combinePlatforms = False):
         csv_fields  = csv_line.split("\",\"")
 
         for index, field in enumerate(csv_fields):
@@ -85,7 +85,7 @@ class CollectionItem(object):
         if csv_line != "":
             self.VGC_id   = int(csv_fields[CSVColumns.VGC_id])
             self.name     = csv_fields[CSVColumns.name]
-            self.platform = self.getPlatformName(csv_fields[CSVColumns.platform])
+            self.platform = self.getPlatformName(csv_fields[CSVColumns.platform], combinePlatforms)
             self.price    = float(csv_fields[CSVColumns.price])
             self.date     = csv_fields[CSVColumns.date]
             self.region   = self.getRegion(csv_fields[CSVColumns.platform])
@@ -117,12 +117,24 @@ class CollectionItem(object):
             if self.id() in localItemData_List.keys():
                 self.localData = localItemData_List[self.id()]
 
-    def getPlatformName(self, platformString):
+    def getPlatformName(self, platformString, combinePlatforms):
+
         platformString = platformString.strip()
+
         if platformString[-4] == "[" and platformString[-1] == "]":
-            return platformString[0:len(platformString)-4].strip()
+            platformString = platformString[0:len(platformString)-4].strip()
         else:
-            return platformString
+            platformString = platformString
+
+        if combinePlatforms:
+            if not platformString == CAT_HARDWARE:
+                platformString = platformString.removesuffix(CAT_HARDWARE).strip()
+            if not platformString == CAT_ACCESSORY:
+                platformString = platformString.removesuffix(CAT_ACCESSORY).strip()
+            if not platformString == CAT_ACCESSORIES:
+                platformString = platformString.removesuffix(CAT_ACCESSORIES).strip()
+
+        return platformString
 
     def getRegion(self, platformString):
         platformString = platformString.strip()
@@ -265,15 +277,6 @@ class CollectionData(object):
     collection_items = []
 
     # Sums
-    totals          = DataTotal()
-    years           = OrderedDict()
-    months          = OrderedDict()
-    days            = OrderedDict()
-    platforms       = OrderedDict()
-    platformHolders = OrderedDict()
-    categories      = OrderedDict()
-    regions         = OrderedDict()
-
     groups             = OrderedDict()
     graph_groups       = OrderedDict()
     groupKey_priceHigh = ""
@@ -300,9 +303,6 @@ class CollectionData(object):
     # readData
     def readData(self):
         if len(self.csv_file) and os.path.exists(self.csv_file):
-            # Print file name to console
-            print("\n  Analyzing File: " + self.csv_file + "\n")
-
             # Open file
             file_handle    = open(self.csv_file, "r", encoding="utf-8")
 
@@ -312,20 +312,22 @@ class CollectionData(object):
             # Close file
             file_handle.close()
 
+    # buildSaveData
     def buildSaveData(self):
         for item in self.collection_items:
             if item.localData:
                 self.localData_list[item.id()] = item.localData
 
+
     # parseData
-    def parseData(self, bookmarks = []):
+    def parseData(self, combinePlatforms = False):
         self.collection_items      = []
         self.platformKeywords_List = readJson(PLATFORM_KEYWORDS_FILE)
 
         index = 0
 
         for line in self.csv_lines[1:]:
-            item = CollectionItem(line, localItemData_List=self.localData_list, platformKeywords_List=self.platformKeywords_List)
+            item = CollectionItem(line, localItemData_List=self.localData_list, platformKeywords_List=self.platformKeywords_List, combinePlatforms=combinePlatforms)
 
             item.index = index
 
@@ -537,12 +539,18 @@ class CollectionData(object):
 
     # sumData
     def sumData(self):
-        self.totals = DataTotal()
+        self.totals          = DataTotal()
+        self.years           = OrderedDict()
+        self.months          = OrderedDict()
+        self.days            = OrderedDict()
+        self.platforms       = OrderedDict()
+        self.platformHolders = OrderedDict()
+        self.categories      = OrderedDict()
+        self.regions         = OrderedDict()
 
         # Sum data
         #--------------------
         for item in self.getFilteredData():
-
             # Sum platforms
             self.sumDataDict(item.platform, self.platforms, item)
 

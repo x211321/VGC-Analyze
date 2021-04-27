@@ -83,19 +83,23 @@ class Checkbutton_(Checkbutton):
                  id="", check=0,
                  label="",
                  justify="left",
-                 width=0, command=None):
+                 padx=0, pady=0,
+                 width=0, command=None,
+                 default = False):
 
-        super().__init__(master=master, text=label, justify=justify, width=width, command=command)
+        super().__init__(master=master, text=label, padx=padx, pady=pady, justify=justify, width=width, command=command)
 
         self.id   = id
         self.value = IntVar(self, check, id)
         self.config(variable=self.value)
 
+        self.set(default)
+
     def get(self):
         return self.value.get()
 
-    def set(self, text):
-        self.value.set(text)
+    def set(self, newValue):
+        self.value.set(newValue)
 
 
 ######################

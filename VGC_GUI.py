@@ -137,7 +137,7 @@ class GUI(Tk):
         # Read, parse and sum collection data
         #--------------------
         self.collectionData.readData()
-        self.collectionData.parseData()
+        self.collectionData.parseData(self.view_frame.file_frame.combine_platforms.get())
         self.collectionData.sumData()
 
         self.filter_frame.fillPlatformCombobox()
@@ -347,7 +347,7 @@ class GUI(Tk):
     ######################
     # setCurrentVGCFile
     # --------------------
-    def setCurrentVGCFile(self, event):
-        self.collectionData.csv_file = VAR.DATA_PATH + self.view_frame.file_frame.item_select.get()
+    def setCurrentVGCFile(self, a = None):
+        self.collectionData.csv_file = VAR.DATA_PATH + self.view_frame.file_frame.file_select.get()
         self.readData()
         self.showData()
