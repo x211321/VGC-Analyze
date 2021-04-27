@@ -59,9 +59,11 @@ class Entry_(Entry):
     def __init__(self, master=None,
                  id="", text="",
                  justify="left",
-                 width=0, show=""):
+                 width=0, show="",
+                 bg=None, fg=None,
+                 relief=None):
 
-        super().__init__(master=master, justify=justify, width=width, show=show)
+        super().__init__(master=master, justify=justify, width=width, show=show, bg=bg, fg=fg, relief=relief)
 
         self.id   = id
         self.text = StringVar(self, text, id)

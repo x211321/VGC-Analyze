@@ -198,7 +198,7 @@ class Pop_ItemSearch(object):
     def show(self):
 
         w = 310
-        h = 110
+        h = 135
 
         # Get selected row
         selection = self.treeView.focus()
@@ -226,21 +226,31 @@ class Pop_ItemSearch(object):
 
         # Functions
         # ------------------
-        label_search      = Label_(self.window, anchor="w", text="Search for")
-        self.input_search = Entry_(self.window, width=35)
-        self.label_info   = Label_(self.window, anchor="w", fg="#F00")
-        btn_search        = Button(self.window, text="Search", relief="groove")
+        self.input_frame  = Frame(self.window, bg="white")
+        self.button_frame = Frame(self.window, bg="#F0F0F0")
 
-        label_search.grid(row=0, column=0, pady=(15,10), padx=10, sticky="w")
-        self.input_search.grid(row=0, column=1, pady=(15,10), padx=10, sticky="w")
-        self.label_info.grid(row=1, column=0, padx=10, sticky="nwse", columnspan=2)
+        self.input_frame.grid(row=0, column=0, sticky="nwse")
+        self.button_frame.grid(row=1, column=0, sticky="nwse")
 
-        btn_search.grid(row=2, column=0, pady=(10,10), padx=10, sticky="nwse", columnspan=2)
+        self.button_frame.columnconfigure(1, weight=1)
+
+        self.label_search = Label_(self.input_frame, anchor="w", text="Search for", bg="white")
+        self.input_search = Entry_(self.input_frame, width=35, relief="solid")
+        self.label_info   = Label_(self.input_frame, width=35, anchor="w", fg="#F00", bg="white")
+
+        self.btn_cancel   = Button(self.button_frame, width=15, text="Cancel", relief="groove", bg=VAR.BUTTON_COLOR_BAD, command=self.close)
+        self.btn_spacer   = Label_(self.button_frame, bg="#F0F0F0")
+        self.btn_search   = Button(self.button_frame, width=15, text="Search", relief="groove", bg=VAR.BUTTON_COLOR_GOOD, command=self.search)
+
+        self.label_search.grid(row=0, column=0, pady=(15,10), padx=(15, 5), sticky="w")
+        self.input_search.grid(row=0, column=1, pady=(15,10), padx=(5, 15), sticky="w")
+        self.label_info.grid(row=1, column=0, pady=(0, 10), padx=15, sticky="nwse", columnspan=2)
+
+        self.btn_cancel.grid(row=2, column=0, pady=20, padx=15, sticky="e")
+        self.btn_spacer.grid(row=2, column=1)
+        self.btn_search.grid(row=2, column=2, pady=20, padx=15, sticky="w")
 
         self.input_search.bind('<Return>', self.search)
-
-        btn_search.config(command=self.search)
-
         self.input_search.focus()
 
         # Run main loop of new window
