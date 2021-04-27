@@ -335,16 +335,18 @@ class Pop_FilterSelect(object):
         self.frame_options.grid(row=0, column=0, padx=10, pady=10, sticky="nesw")
         self.frame_buttons.grid(row=1, column=0, sticky="nesw")
 
-        self.btn_reset = Button(self.frame_buttons, width=20, text="Reset", relief="groove", command=self.reset, bg=VAR.BUTTON_COLOR_BAD)
+        self.btn_cancel= Button(self.frame_buttons, width=20, text="Cancel", relief="groove", command=self.close, bg=VAR.BUTTON_COLOR_BAD)
+        self.btn_reset = Button(self.frame_buttons, width=20, text="Reset", relief="groove", command=self.reset, bg="white")
         self.btn_all   = Button(self.frame_buttons, width=20, text="Select all", relief="groove", command=self.selectAll, bg="white")
         self.btn_ok    = Button(self.frame_buttons, width=20, text="OK", relief="groove", command=self.confirm, bg=VAR.BUTTON_COLOR_GOOD)
 
-        self.btn_reset.grid(row=0, column=0, padx=10, pady=20, sticky="w")
-        self.btn_all.grid(row=0, column=1, padx=10, pady=20, sticky="e")
-        self.btn_ok.grid(row=0, column=2, padx=10, pady=20, sticky="e")
+        self.btn_cancel.grid(row=0, column=0, padx=10, pady=20, sticky="w")
+        self.btn_reset.grid(row=0, column=1, padx=10, pady=20, sticky="w")
+        self.btn_all.grid(row=0, column=2, padx=10, pady=20, sticky="e")
+        self.btn_ok.grid(row=0, column=3, padx=10, pady=20, sticky="e")
 
         self.frame_buttons.columnconfigure(0, weight=1)
-        self.frame_buttons.columnconfigure(2, weight=1)
+        self.frame_buttons.columnconfigure(3, weight=1)
 
         row = 0
         col = 0
