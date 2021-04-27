@@ -11,13 +11,11 @@ from VGC_Img      import loadIcon
 from gui.VGC_GUI_ItemInfo       import GUI_ItemInfo
 from gui.VGC_GUI_Filter         import initFilter
 from gui.VGC_GUI_CollectionInfo import GUI_CollectionInfo
-from gui.VGC_GUI_Treeview       import initTreeView
-from gui.VGC_GUI_Treeview       import treeviewSort
+from gui.VGC_GUI_TreeView       import GUI_TreeView
 from gui.VGC_GUI_Graph          import GUI_Graph
 from gui.VGC_GUI_Menu           import initMainMenu
 from gui.VGC_GUI_Hotkeys        import initHotkeys
 from gui.VGC_GUI_Popups         import initPopups
-from gui.VGC_GUI_Fileselect     import initFileSelect
 
 from VGC_Var import LOCAL_DATA_FILE
 from VGC_Var import DATA_PATH
@@ -61,8 +59,7 @@ class GUI(Tk):
         # Frames
         # ------------------
         self.filter_frame = Frame(self, width=200 , height=550, pady=10, padx=10)
-        self.view_frame   = Frame(self, width=600 , height=550, pady=0 , padx=0)
-        self.file_frame   = Frame(self.view_frame, width=1000, height=100, pady=10, padx=10)
+        self.view_frame   = GUI_TreeView(self, width=600 , height=550, pady=0 , padx=0)
         self.item_frame   = GUI_ItemInfo(self, width=200 , height=550, pady=0 , padx=0)
         self.graph_frame  = GUI_Graph(self, width=1000, height=200, pady=0 , padx=0)
         self.info_frame   = GUI_CollectionInfo(self, width=1000, height=200, pady=10, padx=10)
@@ -70,7 +67,6 @@ class GUI(Tk):
 
         self.filter_frame.grid(row=0, column=0, sticky="nws", rowspan=3)
         self.view_frame.grid(row=0, column=1, sticky="nwes")
-        self.file_frame.pack(side=TOP, fill=X)
         self.item_frame.grid(row=0, column=2, sticky="nes", rowspan=3)
         self.info_frame.grid(row=3, column=1, sticky="nwes")
         self.graph_frame.grid(row=2, column=1, sticky="nwes")
@@ -90,12 +86,6 @@ class GUI(Tk):
     # init
     # --------------------
     def init(self):
-
-        # File selection
-        initFileSelect(self)
-
-        # Item treeview
-        initTreeView(self)
 
         # Filter
         initFilter(self)
@@ -185,9 +175,9 @@ class GUI(Tk):
         # Show group column
         if len(displayFilter.groupItems):
             self.collectionData.groupData()
-            self.item_view.column('#0', width=200, stretch="Yes")
+            self.view_frame.item_view.column('#0', width=200, stretch="Yes")
         else:
-            self.item_view.column('#0', width=0, stretch="No")
+            self.view_frame.item_view.column('#0', width=0, stretch="No")
 
         # Display totals
         self.info_frame.update(self)
@@ -197,7 +187,7 @@ class GUI(Tk):
             self.graph_frame.displayGraphs()
 
         # Clear treeview
-        self.item_view.delete(*self.item_view.get_children())
+        self.view_frame.item_view.delete(*self.view_frame.item_view.get_children())
 
         # Show data
         tvIndex = 0
@@ -212,7 +202,7 @@ class GUI(Tk):
 
                     groupData = self.collectionData.groups[group]
 
-                    self.item_view.insert(parent="",
+                    self.view_frame.item_view.insert(parent="",
                                           index = tvIndex,
                                           iid   = "#"+group,
                                           text  = group,
@@ -237,14 +227,14 @@ class GUI(Tk):
                     self.insertViewItem(tvIndex, item, "")
                     tvIndex += 1
 
-                treeviewSort(self.item_view, "Title", False)
+                self.view_frame.treeviewSort("Title", False)
 
 
     ######################
     # insertViewItem
     # --------------------
     def insertViewItem(self, index, item, parent = ""):
-        self.item_view.insert(parent= parent,
+        self.view_frame.item_view.insert(parent= parent,
                               index = index,
                               iid   = item.index,
                               text  = "",
@@ -255,7 +245,7 @@ class GUI(Tk):
     # updateViewItem
     # --------------------
     def updateViewItem(self, index, item):
-        self.item_view.item(index, values=self.itemToViewValues(item))
+        self.view_frame.item_view.item(index, values=self.itemToViewValues(item))
 
 
     ######################
@@ -401,12 +391,12 @@ class GUI(Tk):
     # --------------------
     def selectViewItem(self, a = None):
 
-        selection = self.item_view.focus()
+        selection = self.view_frame.item_view.focus()
 
         # Item with text = Group item
-        if not len(self.item_view.item(selection)["text"]):
-            if len(self.item_view.item(selection)["values"]):
-                self.index = self.item_view.item(selection)["values"][0]
+        if not len(self.view_frame.item_view.item(selection)["text"]):
+            if len(self.view_frame.item_view.item(selection)["values"]):
+                self.index = self.view_frame.item_view.item(selection)["values"][0]
 
                 if self.index >= 0:
                     # Update item info
@@ -417,7 +407,7 @@ class GUI(Tk):
     # toggleBookmark
     # --------------------
     def toggleBookmark(self):
-        selection = self.item_view.focus()
+        selection = self.view_frame.item_view.focus()
 
         if len(self.activeItem().id()):
             self.activeItem().localData["bookmarked"] = toggleYN(self.activeItem().getLocalData("bookmarked"))
@@ -429,7 +419,7 @@ class GUI(Tk):
     # toggleFinished
     # --------------------
     def toggleFinished(self):
-        selection = self.item_view.focus()
+        selection = self.view_frame.item_view.focus()
 
         if len(self.activeItem().id()):
             self.activeItem().localData["finished"] = toggleYN(self.activeItem().getLocalData("finished"))
@@ -452,6 +442,6 @@ class GUI(Tk):
     # setCurrentVGCFile
     # --------------------
     def setCurrentVGCFile(self, event):
-        self.collectionData.csv_file = DATA_PATH + self.item_select.get()
+        self.collectionData.csv_file = DATA_PATH + self.view_frame.file_frame.item_select.get()
         self.readData()
         self.showData()

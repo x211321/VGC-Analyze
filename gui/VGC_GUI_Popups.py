@@ -20,7 +20,7 @@ from VGC_Download import downloadCollection
 # --------------------
 def initPopups(gui):
     gui.pop_collectionDownload = Pop_CollectionDownload(gui, gui.collectionDownload_callback)
-    gui.pop_itemSearch         = Pop_ItemSearch(gui, gui.item_view)
+    gui.pop_itemSearch         = Pop_ItemSearch(gui, gui.view_frame.item_view)
 
 
 ######################
