@@ -546,7 +546,7 @@ class GUI_Graph(Frame):
 
 
             for groupKey in sorted(data.graph_groups.keys()):
-                ax.plot(dates, values[groupKey], label=groupKey, alpha=0.5)
+                ax.plot(dates, values[groupKey], label=groupKey)
 
             ax.legend(loc='upper left', ncol=5, fontsize=6)
 
