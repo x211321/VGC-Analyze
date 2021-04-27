@@ -1,10 +1,7 @@
 Duplikate finden
 Fehlende Cover auf Webseite finden
 Fehlende Barcodes auf Webseite finden
-Dateiname anzeigen
 Filter hilfe (regex, datumsformat, etc.)
-Bookmark all (displayed)
-Remove all bookmarks (displayed)
 Eigene Messageboxen (positionierbar / Topmost)
 Einstellungsdialog
 	Währung
@@ -18,19 +15,22 @@ Multifilter (mehrere Regionen, Platformen, etc.)
 EXE bundle img
 EXE virus https://stackoverflow.com/questions/43777106/program-made-with-pyinstaller-now-seen-as-a-trojan-horse-by-avg
 Multiselect
+	Bookmark all (selected) / contextmenu
+	Remove all bookmarks (selected) / contextmenu
 View double click -> detailed item view
 	CSV data
 	Local data
 	Covers
 Graph canvas scroll bar
 Download history
-Combine platforms (x + x hardware + x accessories)
 Bugs
 	klammern in filter strings -> regex kein ergebnis
 Treeview contextmenu
 	Bookmark, finished, open on VGC, details, online info
 
 ===DONE===
+Dateiname anzeigen
+Combine platforms (x + x hardware + x accessories)
 Group by platfrom holder
 	Json keywords
 Cover mouse hover Buttons anzeigen
