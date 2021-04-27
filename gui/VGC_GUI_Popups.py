@@ -136,7 +136,7 @@ class Pop_CollectionDownload(object):
                        " 1) \tExport your collection from your\n" +
                        "\tVGCollect.com user profile\n\n" +
                        " 2) \tPlace the resulting file into the \n" +
-                       "\tVGC Analyze program folder\n\n" +
+                       "\tVGC Analyze data folder\n\n" +
                        " 3) \tRestart VGC Analyzer")
 
         label_link.set("VGCollect.com user profile")
