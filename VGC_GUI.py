@@ -13,6 +13,7 @@ from gui.VGC_GUI_Filter         import GUI_Filter
 from gui.VGC_GUI_CollectionInfo import GUI_CollectionInfo
 from gui.VGC_GUI_TreeView       import GUI_TreeView
 from gui.VGC_GUI_Graph          import GUI_Graph
+from gui.VGC_GUI_Settings       import GUI_Settings
 from gui.VGC_GUI_Menu           import initMainMenu
 from gui.VGC_GUI_Hotkeys        import initHotkeys
 from gui.VGC_GUI_Popups         import initPopups
@@ -326,6 +327,13 @@ class GUI(Tk):
     # --------------------
     def showAbout(self):
         print()
+
+
+    ######################
+    # showSettings
+    # --------------------
+    def showSettings(self):
+        self.settings = GUI_Settings(self)
 
 
     ######################
