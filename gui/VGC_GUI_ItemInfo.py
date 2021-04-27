@@ -12,11 +12,7 @@ from VGC_Browser        import openItemInBrowser
 from VGC_Download       import downloadCovers
 from gui.VGC_GUI_Popups import Pop_CoverViewer
 
-from VGC_Var import COVER_WIDTH
-from VGC_Var import IMG_CACHE_FRONT
-from VGC_Var import IMG_CACHE_BACK
-from VGC_Var import IMG_CACHE_CART
-from VGC_Var import IMG_COVER_NONE
+import VGC_Var as VAR
 
 
 ######################
@@ -59,19 +55,19 @@ class GUI_ItemInfo(Frame):
 
         # Front cover widgets
         self.item_front_txt  = Label_(self, text="Front cover", anchor="w")
-        self.item_front      = Label_(self, anchor="w", imgdef=IMG_COVER_NONE, imgwidth=COVER_WIDTH)
+        self.item_front      = Label_(self, anchor="w", imgdef=VAR.IMG_COVER_NONE, imgwidth=VAR.COVER_WIDTH)
         self.item_front.bind("<Enter>", lambda x:self.onCoverEnter(self.item_front, "front"))
         self.item_front.bind("<Leave>", lambda x:self.onCoverLeave(self.item_front))
 
         # Back cover widgets
         self.item_back_txt   = Label_(self, text="Back cover", anchor="w")
-        self.item_back       = Label_(self, anchor="w", imgdef=IMG_COVER_NONE, imgwidth=COVER_WIDTH)
+        self.item_back       = Label_(self, anchor="w", imgdef=VAR.IMG_COVER_NONE, imgwidth=VAR.COVER_WIDTH)
         self.item_back.bind("<Enter>", lambda x:self.onCoverEnter(self.item_back, "back"))
         self.item_back.bind("<Leave>", lambda x:self.onCoverLeave(self.item_back))
 
         # Cart cover widgets
         self.item_cart_txt   = Label_(self, text="Cart cover", anchor="w")
-        self.item_cart       = Label_(self, anchor="w", imgdef=IMG_COVER_NONE, imgwidth=COVER_WIDTH)
+        self.item_cart       = Label_(self, anchor="w", imgdef=VAR.IMG_COVER_NONE, imgwidth=VAR.COVER_WIDTH)
         self.item_cart.bind("<Enter>", lambda x:self.onCoverEnter(self.item_cart, "cart"))
         self.item_cart.bind("<Leave>", lambda x:self.onCoverLeave(self.item_cart))
 
@@ -153,11 +149,11 @@ class GUI_ItemInfo(Frame):
     # onCoverEnter
     # --------------------
     def onCoverEnter(self, label, type):
-        self.coverButton_coverViewer = Button(label, bg="white", image=self.item_view_ico,
+        self.coverButton_coverViewer = Button(label, bg=VAR.INPUT_COLOR, image=self.item_view_ico,
                                               relief="groove", command=lambda:self.pop_coverViewer.show(type, self.activeItem()))
         self.coverButton_coverViewer.place(height=25, width=25, x=29, y=2)
 
-        self.coverButton_coverUpdate = Button(label, bg="white", image=self.item_refresh_ico,
+        self.coverButton_coverUpdate = Button(label, bg=VAR.INPUT_COLOR, image=self.item_refresh_ico,
                                               relief="groove", command=lambda:self.updateCover(type, self.activeItem()))
         self.coverButton_coverUpdate.place(height=25, width=25, x=2, y=2)
 
@@ -182,9 +178,9 @@ class GUI_ItemInfo(Frame):
     # showCovers
     # --------------------
     def showCovers(self, item):
-        self.item_front.setImage(IMG_CACHE_FRONT + str(item.VGC_id) + ".jpg")
-        self.item_back.setImage(IMG_CACHE_BACK + str(item.VGC_id) + ".jpg")
-        self.item_cart.setImage(IMG_CACHE_CART + str(item.VGC_id) + ".jpg")
+        self.item_front.setImage(VAR.IMG_CACHE_FRONT + str(item.VGC_id) + ".jpg")
+        self.item_back.setImage(VAR.IMG_CACHE_BACK + str(item.VGC_id) + ".jpg")
+        self.item_cart.setImage(VAR.IMG_CACHE_CART + str(item.VGC_id) + ".jpg")
 
 
     ######################

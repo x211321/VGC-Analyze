@@ -5,6 +5,8 @@ from tkinter import ttk
 
 from VGC_Img import loadImage
 
+import VGC_Var as VAR
+
 
 ######################
 # Label_
@@ -60,7 +62,7 @@ class Entry_(Entry):
                  id="", text="",
                  justify="left",
                  width=0, show="",
-                 bg=None, fg=None,
+                 bg=VAR.INPUT_COLOR, fg=None,
                  relief=None):
 
         super().__init__(master=master, justify=justify, width=width, show=show, bg=bg, fg=fg, relief=relief)

@@ -12,6 +12,11 @@ PLATFORM_KEYWORDS_FILE  = LOCAL_DATA + "VGC-Platform-Keywords.json"
 BUTTON_COLOR_GOOD = "#BDF593"
 BUTTON_COLOR_BAD  = "#F59398"
 
+GUI_COLOR_PRIMARY   = "white"
+GUI_COLOR_SECONDARY = "#F0F0F0"
+
+INPUT_COLOR = "white"
+
 # Categories
 CAT_HARDWARE     = "Hardware"
 CAT_ACCESSORY    = "Accessory"

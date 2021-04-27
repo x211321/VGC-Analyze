@@ -31,8 +31,8 @@ class GUI_Settings(Toplevel):
         self.focus_force()
 
         # Add frames
-        tab_frame = Frame(self, bg="white")
-        btn_frame = Frame(self, bg="#F0F0F0")
+        tab_frame = Frame(self, bg=VAR.GUI_COLOR_PRIMARY)
+        btn_frame = Frame(self, bg=VAR.GUI_COLOR_SECONDARY)
 
         tab_frame.grid(row=0, column=0, sticky="nwse")
         btn_frame.grid(row=1, column=0, sticky="nwse")
@@ -42,7 +42,7 @@ class GUI_Settings(Toplevel):
 
         # Add buttons
         btn_cancel  = Button(btn_frame, text="Cancel", width=20, relief="groove", bg=VAR.BUTTON_COLOR_BAD)
-        btn_spacer  = Label_(btn_frame, bg="#F0F0F0")
+        btn_spacer  = Label_(btn_frame, bg=VAR.GUI_COLOR_SECONDARY)
         btn_confirm = Button(btn_frame, text="OK", width=20, relief="groove", bg=VAR.BUTTON_COLOR_GOOD)
 
         btn_cancel.grid(row=0, column=0, sticky="e", padx=10, pady=20)

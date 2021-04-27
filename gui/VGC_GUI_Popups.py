@@ -56,7 +56,7 @@ class Pop_CoverViewer(object):
                 y = self.parent.winfo_y() + 50
 
                 # Create new window
-                self.window = Toplevel()
+                self.window = Toplevel(bg=VAR.GUI_COLOR_PRIMARY)
                 self.window.wm_title(item.name + " - " + coverType + " cover")
                 self.window.geometry("+"+str(x)+"+"+str(y))
                 self.window.resizable(False, False)
@@ -101,7 +101,7 @@ class Pop_CollectionDownload(object):
         y = int(self.parent.winfo_y() + (self.parent.winfo_height() / 2) - (h / 2))
 
         # Create new window
-        self.window = Toplevel()
+        self.window = Toplevel(bg=VAR.GUI_COLOR_PRIMARY)
         self.window.wm_title("Download collection")
         self.window.geometry(str(w)+"x"+str(h)+"+"+str(x)+"+"+str(y))
         self.window.resizable(False, False)
@@ -113,20 +113,20 @@ class Pop_CollectionDownload(object):
 
         # Functions
         # ------------------
-        self.input_frame  = Frame(self.window, bg="white")
-        self.button_frame = Frame(self.window, bg="#F0F0F0")
+        self.input_frame  = Frame(self.window, bg=VAR.GUI_COLOR_PRIMARY)
+        self.button_frame = Frame(self.window, bg=VAR.GUI_COLOR_SECONDARY)
 
         self.input_frame.grid(row=0, column=0, sticky="nwse")
         self.button_frame.grid(row=1, column=0, sticky="nwse")
 
         self.button_frame.columnconfigure(1, weight=1)
 
-        self.label_user   = Label_(self.input_frame, anchor="w", text="VGC Username", bg="white")
+        self.label_user   = Label_(self.input_frame, anchor="w", text="VGC Username", bg=VAR.GUI_COLOR_PRIMARY)
         self.input_user   = Entry_(self.input_frame, width=31, relief="solid")
-        self.label_pass   = Label_(self.input_frame, anchor="w", text="Password", bg="white")
+        self.label_pass   = Label_(self.input_frame, anchor="w", text="Password", bg=VAR.GUI_COLOR_PRIMARY)
         self.input_pass   = Entry_(self.input_frame, width=31, relief="solid", show="*")
         self.btn_cancel   = Button(self.button_frame, width=18, text="Cancel", relief="groove", bg=VAR.BUTTON_COLOR_BAD, command=self.close)
-        self.btn_spacer   = Label_(self.button_frame, bg="#F0F0F0")
+        self.btn_spacer   = Label_(self.button_frame, bg=VAR.GUI_COLOR_SECONDARY)
         self.btn_download = Button(self.button_frame, width=18, text="Download", relief="groove", bg=VAR.BUTTON_COLOR_GOOD, command=self.download)
         self.label_info   = Label_(self.button_frame, width=35)
         self.label_link   = Label_(self.button_frame, width=35, anchor="center")
@@ -135,7 +135,7 @@ class Pop_CollectionDownload(object):
         self.input_user.grid(row=0, column=1, pady=(15,10), padx=10, sticky="w")
 
         self.label_pass.grid(row=1, column=0, pady=(0,10), padx=10, sticky="w")
-        self.input_pass.grid(row=1, column=1, pady=(0,10), padx=10, sticky="w")
+        self.input_pass.grid(row=1, column=1, pady=(0,15), padx=10, sticky="w")
 
         self.btn_cancel.grid(row=0, column=0, pady=20, padx=10, sticky="e")
         self.btn_spacer.grid(row=0, column=1)
@@ -228,7 +228,7 @@ class Pop_ItemSearch(object):
         y = int(self.parent.winfo_y() + (self.parent.winfo_height() / 2) - (h / 2))
 
         # Create new window
-        self.window = Toplevel()
+        self.window = Toplevel(bg=VAR.GUI_COLOR_PRIMARY)
         self.window.wm_title("Search for item")
         self.window.geometry(str(w)+"x"+str(h)+"+"+str(x)+"+"+str(y))
         self.window.resizable(False, False)
@@ -238,20 +238,20 @@ class Pop_ItemSearch(object):
 
         # Functions
         # ------------------
-        self.input_frame  = Frame(self.window, bg="white")
-        self.button_frame = Frame(self.window, bg="#F0F0F0")
+        self.input_frame  = Frame(self.window, bg=VAR.GUI_COLOR_PRIMARY)
+        self.button_frame = Frame(self.window, bg=VAR.GUI_COLOR_SECONDARY)
 
         self.input_frame.grid(row=0, column=0, sticky="nwse")
         self.button_frame.grid(row=1, column=0, sticky="nwse")
 
         self.button_frame.columnconfigure(1, weight=1)
 
-        self.label_search = Label_(self.input_frame, anchor="w", text="Search for", bg="white")
+        self.label_search = Label_(self.input_frame, anchor="w", text="Search for", bg=VAR.GUI_COLOR_PRIMARY)
         self.input_search = Entry_(self.input_frame, width=35, relief="solid")
-        self.label_info   = Label_(self.input_frame, width=35, anchor="w", fg="#F00", bg="white")
+        self.label_info   = Label_(self.input_frame, width=35, anchor="w", fg="#F00", bg=VAR.GUI_COLOR_PRIMARY)
 
         self.btn_cancel   = Button(self.button_frame, width=15, text="Cancel", relief="groove", bg=VAR.BUTTON_COLOR_BAD, command=self.close)
-        self.btn_spacer   = Label_(self.button_frame, bg="#F0F0F0")
+        self.btn_spacer   = Label_(self.button_frame, bg=VAR.GUI_COLOR_SECONDARY)
         self.btn_search   = Button(self.button_frame, width=15, text="Search", relief="groove", bg=VAR.BUTTON_COLOR_GOOD, command=self.search)
 
         self.label_search.grid(row=0, column=0, pady=(15,10), padx=(15, 5), sticky="w")
@@ -345,22 +345,22 @@ class Pop_FilterSelect(object):
         self.close()
 
         # Create new window
-        self.window = Toplevel(bg="white")
+        self.window = Toplevel(bg=VAR.GUI_COLOR_PRIMARY)
         self.window.wm_title("Select " + filterType)
         self.window.resizable(False, False)
         self.window.iconphoto(False, loadIcon("filter-outline", 15, 15))
         self.window.bind('<Escape>', lambda x:self.close())
         self.window.focus_force()
 
-        self.frame_options = Frame(self.window, bg="white")
-        self.frame_buttons = Frame(self.window, bg="#F0F0F0")
+        self.frame_options = Frame(self.window, bg=VAR.GUI_COLOR_PRIMARY)
+        self.frame_buttons = Frame(self.window, bg=VAR.GUI_COLOR_SECONDARY)
 
         self.frame_options.grid(row=0, column=0, padx=10, pady=10, sticky="nesw")
         self.frame_buttons.grid(row=1, column=0, sticky="nesw")
 
         self.btn_cancel= Button(self.frame_buttons, width=20, text="Cancel", relief="groove", command=self.close, bg=VAR.BUTTON_COLOR_BAD)
-        self.btn_reset = Button(self.frame_buttons, width=20, text="Reset", relief="groove", command=self.reset, bg="white")
-        self.btn_all   = Button(self.frame_buttons, width=20, text="Select all", relief="groove", command=self.selectAll, bg="white")
+        self.btn_reset = Button(self.frame_buttons, width=20, text="Reset", relief="groove", command=self.reset, bg=VAR.INPUT_COLOR)
+        self.btn_all   = Button(self.frame_buttons, width=20, text="Select all", relief="groove", command=self.selectAll, bg=VAR.INPUT_COLOR)
         self.btn_ok    = Button(self.frame_buttons, width=20, text="OK", relief="groove", command=self.confirm, bg=VAR.BUTTON_COLOR_GOOD)
 
         self.btn_cancel.grid(row=0, column=0, padx=10, pady=20, sticky="w")
@@ -382,7 +382,7 @@ class Pop_FilterSelect(object):
         # Options
         # ------------------
         for option, data in sorted(options):
-            self.widgets[option] = Checkbutton_(self.frame_options, label=option, bg="white")
+            self.widgets[option] = Checkbutton_(self.frame_options, label=option, bg=VAR.GUI_COLOR_PRIMARY)
             self.widgets[option].grid(row=row, column=col, sticky="w", padx=5, pady=5)
 
             if option in activeOptions:
