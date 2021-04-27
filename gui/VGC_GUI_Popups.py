@@ -313,11 +313,12 @@ class Pop_FilterSelect(object):
 
     window = None
 
-    def __init__(self, parent, options, activeOptions, filterType, callback = None):
+    def __init__(self, parent, callback = None):
 
         self.parent   = parent
         self.callback = callback
 
+    def show(self, options, activeOptions, filterType):
         # Close previous window
         self.close()
 

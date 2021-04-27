@@ -21,6 +21,10 @@ class GUI_Filter(Frame):
         self.showData       = master.showData
         self.collectionData = master.collectionData
 
+        self.platformSelect       = Pop_FilterSelect(self, self.selectPlatformsCallback)
+        self.platformHolderSelect = Pop_FilterSelect(self, self.selectPlatformHoldersCallback)
+        self.regionSelect         = Pop_FilterSelect(self, self.selectRegionsCallback)
+
         self.init()
 
 
@@ -141,10 +145,7 @@ class GUI_Filter(Frame):
     # selectPlatforms
     # --------------------
     def selectPlatforms(self):
-        self.platformSelect = Pop_FilterSelect(self, self.collectionData.platforms.items(),
-                                                     self.multiFilter["platforms"],
-                                                     "platforms",
-                                                     self.selectPlatformsCallback)
+        self.platformSelect.show(self.collectionData.platforms.items(), self.multiFilter["platforms"], "platforms")
 
 
     ######################
@@ -163,10 +164,7 @@ class GUI_Filter(Frame):
     # selectPlatformHolders
     # --------------------
     def selectPlatformHolders(self):
-        self.platformHolderSelect = Pop_FilterSelect(self, self.collectionData.platformHolders.items(),
-                                                           self.multiFilter["platformHolders"],
-                                                           "platform holders",
-                                                           self.selectPlatformHoldersCallback)
+        self.platformHolderSelect.show(self.collectionData.platformHolders.items(), self.multiFilter["platformHolders"], "platform holders")
 
 
     ######################
@@ -185,10 +183,7 @@ class GUI_Filter(Frame):
     # selectRegions
     # --------------------
     def selectRegions(self):
-        self.regionSelect = Pop_FilterSelect(self, self.collectionData.regions.items(),
-                                                   self.multiFilter["regions"],
-                                                   "regions",
-                                                   self.selectRegionsCallback)
+        self.regionSelect.show( self.collectionData.regions.items(), self.multiFilter["regions"], "regions")
 
 
     ######################
