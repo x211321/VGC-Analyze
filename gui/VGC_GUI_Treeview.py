@@ -83,7 +83,7 @@ class GUI_TreeView(Frame):
         self.item_view.config(xscrollcommand=self.view_scroll_horizontal.set)
         self.view_scroll_horizontal.config(orient=HORIZONTAL, command=self.item_view.xview)
 
-        self.file_frame = GUI_File(self, width=1000, height=100, pady=10, padx=10)
+        self.file_frame = GUI_File(self, width=1000, height=100, pady=10, padx=0)
         self.file_frame.pack(side=TOP, fill=X)
 
         # Position view and scrollbar
