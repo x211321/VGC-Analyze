@@ -7,6 +7,7 @@ Einstellungsdialog
 	Währung
 	Datumsformat
 	Platformhalter keywords
+	Platform overwrite
 	Anzahl heruntergeladener Dateien die aufbewahrt werden sollen
 Datepicker
 About Dialog
