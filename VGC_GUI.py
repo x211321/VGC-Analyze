@@ -111,6 +111,28 @@ class GUI(Tk):
 
 
     ######################
+    # toggleFilterFrame
+    # --------------------
+    def toggleFilterFrame(self):
+        if self.filter_frame.winfo_ismapped():
+            self.filter_frame.grid_forget()
+        else:
+            self.filter_frame.grid(row=0, column=0, sticky="nws", rowspan=4)
+            self.update()
+
+
+    ######################
+    # toggleItemInfoFrame
+    # --------------------
+    def toggleItemInfoFrame(self):
+        if self.item_frame.winfo_ismapped():
+            self.item_frame.grid_forget()
+        else:
+            self.item_frame.grid(row=0, column=2, sticky="nes", rowspan=4)
+            self.update()
+
+
+    ######################
     # toggleGraphFrame
     # --------------------
     def toggleGraphFrame(self):

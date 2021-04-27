@@ -104,19 +104,24 @@ class GUI_ItemInfo(Frame):
         self.item_finished     = Button(self.item_tool_frame, relief="groove", image=self.item_finished_ico)
         self.item_itemdata     = Button(self.item_tool_frame, relief="groove", image=self.item_itemdata_ico)
         self.item_id           = Label_(self.item_tool_frame)
-        self.item_id.grid(row=0, column=0, columnspan=4, sticky="e")
+        self.item_spacer       = Label_(self.item_tool_frame)
+
+        self.item_tool_frame.columnconfigure(0, weight=1)
+
+        self.item_spacer.grid(row=0, column=0)
+        self.item_id.grid(row=0, column=1, columnspan=4, sticky="e", padx=(3,10))
 
         self.item_open_website.config(command=self.openOnVGCollect)
-        self.item_open_website.grid(row=1, column=0, sticky="nw", padx=3, pady=5)
+        self.item_open_website.grid(row=1, column=1, sticky="ne", padx=3, pady=5)
 
         self.item_bookmark.config(command=self.toggleBookmark)
-        self.item_bookmark.grid(row=1, column=1, sticky="nw", padx=(3), pady=5)
+        self.item_bookmark.grid(row=1, column=2, sticky="ne", padx=(3), pady=5)
 
         self.item_finished.config(command=self.toggleFinished)
-        self.item_finished.grid(row=1, column=2, sticky="nw", padx=(3), pady=5)
+        self.item_finished.grid(row=1, column=3, sticky="ne", padx=(3), pady=5)
 
         self.item_itemdata.config(command=self.getItemData)
-        self.item_itemdata.grid(row=1, column=3, sticky="nw", padx=(3), pady=5)
+        self.item_itemdata.grid(row=1, column=4, sticky="ne", padx=(3,10), pady=5)
 
 
     def update(self):

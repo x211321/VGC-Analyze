@@ -22,7 +22,9 @@ def initMainMenu(gui):
 
     # Window menu
     gui.window_menu = Menu(gui.main_menu, tearoff=0)
-    gui.window_menu.add_command(label="Graphs", command=gui.toggleGraphFrame, accelerator="Ctrl+G")
+    gui.window_menu.add_command(label="Filters", command=gui.toggleFilterFrame, accelerator="Alt+F")
+    gui.window_menu.add_command(label="Item info", command=gui.toggleItemInfoFrame, accelerator="Alt+I")
+    gui.window_menu.add_command(label="Graphs", command=gui.toggleGraphFrame, accelerator="Alt+G")
 
     # About menu
     gui.about_menu = Menu(gui.main_menu, tearoff=0)
