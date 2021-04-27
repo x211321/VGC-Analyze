@@ -3,10 +3,10 @@ import os
 from tkinter import *
 from tkinter import ttk
 
-from VGC_Data     import CollectionData
-from VGC_Data     import FilterData
-from VGC_Lib      import YNToX
-from VGC_Img      import loadIcon
+from VGC_Data import CollectionData
+from VGC_Data import FilterData
+from VGC_Lib  import YNToX
+from VGC_Img  import loadIcon
 
 from gui.VGC_GUI_ItemInfo       import GUI_ItemInfo
 from gui.VGC_GUI_Filter         import GUI_Filter
@@ -17,16 +17,9 @@ from gui.VGC_GUI_Menu           import initMainMenu
 from gui.VGC_GUI_Hotkeys        import initHotkeys
 from gui.VGC_GUI_Popups         import initPopups
 
-from VGC_Var import LOCAL_DATA_FILE
-from VGC_Var import DATA_PATH
-
-from VGC_Var import GRAPH_TYPE_BAR
-from VGC_Var import GRAPH_TYPE_PIE
-from VGC_Var import GRAPH_TYPE_STACK
-from VGC_Var import GRAPH_TYPE_LINE
+import VGC_Var as VAR
 
 from VGC_Lib import toggleYN
-
 from VGC_Json import writeJson
 
 
@@ -39,12 +32,10 @@ class GUI(Tk):
 
         super().__init__()
 
-
         # Data
         self.filterData     = FilterData()
         self.collectionData = CollectionData(self.filterData)
         self.index          = 0
-
 
         # Main window
         # ------------------
@@ -55,7 +46,6 @@ class GUI(Tk):
         self.state('zoomed')
         self.protocol("WM_DELETE_WINDOW", self.onClose)
 
-
         # Frames
         # ------------------
         self.filter_frame = GUI_Filter(self, width=200 , height=550, pady=10, padx=10)
@@ -64,19 +54,16 @@ class GUI(Tk):
         self.graph_frame  = GUI_Graph(self, width=1000, height=200, pady=0 , padx=0)
         self.info_frame   = GUI_CollectionInfo(self, width=1000, height=200, pady=10, padx=10)
 
-
-        self.filter_frame.grid(row=0, column=0, sticky="nws", rowspan=3)
+        self.filter_frame.grid(row=0, column=0, sticky="nws", rowspan=4)
         self.view_frame.grid(row=0, column=1, sticky="nwes")
-        self.item_frame.grid(row=0, column=2, sticky="nes", rowspan=3)
+        self.item_frame.grid(row=0, column=2, sticky="nes", rowspan=4)
         self.info_frame.grid(row=3, column=1, sticky="nwes")
         self.graph_frame.grid(row=2, column=1, sticky="nwes")
         self.graph_frame.grid_forget()
 
-
         self.grid_rowconfigure(0, weight=1)
         self.grid_rowconfigure(1, weight=0)
         self.grid_columnconfigure(1, weight=1)
-
 
         # Init
         self.init()
@@ -94,27 +81,6 @@ class GUI(Tk):
 
         # Main menu
         initMainMenu(self)
-
-
-    ######################
-    # onClose
-    # --------------------
-    def onClose(self):
-        self.collectionData.buildSaveData()
-        writeJson(self.collectionData.localData_list, LOCAL_DATA_FILE)
-        self.destroy()
-
-
-    ######################
-    # toggleGraphFrame
-    # --------------------
-    def toggleGraphFrame(self):
-        if self.graph_frame.winfo_ismapped():
-            self.graph_frame.grid_forget()
-        else:
-            self.graph_frame.grid(row=1, column=1, sticky="nwes")
-            self.update()
-            self.graph_frame.displayGraphs()
 
 
     ######################
@@ -136,6 +102,27 @@ class GUI(Tk):
 
 
     ######################
+    # onClose
+    # --------------------
+    def onClose(self):
+        self.collectionData.buildSaveData()
+        writeJson(self.collectionData.localData_list, VAR.LOCAL_DATA_FILE)
+        self.destroy()
+
+
+    ######################
+    # toggleGraphFrame
+    # --------------------
+    def toggleGraphFrame(self):
+        if self.graph_frame.winfo_ismapped():
+            self.graph_frame.grid_forget()
+        else:
+            self.graph_frame.grid(row=1, column=1, sticky="nwes")
+            self.update()
+            self.graph_frame.displayGraphs()
+
+
+    ######################
     # activeItem
     # --------------------
     def activeItem(self):
@@ -153,11 +140,11 @@ class GUI(Tk):
         self.collectionData.parseData()
         self.collectionData.sumData()
 
-        self.fillPlatformCombobox()
-        self.fillPlatformHolderCombobox()
-        self.fillRegionCombobox()
-        self.fillGroupCombobox()
-        self.fillOrderCombobox()
+        self.filter_frame.fillPlatformCombobox()
+        self.filter_frame.fillPlatformHolderCombobox()
+        self.filter_frame.fillRegionCombobox()
+        self.filter_frame.fillGroupCombobox()
+        self.filter_frame.fillOrderCombobox()
 
 
     ######################
@@ -228,6 +215,23 @@ class GUI(Tk):
                     tvIndex += 1
 
                 self.view_frame.treeviewSort("Title", False)
+
+
+    ######################
+    # selectViewItem
+    # --------------------
+    def selectViewItem(self, a = None):
+
+        selection = self.view_frame.item_view.focus()
+
+        # Item with text = Group item
+        if not len(self.view_frame.item_view.item(selection)["text"]):
+            if len(self.view_frame.item_view.item(selection)["values"]):
+                self.index = self.view_frame.item_view.item(selection)["values"][0]
+
+                if self.index >= 0:
+                    # Update item info
+                    self.item_frame.update()
 
 
     ######################
@@ -306,104 +310,6 @@ class GUI(Tk):
 
 
     ######################
-    # fillPlatformCombobox
-    # --------------------
-    def fillPlatformCombobox(self):
-        platforms = []
-        self.filter_frame.filterInputs["platform"].delete(0, END)
-
-        platforms.append("")
-
-        for platform, data in sorted(self.collectionData.platforms.items()):
-            platforms.append(platform)
-
-        self.filter_frame.filterInputs["platform"].setValues(platforms)
-
-
-    ######################
-    # fillPlatformHolderCombobox
-    # --------------------
-    def fillPlatformHolderCombobox(self):
-        platformHolders = []
-        self.filter_frame.filterInputs["platformHolder"].delete(0, END)
-
-        platformHolders.append("")
-
-        for platformHolder, data in sorted(self.collectionData.platformHolders.items()):
-            platformHolders.append(platformHolder)
-
-        self.filter_frame.filterInputs["platformHolder"].setValues(platformHolders)
-
-
-    ######################
-    # fillRegionCombobox
-    # --------------------
-    def fillRegionCombobox(self):
-        regions = []
-        self.filter_frame.filterInputs["region"].delete(0, END)
-
-        for region, data in sorted(self.collectionData.regions.items()):
-            regions.append(region)
-
-        self.filter_frame.filterInputs["region"].setValues(regions)
-
-
-    ######################
-    # fillGroupCombobox
-    # --------------------
-    def fillGroupCombobox(self):
-        groups = []
-        self.filter_frame.filterInputs["region"].delete(0, END)
-
-        groups.append("")
-        groups.append("year")
-        groups.append("month")
-        groups.append("day")
-        groups.append("name")
-        groups.append("region")
-        groups.append("platform")
-        groups.append("platform holder")
-        groups.append("notes")
-
-        self.filter_frame.filterInputs["group"].setValues(groups)
-
-
-    ######################
-    # fillOrderCombobox
-    # --------------------
-    def fillOrderCombobox(self):
-        orders = []
-        self.filter_frame.filterInputs["order"].delete(0, END)
-
-        orders.append("")
-        orders.append("name")
-        orders.append("price")
-        orders.append("date")
-        orders.append("region")
-        orders.append("platform")
-        orders.append("notes")
-
-        self.filter_frame.filterInputs["order"].setValues(orders)
-
-
-    ######################
-    # selectViewItem
-    # --------------------
-    def selectViewItem(self, a = None):
-
-        selection = self.view_frame.item_view.focus()
-
-        # Item with text = Group item
-        if not len(self.view_frame.item_view.item(selection)["text"]):
-            if len(self.view_frame.item_view.item(selection)["values"]):
-                self.index = self.view_frame.item_view.item(selection)["values"][0]
-
-                if self.index >= 0:
-                    # Update item info
-                    self.item_frame.update()
-
-
-    ######################
     # toggleBookmark
     # --------------------
     def toggleBookmark(self):
@@ -442,6 +348,6 @@ class GUI(Tk):
     # setCurrentVGCFile
     # --------------------
     def setCurrentVGCFile(self, event):
-        self.collectionData.csv_file = DATA_PATH + self.view_frame.file_frame.item_select.get()
+        self.collectionData.csv_file = VAR.DATA_PATH + self.view_frame.file_frame.item_select.get()
         self.readData()
         self.showData()

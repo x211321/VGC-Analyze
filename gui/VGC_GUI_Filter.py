@@ -14,7 +14,8 @@ class GUI_Filter(Frame):
     def __init__(self, master, width=0, height=0, pady=0, padx=0):
         super().__init__(master=master, width=width, height=height, pady=pady, padx=padx)
 
-        self.showData = master.showData
+        self.showData       = master.showData
+        self.collectionData = master.collectionData
 
         self.init()
 
@@ -111,10 +112,90 @@ class GUI_Filter(Frame):
     # --------------------
     def reset(self):
         for key in self.filterInputs:
-            print(key, self.filterInputs[key].__class__.__name__)
             if self.filterInputs[key].__class__.__name__ == "Entry_":
                 self.filterInputs[key].delete(0, END)
             if self.filterInputs[key].__class__.__name__ == "Combobox_":
                 self.filterInputs[key].set("")
 
         self.showData()
+
+
+    ######################
+    # fillPlatformCombobox
+    # --------------------
+    def fillPlatformCombobox(self):
+        platforms = []
+        self.filterInputs["platform"].delete(0, END)
+
+        platforms.append("")
+
+        for platform, data in sorted(self.collectionData.platforms.items()):
+            platforms.append(platform)
+
+        self.filterInputs["platform"].setValues(platforms)
+
+
+    ######################
+    # fillPlatformHolderCombobox
+    # --------------------
+    def fillPlatformHolderCombobox(self):
+        platformHolders = []
+        self.filterInputs["platformHolder"].delete(0, END)
+
+        platformHolders.append("")
+
+        for platformHolder, data in sorted(self.collectionData.platformHolders.items()):
+            platformHolders.append(platformHolder)
+
+        self.filterInputs["platformHolder"].setValues(platformHolders)
+
+
+    ######################
+    # fillRegionCombobox
+    # --------------------
+    def fillRegionCombobox(self):
+        regions = []
+        self.filterInputs["region"].delete(0, END)
+
+        for region, data in sorted(self.collectionData.regions.items()):
+            regions.append(region)
+
+        self.filterInputs["region"].setValues(regions)
+
+
+    ######################
+    # fillGroupCombobox
+    # --------------------
+    def fillGroupCombobox(self):
+        groups = []
+        self.filterInputs["region"].delete(0, END)
+
+        groups.append("")
+        groups.append("year")
+        groups.append("month")
+        groups.append("day")
+        groups.append("name")
+        groups.append("region")
+        groups.append("platform")
+        groups.append("platform holder")
+        groups.append("notes")
+
+        self.filterInputs["group"].setValues(groups)
+
+
+    ######################
+    # fillOrderCombobox
+    # --------------------
+    def fillOrderCombobox(self):
+        orders = []
+        self.filterInputs["order"].delete(0, END)
+
+        orders.append("")
+        orders.append("name")
+        orders.append("price")
+        orders.append("date")
+        orders.append("region")
+        orders.append("platform")
+        orders.append("notes")
+
+        self.filterInputs["order"].setValues(orders)
