@@ -554,9 +554,13 @@ class CollectionData(object):
         self.categories      = OrderedDict()
         self.regions         = OrderedDict()
 
-        # Sum data
+        self.platforms_all       = OrderedDict()
+        self.platformHolders_all = OrderedDict()
+        self.regions_all         = OrderedDict()
+
+        # Sum filtered data
         #--------------------
-        for item in self.collection_items:
+        for item in self.getFilteredData():
             # Sum platforms
             self.sumDataDict(item.platform, self.platforms, item)
 
@@ -585,6 +589,17 @@ class CollectionData(object):
 
             # Sum totals
             self.sumTotals(self.totals, item)
+
+        # Sum all
+        for item in self.collection_items:
+            # Sum platforms
+            self.sumDataDict(item.platform, self.platforms_all, item)
+
+            # Sum platform holders
+            self.sumDataDict(item.platformHolder, self.platformHolders_all, item)
+
+            # Sum regions
+            self.sumDataDict(item.region, self.regions_all, item)
 
 
     # sumTotals
