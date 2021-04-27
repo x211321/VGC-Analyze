@@ -19,9 +19,10 @@ class Label_(Label):
                  padx=0, pady=0,
                  wraplength=0, font=None,
                  img="", imgdef="", imgwidth=0,
-                 bg=None, fg=None):
+                 bg=None, fg=None,
+                 relief=None):
 
-        super().__init__(master=master, width=width, height=height, anchor=anchor, justify=justify, padx=padx, pady=pady, wraplength=wraplength, bg=bg, fg=fg)
+        super().__init__(master=master, width=width, height=height, anchor=anchor, justify=justify, padx=padx, pady=pady, wraplength=wraplength, bg=bg, fg=fg, relief=relief)
 
         self.id       = id
         self.imgdef   = imgdef
