@@ -4,9 +4,7 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
 
-from VGC_Var import IMG_CACHE_FRONT
-from VGC_Var import IMG_CACHE_BACK
-from VGC_Var import IMG_CACHE_CART
+import VGC_Var as VAR
 
 from VGC_Img import loadIcon
 
@@ -45,11 +43,11 @@ class Pop_CoverViewer(object):
         if not item == None:
             # Get cover path
             if coverType == "front":
-                img = IMG_CACHE_FRONT + str(item.VGC_id) + ".jpg"
+                img = VAR.IMG_CACHE_FRONT + str(item.VGC_id) + ".jpg"
             if coverType == "back":
-                img = IMG_CACHE_BACK + str(item.VGC_id) + ".jpg"
+                img = VAR.IMG_CACHE_BACK + str(item.VGC_id) + ".jpg"
             if coverType == "cart":
-                img = IMG_CACHE_CART + str(item.VGC_id) + ".jpg"
+                img = VAR.IMG_CACHE_CART + str(item.VGC_id) + ".jpg"
 
             if os.path.exists(img):
 
@@ -320,37 +318,33 @@ class Pop_FilterSelect(object):
         self.parent   = parent
         self.callback = callback
 
-        w = 310
-        h = 110
-
         # Close previous window
         self.close()
 
-        # Calculate position relative to main parent
-        x = int(self.parent.winfo_x() + (self.parent.winfo_width() / 2) - (w / 2))
-        y = int(self.parent.winfo_y() + (self.parent.winfo_height() / 2) - (h / 2))
-
         # Create new window
-        self.window = Toplevel()
+        self.window = Toplevel(bg="white")
         self.window.wm_title("Select " + filterType)
         self.window.resizable(False, False)
         self.window.iconphoto(False, loadIcon("filter-outline", 15, 15))
         self.window.bind('<Escape>', lambda x:self.close())
         self.window.focus_force()
 
-        self.frame_options = Frame(self.window)
-        self.frame_buttons = Frame(self.window)
+        self.frame_options = Frame(self.window, bg="white")
+        self.frame_buttons = Frame(self.window, bg="#F0F0F0")
 
-        self.frame_options.grid(row=0, column=0, padx=10, pady=10)
-        self.frame_buttons.grid(row=1, column=0, padx=10, pady=10)
+        self.frame_options.grid(row=0, column=0, padx=10, pady=10, sticky="nesw")
+        self.frame_buttons.grid(row=1, column=0, sticky="nesw")
 
-        self.btn_reset = Button(self.frame_buttons, width=20, text="Reset", relief="groove", command=self.reset)
-        self.btn_all   = Button(self.frame_buttons, width=20, text="Select all", relief="groove", command=self.selectAll)
-        self.btn_ok    = Button(self.frame_buttons, width=20, text="OK", relief="groove", command=self.confirm)
+        self.btn_reset = Button(self.frame_buttons, width=20, text="Reset", relief="groove", command=self.reset, bg=VAR.BUTTON_COLOR_BAD)
+        self.btn_all   = Button(self.frame_buttons, width=20, text="Select all", relief="groove", command=self.selectAll, bg="white")
+        self.btn_ok    = Button(self.frame_buttons, width=20, text="OK", relief="groove", command=self.confirm, bg=VAR.BUTTON_COLOR_GOOD)
 
-        self.btn_reset.grid(row=0, column=0)
-        self.btn_all.grid(row=0, column=1)
-        self.btn_ok.grid(row=0, column=2)
+        self.btn_reset.grid(row=0, column=0, padx=10, pady=20, sticky="w")
+        self.btn_all.grid(row=0, column=1, padx=10, pady=20, sticky="e")
+        self.btn_ok.grid(row=0, column=2, padx=10, pady=20, sticky="e")
+
+        self.frame_buttons.columnconfigure(0, weight=1)
+        self.frame_buttons.columnconfigure(2, weight=1)
 
         row = 0
         col = 0
@@ -363,7 +357,7 @@ class Pop_FilterSelect(object):
         # Options
         # ------------------
         for option, data in sorted(options):
-            self.widgets[option] = Checkbutton_(self.frame_options, label=option)
+            self.widgets[option] = Checkbutton_(self.frame_options, label=option, bg="white")
             self.widgets[option].grid(row=row, column=col, sticky="w", padx=5, pady=5)
 
             if option in activeOptions:

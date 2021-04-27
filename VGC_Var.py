@@ -8,6 +8,10 @@ DOWNLOAD_FILE           = DOWNLOAD_PATH + FILE_PREFIX + "VGC-Analyze-Download.cs
 LOCAL_DATA_FILE         = LOCAL_DATA + "VGC-Local-Data.json"
 PLATFORM_KEYWORDS_FILE  = LOCAL_DATA + "VGC-Platform-Keywords.json"
 
+# Colors
+BUTTON_COLOR_GOOD = "#BDF593"
+BUTTON_COLOR_BAD  = "#F59398"
+
 # Categories
 CAT_HARDWARE     = "Hardware"
 CAT_ACCESSORY    = "Accessory"

@@ -7,6 +7,8 @@ from VGC_Widgets import Combobox_
 
 from gui.VGC_GUI_Popups import Pop_FilterSelect
 
+import VGC_Var as VAR
+
 
 ######################
 # GUI_Filter
@@ -71,8 +73,8 @@ class GUI_Filter(Frame):
         self.filterInputs["order"]                  = Combobox_(self, state="readonly", width=10)
         self.filterInputs["orderDirection"]         = Combobox_(self, values=("", "ascending", "descending"), state="readonly", width=10)
 
-        self.filter_apply = Button(self, width=10, relief="groove", bg="#BDF593")
-        self.filter_reset = Button(self, width=10, relief="groove", bg="#F59398")
+        self.filter_apply = Button(self, width=10, relief="groove", bg=VAR.BUTTON_COLOR_GOOD)
+        self.filter_reset = Button(self, width=10, relief="groove", bg=VAR.BUTTON_COLOR_BAD)
 
         row = 0
         col = 0

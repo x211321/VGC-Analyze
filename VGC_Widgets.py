@@ -85,9 +85,10 @@ class Checkbutton_(Checkbutton):
                  justify="left",
                  padx=0, pady=0,
                  width=0, command=None,
-                 default = False):
+                 default = False,
+                 bg = None):
 
-        super().__init__(master=master, text=label, padx=padx, pady=pady, justify=justify, width=width, command=command)
+        super().__init__(master=master, text=label, padx=padx, pady=pady, justify=justify, width=width, command=command, bg=bg)
 
         self.id   = id
         self.value = IntVar(self, check, id)
