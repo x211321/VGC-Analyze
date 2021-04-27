@@ -111,10 +111,10 @@ class Pop_CollectionDownload(object):
 
         # Functions
         # ------------------
-        label_user      = Label_(self.window, anchor="w", text="Username")
-        self.input_user = Entry_(self.window, width=35)
+        label_user      = Label_(self.window, anchor="w", text="VGC Username")
+        self.input_user = Entry_(self.window, width=30)
         label_pass      = Label_(self.window, anchor="w", text="Password")
-        self.input_pass = Entry_(self.window, width=35, show="*")
+        self.input_pass = Entry_(self.window, width=30, show="*")
         btn_download    = Button(self.window, text="Download", relief="groove")
         label_info      = Label_(self.window, width=35)
         label_link      = Label_(self.window, width=35, anchor="center")
