@@ -9,7 +9,7 @@ from VGC_Lib      import YNToX
 from VGC_Img      import loadIcon
 
 from gui.VGC_GUI_ItemInfo       import GUI_ItemInfo
-from gui.VGC_GUI_Filter         import initFilter
+from gui.VGC_GUI_Filter         import GUI_Filter
 from gui.VGC_GUI_CollectionInfo import GUI_CollectionInfo
 from gui.VGC_GUI_TreeView       import GUI_TreeView
 from gui.VGC_GUI_Graph          import GUI_Graph
@@ -58,7 +58,7 @@ class GUI(Tk):
 
         # Frames
         # ------------------
-        self.filter_frame = Frame(self, width=200 , height=550, pady=10, padx=10)
+        self.filter_frame = GUI_Filter(self, width=200 , height=550, pady=10, padx=10)
         self.view_frame   = GUI_TreeView(self, width=600 , height=550, pady=0 , padx=0)
         self.item_frame   = GUI_ItemInfo(self, width=200 , height=550, pady=0 , padx=0)
         self.graph_frame  = GUI_Graph(self, width=1000, height=200, pady=0 , padx=0)
@@ -86,10 +86,6 @@ class GUI(Tk):
     # init
     # --------------------
     def init(self):
-
-        # Filter
-        initFilter(self)
-
         # Hotkeys
         initHotkeys(self)
 
@@ -99,6 +95,10 @@ class GUI(Tk):
         # Main menu
         initMainMenu(self)
 
+
+    ######################
+    # onClose
+    # --------------------
     def onClose(self):
         self.collectionData.buildSaveData()
         writeJson(self.collectionData.localData_list, LOCAL_DATA_FILE)
@@ -293,7 +293,7 @@ class GUI(Tk):
     # --------------------
     def getFilterInput(self):
         filterInput = self.filterData
-        filterInput.inputsToFilter(self.filterInputs)
+        filterInput.inputsToFilter(self.filter_frame.filterInputs)
 
         return filterInput
 
@@ -310,14 +310,14 @@ class GUI(Tk):
     # --------------------
     def fillPlatformCombobox(self):
         platforms = []
-        self.filterInputs["platform"].delete(0, END)
+        self.filter_frame.filterInputs["platform"].delete(0, END)
 
         platforms.append("")
 
         for platform, data in sorted(self.collectionData.platforms.items()):
             platforms.append(platform)
 
-        self.filterInputs["platform"].setValues(platforms)
+        self.filter_frame.filterInputs["platform"].setValues(platforms)
 
 
     ######################
@@ -325,14 +325,14 @@ class GUI(Tk):
     # --------------------
     def fillPlatformHolderCombobox(self):
         platformHolders = []
-        self.filterInputs["platformHolder"].delete(0, END)
+        self.filter_frame.filterInputs["platformHolder"].delete(0, END)
 
         platformHolders.append("")
 
         for platformHolder, data in sorted(self.collectionData.platformHolders.items()):
             platformHolders.append(platformHolder)
 
-        self.filterInputs["platformHolder"].setValues(platformHolders)
+        self.filter_frame.filterInputs["platformHolder"].setValues(platformHolders)
 
 
     ######################
@@ -340,12 +340,12 @@ class GUI(Tk):
     # --------------------
     def fillRegionCombobox(self):
         regions = []
-        self.filterInputs["region"].delete(0, END)
+        self.filter_frame.filterInputs["region"].delete(0, END)
 
         for region, data in sorted(self.collectionData.regions.items()):
             regions.append(region)
 
-        self.filterInputs["region"].setValues(regions)
+        self.filter_frame.filterInputs["region"].setValues(regions)
 
 
     ######################
@@ -353,7 +353,7 @@ class GUI(Tk):
     # --------------------
     def fillGroupCombobox(self):
         groups = []
-        self.filterInputs["region"].delete(0, END)
+        self.filter_frame.filterInputs["region"].delete(0, END)
 
         groups.append("")
         groups.append("year")
@@ -365,7 +365,7 @@ class GUI(Tk):
         groups.append("platform holder")
         groups.append("notes")
 
-        self.filterInputs["group"].setValues(groups)
+        self.filter_frame.filterInputs["group"].setValues(groups)
 
 
     ######################
@@ -373,7 +373,7 @@ class GUI(Tk):
     # --------------------
     def fillOrderCombobox(self):
         orders = []
-        self.filterInputs["order"].delete(0, END)
+        self.filter_frame.filterInputs["order"].delete(0, END)
 
         orders.append("")
         orders.append("name")
@@ -383,7 +383,7 @@ class GUI(Tk):
         orders.append("platform")
         orders.append("notes")
 
-        self.filterInputs["order"].setValues(orders)
+        self.filter_frame.filterInputs["order"].setValues(orders)
 
 
     ######################
