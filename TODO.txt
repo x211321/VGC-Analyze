@@ -11,7 +11,6 @@ Einstellungsdialog
 Datepicker
 About Dialog
 Listview Pos1 / Ende / Bild auf / Bild ab
-Multifilter (mehrere Regionen, Platformen, etc.)
 EXE bundle img
 EXE virus https://stackoverflow.com/questions/43777106/program-made-with-pyinstaller-now-seen-as-a-trojan-horse-by-avg
 Multiselect
@@ -29,6 +28,7 @@ Treeview contextmenu
 	Bookmark, finished, open on VGC, details, online info
 
 ===DONE===
+Multifilter (mehrere Regionen, Platformen, etc.)
 Dateiname anzeigen
 Combine platforms (x + x hardware + x accessories)
 Group by platfrom holder
