@@ -1,3 +1,5 @@
+import os
+
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
@@ -48,25 +50,27 @@ class Pop_CoverViewer(object):
             if coverType == "cart":
                 img = IMG_CACHE_CART + str(item.VGC_id) + ".jpg"
 
-            # Calculate position relative to main parent
-            x = self.parent.winfo_x() + self.parent.winfo_width() - 210 - coverSize
-            y = self.parent.winfo_y() + 50
+            if os.path.exists(img):
 
-            # Create new window
-            self.window = Toplevel()
-            self.window.wm_title(item.name + " - " + coverType + " cover")
-            self.window.geometry("+"+str(x)+"+"+str(y))
-            self.window.resizable(False, False)
-            self.window.iconphoto(False, loadIcon("eye-outline", 15, 15))
-            self.window.bind('<Escape>', lambda x:self.close())
-            self.window.focus_force()
+                # Calculate position relative to main parent
+                x = self.parent.winfo_x() + self.parent.winfo_width() - 210 - coverSize
+                y = self.parent.winfo_y() + 50
 
-            # Create and place cover label
-            coverViewer_cover = Label_(self.window, img=img, imgwidth=coverSize)
-            coverViewer_cover.pack(expand="Yes")
+                # Create new window
+                self.window = Toplevel()
+                self.window.wm_title(item.name + " - " + coverType + " cover")
+                self.window.geometry("+"+str(x)+"+"+str(y))
+                self.window.resizable(False, False)
+                self.window.iconphoto(False, loadIcon("eye-outline", 15, 15))
+                self.window.bind('<Escape>', lambda x:self.close())
+                self.window.focus_force()
 
-            # Run main loop of new window
-            self.window.mainloop()
+                # Create and place cover label
+                coverViewer_cover = Label_(self.window, img=img, imgwidth=coverSize)
+                coverViewer_cover.pack(expand="Yes")
+
+                # Run main loop of new window
+                self.window.mainloop()
 
     def close(self):
         if not self.window == None:
