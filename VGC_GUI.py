@@ -13,10 +13,7 @@ from gui.VGC_GUI_Filter         import initFilter
 from gui.VGC_GUI_CollectionInfo import GUI_CollectionInfo
 from gui.VGC_GUI_Treeview       import initTreeView
 from gui.VGC_GUI_Treeview       import treeviewSort
-from gui.VGC_GUI_Graph          import initGraph
-from gui.VGC_GUI_Graph          import drawGraph
-from gui.VGC_GUI_Graph          import fillGraphContentCombobox
-from gui.VGC_GUI_Graph          import fillGraphDataCombobox
+from gui.VGC_GUI_Graph          import GUI_Graph
 from gui.VGC_GUI_Menu           import initMainMenu
 from gui.VGC_GUI_Hotkeys        import initHotkeys
 from gui.VGC_GUI_Popups         import initPopups
@@ -44,6 +41,13 @@ class GUI(Tk):
 
         super().__init__()
 
+
+        # Data
+        self.filterData     = FilterData()
+        self.collectionData = CollectionData(self.filterData)
+        self.index          = 0
+
+
         # Main window
         # ------------------
         # self = Tk()
@@ -60,7 +64,7 @@ class GUI(Tk):
         self.view_frame   = Frame(self, width=600 , height=550, pady=0 , padx=0)
         self.file_frame   = Frame(self.view_frame, width=1000, height=100, pady=10, padx=10)
         self.item_frame   = GUI_ItemInfo(self, width=200 , height=550, pady=0 , padx=0)
-        self.graph_frame  = Frame(self, width=1000, height=200, pady=0 , padx=0)
+        self.graph_frame  = GUI_Graph(self, width=1000, height=200, pady=0 , padx=0)
         self.info_frame   = GUI_CollectionInfo(self, width=1000, height=200, pady=10, padx=10)
 
 
@@ -68,21 +72,14 @@ class GUI(Tk):
         self.view_frame.grid(row=0, column=1, sticky="nwes")
         self.file_frame.pack(side=TOP, fill=X)
         self.item_frame.grid(row=0, column=2, sticky="nes", rowspan=3)
-        self.graph_frame.grid(row=2, column=1, sticky="nwes")
         self.info_frame.grid(row=3, column=1, sticky="nwes")
+        self.graph_frame.grid(row=2, column=1, sticky="nwes")
+        self.graph_frame.grid_forget()
 
 
         self.grid_rowconfigure(0, weight=1)
         self.grid_rowconfigure(1, weight=0)
         self.grid_columnconfigure(1, weight=1)
-
-
-        # Data
-        self.filterData = FilterData()
-        self.collectionData        = CollectionData(self.filterData)
-        self.index                 = 0
-        self.activeGraphType       = ""
-        self.activeGraphContent    = ""
 
 
         # Init
@@ -102,9 +99,6 @@ class GUI(Tk):
 
         # Filter
         initFilter(self)
-
-        # Graph
-        initGraph(self)
 
         # Hotkeys
         initHotkeys(self)
@@ -130,7 +124,7 @@ class GUI(Tk):
         else:
             self.graph_frame.grid(row=1, column=1, sticky="nwes")
             self.update()
-            self.displayGraphs()
+            self.graph_frame.displayGraphs()
 
 
     ######################
@@ -200,7 +194,7 @@ class GUI(Tk):
 
         # Draw graphs
         if self.graph_frame.winfo_ismapped():
-            self.displayGraphs()
+            self.graph_frame.displayGraphs()
 
         # Clear treeview
         self.item_view.delete(*self.item_view.get_children())
@@ -441,50 +435,6 @@ class GUI(Tk):
             self.activeItem().localData["finished"] = toggleYN(self.activeItem().getLocalData("finished"))
 
             self.updateViewItem(selection, self.activeItem())
-
-
-    ######################
-    # onGraphTypeSelect
-    # --------------------
-    def onGraphTypeSelect(self, a = None):
-        newType =self.graph_type.get()
-
-        if (((newType == GRAPH_TYPE_STACK or newType == GRAPH_TYPE_LINE) and (self.activeGraphType == GRAPH_TYPE_BAR or self.activeGraphType == GRAPH_TYPE_PIE)) or
-           ((self.activeGraphType == GRAPH_TYPE_STACK or self.activeGraphType == GRAPH_TYPE_LINE) and (newType == GRAPH_TYPE_BAR or newType == GRAPH_TYPE_PIE))):
-
-            fillGraphContentCombobox(self, self.graph_type.get())
-            fillGraphDataCombobox(self, self.graph_type.get())
-
-        if newType == GRAPH_TYPE_PIE:
-            self.graph_show_grid.config(state=DISABLED)
-        else:
-            self.graph_show_grid.config(state=NORMAL)
-
-        self.activeGraphType = self.graph_type.get()
-
-        self.displayGraphs()
-
-
-    ######################
-    # onGraphContentSelect
-    # --------------------
-    def onGraphContentSelect(self, a = None):
-        self.activeGraphContent = self.graph_content.get()
-        self.displayGraphs()
-
-
-    ######################
-    # onGraphDataSelect
-    # --------------------
-    def onGraphDataSelect(self, a = None):
-        self.displayGraphs()
-
-
-    ######################
-    # displayGraphs
-    # --------------------
-    def displayGraphs(self):
-        drawGraph(self, self.collectionData, self.graph_canvas, self.graph_type.get(), self.graph_content.get(), self.graph_data.get())
 
 
     ######################
