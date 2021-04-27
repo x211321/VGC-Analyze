@@ -92,7 +92,7 @@ class Pop_CollectionDownload(object):
     def show(self):
 
         w = 315
-        h = 400
+        h = 420
 
         self.close()
 
@@ -109,46 +109,58 @@ class Pop_CollectionDownload(object):
         self.window.bind('<Escape>', lambda x:self.close())
         self.window.focus_force()
 
+        self.window.columnconfigure(0, weight=1)
+
         # Functions
         # ------------------
-        label_user      = Label_(self.window, anchor="w", text="VGC Username")
-        self.input_user = Entry_(self.window, width=30)
-        label_pass      = Label_(self.window, anchor="w", text="Password")
-        self.input_pass = Entry_(self.window, width=30, show="*")
-        btn_download    = Button(self.window, text="Download", relief="groove")
-        label_info      = Label_(self.window, width=35)
-        label_link      = Label_(self.window, width=35, anchor="center")
+        self.input_frame  = Frame(self.window, bg="white")
+        self.button_frame = Frame(self.window, bg="#F0F0F0")
 
-        label_user.grid(row=0, column=0, pady=(15,10), padx=10, sticky="w")
+        self.input_frame.grid(row=0, column=0, sticky="nwse")
+        self.button_frame.grid(row=1, column=0, sticky="nwse")
+
+        self.button_frame.columnconfigure(1, weight=1)
+
+        self.label_user   = Label_(self.input_frame, anchor="w", text="VGC Username", bg="white")
+        self.input_user   = Entry_(self.input_frame, width=31, relief="solid")
+        self.label_pass   = Label_(self.input_frame, anchor="w", text="Password", bg="white")
+        self.input_pass   = Entry_(self.input_frame, width=31, relief="solid", show="*")
+        self.btn_cancel   = Button(self.button_frame, width=18, text="Cancel", relief="groove", bg=VAR.BUTTON_COLOR_BAD, command=self.close)
+        self.btn_spacer   = Label_(self.button_frame, bg="#F0F0F0")
+        self.btn_download = Button(self.button_frame, width=18, text="Download", relief="groove", bg=VAR.BUTTON_COLOR_GOOD, command=self.download)
+        self.label_info   = Label_(self.button_frame, width=35)
+        self.label_link   = Label_(self.button_frame, width=35, anchor="center")
+
+        self.label_user.grid(row=0, column=0, pady=(15,10), padx=10, sticky="w")
         self.input_user.grid(row=0, column=1, pady=(15,10), padx=10, sticky="w")
 
-        label_pass.grid(row=1, column=0, pady=(0,10), padx=10, sticky="w")
+        self.label_pass.grid(row=1, column=0, pady=(0,10), padx=10, sticky="w")
         self.input_pass.grid(row=1, column=1, pady=(0,10), padx=10, sticky="w")
 
-        btn_download.grid(row=2, column=0, pady=(0,10), padx=10, sticky="nwse", columnspan=2)
+        self.btn_cancel.grid(row=0, column=0, pady=20, padx=10, sticky="e")
+        self.btn_spacer.grid(row=0, column=1)
+        self.btn_download.grid(row=0, column=2, pady=20, padx=10, sticky="w")
 
-        label_info.grid(row=3, column=0, pady=10, padx=10, sticky="nwse", columnspan=2)
-        label_link.grid(row=4, column=0, pady=(0, 10), padx=10, sticky="nwse", columnspan=2)
+        self.label_info.grid(row=1, column=0, pady=0, padx=10, sticky="nwse", columnspan=3)
+        self.label_link.grid(row=2, column=0, pady=(5, 10), padx=10, sticky="nwse", columnspan=3)
 
-        label_info.set("The provided login credentials will be used to\n"
-                       "download a backup of your collection from\n" +
-                       "your VGCollect.com user profile.\n\n" +
-                       "Your login information will not be saved or used\n" +
-                       "for any other purpose.\n\n" +
-                       "You can also provide your collection data manually:\n\n" +
-                       " 1) \tExport your collection from your\n" +
-                       "\tVGCollect.com user profile\n\n" +
-                       " 2) \tPlace the resulting file into the \n" +
-                       "\tVGC Analyze data folder\n\n" +
-                       " 3) \tRestart VGC Analyzer")
+        self.label_info.set("The provided login credentials will be used to\n"
+                            "download a backup of your collection from\n" +
+                            "your VGCollect.com user profile.\n\n" +
+                            "Your login information will not be saved or used\n" +
+                            "for any other purpose.\n\n" +
+                            "You can also provide your collection data manually:\n\n" +
+                            " 1) \tExport your collection from your\n" +
+                            "\tVGCollect.com user profile\n\n" +
+                            " 2) \tPlace the resulting file into the \n" +
+                            "\tVGC Analyze data folder\n\n" +
+                            " 3) \tRestart VGC Analyzer")
 
-        label_link.set("VGCollect.com user profile")
-        label_link.config(fg="blue", cursor="hand2")
-        label_link.bind("<Button-1>", openUserProfileInBrowser)
+        self.label_link.set("VGCollect.com user profile")
+        self.label_link.config(fg="blue", cursor="hand2")
+        self.label_link.bind("<Button-1>", openUserProfileInBrowser)
 
         self.input_pass.bind('<Return>', self.download)
-
-        btn_download.config(command=self.download)
 
         self.input_user.focus()
 
