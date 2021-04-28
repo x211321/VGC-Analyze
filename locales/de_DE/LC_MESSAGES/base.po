@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2021-04-28 22:10+0200\n"
-"PO-Revision-Date: 2021-04-29 00:05+0200\n"
+"PO-Revision-Date: 2021-04-29 00:28+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 "X-Generator: Poedit 2.4.3\n"
 
-#: ../VGC_Data.py:118
+#: ../VGC_Data.py:110
 msgid "[Other]"
 msgstr "[Andere]"
 
@@ -474,6 +474,17 @@ msgstr "Aufsteigend"
 #: ../VGC_Var.py:74
 msgid "descending"
 msgstr "Absteigend"
+
+#: ../VGC_Var.py:76
+msgid "Yes"
+msgstr "Ja"
+
+#: ../VGC_Var.py:77
+msgid "No"
+msgstr "Nein"
+
+msgid ""
+msgstr ""
 
 #~ msgid "total price:"
 #~ msgstr "Gesamtpreis:"

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2021-04-29 00:04+0200\n"
+"POT-Creation-Date: 2021-04-29 00:42+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 
 
-#: ../VGC_Data.py:118
+#: ../VGC_Data.py:110
 msgid "[Other]"
 msgstr ""
 
@@ -137,6 +137,14 @@ msgstr ""
 
 #: ../VGC_Var.py:74
 msgid "descending"
+msgstr ""
+
+#: ../VGC_Var.py:76
+msgid "Yes"
+msgstr ""
+
+#: ../VGC_Var.py:77
+msgid "No"
 msgstr ""
 
 #: ../gui/VGC_GUI_CollectionInfo.py:41

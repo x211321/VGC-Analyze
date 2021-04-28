@@ -55,7 +55,7 @@ class GUI_Graph(Frame):
         self.graph_content.bind("<<ComboboxSelected>>", self.onGraphContentSelect)
 
         self.graph_data_txt    = Label_(self.graph_tool_frame, text=_("Data:"))
-        self.graph_data        = Combobox_(self.graph_tool_frame, width=20, state="readonly")
+        self.graph_data        = Combobox_(self.graph_tool_frame, width=30, state="readonly")
         self.graph_data.set(VAR.GRAPH_DATA_ITEMCOUNT)
         self.graph_data.bind("<<ComboboxSelected>>", self.onGraphDataSelect)
 
@@ -204,21 +204,21 @@ class GUI_Graph(Frame):
 
         # Group data
         if graphContent == VAR.GRAPH_CONTENT_YEARS:
-            group = "year"
+            group = VAR.GROUP_BY_YEAR
         if graphContent == VAR.GRAPH_CONTENT_MONTHS:
-            group = "month"
+            group = VAR.GROUP_BY_MONTH
         if graphContent == VAR.GRAPH_CONTENT_PLATFORMS:
-            group = "platform"
+            group = VAR.GROUP_BY_PLATFORM
             if graphData == VAR.GRAPH_DATA_ITEMCOUNTGROWTH or graphData == VAR.GRAPH_DATA_TOTALPRICEGROWTH:
-                subGroup = "year"
+                subGroup = VAR.GROUP_BY_YEAR
         if graphContent == VAR.GRAPH_CONTENT_REGIONS:
-            group = "region"
+            group = VAR.GROUP_BY_REGION
             if graphData == VAR.GRAPH_DATA_ITEMCOUNTGROWTH or graphData == VAR.GRAPH_DATA_TOTALPRICEGROWTH:
-                subGroup = "year"
+                subGroup = VAR.GROUP_BY_YEAR
         if graphContent == VAR.GRAPH_CONTENT_PLATFORM_HOLDERS:
-            group = "platform holder"
+            group = VAR.GROUP_BY_PLATFORMHOLDER
             if graphData == VAR.GRAPH_DATA_ITEMCOUNTGROWTH or graphData == VAR.GRAPH_DATA_TOTALPRICEGROWTH:
-                subGroup = "year"
+                subGroup = VAR.GROUP_BY_YEAR
 
         self.collectionData.groupGraphData(group, subGroup = subGroup)
 

@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
 
-#: ../VGC_Data.py:118
+#: ../VGC_Data.py:110
 msgid "[Other]"
 msgstr ""
 
@@ -458,6 +458,14 @@ msgstr ""
 
 #: ../VGC_Var.py:74
 msgid "descending"
+msgstr ""
+
+#: ../VGC_Var.py:76
+msgid "Yes"
+msgstr ""
+
+#: ../VGC_Var.py:77
+msgid "No"
 msgstr ""
 
 #~ msgid "total price:"

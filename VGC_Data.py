@@ -8,17 +8,9 @@ from collections import OrderedDict
 from os          import listdir
 
 from VGC_Json    import readJson
+from VGC_Lib     import _YesNoToYesNo
 
 import VGC_Var as VAR
-
-from VGC_Var     import FILE_PREFIX
-from VGC_Var     import CAT_HARDWARE
-from VGC_Var     import CAT_ACCESSORY
-from VGC_Var     import CAT_ACCESSORIES
-from VGC_Var     import LOCAL_DATA
-from VGC_Var     import LOCAL_DATA_FILE
-from VGC_Var     import PLATFORM_KEYWORDS_FILE
-from VGC_Var     import DATA_PATH
 
 
 ######################
@@ -118,8 +110,8 @@ class CollectionItem(object):
                 self.platformHolder = _("[Other]")
 
             # Special case for categories that end on "Accessories" instead of "Accessory"
-            if self.platform[-len(CAT_ACCESSORIES):] == CAT_ACCESSORIES:
-                self.platform = self.platform[0:len(self.platform)-len(CAT_ACCESSORIES)] + CAT_ACCESSORY
+            if self.platform[-len(VAR.CAT_ACCESSORIES):] == VAR.CAT_ACCESSORIES:
+                self.platform = self.platform[0:len(self.platform)-len(VAR.CAT_ACCESSORIES)] + VAR.CAT_ACCESSORY
 
             if self.id() in localItemData_List.keys():
                 self.localData = localItemData_List[self.id()]
@@ -134,12 +126,12 @@ class CollectionItem(object):
             platformString = platformString
 
         if combinePlatforms:
-            if not platformString == CAT_HARDWARE:
-                platformString = platformString.removesuffix(CAT_HARDWARE).strip()
-            if not platformString == CAT_ACCESSORY:
-                platformString = platformString.removesuffix(CAT_ACCESSORY).strip()
-            if not platformString == CAT_ACCESSORIES:
-                platformString = platformString.removesuffix(CAT_ACCESSORIES).strip()
+            if not platformString == VAR.CAT_HARDWARE:
+                platformString = platformString.removesuffix(VAR.CAT_HARDWARE).strip()
+            if not platformString == VAR.CAT_ACCESSORY:
+                platformString = platformString.removesuffix(VAR.CAT_ACCESSORY).strip()
+            if not platformString == VAR.CAT_ACCESSORIES:
+                platformString = platformString.removesuffix(VAR.CAT_ACCESSORIES).strip()
 
         return platformString
 
@@ -258,17 +250,17 @@ class FilterData(object):
                     self.priceFilterEndSet = False
 
             if key == "cart":
-                self.cartFilter        = inputs[key].get()
+                self.cartFilter        = _YesNoToYesNo(inputs[key].get())
             if key == "box":
-                self.boxFilter         = inputs[key].get()
+                self.boxFilter         = _YesNoToYesNo(inputs[key].get())
             if key == "manual":
-                self.manualFilter      = inputs[key].get()
+                self.manualFilter      = _YesNoToYesNo(inputs[key].get())
             if key == "other":
-                self.otherFilter       = inputs[key].get()
+                self.otherFilter       = _YesNoToYesNo(inputs[key].get())
             if key == "bookmarked":
-                self.bookmarkedFilter  = inputs[key].get()
+                self.bookmarkedFilter  = _YesNoToYesNo(inputs[key].get())
             if key == "finished":
-                self.finishedFilter    = inputs[key].get()
+                self.finishedFilter    = _YesNoToYesNo(inputs[key].get())
             if key == "group":
                 self.groupItems        = inputs[key].get()
             if key == "order":
@@ -298,7 +290,7 @@ class CollectionData(object):
     # Constructor
     def __init__(self, filterData):
         self.setFilter(filterData)
-        self.localData_list        = readJson(LOCAL_DATA_FILE)
+        self.localData_list        = readJson(VAR.LOCAL_DATA_FILE)
 
 
     # setFilter
@@ -332,7 +324,7 @@ class CollectionData(object):
     # parseData
     def parseData(self, combinePlatforms = False):
         self.collection_items      = []
-        self.platformKeywords_List = readJson(PLATFORM_KEYWORDS_FILE)
+        self.platformKeywords_List = readJson(VAR.PLATFORM_KEYWORDS_FILE)
 
         index = 0
 
@@ -445,6 +437,8 @@ class CollectionData(object):
 
     # getGroupKey
     def getGroupKey(self, item, groupBy):
+
+        group = ""
 
         if not len(groupBy):
             groupBy = self.filterData.groupItems
@@ -575,12 +569,12 @@ class CollectionData(object):
             self.sumDataDict(item.region, self.regions, item)
 
             # Sum general hardware data
-            if item.platform[-len(CAT_HARDWARE):] == CAT_HARDWARE:
-                self.sumDataDict(CAT_HARDWARE, self.categories, item)
+            if item.platform[-len(VAR.CAT_HARDWARE):] == VAR.CAT_HARDWARE:
+                self.sumDataDict(VAR.CAT_HARDWARE, self.categories, item)
 
             # Sum general accessory data
-            if item.platform[-len(CAT_ACCESSORY):] == CAT_ACCESSORY:
-                self.sumDataDict(CAT_ACCESSORY, self.categories, item)
+            if item.platform[-len(VAR.CAT_ACCESSORY):] == VAR.CAT_ACCESSORY:
+                self.sumDataDict(VAR.CAT_ACCESSORY, self.categories, item)
 
             # Sum years
             self.sumDataDict(item.date[0:4], self.years, item)
@@ -637,14 +631,14 @@ class CollectionData(object):
 # getCurrentVGCFile
 # --------------------
 def getCurrentVGCFile():
-    file_list    = listdir(DATA_PATH)
+    file_list    = listdir(VAR.DATA_PATH)
     current_file = ""
 
     # Search for newest file
     for file in file_list:
         # Ignore files that don't start with the correct prefix
-        if file[0 : len(FILE_PREFIX)] == FILE_PREFIX:
-            current_file = DATA_PATH + file
+        if file[0 : len(VAR.FILE_PREFIX)] == VAR.FILE_PREFIX:
+            current_file = VAR.DATA_PATH + file
 
     return current_file
 

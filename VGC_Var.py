@@ -72,3 +72,6 @@ ORDER_BY_NOTES    = _("notes")
 
 ORDER_DIRECTION_ASCENDING  = _("ascending")
 ORDER_DIRECTION_DESCENDING = _("descending")
+
+ITEM_ATTRIBUTE_YES = _("Yes")
+ITEM_ATTRIBUTE_NO  = _("No")

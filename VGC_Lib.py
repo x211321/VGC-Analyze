@@ -1,5 +1,7 @@
 from VGC_Locale import _
 
+import VGC_Var as VAR
+
 ######################
 # stringToYN
 # --------------------
@@ -17,9 +19,9 @@ def stringToYN(s):
 # --------------------
 def toggleYN(currentState):
     if stringToYN(currentState) == "Yes":
-        return stringToYN("No")
+        return "No"
     else:
-        return stringToYN("Yes")
+        return "Yes"
 
 
 ######################
@@ -32,3 +34,13 @@ def YNToX(yn):
         return "X"
     else:
         return " "
+
+def _YesNoToYesNo(_value):
+    result = ""
+
+    if _value == VAR.ITEM_ATTRIBUTE_NO:
+        result = "No"
+    if _value == VAR.ITEM_ATTRIBUTE_YES:
+        result = "Yes"
+
+    return result
