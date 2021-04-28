@@ -100,7 +100,7 @@ class GUI_TreeView(Frame):
             reverse = False
 
         itemList = [(self.item_view.set(row, column), row) for row in self.item_view.get_children('')]
-        itemList.sort(reverse=reverse)
+        itemList.sort(reverse=reverse, key=lambda tuple: tuple[0].lower())
 
         # rearrange items in sorted positions
         for newRow, (val, item) in enumerate(itemList):
