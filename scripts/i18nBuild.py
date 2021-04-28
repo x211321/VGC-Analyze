@@ -1,7 +1,7 @@
 import os
 import sys
 
-languages = ["en", "de"]
+languages = ["en_US", "de_DE"]
 
 pyToolPath = os.path.dirname(sys.executable).replace("\\", "/") + "/tools/"
 
@@ -9,6 +9,6 @@ pyToolPath = os.path.dirname(sys.executable).replace("\\", "/") + "/tools/"
 
 for language in languages:
 
-    path = "../locales/" + language + "/"
+    path = "../locales/" + language + "/LC_MESSAGES/"
 
     os.system("\""+pyToolPath + "i18n/msgfmt.py\"  -o "+path+"base.mo " + path+"base")

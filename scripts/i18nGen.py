@@ -1,8 +1,9 @@
 import os
 import sys
 import shutil
+import polib
 
-languages = ["en", "de"]
+languages = ["en_US", "de_DE"]
 
 pyToolPath = os.path.dirname(sys.executable).replace("\\", "/") + "/tools/"
 
@@ -29,7 +30,7 @@ path = "../locales/"
 if not os.path.exists(path):
     os.makedirs(path)
 
-os.system("\""+pyToolPath + "i18n/pygettext.py\" -d base -o "+path+"base.po " + " ".join(files))
+os.system("\""+pyToolPath + "i18n/pygettext.py\" -d base -o "+path+"base.pot " + " ".join(files))
 
 for language in languages:
 
@@ -38,5 +39,20 @@ for language in languages:
     if not os.path.exists(targetPath):
         os.makedirs(targetPath)
 
-    shutil.copyfile(path+"base.po", targetPath+"base.po")
+    if os.path.exists(targetPath+"base.po"):
+        # Newly generated template
+        pot_file = polib.pofile(path + "base.pot")
+
+        # Existing translation
+        po_file = polib.pofile(targetPath + "base.po")
+
+        # Merge
+        po_file.merge(pot_file)
+
+        # Save
+        po_file.save(targetPath + "base.po")
+    else:
+        # New translation
+        # Copy
+        shutil.copyfile(path+"base.pot", targetPath+"base.po")
 

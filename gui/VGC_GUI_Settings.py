@@ -43,9 +43,9 @@ class GUI_Settings(Toplevel):
         self.columnconfigure(0, weight=1)
 
         # Add buttons
-        btn_cancel  = Button(btn_frame, text="Cancel", width=20, relief="groove", bg=VAR.BUTTON_COLOR_BAD)
+        btn_cancel  = Button(btn_frame, text=_("Cancel"), width=20, relief="groove", bg=VAR.BUTTON_COLOR_BAD)
         btn_spacer  = Label_(btn_frame, bg=VAR.GUI_COLOR_SECONDARY)
-        btn_confirm = Button(btn_frame, text="OK", width=20, relief="groove", bg=VAR.BUTTON_COLOR_GOOD)
+        btn_confirm = Button(btn_frame, text=_("OK"), width=20, relief="groove", bg=VAR.BUTTON_COLOR_GOOD)
 
         btn_cancel.grid(row=0, column=0, sticky="e", padx=10, pady=20)
         btn_spacer.grid(row=0, column=1)
@@ -64,11 +64,11 @@ class GUI_Settings(Toplevel):
         platformHolder_keywords_frame = Frame(tab)
         platform_overwrites_frame     = Frame(tab)
 
-        tab.add(locale_settings_frame, text="Locale settings")
-        tab.add(display_settings_frame, text="Display settings")
-        tab.add(download_settings_frame, text="Download settings")
-        tab.add(platformHolder_keywords_frame, text="Platform holder keywords")
-        tab.add(platform_overwrites_frame, text="Platform overwrites")
+        tab.add(locale_settings_frame, text=_("Locale settings"))
+        tab.add(display_settings_frame, text=_("Display settings"))
+        tab.add(download_settings_frame, text=_("Download settings"))
+        tab.add(platformHolder_keywords_frame, text=_("Platform holder keywords"))
+        tab.add(platform_overwrites_frame, text=_("Platform overwrites"))
 
 
         # Run main loop

@@ -60,11 +60,11 @@ def downloadCollection(username = "", password = ""):
 
                 return None, DOWNLOAD_FILE
             else:
-                return "Login error"
+                return _("Login error")
         else:
-            return "Download error - Code: " + str(response.getcode())
+            return _("Download error - Code: ") + str(response.getcode())
     else:
-        return "Login error - Code: " + str(response.getcode())
+        return _("Login error - Code: ") + str(response.getcode())
 
 
 ######################

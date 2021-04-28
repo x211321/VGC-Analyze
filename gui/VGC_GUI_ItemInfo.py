@@ -48,27 +48,27 @@ class GUI_ItemInfo(Frame):
         # ------------------
         self.item_spacer    = Label(self, width=2)
 
-        self.item_title_txt = Label_(self, text="Title", anchor="nw")
+        self.item_title_txt = Label_(self, text=_("Title"), anchor="nw")
         self.item_title     = Label_(self, anchor="nw", width=22, height=4, wraplength=135)
-        self.item_date_txt  = Label_(self, text="Purchase date", anchor="nw")
+        self.item_date_txt  = Label_(self, text=_("Purchase date"), anchor="nw")
         self.item_date      = Label_(self, anchor="nw", width=22)
-        self.item_price_txt = Label_(self, text="Purchase price", anchor="nw")
+        self.item_price_txt = Label_(self, text=_("Purchase price"), anchor="nw")
         self.item_price     = Label_(self, anchor="nw", width=22)
 
         # Front cover widgets
-        self.item_front_txt  = Label_(self, text="Front cover", anchor="w")
+        self.item_front_txt  = Label_(self, text=_("Front cover"), anchor="w")
         self.item_front      = Label_(self, anchor="w", imgdef=VAR.IMG_COVER_NONE, imgwidth=VAR.COVER_WIDTH)
         self.item_front.bind("<Enter>", lambda x:self.onCoverEnter(self.item_front, "front"))
         self.item_front.bind("<Leave>", lambda x:self.onCoverLeave(self.item_front))
 
         # Back cover widgets
-        self.item_back_txt   = Label_(self, text="Back cover", anchor="w")
+        self.item_back_txt   = Label_(self, text=_("Back cover"), anchor="w")
         self.item_back       = Label_(self, anchor="w", imgdef=VAR.IMG_COVER_NONE, imgwidth=VAR.COVER_WIDTH)
         self.item_back.bind("<Enter>", lambda x:self.onCoverEnter(self.item_back, "back"))
         self.item_back.bind("<Leave>", lambda x:self.onCoverLeave(self.item_back))
 
         # Cart cover widgets
-        self.item_cart_txt   = Label_(self, text="Cart cover", anchor="w")
+        self.item_cart_txt   = Label_(self, text=_("Cart cover"), anchor="w")
         self.item_cart       = Label_(self, anchor="w", imgdef=VAR.IMG_COVER_NONE, imgwidth=VAR.COVER_WIDTH)
         self.item_cart.bind("<Enter>", lambda x:self.onCoverEnter(self.item_cart, "cart"))
         self.item_cart.bind("<Leave>", lambda x:self.onCoverLeave(self.item_cart))

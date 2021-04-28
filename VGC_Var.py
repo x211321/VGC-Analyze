@@ -35,21 +35,21 @@ IMG_COVER_NONE   = IMG_PATH + "cover_placeholder.jpg"
 COVER_WIDTH      = 120
 
 # Graph vars
-GRAPH_TYPE_BAR                  = "Bar"
-GRAPH_TYPE_PIE                  = "Pie"
-GRAPH_TYPE_STACK                = "Stack"
-GRAPH_TYPE_LINE                 = "Line"
+GRAPH_TYPE_BAR                  = _("Bar")
+GRAPH_TYPE_PIE                  = _("Pie")
+GRAPH_TYPE_AREA                 = _("Area")
+GRAPH_TYPE_LINE                 = _("Line")
 
-GRAPH_CONTENT_YEARS             = "Years"
-GRAPH_CONTENT_MONTHS            = "Months"
-GRAPH_CONTENT_PLATFORMS         = "Platforms"
-GRAPH_CONTENT_REGIONS           = "Regions"
-GRAPH_CONTENT_PLATFORM_HOLDERS  = "Platform holders"
+GRAPH_CONTENT_YEARS             = _("Years")
+GRAPH_CONTENT_MONTHS            = _("Months")
+GRAPH_CONTENT_PLATFORMS         = _("Platforms")
+GRAPH_CONTENT_REGIONS           = _("Regions")
+GRAPH_CONTENT_PLATFORM_HOLDERS  = _("Platform holders")
 
 GRAPH_BAR_COLOR        = "#FFD754"
 GRAPH_BAR_COLOR_ACTIVE = "#547CFF"
 
-GRAPH_DATA_ITEMCOUNT        = "Item count"
-GRAPH_DATA_TOTALPRICE       = "Total price"
-GRAPH_DATA_ITEMCOUNTGROWTH  = "Item count growth"
-GRAPH_DATA_TOTALPRICEGROWTH = "Total price growth"
+GRAPH_DATA_ITEMCOUNT        = _("Item count")
+GRAPH_DATA_TOTALPRICE       = _("Total price")
+GRAPH_DATA_ITEMCOUNTGROWTH  = _("Item count (growth)")
+GRAPH_DATA_TOTALPRICEGROWTH = _("Total price (growth)")

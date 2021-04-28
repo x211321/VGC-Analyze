@@ -46,20 +46,20 @@ class GUI_Graph(Frame):
         self.grid_rowconfigure(1, weight=0)
         self.grid_columnconfigure(0, weight=1)
 
-        self.graph_type_txt    = Label_(self.graph_tool_frame, text="Graph type:")
+        self.graph_type_txt    = Label_(self.graph_tool_frame, text=_("Graph type:"))
         self.graph_type        = Combobox_(self.graph_tool_frame, width=10, state="readonly")
         self.graph_type.bind("<<ComboboxSelected>>", self.onGraphTypeSelect)
 
-        self.graph_content_txt = Label_(self.graph_tool_frame, text="Content:")
+        self.graph_content_txt = Label_(self.graph_tool_frame, text=_("Content:"))
         self.graph_content     = Combobox_(self.graph_tool_frame, width=20, state="readonly")
         self.graph_content.bind("<<ComboboxSelected>>", self.onGraphContentSelect)
 
-        self.graph_data_txt    = Label_(self.graph_tool_frame, text="Data:")
+        self.graph_data_txt    = Label_(self.graph_tool_frame, text=_("Data:"))
         self.graph_data        = Combobox_(self.graph_tool_frame, width=20, state="readonly")
         self.graph_data.set(VAR.GRAPH_DATA_ITEMCOUNT)
         self.graph_data.bind("<<ComboboxSelected>>", self.onGraphDataSelect)
 
-        self.graph_show_grid   = Checkbutton_(self.graph_tool_frame, label="Show grid", command=self.displayGraphs)
+        self.graph_show_grid   = Checkbutton_(self.graph_tool_frame, label=_("Show grid"), command=self.displayGraphs)
 
         self.graph_hover_info  = Label_(self.graph_tool_frame)
 
@@ -94,7 +94,7 @@ class GUI_Graph(Frame):
 
         types.append(VAR.GRAPH_TYPE_BAR)
         types.append(VAR.GRAPH_TYPE_PIE)
-        types.append(VAR.GRAPH_TYPE_STACK)
+        types.append(VAR.GRAPH_TYPE_AREA)
         types.append(VAR.GRAPH_TYPE_LINE)
 
         self.graph_type.setValues(types)
@@ -110,7 +110,7 @@ class GUI_Graph(Frame):
 
         self.graph_content.delete(0, END)
 
-        if not graphType == VAR.GRAPH_TYPE_STACK and not graphType == VAR.GRAPH_TYPE_LINE:
+        if not graphType == VAR.GRAPH_TYPE_AREA and not graphType == VAR.GRAPH_TYPE_LINE:
             content.append(VAR.GRAPH_CONTENT_YEARS)
             content.append(VAR.GRAPH_CONTENT_MONTHS)
         content.append(VAR.GRAPH_CONTENT_REGIONS)
@@ -122,7 +122,7 @@ class GUI_Graph(Frame):
         if len(self.activeGraphContent) and self.activeGraphContent in self.graph_content["values"]:
             self.graph_content.set(self.activeGraphContent)
         else:
-            if not graphType == VAR.GRAPH_TYPE_STACK and not graphType == VAR.GRAPH_TYPE_LINE:
+            if not graphType == VAR.GRAPH_TYPE_AREA and not graphType == VAR.GRAPH_TYPE_LINE:
                 self.graph_content.set(VAR.GRAPH_CONTENT_YEARS)
             else:
                 self.graph_content.set(VAR.GRAPH_CONTENT_REGIONS)
@@ -139,7 +139,7 @@ class GUI_Graph(Frame):
 
         self.graph_data.delete(0, END)
 
-        if graphType == VAR.GRAPH_TYPE_STACK or graphType == VAR.GRAPH_TYPE_LINE:
+        if graphType == VAR.GRAPH_TYPE_AREA or graphType == VAR.GRAPH_TYPE_LINE:
             data.append(VAR.GRAPH_DATA_ITEMCOUNTGROWTH)
             data.append(VAR.GRAPH_DATA_TOTALPRICEGROWTH)
             self.graph_data.set(VAR.GRAPH_DATA_ITEMCOUNTGROWTH)
@@ -157,9 +157,9 @@ class GUI_Graph(Frame):
     def onGraphTypeSelect(self, a = None):
         newType =self.graph_type.get()
 
-        if (((newType == VAR.GRAPH_TYPE_STACK or newType == VAR.GRAPH_TYPE_LINE) and
+        if (((newType == VAR.GRAPH_TYPE_AREA or newType == VAR.GRAPH_TYPE_LINE) and
            (self.activeGraphType == VAR.GRAPH_TYPE_BAR or self.activeGraphType == VAR.GRAPH_TYPE_PIE or self.activeGraphType == "")) or
-           ((self.activeGraphType == VAR.GRAPH_TYPE_STACK or self.activeGraphType == VAR.GRAPH_TYPE_LINE) and
+           ((self.activeGraphType == VAR.GRAPH_TYPE_AREA or self.activeGraphType == VAR.GRAPH_TYPE_LINE) and
            (newType == VAR.GRAPH_TYPE_BAR or newType == VAR.GRAPH_TYPE_PIE))):
 
             self.fillGraphContentCombobox()
@@ -226,7 +226,7 @@ class GUI_Graph(Frame):
             self.drawBarGraph(self.collectionData, canvas, graphContent, graphData)
         if graphType == VAR.GRAPH_TYPE_PIE:
             self.drawPieChart(self.collectionData, canvas, graphContent, graphData)
-        if graphType == VAR.GRAPH_TYPE_STACK:
+        if graphType == VAR.GRAPH_TYPE_AREA:
             self.drawStackPlot(self.collectionData, canvas, graphContent, graphData)
         if graphType == VAR.GRAPH_TYPE_LINE:
             self.drawLinePlot(self.collectionData, canvas, graphContent, graphData)

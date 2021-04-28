@@ -216,10 +216,10 @@ class GUI(Tk):
                                           iid   = "#"+group,
                                           text  = group,
                                           values=("",
-                                                  "[" + str(groupData.item_count) + " items]",
+                                                  "[" + str(groupData.item_count) + " " + _("items") + "]",
                                                   "",
                                                   "",
-                                                  "[total price: " + "{:.2f}".format(groupData.total_price) + "]"))
+                                                  "[" + _("total price:") + "{:.2f}".format(groupData.total_price) + "]"))
 
                     tvIndex += 1
 

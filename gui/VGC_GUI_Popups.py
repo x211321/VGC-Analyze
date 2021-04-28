@@ -104,7 +104,7 @@ class Pop_CollectionDownload(object):
 
         # Create new window
         self.window = Toplevel(bg=VAR.GUI_COLOR_PRIMARY)
-        self.window.wm_title("Download collection")
+        self.window.wm_title(_("Download collection"))
         self.window.geometry(str(w)+"x"+str(h)+"+"+str(x)+"+"+str(y))
         self.window.resizable(False, False)
         self.window.iconphoto(False, loadIcon("cloud-download-outline", 15, 15))
@@ -123,13 +123,13 @@ class Pop_CollectionDownload(object):
 
         self.button_frame.columnconfigure(1, weight=1)
 
-        self.label_user   = Label_(self.input_frame, anchor="w", text="VGC Username", bg=VAR.GUI_COLOR_PRIMARY)
+        self.label_user   = Label_(self.input_frame, anchor="w", text=_("VGC Username"), bg=VAR.GUI_COLOR_PRIMARY)
         self.input_user   = Entry_(self.input_frame, width=31, relief="solid")
-        self.label_pass   = Label_(self.input_frame, anchor="w", text="Password", bg=VAR.GUI_COLOR_PRIMARY)
+        self.label_pass   = Label_(self.input_frame, anchor="w", text=_("Password"), bg=VAR.GUI_COLOR_PRIMARY)
         self.input_pass   = Entry_(self.input_frame, width=31, relief="solid", show="*")
-        self.btn_cancel   = Button(self.button_frame, width=18, text="Cancel", relief="groove", bg=VAR.BUTTON_COLOR_BAD, command=self.close)
+        self.btn_cancel   = Button(self.button_frame, width=18, text=_("Cancel"), relief="groove", bg=VAR.BUTTON_COLOR_BAD, command=self.close)
         self.btn_spacer   = Label_(self.button_frame, bg=VAR.GUI_COLOR_SECONDARY)
-        self.btn_download = Button(self.button_frame, width=18, text="Download", relief="groove", bg=VAR.BUTTON_COLOR_GOOD, command=self.download)
+        self.btn_download = Button(self.button_frame, width=18, text=_("Download"), relief="groove", bg=VAR.BUTTON_COLOR_GOOD, command=self.download)
         self.label_info   = Label_(self.button_frame, width=35)
         self.label_link   = Label_(self.button_frame, width=35, anchor="center")
 
@@ -146,19 +146,19 @@ class Pop_CollectionDownload(object):
         self.label_info.grid(row=1, column=0, pady=0, padx=10, sticky="nwse", columnspan=3)
         self.label_link.grid(row=2, column=0, pady=(5, 10), padx=10, sticky="nwse", columnspan=3)
 
-        self.label_info.set("The provided login credentials will be used to\n"
-                            "download a backup of your collection from\n" +
-                            "your VGCollect.com user profile.\n\n" +
-                            "Your login information will not be saved or used\n" +
-                            "for any other purpose.\n\n" +
-                            "You can also provide your collection data manually:\n\n" +
-                            " 1) \tExport your collection from your\n" +
-                            "\tVGCollect.com user profile\n\n" +
-                            " 2) \tPlace the resulting file into the \n" +
-                            "\tVGC Analyze data folder\n\n" +
-                            " 3) \tRestart VGC Analyzer")
+        self.label_info.set(_("The provided login credentials will be used to\n"
+                              "download a backup of your collection from\n"
+                              "your VGCollect.com user profile.\n\n"
+                              "Your login information will not be saved or used\n"
+                              "for any other purpose.\n\n"
+                              "You can also provide your collection data manually:\n\n"
+                              " 1) \tExport your collection from your\n"
+                              "\tVGCollect.com user profile\n\n"
+                              " 2) \tPlace the resulting file into the\n"
+                              "\tVGC Analyze data folder\n\n"
+                              " 3) \tRestart VGC Analyzer"))
 
-        self.label_link.set("VGCollect.com user profile")
+        self.label_link.set(_("VGCollect.com user profile"))
         self.label_link.config(fg="blue", cursor="hand2")
         self.label_link.bind("<Button-1>", openUserProfileInBrowser)
 
@@ -181,19 +181,19 @@ class Pop_CollectionDownload(object):
         password = self.input_pass.get()
 
         if len(user) == 0 or len(password) == 0:
-            messagebox.showerror("Collection download", "Login credentials incomplete", parent=self.window)
+            messagebox.showerror(_("Collection download"), _("Login credentials incomplete"), parent=self.window)
             return
 
         result, path = downloadCollection(user, password)
 
         if result == None:
             self.window.destroy()
-            messagebox.showinfo("Collection download", "Download successful", parent=self.parent)
+            messagebox.showinfo(_("Collection download"), _("Download successful"), parent=self.parent)
 
             if not self.callback == None:
                 self.callback(result, path)
         else:
-            messagebox.showerror("Collection download", result, parent=self.window)
+            messagebox.showerror(_("Collection download"), result, parent=self.window)
 
 
 ######################
@@ -231,7 +231,7 @@ class Pop_ItemSearch(object):
 
         # Create new window
         self.window = Toplevel(bg=VAR.GUI_COLOR_PRIMARY)
-        self.window.wm_title("Search for item")
+        self.window.wm_title(_("Search for item"))
         self.window.geometry(str(w)+"x"+str(h)+"+"+str(x)+"+"+str(y))
         self.window.resizable(False, False)
         self.window.iconphoto(False, loadIcon("search-outline", 15, 15))
@@ -248,13 +248,13 @@ class Pop_ItemSearch(object):
 
         self.button_frame.columnconfigure(1, weight=1)
 
-        self.label_search = Label_(self.input_frame, anchor="w", text="Search for", bg=VAR.GUI_COLOR_PRIMARY)
+        self.label_search = Label_(self.input_frame, anchor="w", text=_("Search for"), bg=VAR.GUI_COLOR_PRIMARY)
         self.input_search = Entry_(self.input_frame, width=35, relief="solid")
         self.label_info   = Label_(self.input_frame, width=35, anchor="w", fg="#F00", bg=VAR.GUI_COLOR_PRIMARY)
 
-        self.btn_cancel   = Button(self.button_frame, width=15, text="Cancel", relief="groove", bg=VAR.BUTTON_COLOR_BAD, command=self.close)
+        self.btn_cancel   = Button(self.button_frame, width=15, text=_("Cancel"), relief="groove", bg=VAR.BUTTON_COLOR_BAD, command=self.close)
         self.btn_spacer   = Label_(self.button_frame, bg=VAR.GUI_COLOR_SECONDARY)
-        self.btn_search   = Button(self.button_frame, width=15, text="Search", relief="groove", bg=VAR.BUTTON_COLOR_GOOD, command=self.search)
+        self.btn_search   = Button(self.button_frame, width=15, text=_("Search"), relief="groove", bg=VAR.BUTTON_COLOR_GOOD, command=self.search)
 
         self.label_search.grid(row=0, column=0, pady=(15,10), padx=(15, 5), sticky="w")
         self.input_search.grid(row=0, column=1, pady=(15,10), padx=(5, 15), sticky="w")
@@ -324,7 +324,7 @@ class Pop_ItemSearch(object):
                 self.treeView.see(str(rowIDs[index]))
             else:
                 # Show error
-                self.label_info.set("Couldn't find \"" + searchString + "\"")
+                self.label_info.set(_("Couldn't find") + " \"" + searchString + "\"")
 
             if not self.callback == None:
                 self.callback(found, index)
@@ -348,7 +348,7 @@ class Pop_FilterSelect(object):
 
         # Create new window
         self.window = Toplevel(bg=VAR.GUI_COLOR_PRIMARY)
-        self.window.wm_title("Select " + filterType)
+        self.window.wm_title(_("Select ") + filterType)
         self.window.resizable(False, False)
         self.window.iconphoto(False, loadIcon("filter-outline", 15, 15))
         self.window.bind('<Escape>', lambda x:self.close())
@@ -360,10 +360,10 @@ class Pop_FilterSelect(object):
         self.frame_options.grid(row=0, column=0, padx=10, pady=10, sticky="nesw")
         self.frame_buttons.grid(row=1, column=0, sticky="nesw")
 
-        self.btn_cancel= Button(self.frame_buttons, width=20, text="Cancel", relief="groove", command=self.close, bg=VAR.BUTTON_COLOR_BAD)
-        self.btn_reset = Button(self.frame_buttons, width=20, text="Reset", relief="groove", command=self.reset, bg=VAR.INPUT_COLOR)
-        self.btn_all   = Button(self.frame_buttons, width=20, text="Select all", relief="groove", command=self.selectAll, bg=VAR.INPUT_COLOR)
-        self.btn_ok    = Button(self.frame_buttons, width=20, text="OK", relief="groove", command=self.confirm, bg=VAR.BUTTON_COLOR_GOOD)
+        self.btn_cancel= Button(self.frame_buttons, width=20, text=_("Cancel"), relief="groove", command=self.close, bg=VAR.BUTTON_COLOR_BAD)
+        self.btn_reset = Button(self.frame_buttons, width=20, text=_("Reset"), relief="groove", command=self.reset, bg=VAR.INPUT_COLOR)
+        self.btn_all   = Button(self.frame_buttons, width=20, text=_("Select all"), relief="groove", command=self.selectAll, bg=VAR.INPUT_COLOR)
+        self.btn_ok    = Button(self.frame_buttons, width=20, text=_("OK"), relief="groove", command=self.confirm, bg=VAR.BUTTON_COLOR_GOOD)
 
         self.btn_cancel.grid(row=0, column=0, padx=10, pady=20, sticky="w")
         self.btn_reset.grid(row=0, column=1, padx=10, pady=20, sticky="w")

@@ -113,7 +113,7 @@ class CollectionItem(object):
                 if found:
                     break
             if found == False:
-                self.platformHolder = "[Other]"
+                self.platformHolder = _("[Other]")
 
             # Special case for categories that end on "Accessories" instead of "Accessory"
             if self.platform[-len(CAT_ACCESSORIES):] == CAT_ACCESSORIES:

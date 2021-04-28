@@ -6,7 +6,7 @@ _ = translate.gettext
 
 
 # Load german locale
-if False:
-    de = gettext.translation("base", localedir=localedir, languages=["de"])
-    de.install()
-    _ = de.gettext
+if True:
+    de_DE = gettext.translation("base", localedir=localedir, languages=["de_DE"])
+    de_DE.install()
+    _ = de_DE.gettext

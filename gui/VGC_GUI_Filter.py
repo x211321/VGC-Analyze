@@ -42,40 +42,40 @@ class GUI_Filter(Frame):
         # ------------------
         self.filterInputs = {}
 
-        self.filterInputs["name_txt"]               = Label_(self, width=25, text="Title")
+        self.filterInputs["name_txt"]               = Label_(self, width=25, text=_("Title"))
         self.filterInputs["name"]                   = Entry_(self, width=30)
-        self.filterInputs["platforms_txt"]          = Label_(self, width=25, text="Platforms")
-        self.filterInputs["platforms_select"]       = Button(self, width=25, text="Select", relief="groove", command=self.selectPlatforms, bg=VAR.INPUT_COLOR)
-        self.filterInputs["platformHolders_txt"]    = Label_(self, width=25, text="Platform holders")
-        self.filterInputs["platformHolders_select"] = Button(self, width=25, text="Select", relief="groove", command=self.selectPlatformHolders, bg=VAR.INPUT_COLOR)
-        self.filterInputs["regions_txt"]            = Label_(self, width=25, text="Regions")
-        self.filterInputs["regions_select"]         = Button(self, width=25, text="Select", relief="groove", command=self.selectRegions, bg=VAR.INPUT_COLOR)
-        self.filterInputs["notes_txt"]              = Label_(self, width=25, text="Notes")
+        self.filterInputs["platforms_txt"]          = Label_(self, width=25, text=_("Platforms"))
+        self.filterInputs["platforms_select"]       = Button(self, width=25, text=_("Select"), relief="groove", command=self.selectPlatforms, bg=VAR.INPUT_COLOR)
+        self.filterInputs["platformHolders_txt"]    = Label_(self, width=25, text=_("Platform holders"))
+        self.filterInputs["platformHolders_select"] = Button(self, width=25, text=_("Select"), relief="groove", command=self.selectPlatformHolders, bg=VAR.INPUT_COLOR)
+        self.filterInputs["regions_txt"]            = Label_(self, width=25, text=_("Regions"))
+        self.filterInputs["regions_select"]         = Button(self, width=25, text=_("Select"), relief="groove", command=self.selectRegions, bg=VAR.INPUT_COLOR)
+        self.filterInputs["notes_txt"]              = Label_(self, width=25, text=_("Notes"))
         self.filterInputs["notes"]                  = Entry_(self, width=30)
-        self.filterInputs["dateStart_txt"]          = Label_(self, width=25, text="Min. purchase date")
+        self.filterInputs["dateStart_txt"]          = Label_(self, width=25, text=_("Min. purchase date"))
         self.filterInputs["dateStart"]              = Entry_(self, width=30)
-        self.filterInputs["dateEnd_txt"]            = Label_(self, width=25, text="Max. purchase date")
+        self.filterInputs["dateEnd_txt"]            = Label_(self, width=25, text=_("Max. purchase date"))
         self.filterInputs["dateEnd"]                = Entry_(self, width=30)
-        self.filterInputs["priceStart_txt"]         = Label_(self, width=25, text="Min. purchase price")
+        self.filterInputs["priceStart_txt"]         = Label_(self, width=25, text=_("Min. purchase price"))
         self.filterInputs["priceStart"]             = Entry_(self, width=30)
-        self.filterInputs["priceEnd_txt"]           = Label_(self, width=25, text="Max. purchase price")
+        self.filterInputs["priceEnd_txt"]           = Label_(self, width=25, text=_("Max. purchase price"))
         self.filterInputs["priceEnd"]               = Entry_(self, width=30)
-        self.filterInputs["group_txt"]              = Label_(self, text="Group by", width=25)
+        self.filterInputs["group_txt"]              = Label_(self, text=_("Group by"), width=25)
         self.filterInputs["group"]                  = Combobox_(self, state="readonly", width=27)
-        self.filterInputs["cart_txt"]               = Label_(self, width=10, text="Cart")
-        self.filterInputs["box_txt"]                = Label_(self, width=10, text="Box")
+        self.filterInputs["cart_txt"]               = Label_(self, width=10, text=_("Cart"))
+        self.filterInputs["box_txt"]                = Label_(self, width=10, text=_("Box"))
         self.filterInputs["cart"]                   = Combobox_(self, values=("", "Yes", "No"), state="readonly", width=10)
         self.filterInputs["box"]                    = Combobox_(self, values=("", "Yes", "No"), state="readonly", width=10)
-        self.filterInputs["manual_txt"]             = Label_(self, width=10, text="Manual")
-        self.filterInputs["other_txt"]              = Label_(self, width=10, text="Other")
+        self.filterInputs["manual_txt"]             = Label_(self, width=10, text=_("Manual"))
+        self.filterInputs["other_txt"]              = Label_(self, width=10, text=_("Other"))
         self.filterInputs["manual"]                 = Combobox_(self, values=("", "Yes", "No"), state="readonly", width=10)
         self.filterInputs["other"]                  = Combobox_(self, values=("", "Yes", "No"), state="readonly", width=10)
-        self.filterInputs["bookmarked_txt"]         = Label_(self, text="Bookmarked", width=10)
-        self.filterInputs["finished_txt"]           = Label_(self, text="Finished", width=10)
+        self.filterInputs["bookmarked_txt"]         = Label_(self, text=_("Bookmarked"), width=10)
+        self.filterInputs["finished_txt"]           = Label_(self, text=_("Finished"), width=10)
         self.filterInputs["bookmarked"]             = Combobox_(self, values=("", "Yes", "No"), state="readonly", width=10)
         self.filterInputs["finished"]               = Combobox_(self, values=("", "Yes", "No"), state="readonly", width=10)
-        self.filterInputs["order_txt"]              = Label_(self, text="Sort by", width=10)
-        self.filterInputs["order_dir_txt"]          = Label_(self, text="Sort direction", width=10)
+        self.filterInputs["order_txt"]              = Label_(self, text=_("Sort by"), width=10)
+        self.filterInputs["order_dir_txt"]          = Label_(self, text=_("Sort direction"), width=10)
         self.filterInputs["order"]                  = Combobox_(self, state="readonly", width=10)
         self.filterInputs["orderDirection"]         = Combobox_(self, values=("", "ascending", "descending"), state="readonly", width=10)
 
@@ -117,10 +117,10 @@ class GUI_Filter(Frame):
 
             self.filterInputs[key].bind('<Return>', self.showData)
 
-        self.filter_reset.config(text="Reset filter", command=self.reset)
+        self.filter_reset.config(text=_("Reset filter"), command=self.reset)
         self.filter_reset.grid(row=100, column=0, sticky="nw", pady=(20, 5))
 
-        self.filter_apply.config(text="Apply filter", command=self.showData)
+        self.filter_apply.config(text=_("Apply filter"), command=self.showData)
         self.filter_apply.grid(row=100, column=1, sticky="nw", pady=(20, 5))
 
 
@@ -134,7 +134,7 @@ class GUI_Filter(Frame):
             if self.filterInputs[key].__class__.__name__ == "Combobox_":
                 self.filterInputs[key].set("")
             if self.filterInputs[key].__class__.__name__ == "Button":
-                self.filterInputs[key].config(text="Select")
+                self.filterInputs[key].config(text=_("Select"))
 
         self.multiFilter["platforms"] = []
         self.multiFilter["platformHolders"] = []
@@ -157,9 +157,9 @@ class GUI_Filter(Frame):
         self.multiFilter["platforms"] = platforms
 
         if len(platforms):
-            self.filterInputs["platforms_select"].config(text=str(len(platforms)) + " selected")
+            self.filterInputs["platforms_select"].config(text=str(len(platforms)) + _(" selected"))
         else:
-            self.filterInputs["platforms_select"].config(text="Select")
+            self.filterInputs["platforms_select"].config(text=_("Select"))
 
 
     ######################
@@ -176,9 +176,9 @@ class GUI_Filter(Frame):
         self.multiFilter["platformHolders"] = platformHolders
 
         if len(platformHolders):
-            self.filterInputs["platformHolders_select"].config(text=str(len(platformHolders)) + " selected")
+            self.filterInputs["platformHolders_select"].config(text=str(len(platformHolders)) + _(" selected"))
         else:
-            self.filterInputs["platformHolders_select"].config(text="Select")
+            self.filterInputs["platformHolders_select"].config(text=_("Select"))
 
 
     ######################
@@ -195,9 +195,9 @@ class GUI_Filter(Frame):
         self.multiFilter["regions"] = regions
 
         if len(regions):
-            self.filterInputs["regions_select"].config(text=str(len(regions)) + " selected")
+            self.filterInputs["regions_select"].config(text=str(len(regions)) + _(" selected"))
         else:
-            self.filterInputs["regions_select"].config(text="Select")
+            self.filterInputs["regions_select"].config(text=_("Select"))
 
 
     ######################
