@@ -1,3 +1,4 @@
+from VGC_Locale import _
 
 import os
 

@@ -1,3 +1,5 @@
+from VGC_Locale import _
+
 FILE_PREFIX             = "collection-"
 
 DATA_PATH               = "./data/"

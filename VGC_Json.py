@@ -1,3 +1,5 @@
+from VGC_Locale import _
+
 import os
 import json
 from VGC_Var import LOCAL_DATA

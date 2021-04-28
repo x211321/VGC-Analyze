@@ -1,3 +1,5 @@
+from VGC_Locale import _
+
 from VGC_GUI     import GUI
 
 
