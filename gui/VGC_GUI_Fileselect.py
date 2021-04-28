@@ -1,3 +1,5 @@
+from VGC_Locale import _
+
 from tkinter import *
 
 import os
@@ -24,9 +26,9 @@ class GUI_File(Frame):
         self.init()
 
     def init(self):
-        self.file_select_text  = Label_(self, anchor="e", padx=5, text="Active VGC file:")
-        self.file_select       = Combobox_(self, width=40, values=[os.path.basename(x) for x in glob.glob(VAR.DATA_PATH+VAR.FILE_PREFIX+"*.csv")])
-        self.combine_platforms = Checkbutton_(self, padx=8, label="Combine related platforms", default=True, command=self.setCurrentVGCFile)
+        self.file_select_text  = Label_(self, anchor="e", padx=5, text=_("Active VGC file:"))
+        self.file_select       = Combobox_(self, width=40, state="readonly", values=[os.path.basename(x) for x in glob.glob(VAR.DATA_PATH+VAR.FILE_PREFIX+"*.csv")])
+        self.combine_platforms = Checkbutton_(self, padx=8, label=_("Combine related platforms"), default=True, command=self.setCurrentVGCFile)
 
         self.combine_platforms.pack(side=RIGHT)
         self.file_select.pack(side=RIGHT)

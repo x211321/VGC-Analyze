@@ -1,3 +1,5 @@
+from VGC_Locale import _
+
 import os
 from datetime import datetime
 
@@ -36,22 +38,22 @@ class GUI_CollectionInfo(Frame):
         self.grid_columnconfigure(1, weight=1)
 
         # Info sub-frame widgets
-        self.info_number_txt = Label_(self.info_sub_frame, text="Item count:")
+        self.info_number_txt = Label_(self.info_sub_frame, text=_("Item count:"))
         self.info_number     = Label_(self.info_sub_frame)
 
-        self.info_value_txt  = Label_(self.info_sub_frame, text="Total price:")
+        self.info_value_txt  = Label_(self.info_sub_frame, text=_("Total price:"))
         self.info_value      = Label_(self.info_sub_frame)
 
-        self.info_average_txt= Label_(self.info_sub_frame, text="Avg. price:")
+        self.info_average_txt= Label_(self.info_sub_frame, text=_("Avg. price:"))
         self.info_average    = Label_(self.info_sub_frame)
 
-        self.info_first_txt  = Label_(self.info_sub_frame, text="First purchase:")
+        self.info_first_txt  = Label_(self.info_sub_frame, text=_("First purchase:"))
         self.info_first      = Label_(self.info_sub_frame)
 
-        self.info_last_txt   = Label_(self.info_sub_frame, text="Last purchase:")
+        self.info_last_txt   = Label_(self.info_sub_frame, text=_("Last purchase:"))
         self.info_last       = Label_(self.info_sub_frame)
 
-        self.info_update_txt = Label_(self.info_sub_frame, text="Database updated:")
+        self.info_update_txt = Label_(self.info_sub_frame, text=_("Database updated:"))
         self.info_update     = Label_(self.info_sub_frame)
 
         self.info_grp_number_txt     = Label_(self.info_sub_frame)
