@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2021-04-29 00:42+0200\n"
+"POT-Creation-Date: 2021-04-29 00:45+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -255,9 +255,21 @@ msgstr ""
 msgid "Apply filter"
 msgstr ""
 
+#: ../gui/VGC_GUI_Filter.py:150
+msgid "platforms"
+msgstr ""
+
 #: ../gui/VGC_GUI_Filter.py:160 ../gui/VGC_GUI_Filter.py:179
 #: ../gui/VGC_GUI_Filter.py:198
 msgid " selected"
+msgstr ""
+
+#: ../gui/VGC_GUI_Filter.py:169
+msgid "platform holders"
+msgstr ""
+
+#: ../gui/VGC_GUI_Filter.py:188
+msgid "regions"
 msgstr ""
 
 #: ../gui/VGC_GUI_Graph.py:49

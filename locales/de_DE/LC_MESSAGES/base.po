@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2021-04-28 22:10+0200\n"
-"PO-Revision-Date: 2021-04-29 00:28+0200\n"
+"PO-Revision-Date: 2021-04-29 00:46+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -483,8 +483,17 @@ msgstr "Ja"
 msgid "No"
 msgstr "Nein"
 
-msgid ""
-msgstr ""
+#: ../gui/VGC_GUI_Filter.py:150
+msgid "platforms"
+msgstr "Plattformen"
+
+#: ../gui/VGC_GUI_Filter.py:169
+msgid "platform holders"
+msgstr "Plattformhalter"
+
+#: ../gui/VGC_GUI_Filter.py:188
+msgid "regions"
+msgstr "Regionen"
 
 #~ msgid "total price:"
 #~ msgstr "Gesamtpreis:"

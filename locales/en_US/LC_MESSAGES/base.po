@@ -4,9 +4,6 @@
 #
 msgid ""
 msgstr ""
-
-msgid ""
-msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-04-28 22:10+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
@@ -16,6 +13,9 @@ msgstr ""
 "Content-Type: text/plain; charset=cp1252\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
+
+msgid ""
+msgstr ""
 
 #: ../VGC_Data.py:110
 msgid "[Other]"
@@ -466,6 +466,18 @@ msgstr ""
 
 #: ../VGC_Var.py:77
 msgid "No"
+msgstr ""
+
+#: ../gui/VGC_GUI_Filter.py:150
+msgid "platforms"
+msgstr ""
+
+#: ../gui/VGC_GUI_Filter.py:169
+msgid "platform holders"
+msgstr ""
+
+#: ../gui/VGC_GUI_Filter.py:188
+msgid "regions"
 msgstr ""
 
 #~ msgid "total price:"
