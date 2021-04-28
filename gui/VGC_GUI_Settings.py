@@ -58,11 +58,15 @@ class GUI_Settings(Toplevel):
         tab.pack(fill="both")
 
         # Add tab pages
+        locale_settings_frame         = Frame(tab)
         display_settings_frame        = Frame(tab)
+        download_settings_frame       = Frame(tab)
         platformHolder_keywords_frame = Frame(tab)
         platform_overwrites_frame     = Frame(tab)
 
+        tab.add(locale_settings_frame, text="Locale settings")
         tab.add(display_settings_frame, text="Display settings")
+        tab.add(download_settings_frame, text="Download settings")
         tab.add(platformHolder_keywords_frame, text="Platform holder keywords")
         tab.add(platform_overwrites_frame, text="Platform overwrites")
 
