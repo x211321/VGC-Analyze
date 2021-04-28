@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2021-04-28 22:10+0200\n"
-"PO-Revision-Date: 2021-04-28 22:57+0200\n"
+"PO-Revision-Date: 2021-04-29 00:05+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 "X-Generator: Poedit 2.4.3\n"
 
-#: ../VGC_Data.py:116
+#: ../VGC_Data.py:118
 msgid "[Other]"
 msgstr "[Andere]"
 
@@ -426,6 +426,54 @@ msgstr "Anwenden"
 #: ../VGC_GUI.py:222
 msgid "total price: "
 msgstr "Gesamtpreis: "
+
+#: ../VGC_Var.py:57
+msgid "year"
+msgstr "Jahr"
+
+#: ../VGC_Var.py:58
+msgid "month"
+msgstr "Monat"
+
+#: ../VGC_Var.py:59
+msgid "day"
+msgstr "Tag"
+
+#: ../VGC_Var.py:60 ../VGC_Var.py:66
+msgid "name"
+msgstr "Name"
+
+#: ../VGC_Var.py:61 ../VGC_Var.py:69
+msgid "region"
+msgstr "Region"
+
+#: ../VGC_Var.py:62 ../VGC_Var.py:70
+msgid "platform"
+msgstr "Plattform"
+
+#: ../VGC_Var.py:63
+msgid "platform holder"
+msgstr "Plattformhalter"
+
+#: ../VGC_Var.py:64 ../VGC_Var.py:71
+msgid "notes"
+msgstr "Notizen"
+
+#: ../VGC_Var.py:67
+msgid "price"
+msgstr "Preis"
+
+#: ../VGC_Var.py:68
+msgid "date"
+msgstr "Datum"
+
+#: ../VGC_Var.py:73
+msgid "ascending"
+msgstr "Aufsteigend"
+
+#: ../VGC_Var.py:74
+msgid "descending"
+msgstr "Absteigend"
 
 #~ msgid "total price:"
 #~ msgstr "Gesamtpreis:"

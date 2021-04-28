@@ -9,6 +9,8 @@ from os          import listdir
 
 from VGC_Json    import readJson
 
+import VGC_Var as VAR
+
 from VGC_Var     import FILE_PREFIX
 from VGC_Var     import CAT_HARDWARE
 from VGC_Var     import CAT_ACCESSORY
@@ -272,7 +274,7 @@ class FilterData(object):
             if key == "order":
                 self.orderItems        = inputs[key].get()
             if key == "orderDirection":
-                self.orderItemsReverse = (inputs[key].get() == "descending")
+                self.orderItemsReverse = (inputs[key].get() == VAR.ORDER_DIRECTION_DESCENDING)
 
 
 ######################
@@ -447,28 +449,28 @@ class CollectionData(object):
         if not len(groupBy):
             groupBy = self.filterData.groupItems
 
-        if groupBy == "year":
+        if groupBy == VAR.GROUP_BY_YEAR:
             group =  item.date[0:4]
 
-        if groupBy == "month":
+        if groupBy == VAR.GROUP_BY_MONTH:
             group =  item.date[0:7]
 
-        if groupBy == "day":
+        if groupBy == VAR.GROUP_BY_DAY:
             group =  item.date
 
-        if groupBy == "region":
+        if groupBy == VAR.GROUP_BY_REGION:
             group =  item.region
 
-        if groupBy == "name":
+        if groupBy == VAR.GROUP_BY_NAME:
             group =  item.name
 
-        if groupBy == "platform":
+        if groupBy == VAR.GROUP_BY_PLATFORM:
             group =  item.platform
 
-        if groupBy == "platform holder":
+        if groupBy == VAR.GROUP_BY_PLATFORMHOLDER:
             group =  item.platformHolder
 
-        if groupBy == "notes":
+        if groupBy == VAR.GROUP_BY_NOTES:
             group =  item.notes
 
         if len(group.strip()) == 0:

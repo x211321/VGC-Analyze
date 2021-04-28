@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
 
-#: ../VGC_Data.py:116
+#: ../VGC_Data.py:118
 msgid "[Other]"
 msgstr ""
 
@@ -410,6 +410,54 @@ msgstr ""
 
 #: ../VGC_GUI.py:222
 msgid "total price: "
+msgstr ""
+
+#: ../VGC_Var.py:57
+msgid "year"
+msgstr ""
+
+#: ../VGC_Var.py:58
+msgid "month"
+msgstr ""
+
+#: ../VGC_Var.py:59
+msgid "day"
+msgstr ""
+
+#: ../VGC_Var.py:60 ../VGC_Var.py:66
+msgid "name"
+msgstr ""
+
+#: ../VGC_Var.py:61 ../VGC_Var.py:69
+msgid "region"
+msgstr ""
+
+#: ../VGC_Var.py:62 ../VGC_Var.py:70
+msgid "platform"
+msgstr ""
+
+#: ../VGC_Var.py:63
+msgid "platform holder"
+msgstr ""
+
+#: ../VGC_Var.py:64 ../VGC_Var.py:71
+msgid "notes"
+msgstr ""
+
+#: ../VGC_Var.py:67
+msgid "price"
+msgstr ""
+
+#: ../VGC_Var.py:68
+msgid "date"
+msgstr ""
+
+#: ../VGC_Var.py:73
+msgid "ascending"
+msgstr ""
+
+#: ../VGC_Var.py:74
+msgid "descending"
 msgstr ""
 
 #~ msgid "total price:"

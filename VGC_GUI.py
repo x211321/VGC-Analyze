@@ -298,17 +298,18 @@ class GUI(Tk):
     # --------------------
     def sortViewItems(self, filterData, items):
         if len(filterData.orderItems) or filterData.orderItemsReverse:
-            if filterData.orderItems.lower() == "name" or len(filterData.orderItems) == 0:
+            print("JOP", filterData.orderItems, filterData.orderItemsReverse)
+            if filterData.orderItems == VAR.ORDER_BY_NAME or len(filterData.orderItems) == 0:
                 return sorted(items, key=lambda item: item.name, reverse=filterData.orderItemsReverse)
-            if filterData.orderItems.lower() == "price":
+            if filterData.orderItems == VAR.ORDER_BY_PRICE:
                 return sorted(items, key=lambda item: item.price, reverse=filterData.orderItemsReverse)
-            if filterData.orderItems.lower() == "date" :
+            if filterData.orderItems == VAR.ORDER_BY_DATE :
                 return sorted(items, key=lambda item: item.date, reverse=filterData.orderItemsReverse)
-            if filterData.orderItems.lower() == "region" :
+            if filterData.orderItems == VAR.ORDER_BY_REGION :
                 return sorted(items, key=lambda item: item.region, reverse=filterData.orderItemsReverse)
-            if filterData.orderItems.lower() == "platform" :
+            if filterData.orderItems == VAR.ORDER_BY_PLATFORM :
                 return sorted(items, key=lambda item: item.platform, reverse=filterData.orderItemsReverse)
-            if filterData.orderItems.lower() == "notes" :
+            if filterData.orderItems == VAR.ORDER_BY_NOTES :
                 return sorted(items, key=lambda item: item.notes, reverse=filterData.orderItemsReverse)
         else:
             return items
