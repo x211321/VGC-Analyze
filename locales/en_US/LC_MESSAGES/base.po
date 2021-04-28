@@ -4,6 +4,9 @@
 #
 msgid ""
 msgstr ""
+
+msgid ""
+msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-04-28 22:10+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
@@ -13,9 +16,6 @@ msgstr ""
 "Content-Type: text/plain; charset=cp1252\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
-
-msgid ""
-msgstr ""
 
 #: ../VGC_Data.py:116
 msgid "[Other]"
@@ -35,10 +35,6 @@ msgstr ""
 
 #: ../VGC_GUI.py:219
 msgid "items"
-msgstr ""
-
-#: ../VGC_GUI.py:222
-msgid "total price:"
 msgstr ""
 
 #: ../VGC_Var.py:38
@@ -197,7 +193,7 @@ msgstr ""
 msgid "Quit"
 msgstr ""
 
-#: ../gui/VGC_GUI_Menu.py:19
+#: ../gui/VGC_GUI_Menu.py:19 ../gui/VGC_GUI_Popups.py:234
 msgid "Search for item"
 msgstr ""
 
@@ -411,3 +407,10 @@ msgstr ""
 #: ../gui/VGC_GUI_Filter.py:123
 msgid "Apply filter"
 msgstr ""
+
+#: ../VGC_GUI.py:222
+msgid "total price: "
+msgstr ""
+
+#~ msgid "total price:"
+#~ msgstr ""

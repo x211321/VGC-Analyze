@@ -219,7 +219,7 @@ class GUI(Tk):
                                                   "[" + str(groupData.item_count) + " " + _("items") + "]",
                                                   "",
                                                   "",
-                                                  "[" + _("total price:") + "{:.2f}".format(groupData.total_price) + "]"))
+                                                  "[" + _("total price: ") + "{:.2f}".format(groupData.total_price) + "]"))
 
                     tvIndex += 1
 

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2021-04-28 22:10+0200\n"
-"PO-Revision-Date: 2021-04-28 22:44+0200\n"
+"PO-Revision-Date: 2021-04-28 22:57+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -35,10 +35,6 @@ msgstr "Anmeldung fehlgeschlagen - Fehlercode: "
 #: ../VGC_GUI.py:219
 msgid "items"
 msgstr "Einträge"
-
-#: ../VGC_GUI.py:222
-msgid "total price:"
-msgstr "Gesamtpreis:"
 
 #: ../VGC_Var.py:38
 msgid "Bar"
@@ -196,7 +192,7 @@ msgstr "Modul"
 msgid "Quit"
 msgstr "Beenden"
 
-#: ../gui/VGC_GUI_Menu.py:19
+#: ../gui/VGC_GUI_Menu.py:19 ../gui/VGC_GUI_Popups.py:234
 msgid "Search for item"
 msgstr "Eintrag suchen"
 
@@ -426,3 +422,10 @@ msgstr "Zurücksetzten"
 #: ../gui/VGC_GUI_Filter.py:123
 msgid "Apply filter"
 msgstr "Anwenden"
+
+#: ../VGC_GUI.py:222
+msgid "total price: "
+msgstr "Gesamtpreis: "
+
+#~ msgid "total price:"
+#~ msgstr "Gesamtpreis:"

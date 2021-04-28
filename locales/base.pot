@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2021-04-28 22:39+0200\n"
+"POT-Creation-Date: 2021-04-28 22:56+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,7 +36,7 @@ msgid "items"
 msgstr ""
 
 #: ../VGC_GUI.py:222
-msgid "total price:"
+msgid "total price: "
 msgstr ""
 
 #: ../VGC_Var.py:38
@@ -244,7 +244,7 @@ msgstr ""
 msgid "Quit"
 msgstr ""
 
-#: ../gui/VGC_GUI_Menu.py:19
+#: ../gui/VGC_GUI_Menu.py:19 ../gui/VGC_GUI_Popups.py:234
 msgid "Search for item"
 msgstr ""
 
