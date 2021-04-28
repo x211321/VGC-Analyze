@@ -63,7 +63,7 @@ class GUI_TreeView(Frame):
         self.item_view.heading('Title'   , text='Title'   , anchor="w", command=lambda:self.treeviewSort('Title', False))
         self.item_view.heading('Platform', text='Platform', anchor="w", command=lambda:self.treeviewSort('Platform', False))
         self.item_view.heading('Region'  , text='Region'  , anchor="w", command=lambda:self.treeviewSort('Region', False))
-        self.item_view.heading('Price'   , text='Price'   , anchor="e", command=lambda:self.treeviewSort('Price', False))
+        self.item_view.heading('Price'   , text='Price'   , anchor="e", command=lambda:self.treeviewSort('Price', False, float))
         self.item_view.heading('Date'    , text='Date'    , anchor="w", command=lambda:self.treeviewSort('Date', False))
         self.item_view.heading('Cart'    , text='Cart'    , anchor="w", command=lambda:self.treeviewSort('Cart', False))
         self.item_view.heading('Box'     , text='Box'     , anchor="w", command=lambda:self.treeviewSort('Box', False))
@@ -94,13 +94,18 @@ class GUI_TreeView(Frame):
         self.treeviewSort("Title", False)
 
 
-    def treeviewSort(self, column, reverse):
+    def treeviewSort(self, column, reverse, datatype=None):
 
         if not self.item_view.lastSortItem == column:
             reverse = False
 
+
         itemList = [(self.item_view.set(row, column), row) for row in self.item_view.get_children('')]
-        itemList.sort(reverse=reverse, key=lambda tuple: tuple[0].lower())
+
+        if datatype:
+            itemList.sort(reverse=reverse, key=lambda tuple: datatype(tuple[0].lower().strip("abcdefghijklmnopqrstuvwxyz[]: ")))
+        else:
+            itemList.sort(reverse=reverse, key=lambda tuple: tuple[0].lower())
 
         # rearrange items in sorted positions
         for newRow, (val, item) in enumerate(itemList):
@@ -108,4 +113,4 @@ class GUI_TreeView(Frame):
 
         # reverse sort next time
         self.item_view.lastSortItem = column
-        self.item_view.heading(column, command=lambda:self.treeviewSort(column, not reverse))
+        self.item_view.heading(column, command=lambda:self.treeviewSort(column, not reverse, datatype))
