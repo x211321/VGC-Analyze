@@ -35,7 +35,7 @@ class GUI_Settings(Toplevel):
         self.geometry(str(w)+"x"+str(h)+"+"+str(x)+"+"+str(y))
         self.resizable(False, False)
         self.iconphoto(False, loadIcon("settings-outline", 15, 15))
-        self.bind('<Escape>', self.destroy)
+        self.bind('<Escape>', self.close)
         self.focus_force()
 
         # Add frames
@@ -131,7 +131,7 @@ class GUI_Settings(Toplevel):
                 if len(widget.id):
                     widget.set(settings.get(sectionKey, widget.id, ""))
 
-    def close(self):
+    def close(self, a = None):
         self.destroy()
 
     def apply(self):
