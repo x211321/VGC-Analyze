@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2021-04-28 22:10+0200\n"
-"PO-Revision-Date: 2021-04-30 00:52+0200\n"
+"PO-Revision-Date: 2021-04-30 01:02+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -523,3 +523,7 @@ msgstr "Rückseite"
 #: ../gui/VGC_GUI_Popups.py:73
 msgid "cart cover"
 msgstr "Modul"
+
+#: ../VGC_Data.py:96
+msgid "[None]"
+msgstr "[Keine]"

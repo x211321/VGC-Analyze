@@ -93,7 +93,7 @@ class CollectionItem(object):
             self.dateAdded= csv_fields[CSVColumns.added]
 
             if len(self.region) == 0:
-                self.region = "[None]"
+                self.region = _("[None]")
 
             # Find platform holder
             found = False
@@ -468,7 +468,7 @@ class CollectionData(object):
             group =  item.notes
 
         if len(group.strip()) == 0:
-            group = "[None]"
+            group = _("[None]")
 
         return group
 

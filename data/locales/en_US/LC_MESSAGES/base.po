@@ -497,6 +497,10 @@ msgstr ""
 msgid "cart cover"
 msgstr ""
 
+#: ../VGC_Data.py:96
+msgid "[None]"
+msgstr ""
+
 #~ msgid "Locale settings"
 #~ msgstr ""
 
