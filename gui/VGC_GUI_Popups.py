@@ -64,10 +64,13 @@ class Pop_CoverViewer(object):
             # Get cover path
             if coverType == "front":
                 img = VAR.IMG_CACHE_FRONT + str(item.VGC_id) + ".jpg"
+                title = _("front cover")
             if coverType == "back":
                 img = VAR.IMG_CACHE_BACK + str(item.VGC_id) + ".jpg"
+                title = _("back cover")
             if coverType == "cart":
                 img = VAR.IMG_CACHE_CART + str(item.VGC_id) + ".jpg"
+                title = _("cart cover")
 
             if os.path.exists(img):
 
@@ -77,7 +80,7 @@ class Pop_CoverViewer(object):
 
                 # Create new window
                 self.window = Toplevel(bg=VAR.GUI_COLOR_PRIMARY)
-                self.window.wm_title(item.name + " - " + coverType + " cover")
+                self.window.wm_title(item.name + " - " + title)
                 self.window.geometry("+"+str(x)+"+"+str(y))
                 self.window.resizable(False, False)
                 self.window.iconphoto(False, loadIcon("eye-outline", 15, 15))

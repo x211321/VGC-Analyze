@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2021-04-28 22:10+0200\n"
-"PO-Revision-Date: 2021-04-30 00:40+0200\n"
+"PO-Revision-Date: 2021-04-30 00:52+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -192,11 +192,11 @@ msgstr "Modul"
 msgid "Quit"
 msgstr "Beenden"
 
-#: ../gui/VGC_GUI_Menu.py:20 ../gui/VGC_GUI_Popups.py:242
+#: ../gui/VGC_GUI_Menu.py:20 ../gui/VGC_GUI_Popups.py:245
 msgid "Search for item"
 msgstr "Eintrag suchen"
 
-#: ../gui/VGC_GUI_Menu.py:24 ../gui/VGC_GUI_Popups.py:118
+#: ../gui/VGC_GUI_Menu.py:24 ../gui/VGC_GUI_Popups.py:121
 msgid "Download collection"
 msgstr "Sammlung herunterladen"
 
@@ -224,11 +224,11 @@ msgstr "Über VGC Analyzer"
 msgid "File"
 msgstr "Datei"
 
-#: ../gui/VGC_GUI_Menu.py:37 ../gui/VGC_GUI_Popups.py:264
+#: ../gui/VGC_GUI_Menu.py:37 ../gui/VGC_GUI_Popups.py:267
 msgid "Search"
 msgstr "Suchen"
 
-#: ../gui/VGC_GUI_Menu.py:38 ../gui/VGC_GUI_Popups.py:142
+#: ../gui/VGC_GUI_Menu.py:38 ../gui/VGC_GUI_Popups.py:145
 #: ../gui/VGC_GUI_Settings.py:80
 msgid "Download"
 msgstr "Herunterladen"
@@ -241,20 +241,20 @@ msgstr "Fenster"
 msgid "About"
 msgstr "Über"
 
-#: ../gui/VGC_GUI_Popups.py:136
+#: ../gui/VGC_GUI_Popups.py:139
 msgid "VGC Username"
 msgstr "VGC Benutzername"
 
-#: ../gui/VGC_GUI_Popups.py:138
+#: ../gui/VGC_GUI_Popups.py:141
 msgid "Password"
 msgstr "Passwort"
 
-#: ../gui/VGC_GUI_Popups.py:140 ../gui/VGC_GUI_Popups.py:262
-#: ../gui/VGC_GUI_Popups.py:375 ../gui/VGC_GUI_Settings.py:52
+#: ../gui/VGC_GUI_Popups.py:143 ../gui/VGC_GUI_Popups.py:265
+#: ../gui/VGC_GUI_Popups.py:378 ../gui/VGC_GUI_Settings.py:52
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: ../gui/VGC_GUI_Popups.py:159
+#: ../gui/VGC_GUI_Popups.py:162
 msgid ""
 "The provided login credentials will be used to\n"
 "download a backup of your collection from\n"
@@ -290,44 +290,44 @@ msgstr ""
 "\n"
 "3) \tStarte VGC Analyzer neu"
 
-#: ../gui/VGC_GUI_Popups.py:171
+#: ../gui/VGC_GUI_Popups.py:174
 msgid "VGCollect.com user profile"
 msgstr "VGCollect.com Benutzerprofil"
 
-#: ../gui/VGC_GUI_Popups.py:199
+#: ../gui/VGC_GUI_Popups.py:202
 msgid "Login credentials incomplete"
 msgstr "Anmeldedaten unvollständig"
 
-#: ../gui/VGC_GUI_Popups.py:199 ../gui/VGC_GUI_Popups.py:206
-#: ../gui/VGC_GUI_Popups.py:211
+#: ../gui/VGC_GUI_Popups.py:202 ../gui/VGC_GUI_Popups.py:209
+#: ../gui/VGC_GUI_Popups.py:214
 msgid "Collection download"
 msgstr "Sammlung herunterladen"
 
-#: ../gui/VGC_GUI_Popups.py:206
+#: ../gui/VGC_GUI_Popups.py:209
 msgid "Download successful"
 msgstr "Download erfolgreich"
 
-#: ../gui/VGC_GUI_Popups.py:258
+#: ../gui/VGC_GUI_Popups.py:261
 msgid "Search for"
 msgstr "Suchen nach"
 
-#: ../gui/VGC_GUI_Popups.py:339
+#: ../gui/VGC_GUI_Popups.py:342
 msgid "Couldn't find"
 msgstr "Nicht gefunden"
 
-#: ../gui/VGC_GUI_Popups.py:363
+#: ../gui/VGC_GUI_Popups.py:366
 msgid "Select "
 msgstr "Auswählen "
 
-#: ../gui/VGC_GUI_Popups.py:376
+#: ../gui/VGC_GUI_Popups.py:379
 msgid "Reset"
 msgstr "Zurücksetzten"
 
-#: ../gui/VGC_GUI_Popups.py:377
+#: ../gui/VGC_GUI_Popups.py:380
 msgid "Select all"
 msgstr "Alle auswählen"
 
-#: ../gui/VGC_GUI_Popups.py:378 ../gui/VGC_GUI_Settings.py:54
+#: ../gui/VGC_GUI_Popups.py:381 ../gui/VGC_GUI_Settings.py:54
 msgid "OK"
 msgstr "OK"
 
@@ -494,7 +494,7 @@ msgstr "Anzahl Gruppen:"
 
 #: ../gui/VGC_GUI_CollectionInfo.py:156
 msgid "Avg. group price:"
-msgstr "Durchschnittlicher Gruppenpreis"
+msgstr "Durchschnittlicher Gruppenpreis:"
 
 #: ../gui/VGC_GUI_CollectionInfo.py:159
 msgid "Lowest group price:"
@@ -511,3 +511,15 @@ msgstr "Am wenigsten Gruppenelemente:"
 #: ../gui/VGC_GUI_CollectionInfo.py:171
 msgid "Most group items:"
 msgstr "Am meisten Gruppenelemente:"
+
+#: ../gui/VGC_GUI_Popups.py:67
+msgid "front cover"
+msgstr "Vorderseite"
+
+#: ../gui/VGC_GUI_Popups.py:70
+msgid "back cover"
+msgstr "Rückseite"
+
+#: ../gui/VGC_GUI_Popups.py:73
+msgid "cart cover"
+msgstr "Modul"
