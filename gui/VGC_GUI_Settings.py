@@ -1,4 +1,7 @@
+import VGC_Settings as settings
+
 from VGC_Locale import _
+from VGC_Locale import available_languages
 
 from tkinter import *
 from tkinter import ttk
@@ -43,9 +46,9 @@ class GUI_Settings(Toplevel):
         self.columnconfigure(0, weight=1)
 
         # Add buttons
-        btn_cancel  = Button(btn_frame, text=_("Cancel"), width=20, relief="groove", bg=VAR.BUTTON_COLOR_BAD)
+        btn_cancel  = Button(btn_frame, text=_("Cancel"), width=20, relief="groove", bg=VAR.BUTTON_COLOR_BAD, command=self.close)
         btn_spacer  = Label_(btn_frame, bg=VAR.GUI_COLOR_SECONDARY)
-        btn_confirm = Button(btn_frame, text=_("OK"), width=20, relief="groove", bg=VAR.BUTTON_COLOR_GOOD)
+        btn_confirm = Button(btn_frame, text=_("OK"), width=20, relief="groove", bg=VAR.BUTTON_COLOR_GOOD, command=self.apply)
 
         btn_cancel.grid(row=0, column=0, sticky="e", padx=10, pady=20)
         btn_spacer.grid(row=0, column=1)
@@ -58,19 +61,84 @@ class GUI_Settings(Toplevel):
         tab.pack(fill="both")
 
         # Add tab pages
-        locale_settings_frame         = Frame(tab)
-        display_settings_frame        = Frame(tab)
-        download_settings_frame       = Frame(tab)
-        platformHolder_keywords_frame = Frame(tab)
-        platform_overwrites_frame     = Frame(tab)
+        pages = {}
+        pages["locale"]         = Frame(tab)
+        pages["display"]        = Frame(tab)
+        pages["download"]       = Frame(tab)
+        pages["platformHolders"] = Frame(tab)
+        pages["platforms"]      = Frame(tab)
 
-        tab.add(locale_settings_frame, text=_("Locale settings"))
-        tab.add(display_settings_frame, text=_("Display settings"))
-        tab.add(download_settings_frame, text=_("Download settings"))
-        tab.add(platformHolder_keywords_frame, text=_("Platform holder keywords"))
-        tab.add(platform_overwrites_frame, text=_("Platform overwrites"))
+        for key in pages:
+            pages[key].columnconfigure(0, weight=1)
+            pages[key].config(bg=VAR.GUI_COLOR_PRIMARY)
 
+        tab.add(pages["locale"], text=_("Locale"))
+        tab.add(pages["display"], text=_("Display"))
+        tab.add(pages["download"], text=_("Download"))
+        tab.add(pages["platformHolders"], text=_("Platform holders"))
+        tab.add(pages["platforms"], text=_("Platforms"))
+
+        self.w = {}
+
+        # Locale settings
+        self.w["locale"] = {}
+
+        self.w["locale"]["language_txt"] = Label_(pages["locale"], text=_("Language"))
+        self.w["locale"]["language"]     = Combobox_(pages["locale"], id="language", values=available_languages, width=10)
+
+        self.grid(self.w["locale"])
+
+        # Restore settings
+        self.restore()
 
         # Run main loop
         self.mainloop()
+
+    def grid(self, widgets):
+        row = 0
+        col = 0
+
+        for key in widgets:
+            if not widgets[key].__class__.__name__ == "Combobox_":
+                widgets[key].config(bg=VAR.GUI_COLOR_PRIMARY)
+
+            if col == 0:
+                sticky = "w"
+            if col == 1:
+                sticky = "e"
+
+            widgets[key].grid(row=row, column=col, sticky=sticky, padx=20, pady=10)
+
+            col += 1
+            if col > 2:
+                row += 1
+
+    def restore(self):
+        for sectionKey in self.w:
+            section = self.w[sectionKey]
+
+            for widgetKey in section:
+                widget = section[widgetKey]
+
+                if len(widget.id):
+                    widget.set(settings.get(sectionKey, widget.id, ""))
+
+    def close(self):
+        self.destroy()
+
+    def apply(self):
+        for sectionKey in self.w:
+            section = self.w[sectionKey]
+
+            for widgetKey in section:
+                widget = section[widgetKey]
+
+                if len(widget.id):
+                    settings.set(sectionKey, widget.id, widget.get())
+
+        settings.write()
+        self.close()
+
+
+
 

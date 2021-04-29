@@ -30,7 +30,7 @@ path = "../data/locales/"
 if not os.path.exists(path):
     os.makedirs(path)
 
-os.system("\""+pyToolPath + "i18n/pygettext.py\" -d base -o "+path+"base.pot " + " ".join(files))
+os.system("\""+pyToolPath + "i18n/pygettext.py\" -d base -o ./base.pot " + " ".join(files))
 
 for language in languages:
 
@@ -41,7 +41,7 @@ for language in languages:
 
     if os.path.exists(targetPath+"base.po"):
         # Newly generated template
-        pot_file = polib.pofile(path + "base.pot")
+        pot_file = polib.pofile("./base.pot")
 
         # Existing translation
         po_file = polib.pofile(targetPath + "base.po")
@@ -54,5 +54,5 @@ for language in languages:
     else:
         # New translation
         # Copy
-        shutil.copyfile(path+"base.pot", targetPath+"base.po")
+        shutil.copyfile("./base.pot", targetPath+"base.po")
 

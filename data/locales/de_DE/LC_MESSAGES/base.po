@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2021-04-28 22:10+0200\n"
-"PO-Revision-Date: 2021-04-29 00:46+0200\n"
+"PO-Revision-Date: 2021-04-29 22:37+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -34,11 +34,11 @@ msgstr "Anmeldung fehlgeschlagen - Fehlercode: "
 
 #: ../VGC_GUI.py:219
 msgid "items"
-msgstr "Einträge"
+msgstr "Eintrï¿½ge"
 
 #: ../VGC_Var.py:37
 msgid "Bar"
-msgstr "Säulen"
+msgstr "Sï¿½ulen"
 
 #: ../VGC_Var.py:38
 msgid "Pie"
@@ -46,7 +46,7 @@ msgstr "Kreis"
 
 #: ../VGC_Var.py:39
 msgid "Area"
-msgstr "Fläche"
+msgstr "Flï¿½che"
 
 #: ../VGC_Var.py:40
 msgid "Line"
@@ -60,7 +60,7 @@ msgstr "Jahre"
 msgid "Months"
 msgstr "Monate"
 
-#: ../VGC_Var.py:44 ../gui/VGC_GUI_Filter.py:47
+#: ../VGC_Var.py:44 ../gui/VGC_GUI_Filter.py:47 ../gui/VGC_GUI_Settings.py:79
 msgid "Platforms"
 msgstr "Plattformen"
 
@@ -68,13 +68,13 @@ msgstr "Plattformen"
 msgid "Regions"
 msgstr "Regionen"
 
-#: ../VGC_Var.py:46 ../gui/VGC_GUI_Filter.py:49
+#: ../VGC_Var.py:46 ../gui/VGC_GUI_Filter.py:49 ../gui/VGC_GUI_Settings.py:78
 msgid "Platform holders"
 msgstr "Platformhalter"
 
 #: ../VGC_Var.py:51
 msgid "Item count"
-msgstr "Anzahl Einträge"
+msgstr "Anzahl Eintrï¿½ge"
 
 #: ../VGC_Var.py:52
 msgid "Total price"
@@ -82,7 +82,7 @@ msgstr "Gesamtpreis"
 
 #: ../VGC_Var.py:53
 msgid "Item count (growth)"
-msgstr "Anzahl Einträge (Wachstum)"
+msgstr "Anzahl Eintrï¿½ge (Wachstum)"
 
 #: ../VGC_Var.py:54
 msgid "Total price (growth)"
@@ -90,7 +90,7 @@ msgstr "Gesamtpreis (Wachstum)"
 
 #: ../gui/VGC_GUI_CollectionInfo.py:41
 msgid "Item count:"
-msgstr "Anzahl Einträge:"
+msgstr "Anzahl Eintrï¿½ge:"
 
 #: ../gui/VGC_GUI_CollectionInfo.py:44
 msgid "Total price:"
@@ -130,7 +130,7 @@ msgstr "Titel"
 #: ../gui/VGC_GUI_Filter.py:162 ../gui/VGC_GUI_Filter.py:181
 #: ../gui/VGC_GUI_Filter.py:200
 msgid "Select"
-msgstr "Auswählen"
+msgstr "Auswï¿½hlen"
 
 #: ../gui/VGC_GUI_Filter.py:53 ../gui/VGC_GUI_TreeView.py:76
 msgid "Notes"
@@ -182,61 +182,62 @@ msgstr "Vorderseite"
 
 #: ../gui/VGC_GUI_ItemInfo.py:65
 msgid "Back cover"
-msgstr "Rückseite"
+msgstr "Rï¿½ckseite"
 
 #: ../gui/VGC_GUI_ItemInfo.py:71
 msgid "Cart cover"
 msgstr "Modul"
 
-#: ../gui/VGC_GUI_Menu.py:15
+#: ../gui/VGC_GUI_Menu.py:16
 msgid "Quit"
 msgstr "Beenden"
 
-#: ../gui/VGC_GUI_Menu.py:19 ../gui/VGC_GUI_Popups.py:242
+#: ../gui/VGC_GUI_Menu.py:20 ../gui/VGC_GUI_Popups.py:242
 msgid "Search for item"
 msgstr "Eintrag suchen"
 
-#: ../gui/VGC_GUI_Menu.py:23 ../gui/VGC_GUI_Popups.py:118
+#: ../gui/VGC_GUI_Menu.py:24 ../gui/VGC_GUI_Popups.py:118
 msgid "Download collection"
 msgstr "Sammlung herunterladen"
 
-#: ../gui/VGC_GUI_Menu.py:27
+#: ../gui/VGC_GUI_Menu.py:28
 msgid "Filters"
 msgstr "Filter"
 
-#: ../gui/VGC_GUI_Menu.py:28
+#: ../gui/VGC_GUI_Menu.py:29
 msgid "Item info"
 msgstr "Eintragsinformationen"
 
-#: ../gui/VGC_GUI_Menu.py:29
+#: ../gui/VGC_GUI_Menu.py:30
 msgid "Graphs"
 msgstr "Diagramme"
 
-#: ../gui/VGC_GUI_Menu.py:33 ../gui/VGC_GUI_Menu.py:43
+#: ../gui/VGC_GUI_Menu.py:15
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: ../gui/VGC_GUI_Menu.py:37
+#: ../gui/VGC_GUI_Menu.py:34
 msgid "About VGC Analyzer"
 msgstr "Über VGC Analyzer"
 
-#: ../gui/VGC_GUI_Menu.py:39
+#: ../gui/VGC_GUI_Menu.py:36
 msgid "File"
 msgstr "Datei"
 
-#: ../gui/VGC_GUI_Menu.py:40 ../gui/VGC_GUI_Popups.py:264
+#: ../gui/VGC_GUI_Menu.py:37 ../gui/VGC_GUI_Popups.py:264
 msgid "Search"
 msgstr "Suchen"
 
-#: ../gui/VGC_GUI_Menu.py:41 ../gui/VGC_GUI_Popups.py:142
+#: ../gui/VGC_GUI_Menu.py:38 ../gui/VGC_GUI_Popups.py:142
+#: ../gui/VGC_GUI_Settings.py:77
 msgid "Download"
 msgstr "Herunterladen"
 
-#: ../gui/VGC_GUI_Menu.py:42
+#: ../gui/VGC_GUI_Menu.py:39
 msgid "Window"
 msgstr "Fenster"
 
-#: ../gui/VGC_GUI_Menu.py:44
+#: ../gui/VGC_GUI_Menu.py:40
 msgid "About"
 msgstr "Über"
 
@@ -249,7 +250,7 @@ msgid "Password"
 msgstr "Passwort"
 
 #: ../gui/VGC_GUI_Popups.py:140 ../gui/VGC_GUI_Popups.py:262
-#: ../gui/VGC_GUI_Popups.py:375 ../gui/VGC_GUI_Settings.py:46
+#: ../gui/VGC_GUI_Popups.py:375 ../gui/VGC_GUI_Settings.py:49
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -277,9 +278,9 @@ msgstr ""
 "VGCollect.com Benutzerprofil herunterzuladen.\n"
 "\n"
 "Deine Anmeldedaten werden nicht gespeichert\n"
-"oder für anderweitige Zwecke verwendet.\n"
+"oder fï¿½r anderweitige Zwecke verwendet.\n"
 "\n"
-"Du kannst deine Sammlungsdaten auch händisch bereitstellen:\n"
+"Du kannst deine Sammlungsdaten auch hï¿½ndisch bereitstellen:\n"
 "\n"
 "1) \tExportiere deine Sammlung von deinem\n"
 "\tVGCollect.com Benutzerprofil\n"
@@ -295,7 +296,7 @@ msgstr "VGCollect.com Benutzerprofil"
 
 #: ../gui/VGC_GUI_Popups.py:199
 msgid "Login credentials incomplete"
-msgstr "Anmeldedaten unvollständig"
+msgstr "Anmeldedaten unvollstï¿½ndig"
 
 #: ../gui/VGC_GUI_Popups.py:199 ../gui/VGC_GUI_Popups.py:206
 #: ../gui/VGC_GUI_Popups.py:211
@@ -316,39 +317,19 @@ msgstr "Nicht gefunden"
 
 #: ../gui/VGC_GUI_Popups.py:363
 msgid "Select "
-msgstr "Auswählen "
+msgstr "Auswï¿½hlen "
 
 #: ../gui/VGC_GUI_Popups.py:376
 msgid "Reset"
-msgstr "Zurücksetzten"
+msgstr "Zurï¿½cksetzten"
 
 #: ../gui/VGC_GUI_Popups.py:377
 msgid "Select all"
-msgstr "Alle auswählen"
+msgstr "Alle auswï¿½hlen"
 
-#: ../gui/VGC_GUI_Popups.py:378 ../gui/VGC_GUI_Settings.py:48
+#: ../gui/VGC_GUI_Popups.py:378 ../gui/VGC_GUI_Settings.py:51
 msgid "OK"
 msgstr "OK"
-
-#: ../gui/VGC_GUI_Settings.py:67
-msgid "Locale settings"
-msgstr "Spracheinstellungen"
-
-#: ../gui/VGC_GUI_Settings.py:68
-msgid "Display settings"
-msgstr "Anzeigeeinstellungen"
-
-#: ../gui/VGC_GUI_Settings.py:69
-msgid "Download settings"
-msgstr "Download Einstellungen"
-
-#: ../gui/VGC_GUI_Settings.py:70
-msgid "Platform holder keywords"
-msgstr "Plattformhalter"
-
-#: ../gui/VGC_GUI_Settings.py:71
-msgid "Platform overwrites"
-msgstr "Plattformen überschreiben"
 
 #: ../gui/VGC_GUI_TreeView.py:63
 msgid "Group"
@@ -397,7 +378,7 @@ msgstr "Abgeschlossen"
 #: ../gui/VGC_GUI_Filter.py:160 ../gui/VGC_GUI_Filter.py:179
 #: ../gui/VGC_GUI_Filter.py:198
 msgid " selected"
-msgstr " ausgewählt"
+msgstr " ausgewï¿½hlt"
 
 #: ../gui/VGC_GUI_Filter.py:63
 msgid "Group by"
@@ -417,7 +398,7 @@ msgstr "Reihenfolge"
 
 #: ../gui/VGC_GUI_Filter.py:120
 msgid "Reset filter"
-msgstr "Zurücksetzten"
+msgstr "Zurï¿½cksetzten"
 
 #: ../gui/VGC_GUI_Filter.py:123
 msgid "Apply filter"
@@ -495,5 +476,14 @@ msgstr "Plattformhalter"
 msgid "regions"
 msgstr "Regionen"
 
-#~ msgid "total price:"
-#~ msgstr "Gesamtpreis:"
+#: ../gui/VGC_GUI_Settings.py:75
+msgid "Locale"
+msgstr "Sprache"
+
+#: ../gui/VGC_GUI_Settings.py:76
+msgid "Display"
+msgstr "Anzeige"
+
+#: ../gui/VGC_GUI_Settings.py:86
+msgid "Language"
+msgstr "Sprache"

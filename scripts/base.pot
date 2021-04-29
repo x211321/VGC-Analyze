@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2021-04-29 20:44+0200\n"
+"POT-Creation-Date: 2021-04-29 22:35+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -63,7 +63,7 @@ msgstr ""
 msgid "Months"
 msgstr ""
 
-#: ../VGC_Var.py:44 ../gui/VGC_GUI_Filter.py:47
+#: ../VGC_Var.py:44 ../gui/VGC_GUI_Filter.py:47 ../gui/VGC_GUI_Settings.py:79
 msgid "Platforms"
 msgstr ""
 
@@ -71,7 +71,7 @@ msgstr ""
 msgid "Regions"
 msgstr ""
 
-#: ../VGC_Var.py:46 ../gui/VGC_GUI_Filter.py:49
+#: ../VGC_Var.py:46 ../gui/VGC_GUI_Filter.py:49 ../gui/VGC_GUI_Settings.py:78
 msgid "Platform holders"
 msgstr ""
 
@@ -309,54 +309,55 @@ msgid "Cart cover"
 msgstr ""
 
 #: ../gui/VGC_GUI_Menu.py:15
-msgid "Quit"
-msgstr ""
-
-#: ../gui/VGC_GUI_Menu.py:19 ../gui/VGC_GUI_Popups.py:242
-msgid "Search for item"
-msgstr ""
-
-#: ../gui/VGC_GUI_Menu.py:23 ../gui/VGC_GUI_Popups.py:118
-msgid "Download collection"
-msgstr ""
-
-#: ../gui/VGC_GUI_Menu.py:27
-msgid "Filters"
-msgstr ""
-
-#: ../gui/VGC_GUI_Menu.py:28
-msgid "Item info"
-msgstr ""
-
-#: ../gui/VGC_GUI_Menu.py:29
-msgid "Graphs"
-msgstr ""
-
-#: ../gui/VGC_GUI_Menu.py:33 ../gui/VGC_GUI_Menu.py:43
 msgid "Settings"
 msgstr ""
 
-#: ../gui/VGC_GUI_Menu.py:37
+#: ../gui/VGC_GUI_Menu.py:16
+msgid "Quit"
+msgstr ""
+
+#: ../gui/VGC_GUI_Menu.py:20 ../gui/VGC_GUI_Popups.py:242
+msgid "Search for item"
+msgstr ""
+
+#: ../gui/VGC_GUI_Menu.py:24 ../gui/VGC_GUI_Popups.py:118
+msgid "Download collection"
+msgstr ""
+
+#: ../gui/VGC_GUI_Menu.py:28
+msgid "Filters"
+msgstr ""
+
+#: ../gui/VGC_GUI_Menu.py:29
+msgid "Item info"
+msgstr ""
+
+#: ../gui/VGC_GUI_Menu.py:30
+msgid "Graphs"
+msgstr ""
+
+#: ../gui/VGC_GUI_Menu.py:34
 msgid "About VGC Analyzer"
 msgstr ""
 
-#: ../gui/VGC_GUI_Menu.py:39
+#: ../gui/VGC_GUI_Menu.py:36
 msgid "File"
 msgstr ""
 
-#: ../gui/VGC_GUI_Menu.py:40 ../gui/VGC_GUI_Popups.py:264
+#: ../gui/VGC_GUI_Menu.py:37 ../gui/VGC_GUI_Popups.py:264
 msgid "Search"
 msgstr ""
 
-#: ../gui/VGC_GUI_Menu.py:41 ../gui/VGC_GUI_Popups.py:142
+#: ../gui/VGC_GUI_Menu.py:38 ../gui/VGC_GUI_Popups.py:142
+#: ../gui/VGC_GUI_Settings.py:77
 msgid "Download"
 msgstr ""
 
-#: ../gui/VGC_GUI_Menu.py:42
+#: ../gui/VGC_GUI_Menu.py:39
 msgid "Window"
 msgstr ""
 
-#: ../gui/VGC_GUI_Menu.py:44
+#: ../gui/VGC_GUI_Menu.py:40
 msgid "About"
 msgstr ""
 
@@ -369,7 +370,7 @@ msgid "Password"
 msgstr ""
 
 #: ../gui/VGC_GUI_Popups.py:140 ../gui/VGC_GUI_Popups.py:262
-#: ../gui/VGC_GUI_Popups.py:375 ../gui/VGC_GUI_Settings.py:46
+#: ../gui/VGC_GUI_Popups.py:375 ../gui/VGC_GUI_Settings.py:49
 msgid "Cancel"
 msgstr ""
 
@@ -430,28 +431,20 @@ msgstr ""
 msgid "Select all"
 msgstr ""
 
-#: ../gui/VGC_GUI_Popups.py:378 ../gui/VGC_GUI_Settings.py:48
+#: ../gui/VGC_GUI_Popups.py:378 ../gui/VGC_GUI_Settings.py:51
 msgid "OK"
 msgstr ""
 
-#: ../gui/VGC_GUI_Settings.py:67
-msgid "Locale settings"
+#: ../gui/VGC_GUI_Settings.py:75
+msgid "Locale"
 msgstr ""
 
-#: ../gui/VGC_GUI_Settings.py:68
-msgid "Display settings"
+#: ../gui/VGC_GUI_Settings.py:76
+msgid "Display"
 msgstr ""
 
-#: ../gui/VGC_GUI_Settings.py:69
-msgid "Download settings"
-msgstr ""
-
-#: ../gui/VGC_GUI_Settings.py:70
-msgid "Platform holder keywords"
-msgstr ""
-
-#: ../gui/VGC_GUI_Settings.py:71
-msgid "Platform overwrites"
+#: ../gui/VGC_GUI_Settings.py:86
+msgid "Language"
 msgstr ""
 
 #: ../gui/VGC_GUI_TreeView.py:63

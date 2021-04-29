@@ -1,8 +1,11 @@
+import os
 import gettext
 
 localedir = "./data/locales/"
 
 _ = None
+
+available_languages = os.listdir(localedir)
 
 def setLocale(localeString = ""):
     global _
