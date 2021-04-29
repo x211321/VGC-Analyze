@@ -61,7 +61,7 @@ class GUI_TreeView(Frame):
 
         # View column headers
         self.item_view.heading("#0"      , text=_("Group")   , anchor="w")
-        self.item_view.heading("Index"   , text=_("")        , anchor="w")
+        self.item_view.heading("Index"   , text=""           , anchor="w")
         self.item_view.heading("Title"   , text=_("Title")   , anchor="w", command=lambda:self.treeviewSort("Title", False))
         self.item_view.heading("Platform", text=_("Platform"), anchor="w", command=lambda:self.treeviewSort("Platform", False))
         self.item_view.heading("Region"  , text=_("Region")  , anchor="w", command=lambda:self.treeviewSort("Region", False))

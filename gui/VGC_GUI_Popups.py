@@ -27,6 +27,25 @@ def initPopups(gui):
 
 
 ######################
+# centerPopup
+# --------------------
+def centerPopup(window, parent):
+    # Update window
+    window.update()
+
+    # Get window size
+    w = window.winfo_width()
+    h = window.winfo_height()
+
+    # Calculate position relative to main parent
+    x = int(parent.winfo_x() + (parent.winfo_width() / 2) - (w / 2))
+    y = int(parent.winfo_y() + (parent.winfo_height() / 2) - (h / 2))
+
+    # Position window
+    window.geometry("{0}x{1}+{2}+{3}".format(w, h, x, y))
+
+
+######################
 # Pop_CoverViewer
 # --------------------
 class Pop_CoverViewer(object):
@@ -93,19 +112,11 @@ class Pop_CollectionDownload(object):
 
     def show(self):
 
-        w = 315
-        h = 420
-
         self.close()
-
-        # Calculate position relative to main parent
-        x = int(self.parent.winfo_x() + (self.parent.winfo_width() / 2) - (w / 2))
-        y = int(self.parent.winfo_y() + (self.parent.winfo_height() / 2) - (h / 2))
 
         # Create new window
         self.window = Toplevel(bg=VAR.GUI_COLOR_PRIMARY)
         self.window.wm_title(_("Download collection"))
-        self.window.geometry(str(w)+"x"+str(h)+"+"+str(x)+"+"+str(y))
         self.window.resizable(False, False)
         self.window.iconphoto(False, loadIcon("cloud-download-outline", 15, 15))
         self.window.bind('<Escape>', lambda x:self.close())
@@ -166,8 +177,13 @@ class Pop_CollectionDownload(object):
 
         self.input_user.focus()
 
+        self.center()
+
         # Run main loop of new window
         self.window.mainloop()
+
+    def center(self):
+        centerPopup(self.window, self.parent)
 
     def close(self):
         if not self.window == None:
@@ -211,9 +227,6 @@ class Pop_ItemSearch(object):
 
     def show(self):
 
-        w = 310
-        h = 135
-
         # Get selected row
         selection = self.treeView.focus()
 
@@ -225,14 +238,9 @@ class Pop_ItemSearch(object):
         # Close previous window
         self.close()
 
-        # Calculate position relative to main parent
-        x = int(self.parent.winfo_x() + (self.parent.winfo_width() / 2) - (w / 2))
-        y = int(self.parent.winfo_y() + (self.parent.winfo_height() / 2) - (h / 2))
-
         # Create new window
         self.window = Toplevel(bg=VAR.GUI_COLOR_PRIMARY)
         self.window.wm_title(_("Search for item"))
-        self.window.geometry(str(w)+"x"+str(h)+"+"+str(x)+"+"+str(y))
         self.window.resizable(False, False)
         self.window.iconphoto(False, loadIcon("search-outline", 15, 15))
         self.window.bind('<Escape>', lambda x:self.close())
@@ -267,8 +275,13 @@ class Pop_ItemSearch(object):
         self.input_search.bind('<Return>', self.search)
         self.input_search.focus()
 
+        self.center()
+
         # Run main loop of new window
         self.window.mainloop()
+
+    def center(self):
+        centerPopup(self.window, self.parent)
 
     def close(self):
         if not self.window == None:
@@ -398,7 +411,6 @@ class Pop_FilterSelect(object):
 
         # Run main loop of new window
         self.window.mainloop()
-
 
     def close(self):
         if not self.window == None:
