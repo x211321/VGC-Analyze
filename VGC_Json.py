@@ -2,8 +2,6 @@ from VGC_Locale import _
 
 import os
 import json
-from VGC_Var import LOCAL_DATA
-from VGC_Var import LOCAL_DATA_FILE
 
 ######################
 # readJson
@@ -21,11 +19,11 @@ def readJson(fileName):
 ######################
 # writeJson
 # --------------------
-def writeJson(localDataList, fileName):
+def writeJson(data, fileName):
 
     if not os.path.exists(os.path.dirname(fileName)):
         os.makedirs(os.path.dirname(fileName))
 
     file = open(fileName, "w")
-    json.dump(localDataList, file, sort_keys=True, indent="\t")
+    json.dump(data, file, sort_keys=True, indent="\t")
     file.close()

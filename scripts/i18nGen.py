@@ -25,7 +25,7 @@ for file in file_list:
     if file.startswith("VGC_") and file.endswith(".py"):
         files.append(path+file)
 
-path = "../locales/"
+path = "../data/locales/"
 
 if not os.path.exists(path):
     os.makedirs(path)

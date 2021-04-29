@@ -1,12 +1,19 @@
 import gettext
 
-localedir = "./locales"
-translate = gettext.translation("VGC_Analyze", localedir, fallback=True)
-_ = translate.gettext
+localedir = "./data/locales/"
 
+_ = None
 
-# Load german locale
-if True:
-    de_DE = gettext.translation("base", localedir=localedir, languages=["de_DE"])
-    de_DE.install()
-    _ = de_DE.gettext
+def setLocale(localeString = ""):
+    global _
+    global localedir
+
+    if len(localeString):
+
+        print("Loading locale:", localedir, localeString)
+
+        locale = gettext.translation("base", localedir=localedir, languages=[localeString])
+        locale.install()
+        _ = locale.gettext
+    else:
+        _ = gettext.translation("base", localedir, languages=["en_US"], fallback=True).gettext

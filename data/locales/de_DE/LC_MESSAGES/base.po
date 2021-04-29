@@ -36,55 +36,55 @@ msgstr "Anmeldung fehlgeschlagen - Fehlercode: "
 msgid "items"
 msgstr "Einträge"
 
-#: ../VGC_Var.py:38
+#: ../VGC_Var.py:37
 msgid "Bar"
 msgstr "Säulen"
 
-#: ../VGC_Var.py:39
+#: ../VGC_Var.py:38
 msgid "Pie"
 msgstr "Kreis"
 
-#: ../VGC_Var.py:40
+#: ../VGC_Var.py:39
 msgid "Area"
 msgstr "Fläche"
 
-#: ../VGC_Var.py:41
+#: ../VGC_Var.py:40
 msgid "Line"
 msgstr "Linien"
 
-#: ../VGC_Var.py:43
+#: ../VGC_Var.py:42
 msgid "Years"
 msgstr "Jahre"
 
-#: ../VGC_Var.py:44
+#: ../VGC_Var.py:43
 msgid "Months"
 msgstr "Monate"
 
-#: ../VGC_Var.py:45 ../gui/VGC_GUI_Filter.py:47
+#: ../VGC_Var.py:44 ../gui/VGC_GUI_Filter.py:47
 msgid "Platforms"
 msgstr "Plattformen"
 
-#: ../VGC_Var.py:46 ../gui/VGC_GUI_Filter.py:51
+#: ../VGC_Var.py:45 ../gui/VGC_GUI_Filter.py:51
 msgid "Regions"
 msgstr "Regionen"
 
-#: ../VGC_Var.py:47 ../gui/VGC_GUI_Filter.py:49
+#: ../VGC_Var.py:46 ../gui/VGC_GUI_Filter.py:49
 msgid "Platform holders"
 msgstr "Platformhalter"
 
-#: ../VGC_Var.py:52
+#: ../VGC_Var.py:51
 msgid "Item count"
 msgstr "Anzahl Einträge"
 
-#: ../VGC_Var.py:53
+#: ../VGC_Var.py:52
 msgid "Total price"
 msgstr "Gesamtpreis"
 
-#: ../VGC_Var.py:54
+#: ../VGC_Var.py:53
 msgid "Item count (growth)"
 msgstr "Anzahl Einträge (Wachstum)"
 
-#: ../VGC_Var.py:55
+#: ../VGC_Var.py:54
 msgid "Total price (growth)"
 msgstr "Gesamtpreis (Wachstum)"
 
@@ -192,11 +192,11 @@ msgstr "Modul"
 msgid "Quit"
 msgstr "Beenden"
 
-#: ../gui/VGC_GUI_Menu.py:19 ../gui/VGC_GUI_Popups.py:234
+#: ../gui/VGC_GUI_Menu.py:19 ../gui/VGC_GUI_Popups.py:242
 msgid "Search for item"
 msgstr "Eintrag suchen"
 
-#: ../gui/VGC_GUI_Menu.py:23 ../gui/VGC_GUI_Popups.py:107
+#: ../gui/VGC_GUI_Menu.py:23 ../gui/VGC_GUI_Popups.py:118
 msgid "Download collection"
 msgstr "Sammlung herunterladen"
 
@@ -224,11 +224,11 @@ msgstr "Über VGC Analyzer"
 msgid "File"
 msgstr "Datei"
 
-#: ../gui/VGC_GUI_Menu.py:40 ../gui/VGC_GUI_Popups.py:257
+#: ../gui/VGC_GUI_Menu.py:40 ../gui/VGC_GUI_Popups.py:264
 msgid "Search"
 msgstr "Suchen"
 
-#: ../gui/VGC_GUI_Menu.py:41 ../gui/VGC_GUI_Popups.py:132
+#: ../gui/VGC_GUI_Menu.py:41 ../gui/VGC_GUI_Popups.py:142
 msgid "Download"
 msgstr "Herunterladen"
 
@@ -240,20 +240,20 @@ msgstr "Fenster"
 msgid "About"
 msgstr "Über"
 
-#: ../gui/VGC_GUI_Popups.py:126
+#: ../gui/VGC_GUI_Popups.py:136
 msgid "VGC Username"
 msgstr "VGC Benutzername"
 
-#: ../gui/VGC_GUI_Popups.py:128
+#: ../gui/VGC_GUI_Popups.py:138
 msgid "Password"
 msgstr "Passwort"
 
-#: ../gui/VGC_GUI_Popups.py:130 ../gui/VGC_GUI_Popups.py:255
-#: ../gui/VGC_GUI_Popups.py:363 ../gui/VGC_GUI_Settings.py:46
+#: ../gui/VGC_GUI_Popups.py:140 ../gui/VGC_GUI_Popups.py:262
+#: ../gui/VGC_GUI_Popups.py:375 ../gui/VGC_GUI_Settings.py:46
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: ../gui/VGC_GUI_Popups.py:149
+#: ../gui/VGC_GUI_Popups.py:159
 msgid ""
 "The provided login credentials will be used to\n"
 "download a backup of your collection from\n"
@@ -289,44 +289,44 @@ msgstr ""
 "\n"
 "3) \tStarte VGC Analyzer neu"
 
-#: ../gui/VGC_GUI_Popups.py:161
+#: ../gui/VGC_GUI_Popups.py:171
 msgid "VGCollect.com user profile"
 msgstr "VGCollect.com Benutzerprofil"
 
-#: ../gui/VGC_GUI_Popups.py:184
+#: ../gui/VGC_GUI_Popups.py:199
 msgid "Login credentials incomplete"
 msgstr "Anmeldedaten unvollständig"
 
-#: ../gui/VGC_GUI_Popups.py:184 ../gui/VGC_GUI_Popups.py:191
-#: ../gui/VGC_GUI_Popups.py:196
+#: ../gui/VGC_GUI_Popups.py:199 ../gui/VGC_GUI_Popups.py:206
+#: ../gui/VGC_GUI_Popups.py:211
 msgid "Collection download"
 msgstr "Sammlung herunterladen"
 
-#: ../gui/VGC_GUI_Popups.py:191
+#: ../gui/VGC_GUI_Popups.py:206
 msgid "Download successful"
 msgstr "Download erfolgreich"
 
-#: ../gui/VGC_GUI_Popups.py:251
+#: ../gui/VGC_GUI_Popups.py:258
 msgid "Search for"
 msgstr "Suchen nach"
 
-#: ../gui/VGC_GUI_Popups.py:327
+#: ../gui/VGC_GUI_Popups.py:339
 msgid "Couldn't find"
 msgstr "Nicht gefunden"
 
-#: ../gui/VGC_GUI_Popups.py:351
+#: ../gui/VGC_GUI_Popups.py:363
 msgid "Select "
 msgstr "Auswählen "
 
-#: ../gui/VGC_GUI_Popups.py:364
+#: ../gui/VGC_GUI_Popups.py:376
 msgid "Reset"
 msgstr "Zurücksetzten"
 
-#: ../gui/VGC_GUI_Popups.py:365
+#: ../gui/VGC_GUI_Popups.py:377
 msgid "Select all"
 msgstr "Alle auswählen"
 
-#: ../gui/VGC_GUI_Popups.py:366 ../gui/VGC_GUI_Settings.py:48
+#: ../gui/VGC_GUI_Popups.py:378 ../gui/VGC_GUI_Settings.py:48
 msgid "OK"
 msgstr "OK"
 
@@ -427,59 +427,59 @@ msgstr "Anwenden"
 msgid "total price: "
 msgstr "Gesamtpreis: "
 
-#: ../VGC_Var.py:57
+#: ../VGC_Var.py:56
 msgid "year"
 msgstr "Jahr"
 
-#: ../VGC_Var.py:58
+#: ../VGC_Var.py:57
 msgid "month"
 msgstr "Monat"
 
-#: ../VGC_Var.py:59
+#: ../VGC_Var.py:58
 msgid "day"
 msgstr "Tag"
 
-#: ../VGC_Var.py:60 ../VGC_Var.py:66
+#: ../VGC_Var.py:59 ../VGC_Var.py:65
 msgid "name"
 msgstr "Name"
 
-#: ../VGC_Var.py:61 ../VGC_Var.py:69
+#: ../VGC_Var.py:60 ../VGC_Var.py:68
 msgid "region"
 msgstr "Region"
 
-#: ../VGC_Var.py:62 ../VGC_Var.py:70
+#: ../VGC_Var.py:61 ../VGC_Var.py:69
 msgid "platform"
 msgstr "Plattform"
 
-#: ../VGC_Var.py:63
+#: ../VGC_Var.py:62
 msgid "platform holder"
 msgstr "Plattformhalter"
 
-#: ../VGC_Var.py:64 ../VGC_Var.py:71
+#: ../VGC_Var.py:63 ../VGC_Var.py:70
 msgid "notes"
 msgstr "Notizen"
 
-#: ../VGC_Var.py:67
+#: ../VGC_Var.py:66
 msgid "price"
 msgstr "Preis"
 
-#: ../VGC_Var.py:68
+#: ../VGC_Var.py:67
 msgid "date"
 msgstr "Datum"
 
-#: ../VGC_Var.py:73
+#: ../VGC_Var.py:72
 msgid "ascending"
 msgstr "Aufsteigend"
 
-#: ../VGC_Var.py:74
+#: ../VGC_Var.py:73
 msgid "descending"
 msgstr "Absteigend"
 
-#: ../VGC_Var.py:76
+#: ../VGC_Var.py:75
 msgid "Yes"
 msgstr "Ja"
 
-#: ../VGC_Var.py:77
+#: ../VGC_Var.py:76
 msgid "No"
 msgstr "Nein"
 
