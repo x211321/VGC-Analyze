@@ -51,13 +51,12 @@ def centerPopup(window, parent):
 class Pop_CoverViewer(object):
 
     window = None
-    parent = None
 
     def __init__(self, parent):
-        self.parent = parent
+        self.parent    = parent
+        self.coverSize = 500
 
     def show(self, coverType, item = None):
-        coverSize = 500
 
         self.close()
 
@@ -73,7 +72,7 @@ class Pop_CoverViewer(object):
             if os.path.exists(img):
 
                 # Calculate position relative to main parent
-                x = self.parent.winfo_x() + self.parent.winfo_width() - 210 - coverSize
+                x = self.parent.winfo_x() + self.parent.winfo_width() - 210 - self.coverSize
                 y = self.parent.winfo_y() + 50
 
                 # Create new window
@@ -86,7 +85,7 @@ class Pop_CoverViewer(object):
                 self.window.focus_force()
 
                 # Create and place cover label
-                coverViewer_cover = Label_(self.window, img=img, imgwidth=coverSize)
+                coverViewer_cover = Label_(self.window, img=img, imgwidth=self.coverSize)
                 coverViewer_cover.pack(expand="Yes")
 
                 # Run main loop of new window

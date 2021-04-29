@@ -46,7 +46,7 @@ class GUI_ItemInfo(Frame):
     def init(self):
         # Item info
         # ------------------
-        self.item_spacer    = Label(self, width=2)
+        self.item_spacer    = Label_(self, width=2)
 
         self.item_title_txt = Label_(self, text=_("Title"), anchor="nw")
         self.item_title     = Label_(self, anchor="nw", width=22, height=4, wraplength=135)
