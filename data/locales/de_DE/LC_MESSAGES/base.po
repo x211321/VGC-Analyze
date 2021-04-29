@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2021-04-28 22:10+0200\n"
-"PO-Revision-Date: 2021-04-29 22:37+0200\n"
+"PO-Revision-Date: 2021-04-29 23:10+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -34,11 +34,11 @@ msgstr "Anmeldung fehlgeschlagen - Fehlercode: "
 
 #: ../VGC_GUI.py:219
 msgid "items"
-msgstr "Eintrï¿½ge"
+msgstr "Einträge"
 
 #: ../VGC_Var.py:37
 msgid "Bar"
-msgstr "Sï¿½ulen"
+msgstr "Säulen"
 
 #: ../VGC_Var.py:38
 msgid "Pie"
@@ -46,7 +46,7 @@ msgstr "Kreis"
 
 #: ../VGC_Var.py:39
 msgid "Area"
-msgstr "Flï¿½che"
+msgstr "Fläche"
 
 #: ../VGC_Var.py:40
 msgid "Line"
@@ -74,7 +74,7 @@ msgstr "Platformhalter"
 
 #: ../VGC_Var.py:51
 msgid "Item count"
-msgstr "Anzahl Eintrï¿½ge"
+msgstr "Anzahl Einträge"
 
 #: ../VGC_Var.py:52
 msgid "Total price"
@@ -82,7 +82,7 @@ msgstr "Gesamtpreis"
 
 #: ../VGC_Var.py:53
 msgid "Item count (growth)"
-msgstr "Anzahl Eintrï¿½ge (Wachstum)"
+msgstr "Anzahl Einträge (Wachstum)"
 
 #: ../VGC_Var.py:54
 msgid "Total price (growth)"
@@ -90,7 +90,7 @@ msgstr "Gesamtpreis (Wachstum)"
 
 #: ../gui/VGC_GUI_CollectionInfo.py:41
 msgid "Item count:"
-msgstr "Anzahl Eintrï¿½ge:"
+msgstr "Anzahl Einträge:"
 
 #: ../gui/VGC_GUI_CollectionInfo.py:44
 msgid "Total price:"
@@ -130,7 +130,7 @@ msgstr "Titel"
 #: ../gui/VGC_GUI_Filter.py:162 ../gui/VGC_GUI_Filter.py:181
 #: ../gui/VGC_GUI_Filter.py:200
 msgid "Select"
-msgstr "Auswï¿½hlen"
+msgstr "Auswählen"
 
 #: ../gui/VGC_GUI_Filter.py:53 ../gui/VGC_GUI_TreeView.py:76
 msgid "Notes"
@@ -182,7 +182,7 @@ msgstr "Vorderseite"
 
 #: ../gui/VGC_GUI_ItemInfo.py:65
 msgid "Back cover"
-msgstr "Rï¿½ckseite"
+msgstr "Rückseite"
 
 #: ../gui/VGC_GUI_ItemInfo.py:71
 msgid "Cart cover"
@@ -278,9 +278,9 @@ msgstr ""
 "VGCollect.com Benutzerprofil herunterzuladen.\n"
 "\n"
 "Deine Anmeldedaten werden nicht gespeichert\n"
-"oder fï¿½r anderweitige Zwecke verwendet.\n"
+"oder für anderweitige Zwecke verwendet.\n"
 "\n"
-"Du kannst deine Sammlungsdaten auch hï¿½ndisch bereitstellen:\n"
+"Du kannst deine Sammlungsdaten auch händisch bereitstellen:\n"
 "\n"
 "1) \tExportiere deine Sammlung von deinem\n"
 "\tVGCollect.com Benutzerprofil\n"
@@ -296,7 +296,7 @@ msgstr "VGCollect.com Benutzerprofil"
 
 #: ../gui/VGC_GUI_Popups.py:199
 msgid "Login credentials incomplete"
-msgstr "Anmeldedaten unvollstï¿½ndig"
+msgstr "Anmeldedaten unvollständig"
 
 #: ../gui/VGC_GUI_Popups.py:199 ../gui/VGC_GUI_Popups.py:206
 #: ../gui/VGC_GUI_Popups.py:211
@@ -317,15 +317,15 @@ msgstr "Nicht gefunden"
 
 #: ../gui/VGC_GUI_Popups.py:363
 msgid "Select "
-msgstr "Auswï¿½hlen "
+msgstr "Auswählen "
 
 #: ../gui/VGC_GUI_Popups.py:376
 msgid "Reset"
-msgstr "Zurï¿½cksetzten"
+msgstr "Zurücksetzten"
 
 #: ../gui/VGC_GUI_Popups.py:377
 msgid "Select all"
-msgstr "Alle auswï¿½hlen"
+msgstr "Alle auswählen"
 
 #: ../gui/VGC_GUI_Popups.py:378 ../gui/VGC_GUI_Settings.py:51
 msgid "OK"
@@ -378,7 +378,7 @@ msgstr "Abgeschlossen"
 #: ../gui/VGC_GUI_Filter.py:160 ../gui/VGC_GUI_Filter.py:179
 #: ../gui/VGC_GUI_Filter.py:198
 msgid " selected"
-msgstr " ausgewï¿½hlt"
+msgstr " ausgewählt"
 
 #: ../gui/VGC_GUI_Filter.py:63
 msgid "Group by"
@@ -398,7 +398,7 @@ msgstr "Reihenfolge"
 
 #: ../gui/VGC_GUI_Filter.py:120
 msgid "Reset filter"
-msgstr "Zurï¿½cksetzten"
+msgstr "Zurücksetzten"
 
 #: ../gui/VGC_GUI_Filter.py:123
 msgid "Apply filter"

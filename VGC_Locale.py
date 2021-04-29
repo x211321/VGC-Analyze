@@ -1,22 +1,23 @@
 import os
 import gettext
+import locale
 
-localedir = "./data/locales/"
+langDir = "./data/locales/"
 
 _ = None
 
-available_languages = os.listdir(localedir)
+available_languages = os.listdir(langDir)
 
-def setLocale(localeString = ""):
+def setLanguage(langString = ""):
     global _
-    global localedir
+    global langDir
 
-    if len(localeString):
+    if len(langString):
 
-        print("Loading locale:", localedir, localeString)
+        print("Loading language:", langDir, langString)
 
-        locale = gettext.translation("base", localedir=localedir, languages=[localeString])
-        locale.install()
-        _ = locale.gettext
+        lang = gettext.translation("base", localedir=langDir, languages=[langString])
+        lang.install()
+        _ = lang.gettext
     else:
-        _ = gettext.translation("base", localedir, languages=["en_US"], fallback=True).gettext
+        _ = gettext.translation("base", localedir=langDir, languages=["en_US"], fallback=True).gettext

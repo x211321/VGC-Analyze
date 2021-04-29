@@ -1,9 +1,9 @@
 import VGC_Settings as settings
-from VGC_Locale import setLocale
+from VGC_Locale import setLanguage
 
 # Read settings and set locale before any other module gets initialized
 settings.read()
-setLocale(settings.get("locale", "language", ""))
+setLanguage(settings.get("locale", "language", ""))
 
 from VGC_GUI import GUI
 
