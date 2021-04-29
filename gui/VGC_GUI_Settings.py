@@ -1,7 +1,10 @@
 import VGC_Settings as settings
 
 from VGC_Locale import _
+from VGC_Locale import setLanguage
+from VGC_Locale import setLocale
 from VGC_Locale import available_languages
+from VGC_Locale import available_locales
 
 from tkinter import *
 from tkinter import ttk
@@ -84,7 +87,10 @@ class GUI_Settings(Toplevel):
         self.w["locale"] = {}
 
         self.w["locale"]["language_txt"] = Label_(pages["locale"], text=_("Language"))
-        self.w["locale"]["language"]     = Combobox_(pages["locale"], id="language", values=available_languages, width=10)
+        self.w["locale"]["language"]     = Combobox_(pages["locale"], id="language", values=available_languages, width=10, state="readonly")
+
+        self.w["locale"]["locale_txt"]   = Label_(pages["locale"], text=_("Locale"))
+        self.w["locale"]["locale"]       = Combobox_(pages["locale"], id="locale", values=available_locales, width=10, state="readonly")
 
         self.grid(self.w["locale"])
 
@@ -110,7 +116,9 @@ class GUI_Settings(Toplevel):
             widgets[key].grid(row=row, column=col, sticky=sticky, padx=20, pady=10)
 
             col += 1
-            if col > 2:
+
+            if col > 1:
+                col  = 0
                 row += 1
 
     def restore(self):
@@ -137,6 +145,10 @@ class GUI_Settings(Toplevel):
                     settings.set(sectionKey, widget.id, widget.get())
 
         settings.write()
+
+        setLanguage(settings.get("locale", "language", ""))
+        setLocale(settings.get("locale", "locale", ""))
+
         self.close()
 
 

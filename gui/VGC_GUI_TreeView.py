@@ -1,4 +1,6 @@
 from VGC_Locale import _
+from VGC_Locale import locCurrencySymbol
+from VGC_Locale import locStrToNum
 
 from tkinter import *
 from tkinter import ttk
@@ -105,7 +107,7 @@ class GUI_TreeView(Frame):
         itemList = [(self.item_view.set(row, column), row) for row in self.item_view.get_children('')]
 
         if datatype:
-            itemList.sort(reverse=reverse, key=lambda tuple: datatype(tuple[0].lower().strip("abcdefghijklmnopqrstuvwxyz[]: ")))
+            itemList.sort(reverse=reverse, key=lambda tuple: datatype(locStrToNum(tuple[0].lower().strip("abcdefghijklmnopqrstuvwxyz[]: "+locCurrencySymbol()))))
         else:
             itemList.sort(reverse=reverse, key=lambda tuple: tuple[0].lower())
 

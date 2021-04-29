@@ -1,4 +1,5 @@
 from VGC_Locale import _
+from VGC_Locale import locCurrency
 
 from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
 from matplotlib.figure import Figure
@@ -255,7 +256,7 @@ class GUI_Graph(Frame):
                         value  = str(values[i])
 
                         if not int(values[i]) == values[i]:
-                            value = "{:.2f}".format(values[i])
+                            value = locCurrency(values[i])
 
                         # Set hover info
                         self.graph_hover_info.set(labels[i] + ": " + value)
@@ -341,7 +342,7 @@ class GUI_Graph(Frame):
                         value  = str(values[i])
 
                         if not int(values[i]) == values[i]:
-                            value = "{:.2f}".format(values[i])
+                            value = locCurrency(values[i])
 
                         # Set hover info
                         self.graph_hover_info.set(labels[i] + ": " + value + " (" + "{:.2f}".format(percentages[i]) + "%)")

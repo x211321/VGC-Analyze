@@ -1,4 +1,6 @@
 from VGC_Locale import _
+from VGC_Locale import locCurrency
+from VGC_Locale import locDate
 
 import os
 
@@ -219,7 +221,7 @@ class GUI(Tk):
                                                   "[" + str(groupData.item_count) + " " + _("items") + "]",
                                                   "",
                                                   "",
-                                                  "[" + _("total price: ") + "{:.2f}".format(groupData.total_price) + "]"))
+                                                  "[" + _("total price: ") + locCurrency(groupData.total_price) + "]"))
 
                     tvIndex += 1
 
@@ -282,8 +284,8 @@ class GUI(Tk):
                 item.name,
                 item.platform,
                 item.region,
-                "{:.2f}".format(item.price),
-                item.date,
+                locCurrency(item.price),
+                locDate(item.date),
                 YNToX(item.cart),
                 YNToX(item.box),
                 YNToX(item.manual),

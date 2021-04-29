@@ -1,4 +1,6 @@
 from VGC_Locale import _
+from VGC_Locale import locCurrency
+from VGC_Locale import locDate
 
 import os
 from datetime import datetime
@@ -132,41 +134,41 @@ class GUI_CollectionInfo(Frame):
 
     def update(self, gui):
         self.info_number.set(gui.collectionData.totals.item_count)
-        self.info_value.set("{:.2f}".format(gui.collectionData.totals.total_price))
+        self.info_value.set(locCurrency(gui.collectionData.totals.total_price))
 
         if gui.collectionData.totals.item_count:
-            self.info_average.set("{:.2f}".format(gui.collectionData.totals.total_price/gui.collectionData.totals.item_count))
+            self.info_average.set(locCurrency(gui.collectionData.totals.total_price/gui.collectionData.totals.item_count))
         else:
-            self.info_average.set("{:.2f}".format(0))
+            self.info_average.set(locCurrency(0))
 
-        self.info_first.set(gui.collectionData.totals.first.date + "  -  " +
+        self.info_first.set(locDate(gui.collectionData.totals.first.date, showDay=True) + "  -  " +
                             gui.collectionData.totals.first.name)
-        self.info_last.set(gui.collectionData.totals.last.date + "  -  " +
+        self.info_last.set(locDate(gui.collectionData.totals.last.date, showDay=True) + "  -  " +
                             gui.collectionData.totals.last.name)
 
         if os.path.exists(gui.collectionData.csv_file):
             self.info_update.set(str(datetime.fromtimestamp(os.path.getmtime(gui.collectionData.csv_file))).split(".")[0])
 
         if gui.collectionData.filterData.groupItems and len(gui.collectionData.groups):
-            self.info_grp_number_txt.set("Group count:")
+            self.info_grp_number_txt.set(_("Group count:"))
             self.info_grp_number.set(str(len(gui.collectionData.groups)))
 
-            self.info_grp_average_txt.set("Avg. group price:")
-            self.info_grp_average.set("{:.2f}".format(gui.collectionData.totals.total_price/len(gui.collectionData.groups)))
+            self.info_grp_average_txt.set(_("Avg. group price:"))
+            self.info_grp_average.set(locCurrency(gui.collectionData.totals.total_price/len(gui.collectionData.groups)))
 
-            self.info_grp_priceLow_txt.set("Lowest group price:")
-            self.info_grp_priceLow.set("{:.2f}".format(gui.collectionData.getGroupPriceLow().total_price))
+            self.info_grp_priceLow_txt.set(_("Lowest group price:"))
+            self.info_grp_priceLow.set(locCurrency(gui.collectionData.getGroupPriceLow().total_price))
             self.info_grp_priceLow_name.set(" -  " + gui.collectionData.groupKey_priceLow)
 
-            self.info_grp_priceHigh_txt.set("Highest group price:")
-            self.info_grp_priceHigh.set("{:.2f}".format(gui.collectionData.getGroupPriceHigh().total_price))
+            self.info_grp_priceHigh_txt.set(_("Highest group price:"))
+            self.info_grp_priceHigh.set(locCurrency(gui.collectionData.getGroupPriceHigh().total_price))
             self.info_grp_priceHigh_name.set(" -  " + gui.collectionData.groupKey_priceHigh)
 
-            self.info_grp_countLow_txt.set("Least group items:")
+            self.info_grp_countLow_txt.set(_("Least group items:"))
             self.info_grp_countLow.set(gui.collectionData.getGroupCountLow().item_count)
             self.info_grp_countLow_name.set(" -  " + gui.collectionData.groupKey_countLow)
 
-            self.info_grp_countHigh_txt.set("Most group items:")
+            self.info_grp_countHigh_txt.set(_("Most group items:"))
             self.info_grp_countHigh.set(gui.collectionData.getGroupCountHigh().item_count)
             self.info_grp_countHigh_name.set(" -  " + gui.collectionData.groupKey_countHigh)
         else:

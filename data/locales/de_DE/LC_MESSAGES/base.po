@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2021-04-28 22:10+0200\n"
-"PO-Revision-Date: 2021-04-29 23:10+0200\n"
+"PO-Revision-Date: 2021-04-30 00:40+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -32,7 +32,7 @@ msgstr "Download fehlgeschlagen - Fehlercode: "
 msgid "Login error - Code: "
 msgstr "Anmeldung fehlgeschlagen - Fehlercode: "
 
-#: ../VGC_GUI.py:219
+#: ../VGC_GUI.py:221
 msgid "items"
 msgstr "Einträge"
 
@@ -60,7 +60,7 @@ msgstr "Jahre"
 msgid "Months"
 msgstr "Monate"
 
-#: ../VGC_Var.py:44 ../gui/VGC_GUI_Filter.py:47 ../gui/VGC_GUI_Settings.py:79
+#: ../VGC_Var.py:44 ../gui/VGC_GUI_Filter.py:47 ../gui/VGC_GUI_Settings.py:82
 msgid "Platforms"
 msgstr "Plattformen"
 
@@ -68,7 +68,7 @@ msgstr "Plattformen"
 msgid "Regions"
 msgstr "Regionen"
 
-#: ../VGC_Var.py:46 ../gui/VGC_GUI_Filter.py:49 ../gui/VGC_GUI_Settings.py:78
+#: ../VGC_Var.py:46 ../gui/VGC_GUI_Filter.py:49 ../gui/VGC_GUI_Settings.py:81
 msgid "Platform holders"
 msgstr "Platformhalter"
 
@@ -88,27 +88,27 @@ msgstr "Anzahl Einträge (Wachstum)"
 msgid "Total price (growth)"
 msgstr "Gesamtpreis (Wachstum)"
 
-#: ../gui/VGC_GUI_CollectionInfo.py:41
+#: ../gui/VGC_GUI_CollectionInfo.py:43
 msgid "Item count:"
 msgstr "Anzahl Einträge:"
 
-#: ../gui/VGC_GUI_CollectionInfo.py:44
+#: ../gui/VGC_GUI_CollectionInfo.py:46
 msgid "Total price:"
 msgstr "Gesamtpreis:"
 
-#: ../gui/VGC_GUI_CollectionInfo.py:47
+#: ../gui/VGC_GUI_CollectionInfo.py:49
 msgid "Avg. price:"
 msgstr "Durchschnittspreis:"
 
-#: ../gui/VGC_GUI_CollectionInfo.py:50
+#: ../gui/VGC_GUI_CollectionInfo.py:52
 msgid "First purchase:"
 msgstr "Erster Kauf:"
 
-#: ../gui/VGC_GUI_CollectionInfo.py:53
+#: ../gui/VGC_GUI_CollectionInfo.py:55
 msgid "Last purchase:"
 msgstr "Letzter Kauf:"
 
-#: ../gui/VGC_GUI_CollectionInfo.py:56
+#: ../gui/VGC_GUI_CollectionInfo.py:58
 msgid "Database updated:"
 msgstr "Datenbank aktualisiert:"
 
@@ -120,8 +120,8 @@ msgstr "Aktive VGC-Datei:"
 msgid "Combine related platforms"
 msgstr "Verwandte Plattformen zusammenfassen"
 
-#: ../gui/VGC_GUI_Filter.py:45 ../gui/VGC_GUI_ItemInfo.py:51
-#: ../gui/VGC_GUI_TreeView.py:65
+#: ../gui/VGC_GUI_Filter.py:45 ../gui/VGC_GUI_ItemInfo.py:53
+#: ../gui/VGC_GUI_TreeView.py:67
 msgid "Title"
 msgstr "Titel"
 
@@ -132,7 +132,7 @@ msgstr "Titel"
 msgid "Select"
 msgstr "Auswählen"
 
-#: ../gui/VGC_GUI_Filter.py:53 ../gui/VGC_GUI_TreeView.py:76
+#: ../gui/VGC_GUI_Filter.py:53 ../gui/VGC_GUI_TreeView.py:78
 msgid "Notes"
 msgstr "Notizen"
 
@@ -152,39 +152,39 @@ msgstr "Min. Kaufpreis"
 msgid "Max. purchase price"
 msgstr "Max. Kaufpreis"
 
-#: ../gui/VGC_GUI_Graph.py:49
+#: ../gui/VGC_GUI_Graph.py:50
 msgid "Graph type:"
 msgstr "Diagramm:"
 
-#: ../gui/VGC_GUI_Graph.py:53
+#: ../gui/VGC_GUI_Graph.py:54
 msgid "Content:"
 msgstr "Inhalt:"
 
-#: ../gui/VGC_GUI_Graph.py:57
+#: ../gui/VGC_GUI_Graph.py:58
 msgid "Data:"
 msgstr "Daten:"
 
-#: ../gui/VGC_GUI_Graph.py:62
+#: ../gui/VGC_GUI_Graph.py:63
 msgid "Show grid"
 msgstr "Gitter anzeigen"
 
-#: ../gui/VGC_GUI_ItemInfo.py:53
+#: ../gui/VGC_GUI_ItemInfo.py:55
 msgid "Purchase date"
 msgstr "Kaufdatum"
 
-#: ../gui/VGC_GUI_ItemInfo.py:55
+#: ../gui/VGC_GUI_ItemInfo.py:57
 msgid "Purchase price"
 msgstr "Kaufpreis"
 
-#: ../gui/VGC_GUI_ItemInfo.py:59
+#: ../gui/VGC_GUI_ItemInfo.py:61
 msgid "Front cover"
 msgstr "Vorderseite"
 
-#: ../gui/VGC_GUI_ItemInfo.py:65
+#: ../gui/VGC_GUI_ItemInfo.py:67
 msgid "Back cover"
 msgstr "Rückseite"
 
-#: ../gui/VGC_GUI_ItemInfo.py:71
+#: ../gui/VGC_GUI_ItemInfo.py:73
 msgid "Cart cover"
 msgstr "Modul"
 
@@ -229,7 +229,7 @@ msgid "Search"
 msgstr "Suchen"
 
 #: ../gui/VGC_GUI_Menu.py:38 ../gui/VGC_GUI_Popups.py:142
-#: ../gui/VGC_GUI_Settings.py:77
+#: ../gui/VGC_GUI_Settings.py:80
 msgid "Download"
 msgstr "Herunterladen"
 
@@ -250,7 +250,7 @@ msgid "Password"
 msgstr "Passwort"
 
 #: ../gui/VGC_GUI_Popups.py:140 ../gui/VGC_GUI_Popups.py:262
-#: ../gui/VGC_GUI_Popups.py:375 ../gui/VGC_GUI_Settings.py:49
+#: ../gui/VGC_GUI_Popups.py:375 ../gui/VGC_GUI_Settings.py:52
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -327,51 +327,51 @@ msgstr "Zurücksetzten"
 msgid "Select all"
 msgstr "Alle auswählen"
 
-#: ../gui/VGC_GUI_Popups.py:378 ../gui/VGC_GUI_Settings.py:51
+#: ../gui/VGC_GUI_Popups.py:378 ../gui/VGC_GUI_Settings.py:54
 msgid "OK"
 msgstr "OK"
 
-#: ../gui/VGC_GUI_TreeView.py:63
+#: ../gui/VGC_GUI_TreeView.py:65
 msgid "Group"
 msgstr "Gruppe"
 
-#: ../gui/VGC_GUI_TreeView.py:66
+#: ../gui/VGC_GUI_TreeView.py:68
 msgid "Platform"
 msgstr "Plattform"
 
-#: ../gui/VGC_GUI_TreeView.py:67
+#: ../gui/VGC_GUI_TreeView.py:69
 msgid "Region"
 msgstr "Region"
 
-#: ../gui/VGC_GUI_TreeView.py:68
+#: ../gui/VGC_GUI_TreeView.py:70
 msgid "Price"
 msgstr "Preis"
 
-#: ../gui/VGC_GUI_TreeView.py:69
+#: ../gui/VGC_GUI_TreeView.py:71
 msgid "Date"
 msgstr "Datum"
 
-#: ../gui/VGC_GUI_Filter.py:65 ../gui/VGC_GUI_TreeView.py:70
+#: ../gui/VGC_GUI_Filter.py:65 ../gui/VGC_GUI_TreeView.py:72
 msgid "Cart"
 msgstr "Modul"
 
-#: ../gui/VGC_GUI_Filter.py:66 ../gui/VGC_GUI_TreeView.py:71
+#: ../gui/VGC_GUI_Filter.py:66 ../gui/VGC_GUI_TreeView.py:73
 msgid "Box"
 msgstr "Verpackung"
 
-#: ../gui/VGC_GUI_Filter.py:69 ../gui/VGC_GUI_TreeView.py:72
+#: ../gui/VGC_GUI_Filter.py:69 ../gui/VGC_GUI_TreeView.py:74
 msgid "Manual"
 msgstr "Anleitung"
 
-#: ../gui/VGC_GUI_Filter.py:70 ../gui/VGC_GUI_TreeView.py:73
+#: ../gui/VGC_GUI_Filter.py:70 ../gui/VGC_GUI_TreeView.py:75
 msgid "Other"
 msgstr "Andere"
 
-#: ../gui/VGC_GUI_TreeView.py:74
+#: ../gui/VGC_GUI_TreeView.py:76
 msgid "Bookmark"
 msgstr "Lesezeichen"
 
-#: ../gui/VGC_GUI_Filter.py:74 ../gui/VGC_GUI_TreeView.py:75
+#: ../gui/VGC_GUI_Filter.py:74 ../gui/VGC_GUI_TreeView.py:77
 msgid "Finished"
 msgstr "Abgeschlossen"
 
@@ -404,7 +404,7 @@ msgstr "Zurücksetzten"
 msgid "Apply filter"
 msgstr "Anwenden"
 
-#: ../VGC_GUI.py:222
+#: ../VGC_GUI.py:224
 msgid "total price: "
 msgstr "Gesamtpreis: "
 
@@ -476,14 +476,38 @@ msgstr "Plattformhalter"
 msgid "regions"
 msgstr "Regionen"
 
-#: ../gui/VGC_GUI_Settings.py:75
+#: ../gui/VGC_GUI_Settings.py:78 ../gui/VGC_GUI_Settings.py:92
 msgid "Locale"
-msgstr "Sprache"
+msgstr "Gebietsschema"
 
-#: ../gui/VGC_GUI_Settings.py:76
+#: ../gui/VGC_GUI_Settings.py:79
 msgid "Display"
 msgstr "Anzeige"
 
-#: ../gui/VGC_GUI_Settings.py:86
+#: ../gui/VGC_GUI_Settings.py:89
 msgid "Language"
 msgstr "Sprache"
+
+#: ../gui/VGC_GUI_CollectionInfo.py:153
+msgid "Group count:"
+msgstr "Anzahl Gruppen:"
+
+#: ../gui/VGC_GUI_CollectionInfo.py:156
+msgid "Avg. group price:"
+msgstr "Durchschnittlicher Gruppenpreis"
+
+#: ../gui/VGC_GUI_CollectionInfo.py:159
+msgid "Lowest group price:"
+msgstr "Niedrigster Gruppenpreis:"
+
+#: ../gui/VGC_GUI_CollectionInfo.py:163
+msgid "Highest group price:"
+msgstr "Höchster Gruppenpreis:"
+
+#: ../gui/VGC_GUI_CollectionInfo.py:167
+msgid "Least group items:"
+msgstr "Am wenigsten Gruppenelemente:"
+
+#: ../gui/VGC_GUI_CollectionInfo.py:171
+msgid "Most group items:"
+msgstr "Am meisten Gruppenelemente:"

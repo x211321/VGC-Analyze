@@ -1,4 +1,6 @@
 from VGC_Locale import _
+from VGC_Locale import locCurrency
+from VGC_Locale import locDate
 
 import threading
 
@@ -124,8 +126,8 @@ class GUI_ItemInfo(Frame):
 
     def update(self):
         self.item_title.set(self.activeItem().name)
-        self.item_date.set(self.activeItem().date)
-        self.item_price.set("{:.2f}".format(self.activeItem().price))
+        self.item_date.set(locDate(self.activeItem().date, showDay=True))
+        self.item_price.set(locCurrency(self.activeItem().price))
         self.item_id.set("VGC ID: " + str(self.activeItem().VGC_id))
 
         thread = threading.Thread(target=self.coverUpdateThread, args=(self.activeItem(),))
