@@ -19,6 +19,8 @@ def read():
 
     if os.path.exists(SETTINGS_FILE):
         settings_data = readJson(SETTINGS_FILE)
+    else:
+        settings_data = defaultSettings()
 
 def write():
     global settings_data
@@ -46,6 +48,14 @@ def set(section, key, value):
         settings_data[section] = {}
 
     settings_data[section][key] = value
+
+def defaultSettings():
+    return {
+                "locale": {
+                    "language": "en_US",
+                    "locale": "en_US"
+                }
+            }
 
 
 
