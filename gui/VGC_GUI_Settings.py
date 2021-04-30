@@ -36,6 +36,7 @@ class GUI_Settings(Toplevel):
         self.iconphoto(False, loadIcon("settings-outline", 15, 15))
         self.bind('<Escape>', self.close)
         self.focus_force()
+        self.withdraw()
 
         # Add frames
         self.tab_frame = Frame(self, bg=VAR.GUI_COLOR_PRIMARY)
@@ -100,6 +101,9 @@ class GUI_Settings(Toplevel):
 
         # Center window
         self.center()
+
+        # Display window
+        self.deiconify()
 
         # Run main loop
         self.mainloop()

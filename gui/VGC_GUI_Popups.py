@@ -34,8 +34,8 @@ def centerPopup(window, parent):
     window.update()
 
     # Get window size
-    w = window.winfo_width()
-    h = window.winfo_height()
+    w = window.winfo_reqwidth()
+    h = window.winfo_reqheight()
 
     # Calculate position relative to main parent
     x = int(parent.winfo_x() + (parent.winfo_width() / 2) - (w / 2))
@@ -118,6 +118,7 @@ class Pop_CollectionDownload(object):
 
         # Create new window
         self.window = Toplevel(bg=VAR.GUI_COLOR_PRIMARY)
+        self.window.withdraw()
         self.window.wm_title(_("Download collection"))
         self.window.resizable(False, False)
         self.window.iconphoto(False, loadIcon("cloud-download-outline", 15, 15))
@@ -181,6 +182,8 @@ class Pop_CollectionDownload(object):
 
         self.center()
 
+        self.window.deiconify()
+
         # Run main loop of new window
         self.window.mainloop()
 
@@ -242,6 +245,7 @@ class Pop_ItemSearch(object):
 
         # Create new window
         self.window = Toplevel(bg=VAR.GUI_COLOR_PRIMARY)
+        self.window.withdraw()
         self.window.wm_title(_("Search for item"))
         self.window.resizable(False, False)
         self.window.iconphoto(False, loadIcon("search-outline", 15, 15))
@@ -278,6 +282,8 @@ class Pop_ItemSearch(object):
         self.input_search.focus()
 
         self.center()
+
+        self.window.deiconify()
 
         # Run main loop of new window
         self.window.mainloop()
@@ -391,15 +397,25 @@ class Pop_FilterSelect(object):
         row = 0
         col = 0
 
-        maxCol = 5
-
         self.widgets = {}
-
 
         # Options
         # ------------------
+
+        # Find longest text
+        maxLen = 0
+
         for option, data in sorted(options):
-            self.widgets[option] = Checkbutton_(self.frame_options, label=option, bg=VAR.GUI_COLOR_PRIMARY)
+            if len(option) > maxLen:
+                maxLen = len(option)
+
+        maxCol = int(150 / maxLen)
+
+        print(maxCol)
+
+        # Create checkbuttons
+        for option, data in sorted(options):
+            self.widgets[option] = Checkbutton_(self.frame_options, label=option, bg=VAR.GUI_COLOR_PRIMARY, width=maxLen, anchor="w")
             self.widgets[option].grid(row=row, column=col, sticky="w", padx=5, pady=5)
 
             if option in activeOptions:
