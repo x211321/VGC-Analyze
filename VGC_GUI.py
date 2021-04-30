@@ -44,7 +44,7 @@ class GUI(Tk):
 
         # Main window
         # ------------------
-        # self = Tk()
+        self.withdraw()
         self.title('VGC Analyzer')
         self.geometry('1000x750')
         self.iconphoto(False, loadIcon("game-controller-outline", 15, 15))
@@ -72,6 +72,9 @@ class GUI(Tk):
 
         # Init
         self.init()
+
+        # Show window
+        self.deiconify()
 
 
     ######################
