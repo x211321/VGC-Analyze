@@ -54,6 +54,8 @@ def readPlatformHolders():
 
     if os.path.exists(PLATFORM_HOLDERS_FILE):
         platform_holders_data = readJson(PLATFORM_HOLDERS_FILE)
+    else:
+        platform_holders_data = defaultPlatformHolders()
 
 def writePlatformHolders():
     global platform_holders_data
@@ -82,4 +84,33 @@ def removePlatformHolder(platformHolder):
     global platform_holders_data
 
     platform_holders_data.pop(platformHolder)
+
+def defaultPlatformHolders():
+    return {"Nintendo": ["nintendo", "gamecube", "game boy", "amiibo", "dsi", "e-reader", "famicom", "watch", "nes", "pokemon", "pokémon", "virtual boy", "wii"],
+	        "Sony": ["playstation", "psone", "psp"],
+	        "Microsoft": ["xbox", "kinect"],
+	        "Sega": ["sega"],
+	        "3DO": ["3do"],
+	        "Amiga": ["amiga"],
+	        "Amstrad": ["amstrad"],
+	        "Apple": ["apple"],
+	        "Atari": ["atari"],
+	        "Philips": ["philips", "cd-i"],
+	        "Coleco": ["coleco"],
+	        "Commodore": ["commodore"],
+	        "Fairchild": ["fairchild"],
+	        "Fujitsu": ["fujitsu", "fm towns"],
+	        "GOG.com": ["gog"],
+	        "Google": ["google", "stadia"],
+	        "Mattel": ["mattel", "intellivision"],
+	        "Magnavox": ["magnavox"],
+	        "NEC": ["nec", "pc-fx", "supergrafx", "turbografx"],
+	        "SNK": ["snk", "neo geo"],
+	        "Pioneer": ["pioneer"],
+	        "Bandai": ["playdia", "swancrystal", "wonderswan"],
+	        "Capcom": ["cp system"],
+	        "Steam": ["steam"],
+	        "Tiger": ["tiger"],
+	        "VTech": ["vtech"]
+           }
 
