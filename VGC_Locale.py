@@ -3,20 +3,13 @@ import gettext
 import locale
 from datetime import datetime
 
+from VGC_Locale_Languages import languages
+from VGC_Locale_Countries import countries
+
 langDir = "./data/locales/"
 
 _ = None
 
-available_languages = sorted(os.listdir(langDir))
-available_locales   = []
-
-if os.name == 'nt':
-    temp = locale.windows_locale.values()
-else:
-    temp = locale.locale_alias.values()
-
-for loc in sorted(temp):
-    available_locales.append(loc)
 
 def setLanguage(langString = ""):
     global _
@@ -58,7 +51,6 @@ def locStrToNum(str):
     return locale.atof(str)
 
 def locDate(dateStr, showDay=False):
-
     # Deactivated for now
     return dateStr
 
@@ -80,3 +72,84 @@ def locDate(dateStr, showDay=False):
             return date.strftime('%x')
     else:
         return dateStr
+
+
+def getLanguageName(code, native = False):
+    for language in languages:
+        if language["code"] == code:
+            if native:
+                return language["native"]
+            else:
+                return language["name"]
+
+    return code
+
+
+def getLanguageCode(name, native = False):
+    for language in languages:
+        if native:
+            if language["native"] == name:
+                return language["code"]
+        else:
+            if language["name"] == name:
+                return language["code"]
+
+
+def getCountryName(code):
+    for country in countries:
+        if country["code"] == code:
+            return country["name"]
+
+    return code
+
+
+def getCountryCode(name):
+    for country in countries:
+        if country["name"] == name:
+            return country["code"]
+
+def getLocaleName(code):
+    parts = code.split("_")
+
+    return getLanguageName(parts[0]) + " (" + getCountryName(parts[1]) + ")"
+
+def getLocaleCode(name):
+    parts = name.strip(")").split(" (")
+
+    return getLanguageCode(parts[0]) + "_" + getCountryCode(parts[1])
+
+def getAvailableLanguageCodes():
+    global langDir
+
+    return sorted(os.listdir(langDir))
+
+def getAvailableLanguageNames():
+    languageNames = []
+
+    for code in getAvailableLanguageCodes():
+        languageNames.append(getLocaleName(code))
+
+    return languageNames
+
+def getAvailableLocaleCodes():
+    locales = []
+
+    if os.name == 'nt':
+        temp = locale.windows_locale.values()
+    else:
+        temp = locale.locale_alias.values()
+
+    for loc in sorted(temp):
+        locales.append(loc)
+
+    return locales
+
+def getAvailableLocaleNames():
+    localeNames = []
+
+    for code in getAvailableLocaleCodes():
+        localeNames.append(getLocaleName(code))
+
+    return localeNames
+
+

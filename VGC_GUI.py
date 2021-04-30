@@ -345,7 +345,6 @@ class GUI(Tk):
     # showSettingsCallback
     # --------------------
     def showSettingsCallback(self):
-        print("SETTINGS CALLBACK")
 
         # Read collection data
         self.readData()

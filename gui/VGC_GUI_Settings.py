@@ -3,8 +3,10 @@ import VGC_Settings as settings
 from VGC_Locale import _
 from VGC_Locale import setLanguage
 from VGC_Locale import setLocale
-from VGC_Locale import available_languages
-from VGC_Locale import available_locales
+from VGC_Locale import getAvailableLanguageNames
+from VGC_Locale import getAvailableLocaleNames
+from VGC_Locale import getLocaleCode
+from VGC_Locale import getLocaleName
 
 from gui.VGC_GUI_Popups import centerPopup
 
@@ -104,10 +106,10 @@ class GUI_Settings(Toplevel):
         self.w["locale"] = {}
 
         self.w["locale"]["language_txt"] = Label_(self.pages["locale"], text=_("Language"))
-        self.w["locale"]["language"]     = Combobox_(self.pages["locale"], id="language", values=available_languages, width=10, state="readonly")
+        self.w["locale"]["language"]     = Combobox_(self.pages["locale"], id="language", values=getAvailableLanguageNames(), width=25, state="readonly")
 
         self.w["locale"]["locale_txt"]   = Label_(self.pages["locale"], text=_("Locale"))
-        self.w["locale"]["locale"]       = Combobox_(self.pages["locale"], id="locale", values=available_locales, width=10, state="readonly")
+        self.w["locale"]["locale"]       = Combobox_(self.pages["locale"], id="locale", values=getAvailableLocaleNames(), width=25, state="readonly")
 
         self.grid(self.w["locale"])
 
@@ -200,7 +202,7 @@ class GUI_Settings(Toplevel):
                 widget = section[widgetKey]
 
                 if len(widget.id):
-                    widget.set(settings.get(sectionKey, widget.id, ""))
+                    self.setValue(sectionKey, widget, settings.get(sectionKey, widget.id, ""))
 
         self.restorePlatformHolders()
 
@@ -270,7 +272,9 @@ class GUI_Settings(Toplevel):
                 widget = section[widgetKey]
 
                 if len(widget.id):
-                    settings.set(sectionKey, widget.id, widget.get())
+
+                    value = self.getValue(sectionKey, widget)
+                    settings.set(sectionKey, widget.id, value)
 
         settings.write()
         settings.writePlatformHolders()
@@ -282,6 +286,26 @@ class GUI_Settings(Toplevel):
             self.callback()
 
         self.close()
+
+
+    def getValue(self, sectionKey, widget):
+        value = widget.get()
+
+        if sectionKey == "locale" and widget.id == "language":
+            return getLocaleCode(value)
+        if sectionKey == "locale" and widget.id == "locale":
+            return getLocaleCode(value)
+
+        return value
+
+
+    def setValue(self, sectionKey, widget, value):
+        if sectionKey == "locale" and widget.id == "language":
+            value = getLocaleName(value)
+        if sectionKey == "locale" and widget.id == "locale":
+            value = getLocaleName(value)
+
+        widget.set(value)
 
 
 
