@@ -4,9 +4,6 @@ Fehlende Barcodes auf Webseite finden
 Filter hilfe (regex, datumsformat, etc.)
 Eigene Messageboxen (positionierbar / Topmost)
 Einstellungsdialog
-	Währung
-	Datumsformat
-	Platformhalter keywords
 	Platform overwrite
 	Anzahl heruntergeladener Dateien die aufbewahrt werden sollen
 Datepicker
@@ -32,6 +29,10 @@ Treeview contextmenu
 	Bookmark, finished, open on VGC, details, online info
 
 ===DONE===
+Einstellungsdialog
+	Währung
+	Datumsformat
+	Platformhalter keywords
 Multifilter (mehrere Regionen, Platformen, etc.)
 Dateiname anzeigen
 Combine platforms (x + x hardware + x accessories)

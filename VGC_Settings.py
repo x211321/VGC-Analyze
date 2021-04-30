@@ -4,15 +4,17 @@ import os
 # Settings must be read before
 # VGC_Var is initialized since VGC_Var
 # contains translatable strings.
-SETTINGS_PATH = "./data/settings/"
-SETTINGS_FILE = SETTINGS_PATH + "settings.json"
+SETTINGS_PATH         = "./data/settings/"
+SETTINGS_FILE         = SETTINGS_PATH + "settings.json"
 PLATFORM_HOLDERS_FILE = SETTINGS_PATH + "platform_holders.json"
+PLATFORMS_FILE        = SETTINGS_PATH + "platforms.json"
 
 from VGC_Json import readJson
 from VGC_Json import writeJson
 
-settings_data = {}
+settings_data         = {}
 platform_holders_data = {}
+platforms_data        = {}
 
 def read():
     global settings_data
@@ -124,3 +126,49 @@ def defaultPlatformHolders():
 	        "VTech": ["vtech"]
            }
 
+
+
+def readPlatforms():
+    global platforms_data
+
+    if os.path.exists(PLATFORMS_FILE):
+        platforms_data = readJson(PLATFORMS_FILE)
+    else:
+        platforms_data = defaultPlatforms()
+
+def writePlatforms():
+    global platforms_data
+
+    writeJson(platforms_data, PLATFORMS_FILE)
+
+def listPlatforms():
+    global platforms_data
+
+    return platforms_data.keys()
+
+def getPlatformOverwrite(platform):
+    global platforms_data
+
+    if platform in platforms_data:
+        return platforms_data[platform]
+
+    return ""
+
+def setPlatformOverwrite(platform, overwrite):
+    global platforms_data
+
+    platforms_data[platform] = overwrite
+
+def removePlatform(platform):
+    global platforms_data
+
+    platforms_data.pop(platform)
+
+def defaultPlatforms():
+    return {"Famicom": "NES/Famicom",
+            "Nintendo Entertainment System": "NES/Famicom",
+            "Sega Mega Drive": "Sega Genesis/Mega Drive",
+            "Sega Genesis": "Sega Genesis/Mega Drive",
+            "Super Famicom": "Super Nintendo/Super Famicom",
+            "Super Nintendo": "Super Nintendo/Super Famicom"
+           }

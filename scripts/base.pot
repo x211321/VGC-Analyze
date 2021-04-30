@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2021-04-30 15:11+0200\n"
+"POT-Creation-Date: 2021-04-30 21:19+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,11 +15,11 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 
 
-#: ../VGC_Data.py:98 ../VGC_Data.py:473
+#: ../VGC_Data.py:98 ../VGC_Data.py:478
 msgid "[None]"
 msgstr ""
 
-#: ../VGC_Data.py:112
+#: ../VGC_Data.py:116
 msgid "[Other]"
 msgstr ""
 
@@ -67,7 +67,7 @@ msgstr ""
 msgid "Months"
 msgstr ""
 
-#: ../VGC_Var.py:43 ../gui/VGC_GUI_Filter.py:47 ../gui/VGC_GUI_Settings.py:83
+#: ../VGC_Var.py:43 ../gui/VGC_GUI_Filter.py:47 ../gui/VGC_GUI_Settings.py:85
 msgid "Platforms"
 msgstr ""
 
@@ -75,7 +75,7 @@ msgstr ""
 msgid "Regions"
 msgstr ""
 
-#: ../VGC_Var.py:45 ../gui/VGC_GUI_Filter.py:49 ../gui/VGC_GUI_Settings.py:82
+#: ../VGC_Var.py:45 ../gui/VGC_GUI_Filter.py:49 ../gui/VGC_GUI_Settings.py:84
 msgid "Platform holders"
 msgstr ""
 
@@ -300,19 +300,19 @@ msgstr ""
 msgid "regions"
 msgstr ""
 
-#: ../gui/VGC_GUI_Graph.py:50
+#: ../gui/VGC_GUI_Graph.py:48
 msgid "Graph type:"
 msgstr ""
 
-#: ../gui/VGC_GUI_Graph.py:54
+#: ../gui/VGC_GUI_Graph.py:52
 msgid "Content:"
 msgstr ""
 
-#: ../gui/VGC_GUI_Graph.py:58
+#: ../gui/VGC_GUI_Graph.py:56
 msgid "Data:"
 msgstr ""
 
-#: ../gui/VGC_GUI_Graph.py:63
+#: ../gui/VGC_GUI_Graph.py:61
 msgid "Show grid"
 msgstr ""
 
@@ -336,7 +336,7 @@ msgstr ""
 msgid "Cart cover"
 msgstr ""
 
-#: ../gui/VGC_GUI_Menu.py:15 ../gui/VGC_GUI_Settings.py:32
+#: ../gui/VGC_GUI_Menu.py:15 ../gui/VGC_GUI_Settings.py:34
 msgid "Settings"
 msgstr ""
 
@@ -377,7 +377,7 @@ msgid "Search"
 msgstr ""
 
 #: ../gui/VGC_GUI_Menu.py:38 ../gui/VGC_GUI_Popups.py:145
-#: ../gui/VGC_GUI_Settings.py:81
+#: ../gui/VGC_GUI_Settings.py:83
 msgid "Download"
 msgstr ""
 
@@ -410,7 +410,7 @@ msgid "Password"
 msgstr ""
 
 #: ../gui/VGC_GUI_Popups.py:143 ../gui/VGC_GUI_Popups.py:265
-#: ../gui/VGC_GUI_Popups.py:378 ../gui/VGC_GUI_Settings.py:49
+#: ../gui/VGC_GUI_Popups.py:378 ../gui/VGC_GUI_Settings.py:51
 msgid "Cancel"
 msgstr ""
 
@@ -471,40 +471,45 @@ msgstr ""
 msgid "Select all"
 msgstr ""
 
-#: ../gui/VGC_GUI_Popups.py:381 ../gui/VGC_GUI_Settings.py:51
+#: ../gui/VGC_GUI_Popups.py:381 ../gui/VGC_GUI_Settings.py:53
 msgid "OK"
 msgstr ""
 
-#: ../gui/VGC_GUI_Settings.py:79 ../gui/VGC_GUI_Settings.py:109
+#: ../gui/VGC_GUI_Settings.py:81 ../gui/VGC_GUI_Settings.py:114
 msgid "Locale"
 msgstr ""
 
-#: ../gui/VGC_GUI_Settings.py:80
+#: ../gui/VGC_GUI_Settings.py:82
 msgid "Display"
 msgstr ""
 
-#: ../gui/VGC_GUI_Settings.py:106
-msgid "Language"
+#: ../gui/VGC_GUI_Settings.py:111
+msgid "Language (requires restart)"
 msgstr ""
 
-#: ../gui/VGC_GUI_Settings.py:120 ../gui/VGC_GUI_Settings.py:162
+#: ../gui/VGC_GUI_Settings.py:125 ../gui/VGC_GUI_Settings.py:167
 msgid "Platform holder"
 msgstr ""
 
-#: ../gui/VGC_GUI_Settings.py:123 ../gui/VGC_GUI_Settings.py:163
+#: ../gui/VGC_GUI_Settings.py:128 ../gui/VGC_GUI_Settings.py:168
 msgid "Platform keywords"
 msgstr ""
 
-#: ../gui/VGC_GUI_Settings.py:125
+#: ../gui/VGC_GUI_Settings.py:130
 msgid "(comma separated)"
+msgstr ""
+
+#: ../gui/VGC_GUI_Settings.py:179 ../gui/VGC_GUI_Settings.py:219
+#: ../gui/VGC_GUI_TreeView.py:68
+msgid "Platform"
+msgstr ""
+
+#: ../gui/VGC_GUI_Settings.py:182 ../gui/VGC_GUI_Settings.py:220
+msgid "Overwrite with"
 msgstr ""
 
 #: ../gui/VGC_GUI_TreeView.py:65
 msgid "Group"
-msgstr ""
-
-#: ../gui/VGC_GUI_TreeView.py:68
-msgid "Platform"
 msgstr ""
 
 #: ../gui/VGC_GUI_TreeView.py:69

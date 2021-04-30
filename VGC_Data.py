@@ -97,6 +97,10 @@ class CollectionItem(object):
             if len(self.region) == 0:
                 self.region = _("[None]")
 
+            # Check for platform overwrite
+            if self.platform in settings.listPlatforms():
+                self.platform = settings.getPlatformOverwrite(self.platform)
+
             # Find platform holder
             found = False
 
@@ -326,6 +330,7 @@ class CollectionData(object):
     # parseData
     def parseData(self, combinePlatforms = False):
         settings.readPlatformHolders()
+        settings.readPlatforms()
         self.collection_items = []
 
         index = 0

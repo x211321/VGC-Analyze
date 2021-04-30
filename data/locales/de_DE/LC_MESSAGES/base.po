@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2021-04-28 22:10+0200\n"
-"PO-Revision-Date: 2021-04-30 15:12+0200\n"
+"PO-Revision-Date: 2021-04-30 21:20+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 "X-Generator: Poedit 2.4.3\n"
 
-#: ../VGC_Data.py:112
+#: ../VGC_Data.py:116
 msgid "[Other]"
 msgstr "[Andere]"
 
@@ -60,7 +60,7 @@ msgstr "Jahre"
 msgid "Months"
 msgstr "Monate"
 
-#: ../VGC_Var.py:43 ../gui/VGC_GUI_Filter.py:47 ../gui/VGC_GUI_Settings.py:83
+#: ../VGC_Var.py:43 ../gui/VGC_GUI_Filter.py:47 ../gui/VGC_GUI_Settings.py:85
 msgid "Platforms"
 msgstr "Plattformen"
 
@@ -68,9 +68,9 @@ msgstr "Plattformen"
 msgid "Regions"
 msgstr "Regionen"
 
-#: ../VGC_Var.py:45 ../gui/VGC_GUI_Filter.py:49 ../gui/VGC_GUI_Settings.py:82
+#: ../VGC_Var.py:45 ../gui/VGC_GUI_Filter.py:49 ../gui/VGC_GUI_Settings.py:84
 msgid "Platform holders"
-msgstr "Platformhalter"
+msgstr "Plattformhalter"
 
 #: ../VGC_Var.py:50
 msgid "Item count"
@@ -152,19 +152,19 @@ msgstr "Min. Kaufpreis"
 msgid "Max. purchase price"
 msgstr "Max. Kaufpreis"
 
-#: ../gui/VGC_GUI_Graph.py:50
+#: ../gui/VGC_GUI_Graph.py:48
 msgid "Graph type:"
 msgstr "Diagramm:"
 
-#: ../gui/VGC_GUI_Graph.py:54
+#: ../gui/VGC_GUI_Graph.py:52
 msgid "Content:"
 msgstr "Inhalt:"
 
-#: ../gui/VGC_GUI_Graph.py:58
+#: ../gui/VGC_GUI_Graph.py:56
 msgid "Data:"
 msgstr "Daten:"
 
-#: ../gui/VGC_GUI_Graph.py:63
+#: ../gui/VGC_GUI_Graph.py:61
 msgid "Show grid"
 msgstr "Gitter anzeigen"
 
@@ -212,7 +212,7 @@ msgstr "Eintragsinformationen"
 msgid "Graphs"
 msgstr "Diagramme"
 
-#: ../gui/VGC_GUI_Menu.py:15 ../gui/VGC_GUI_Settings.py:32
+#: ../gui/VGC_GUI_Menu.py:15 ../gui/VGC_GUI_Settings.py:34
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -229,7 +229,7 @@ msgid "Search"
 msgstr "Suchen"
 
 #: ../gui/VGC_GUI_Menu.py:38 ../gui/VGC_GUI_Popups.py:145
-#: ../gui/VGC_GUI_Settings.py:81
+#: ../gui/VGC_GUI_Settings.py:83
 msgid "Download"
 msgstr "Herunterladen"
 
@@ -250,7 +250,7 @@ msgid "Password"
 msgstr "Passwort"
 
 #: ../gui/VGC_GUI_Popups.py:143 ../gui/VGC_GUI_Popups.py:265
-#: ../gui/VGC_GUI_Popups.py:378 ../gui/VGC_GUI_Settings.py:49
+#: ../gui/VGC_GUI_Popups.py:378 ../gui/VGC_GUI_Settings.py:51
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -327,7 +327,7 @@ msgstr "Zurücksetzten"
 msgid "Select all"
 msgstr "Alle auswählen"
 
-#: ../gui/VGC_GUI_Popups.py:381 ../gui/VGC_GUI_Settings.py:51
+#: ../gui/VGC_GUI_Popups.py:381 ../gui/VGC_GUI_Settings.py:53
 msgid "OK"
 msgstr "OK"
 
@@ -335,6 +335,7 @@ msgstr "OK"
 msgid "Group"
 msgstr "Gruppe"
 
+#: ../gui/VGC_GUI_Settings.py:179 ../gui/VGC_GUI_Settings.py:219
 #: ../gui/VGC_GUI_TreeView.py:68
 msgid "Platform"
 msgstr "Plattform"
@@ -476,17 +477,13 @@ msgstr "Plattformhalter"
 msgid "regions"
 msgstr "Regionen"
 
-#: ../gui/VGC_GUI_Settings.py:79 ../gui/VGC_GUI_Settings.py:109
+#: ../gui/VGC_GUI_Settings.py:81 ../gui/VGC_GUI_Settings.py:114
 msgid "Locale"
 msgstr "Gebietsschema"
 
-#: ../gui/VGC_GUI_Settings.py:80
+#: ../gui/VGC_GUI_Settings.py:82
 msgid "Display"
 msgstr "Anzeige"
-
-#: ../gui/VGC_GUI_Settings.py:106
-msgid "Language"
-msgstr "Sprache"
 
 #: ../gui/VGC_GUI_CollectionInfo.py:153
 msgid "Group count:"
@@ -524,18 +521,29 @@ msgstr "Rückseite"
 msgid "cart cover"
 msgstr "Modul"
 
-#: ../VGC_Data.py:98 ../VGC_Data.py:473
+#: ../VGC_Data.py:98 ../VGC_Data.py:478
 msgid "[None]"
 msgstr "[Keine]"
 
-#: ../gui/VGC_GUI_Settings.py:120 ../gui/VGC_GUI_Settings.py:162
+#: ../gui/VGC_GUI_Settings.py:125 ../gui/VGC_GUI_Settings.py:167
 msgid "Platform holder"
 msgstr "Plattformhalter"
 
-#: ../gui/VGC_GUI_Settings.py:123 ../gui/VGC_GUI_Settings.py:163
+#: ../gui/VGC_GUI_Settings.py:128 ../gui/VGC_GUI_Settings.py:168
 msgid "Platform keywords"
 msgstr "Plattform Schlüsselwörter"
 
-#: ../gui/VGC_GUI_Settings.py:125
+#: ../gui/VGC_GUI_Settings.py:130
 msgid "(comma separated)"
 msgstr "(kommagetrennt)"
+
+#: ../gui/VGC_GUI_Settings.py:111
+msgid "Language (requires restart)"
+msgstr "Sprache (erfordert Neustart)"
+
+#: ../gui/VGC_GUI_Settings.py:182 ../gui/VGC_GUI_Settings.py:220
+msgid "Overwrite with"
+msgstr "Überschreiben mit"
+
+#~ msgid "Language"
+#~ msgstr "Sprache"

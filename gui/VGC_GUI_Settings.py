@@ -92,6 +92,9 @@ class GUI_Settings(Toplevel):
         # Platform holders
         self.initPlatformHolders()
 
+        # Platforms
+        self.initPlatforms()
+
         # Restore settings
         self.restore()
 
@@ -105,7 +108,7 @@ class GUI_Settings(Toplevel):
     def initLocale(self):
         self.w["locale"] = {}
 
-        self.w["locale"]["language_txt"] = Label_(self.pages["locale"], text=_("Language"))
+        self.w["locale"]["language_txt"] = Label_(self.pages["locale"], text=_("Language (requires restart)"))
         self.w["locale"]["language"]     = Combobox_(self.pages["locale"], id="language", values=getAvailableLanguageNames(), width=25, state="readonly")
 
         self.w["locale"]["locale_txt"]   = Label_(self.pages["locale"], text=_("Locale"))
@@ -168,6 +171,58 @@ class GUI_Settings(Toplevel):
         self.platformHoldersView.bind('<<TreeviewSelect>>', self.selectPlatformHolder)
 
 
+    def initPlatforms(self):
+        self.platforms_input   = Frame(self.pages["platforms"], bg=VAR.GUI_COLOR_PRIMARY)
+        self.platforms_buttons = Frame(self.platforms_input, bg=VAR.GUI_COLOR_PRIMARY)
+        self.platformsView     = ttk.Treeview(self.pages["platforms"])
+
+        self.platform_txt = Label_(self.platforms_input, text=_("Platform"), bg=VAR.GUI_COLOR_PRIMARY)
+        self.platform     = Entry_(self.platforms_input, width=37)
+
+        self.platformOverwrite_txt  = Label_(self.platforms_input, text=_("Overwrite with"), bg=VAR.GUI_COLOR_PRIMARY)
+        self.platformOverwrite      = Entry_(self.platforms_input, width=70)
+
+        self.platform_save   = Button(self.platforms_buttons,
+                                      image=self.icon_save, bg=VAR.BUTTON_COLOR_GOOD,
+                                      relief="groove", command=self.savePlatform)
+        self.platform_remove = Button(self.platforms_buttons,
+                                      image=self.icon_delete,
+                                      bg=VAR.BUTTON_COLOR_BAD,
+                                      relief="groove", command=self.removePlatform)
+
+        self.platform_txt.grid(row=0, column=0, padx=(0, 10), sticky="nw")
+        self.platform.grid(row=0, column=1, padx=(0, 20), sticky="nw")
+        self.platformOverwrite_txt.grid(row=0, column=2, padx=(0, 10), sticky="ne")
+        self.platformOverwrite.grid(row=0, column=3, padx=(0, 0), sticky="ne", rowspan=2)
+
+        self.platforms_buttons.grid(row=1, column=0, sticky="nwse")
+        self.platform_remove.grid(row=0, column=0, sticky="nw", padx=(0, 10), pady=(11, 0))
+        self.platform_save.grid(row=0, column=1, sticky="nw", pady=(11, 0))
+
+        self.platforms_input.grid(row=0, column=0, padx=10, pady=10, sticky="nwse")
+        self.platformsView.grid(row=1, column=0, padx=10, pady=10, sticky="nwse")
+
+        # Input bindings
+        self.platform.bind("<Return>", self.savePlatform)
+        self.platformOverwrite.bind("<Return>", self.savePlatform)
+
+        # Treeview definition
+        self.platformsView['columns']=("Platform", "Overwrite with")
+
+        # Treeview columns
+        self.platformsView.column("#0"            , anchor="w", width=0, stretch="No")
+        self.platformsView.column("Platform"      , anchor="w", width=250, stretch="No")
+        self.platformsView.column("Overwrite with", anchor="w")
+
+        # Treeview column headers
+        self.platformsView.heading("#0"            , text=""                 , anchor="w")
+        self.platformsView.heading("Platform"      , text=_("Platform")      , anchor="w")
+        self.platformsView.heading("Overwrite with", text=_("Overwrite with"), anchor="w")
+
+        # Treeview bindings
+        self.platformsView.bind('<<TreeviewSelect>>', self.selectPlatform)
+
+
     def center(self):
         centerPopup(self, self.parent)
 
@@ -205,6 +260,7 @@ class GUI_Settings(Toplevel):
                     self.setValue(sectionKey, widget, settings.get(sectionKey, widget.id, ""))
 
         self.restorePlatformHolders()
+        self.restorePlatforms()
 
 
     def restorePlatformHolders(self, scrollTo = ""):
@@ -241,7 +297,7 @@ class GUI_Settings(Toplevel):
 
 
     def savePlatformHolder(self, a = None):
-        platformHolder = self.platformHolder.get()
+        platformHolder = self.platformHolder.get().strip()
         keywords = self.platformHolderKeywords.get("1.0", "end").split(",")
 
         if len(platformHolder) and len(keywords):
@@ -253,11 +309,61 @@ class GUI_Settings(Toplevel):
 
 
     def removePlatformHolder(self, a = None):
-        platformHolder = self.platformHolder.get()
+        platformHolder = self.platformHolder.get().strip()
 
         if len(platformHolder):
             settings.removePlatformHolder(platformHolder)
             self.restorePlatformHolders(platformHolder)
+
+
+    def restorePlatforms(self, scrollTo = ""):
+        # Clear treeview
+        self.platformsView.delete(*self.platformsView.get_children())
+
+        # Clear inputs
+        self.platform.set("")
+        self.platformOverwrite.set("")
+
+        # Insert platforms
+        if len(settings.listPlatforms()):
+            for platform in sorted(settings.listPlatforms(), reverse=True):
+                self.platformsView.insert(parent="",
+                                          index=0,
+                                          values=(platform, settings.getPlatformOverwrite(platform)))
+
+            if len(scrollTo):
+                # Find item
+                for row in self.platformsView.get_children():
+                    if scrollTo == self.platformsView.item(row)["values"][0]:
+                        # Scroll into view
+                        self.platformsView.see(row)
+                        break
+
+
+    def selectPlatform(self, a = None):
+        selection = self.platformsView.focus()
+
+        if len(self.platformsView.item(selection)["values"]):
+            self.platform.set(self.platformsView.item(selection)["values"][0])
+            self.platformOverwrite.set(self.platformsView.item(selection)["values"][1])
+
+
+    def savePlatform(self, a = None):
+        platform  = self.platform.get().strip()
+        overwrite = self.platformOverwrite.get().strip()
+
+        if len(platform) and len(overwrite):
+            settings.setPlatformOverwrite(platform, overwrite)
+
+            self.restorePlatforms(platform)
+
+
+    def removePlatform(self, a = None):
+        platform = self.platform.get().strip()
+
+        if len(platform):
+            settings.removePlatform(platform)
+            self.restorePlatforms(platform)
 
 
     def close(self, a = None):
@@ -278,6 +384,7 @@ class GUI_Settings(Toplevel):
 
         settings.write()
         settings.writePlatformHolders()
+        settings.writePlatforms()
 
         setLanguage(settings.get("locale", "language", ""))
         setLocale(settings.get("locale", "locale", ""))
