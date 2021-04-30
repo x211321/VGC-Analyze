@@ -369,6 +369,7 @@ class Pop_FilterSelect(object):
 
         # Create new window
         self.window = Toplevel(bg=VAR.GUI_COLOR_PRIMARY)
+        self.window.withdraw()
         self.window.wm_title(_("Select ") + filterType)
         self.window.resizable(False, False)
         self.window.iconphoto(False, loadIcon("filter-outline", 15, 15))
@@ -411,8 +412,6 @@ class Pop_FilterSelect(object):
 
         maxCol = int(150 / maxLen)
 
-        print(maxCol)
-
         # Create checkbuttons
         for option, data in sorted(options):
             self.widgets[option] = Checkbutton_(self.frame_options, label=option, bg=VAR.GUI_COLOR_PRIMARY, width=maxLen, anchor="w")
@@ -427,8 +426,17 @@ class Pop_FilterSelect(object):
                 col  = 0
                 row += 1
 
+        # Center window
+        self.center()
+
+        # Show window
+        self.window.deiconify()
+
         # Run main loop of new window
         self.window.mainloop()
+
+    def center(self):
+        centerPopup(self.window, self.parent)
 
     def close(self):
         if not self.window == None:

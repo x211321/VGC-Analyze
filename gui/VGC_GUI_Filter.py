@@ -23,9 +23,9 @@ class GUI_Filter(Frame):
         self.showData       = master.showData
         self.collectionData = master.collectionData
 
-        self.platformSelect       = Pop_FilterSelect(self, self.selectPlatformsCallback)
-        self.platformHolderSelect = Pop_FilterSelect(self, self.selectPlatformHoldersCallback)
-        self.regionSelect         = Pop_FilterSelect(self, self.selectRegionsCallback)
+        self.platformSelect       = Pop_FilterSelect(master, self.selectPlatformsCallback)
+        self.platformHolderSelect = Pop_FilterSelect(master, self.selectPlatformHoldersCallback)
+        self.regionSelect         = Pop_FilterSelect(master, self.selectRegionsCallback)
 
         self.init()
 
