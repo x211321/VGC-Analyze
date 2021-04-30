@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2021-04-30 01:02+0200\n"
+"POT-Creation-Date: 2021-04-30 15:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,11 +15,11 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 
 
-#: ../VGC_Data.py:96
+#: ../VGC_Data.py:98 ../VGC_Data.py:473
 msgid "[None]"
 msgstr ""
 
-#: ../VGC_Data.py:110
+#: ../VGC_Data.py:112
 msgid "[Other]"
 msgstr ""
 
@@ -43,111 +43,111 @@ msgstr ""
 msgid "total price: "
 msgstr ""
 
-#: ../VGC_Var.py:37
+#: ../VGC_Var.py:36
 msgid "Bar"
 msgstr ""
 
-#: ../VGC_Var.py:38
+#: ../VGC_Var.py:37
 msgid "Pie"
 msgstr ""
 
-#: ../VGC_Var.py:39
+#: ../VGC_Var.py:38
 msgid "Area"
 msgstr ""
 
-#: ../VGC_Var.py:40
+#: ../VGC_Var.py:39
 msgid "Line"
 msgstr ""
 
-#: ../VGC_Var.py:42
+#: ../VGC_Var.py:41
 msgid "Years"
 msgstr ""
 
-#: ../VGC_Var.py:43
+#: ../VGC_Var.py:42
 msgid "Months"
 msgstr ""
 
-#: ../VGC_Var.py:44 ../gui/VGC_GUI_Filter.py:47 ../gui/VGC_GUI_Settings.py:82
+#: ../VGC_Var.py:43 ../gui/VGC_GUI_Filter.py:47 ../gui/VGC_GUI_Settings.py:83
 msgid "Platforms"
 msgstr ""
 
-#: ../VGC_Var.py:45 ../gui/VGC_GUI_Filter.py:51
+#: ../VGC_Var.py:44 ../gui/VGC_GUI_Filter.py:51
 msgid "Regions"
 msgstr ""
 
-#: ../VGC_Var.py:46 ../gui/VGC_GUI_Filter.py:49 ../gui/VGC_GUI_Settings.py:81
+#: ../VGC_Var.py:45 ../gui/VGC_GUI_Filter.py:49 ../gui/VGC_GUI_Settings.py:82
 msgid "Platform holders"
 msgstr ""
 
-#: ../VGC_Var.py:51
+#: ../VGC_Var.py:50
 msgid "Item count"
 msgstr ""
 
-#: ../VGC_Var.py:52
+#: ../VGC_Var.py:51
 msgid "Total price"
 msgstr ""
 
-#: ../VGC_Var.py:53
+#: ../VGC_Var.py:52
 msgid "Item count (growth)"
 msgstr ""
 
-#: ../VGC_Var.py:54
+#: ../VGC_Var.py:53
 msgid "Total price (growth)"
 msgstr ""
 
-#: ../VGC_Var.py:56
+#: ../VGC_Var.py:55
 msgid "year"
 msgstr ""
 
-#: ../VGC_Var.py:57
+#: ../VGC_Var.py:56
 msgid "month"
 msgstr ""
 
-#: ../VGC_Var.py:58
+#: ../VGC_Var.py:57
 msgid "day"
 msgstr ""
 
-#: ../VGC_Var.py:59 ../VGC_Var.py:65
+#: ../VGC_Var.py:58 ../VGC_Var.py:64
 msgid "name"
 msgstr ""
 
-#: ../VGC_Var.py:60 ../VGC_Var.py:68
+#: ../VGC_Var.py:59 ../VGC_Var.py:67
 msgid "region"
 msgstr ""
 
-#: ../VGC_Var.py:61 ../VGC_Var.py:69
+#: ../VGC_Var.py:60 ../VGC_Var.py:68
 msgid "platform"
 msgstr ""
 
-#: ../VGC_Var.py:62
+#: ../VGC_Var.py:61
 msgid "platform holder"
 msgstr ""
 
-#: ../VGC_Var.py:63 ../VGC_Var.py:70
+#: ../VGC_Var.py:62 ../VGC_Var.py:69
 msgid "notes"
 msgstr ""
 
-#: ../VGC_Var.py:66
+#: ../VGC_Var.py:65
 msgid "price"
 msgstr ""
 
-#: ../VGC_Var.py:67
+#: ../VGC_Var.py:66
 msgid "date"
 msgstr ""
 
-#: ../VGC_Var.py:72
+#: ../VGC_Var.py:71
 msgid "ascending"
 msgstr ""
 
-#: ../VGC_Var.py:73
+#: ../VGC_Var.py:72
 msgid "descending"
 msgstr ""
 
-#: ../VGC_Var.py:75
+#: ../VGC_Var.py:74
 msgid "Yes"
 msgstr ""
 
-#: ../VGC_Var.py:76
+#: ../VGC_Var.py:75
 msgid "No"
 msgstr ""
 
@@ -336,7 +336,7 @@ msgstr ""
 msgid "Cart cover"
 msgstr ""
 
-#: ../gui/VGC_GUI_Menu.py:15
+#: ../gui/VGC_GUI_Menu.py:15 ../gui/VGC_GUI_Settings.py:32
 msgid "Settings"
 msgstr ""
 
@@ -377,7 +377,7 @@ msgid "Search"
 msgstr ""
 
 #: ../gui/VGC_GUI_Menu.py:38 ../gui/VGC_GUI_Popups.py:145
-#: ../gui/VGC_GUI_Settings.py:80
+#: ../gui/VGC_GUI_Settings.py:81
 msgid "Download"
 msgstr ""
 
@@ -410,7 +410,7 @@ msgid "Password"
 msgstr ""
 
 #: ../gui/VGC_GUI_Popups.py:143 ../gui/VGC_GUI_Popups.py:265
-#: ../gui/VGC_GUI_Popups.py:378 ../gui/VGC_GUI_Settings.py:52
+#: ../gui/VGC_GUI_Popups.py:378 ../gui/VGC_GUI_Settings.py:49
 msgid "Cancel"
 msgstr ""
 
@@ -471,20 +471,32 @@ msgstr ""
 msgid "Select all"
 msgstr ""
 
-#: ../gui/VGC_GUI_Popups.py:381 ../gui/VGC_GUI_Settings.py:54
+#: ../gui/VGC_GUI_Popups.py:381 ../gui/VGC_GUI_Settings.py:51
 msgid "OK"
 msgstr ""
 
-#: ../gui/VGC_GUI_Settings.py:78 ../gui/VGC_GUI_Settings.py:92
+#: ../gui/VGC_GUI_Settings.py:79 ../gui/VGC_GUI_Settings.py:109
 msgid "Locale"
 msgstr ""
 
-#: ../gui/VGC_GUI_Settings.py:79
+#: ../gui/VGC_GUI_Settings.py:80
 msgid "Display"
 msgstr ""
 
-#: ../gui/VGC_GUI_Settings.py:89
+#: ../gui/VGC_GUI_Settings.py:106
 msgid "Language"
+msgstr ""
+
+#: ../gui/VGC_GUI_Settings.py:120 ../gui/VGC_GUI_Settings.py:162
+msgid "Platform holder"
+msgstr ""
+
+#: ../gui/VGC_GUI_Settings.py:123 ../gui/VGC_GUI_Settings.py:163
+msgid "Platform keywords"
+msgstr ""
+
+#: ../gui/VGC_GUI_Settings.py:125
+msgid "(comma separated)"
 msgstr ""
 
 #: ../gui/VGC_GUI_TreeView.py:65
