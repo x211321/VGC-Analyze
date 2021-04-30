@@ -7,7 +7,6 @@ LOCAL_DATA              = DATA_PATH + "local/"
 DOWNLOAD_PATH           = DATA_PATH
 DOWNLOAD_FILE           = DOWNLOAD_PATH + FILE_PREFIX + "VGC-Analyze-Download.csv"
 LOCAL_DATA_FILE         = LOCAL_DATA + "VGC-Local-Data.json"
-PLATFORM_KEYWORDS_FILE  = LOCAL_DATA + "VGC-Platform-Keywords.json"
 
 # Colors
 BUTTON_COLOR_GOOD = "#BDF593"

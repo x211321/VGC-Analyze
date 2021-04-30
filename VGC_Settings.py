@@ -6,11 +6,13 @@ import os
 # contains translatable strings.
 SETTINGS_PATH = "./data/settings/"
 SETTINGS_FILE = SETTINGS_PATH + "settings.json"
+PLATFORM_HOLDERS_FILE = SETTINGS_PATH + "platform_holders.json"
 
 from VGC_Json import readJson
 from VGC_Json import writeJson
 
 settings_data = {}
+platform_holders_data = {}
 
 def read():
     global settings_data
@@ -44,4 +46,40 @@ def set(section, key, value):
         settings_data[section] = {}
 
     settings_data[section][key] = value
+
+
+
+def readPlatformHolders():
+    global platform_holders_data
+
+    if os.path.exists(PLATFORM_HOLDERS_FILE):
+        platform_holders_data = readJson(PLATFORM_HOLDERS_FILE)
+
+def writePlatformHolders():
+    global platform_holders_data
+
+    writeJson(platform_holders_data, PLATFORM_HOLDERS_FILE)
+
+def listPlatformHolders():
+    global platform_holders_data
+
+    return platform_holders_data.keys()
+
+def getPlatformHolderKeywords(platformHolder):
+    global platform_holders_data
+
+    if platformHolder in platform_holders_data:
+        return platform_holders_data[platformHolder]
+
+    return []
+
+def setPlatformHolderKeywords(platformHolder, keywords):
+    global platform_holders_data
+
+    platform_holders_data[platformHolder] = keywords
+
+def removePlatformHolder(platformHolder):
+    global platform_holders_data
+
+    platform_holders_data.pop(platformHolder)
 

@@ -31,35 +31,35 @@ class GUI_TreeView(Frame):
         self.item_view.lastSortItem  = ""
 
         # Treeview definition
-        self.item_view['columns']=('Index',
-                                   'Title',
-                                   'Platform',
-                                   'Region',
-                                   'Price',
-                                   'Date',
-                                   'Cart',
-                                   'Box',
-                                   'Manual',
-                                   'Other',
-                                   'Bookmark',
-                                   'Finished',
-                                   'Notes')
+        self.item_view['columns']=("Index",
+                                   "Title",
+                                   "Platform",
+                                   "Region",
+                                   "Price",
+                                   "Date",
+                                   "Cart",
+                                   "Box",
+                                   "Manual",
+                                   "Other",
+                                   "Bookmark",
+                                   "Finished",
+                                   "Notes")
 
         # View columns
-        self.item_view.column('#0'      , anchor="w", width=0, stretch="No")
-        self.item_view.column('Index'   , anchor="w", width=0, stretch="No")
-        self.item_view.column('Title'   , anchor="w", width=300)
-        self.item_view.column('Platform', anchor="w", width=100)
-        self.item_view.column('Region'  , anchor="w", width=5)
-        self.item_view.column('Price'   , anchor="e", width=25)
-        self.item_view.column('Date'    , anchor="w", width=10)
-        self.item_view.column('Cart'    , anchor="w", width=5)
-        self.item_view.column('Box'     , anchor="w", width=5)
-        self.item_view.column('Manual'  , anchor="w", width=5)
-        self.item_view.column('Other'   , anchor="w", width=5)
-        self.item_view.column('Bookmark', anchor="w", width=5)
-        self.item_view.column('Finished', anchor="w", width=5)
-        self.item_view.column('Notes'   , anchor="w", width=100)
+        self.item_view.column("#0"      , anchor="w", width=0, stretch="No")
+        self.item_view.column("Index"   , anchor="w", width=0, stretch="No")
+        self.item_view.column("Title"   , anchor="w", width=300)
+        self.item_view.column("Platform", anchor="w", width=100)
+        self.item_view.column("Region"  , anchor="w", width=5)
+        self.item_view.column("Price"   , anchor="e", width=25)
+        self.item_view.column("Date"    , anchor="w", width=10)
+        self.item_view.column("Cart"    , anchor="w", width=5)
+        self.item_view.column("Box"     , anchor="w", width=5)
+        self.item_view.column("Manual"  , anchor="w", width=5)
+        self.item_view.column("Other"   , anchor="w", width=5)
+        self.item_view.column("Bookmark", anchor="w", width=5)
+        self.item_view.column("Finished", anchor="w", width=5)
+        self.item_view.column("Notes"   , anchor="w", width=100)
 
         # View column headers
         self.item_view.heading("#0"      , text=_("Group")   , anchor="w")

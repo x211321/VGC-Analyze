@@ -1,5 +1,7 @@
 from VGC_Locale import _
 
+import VGC_Settings as settings
+
 import re
 import os
 
@@ -57,7 +59,7 @@ class CollectionItem(object):
 
     # Constructor
     # Parses csv-line to CollectionItem
-    def __init__(self, csv_line = "", index = 0, localItemData_List = {}, platformKeywords_List = {}, combinePlatforms = False):
+    def __init__(self, csv_line = "", index = 0, localItemData_List = {}, combinePlatforms = False):
         csv_fields  = csv_line.split("\",\"")
 
         for index, field in enumerate(csv_fields):
@@ -98,8 +100,8 @@ class CollectionItem(object):
             # Find platform holder
             found = False
 
-            for platformHolder in platformKeywords_List:
-                for keyword in platformKeywords_List[platformHolder]:
+            for platformHolder in settings.listPlatformHolders():
+                for keyword in settings.getPlatformHolderKeywords(platformHolder):
                     if keyword in self.platform.lower():
                         self.platformHolder = platformHolder
                         found = True
@@ -323,13 +325,13 @@ class CollectionData(object):
 
     # parseData
     def parseData(self, combinePlatforms = False):
-        self.collection_items      = []
-        self.platformKeywords_List = readJson(VAR.PLATFORM_KEYWORDS_FILE)
+        settings.readPlatformHolders()
+        self.collection_items = []
 
         index = 0
 
         for line in self.csv_lines[1:]:
-            item = CollectionItem(line, localItemData_List=self.localData_list, platformKeywords_List=self.platformKeywords_List, combinePlatforms=combinePlatforms)
+            item = CollectionItem(line, localItemData_List=self.localData_list, combinePlatforms=combinePlatforms)
 
             item.index = index
 

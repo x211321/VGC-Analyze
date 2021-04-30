@@ -338,7 +338,20 @@ class GUI(Tk):
     # showSettings
     # --------------------
     def showSettings(self):
-        self.settings = GUI_Settings(self)
+        self.settings = GUI_Settings(self, self.showSettingsCallback)
+
+
+    ######################
+    # showSettingsCallback
+    # --------------------
+    def showSettingsCallback(self):
+        print("SETTINGS CALLBACK")
+
+        # Read collection data
+        self.readData()
+
+        # Display collection data
+        self.showData()
 
 
     ######################
