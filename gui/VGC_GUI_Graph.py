@@ -4,8 +4,6 @@ from VGC_Locale import locCurrency
 from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
 from matplotlib.figure import Figure
 
-import numpy as np
-
 from tkinter import *
 from tkinter import ttk
 
@@ -317,7 +315,7 @@ class GUI_Graph(Frame):
             ax.autoscale(True)
             ax.set_ylabel(graphData)
             ax.set_title(graphContent)
-            ax.set_xticks(np.arange(len(values)))
+            ax.set_xticks(range(len(values)))
             ax.set_xticklabels(labels, rotation=330, ha="left", fontsize=6)
             bars = ax.bar(range(len(values)), values, color=VAR.GRAPH_BAR_COLOR, alpha=1)
 

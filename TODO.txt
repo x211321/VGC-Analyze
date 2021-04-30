@@ -12,7 +12,7 @@ Einstellungsdialog
 Datepicker
 About Dialog
 Listview Pos1 / Ende / Bild auf / Bild ab
-EXE bundle img
+EXE bundle img https://stackoverflow.com/questions/48134269/python-pyinstaller-bundle-image-in-gui-to-onefile-exe
 EXE virus https://stackoverflow.com/questions/43777106/program-made-with-pyinstaller-now-seen-as-a-trojan-horse-by-avg
 Multiselect
 	Bookmark all (selected) / contextmenu

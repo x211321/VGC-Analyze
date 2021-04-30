@@ -15,7 +15,7 @@ def setLanguage(langString = ""):
     global _
     global langDir
 
-    if len(langString):
+    if len(langString) and os.path.exists(langDir + langString):
 
         print("Loading language:", langDir, langString)
 
@@ -23,7 +23,7 @@ def setLanguage(langString = ""):
         lang.install()
         _ = lang.gettext
     else:
-        _ = gettext.translation("base", localedir=langDir, languages=["en_US"], fallback=True).gettext
+        _ = gettext.gettext
 
 
 def setLocale(localeString = ""):

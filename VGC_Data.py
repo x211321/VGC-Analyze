@@ -633,8 +633,12 @@ class CollectionData(object):
 # getCurrentVGCFile
 # --------------------
 def getCurrentVGCFile():
-    file_list    = listdir(VAR.DATA_PATH)
     current_file = ""
+
+    if not os.path.exists(VAR.DATA_PATH):
+        os.makedirs(VAR.DATA_PATH)
+
+    file_list = listdir(VAR.DATA_PATH)
 
     # Search for newest file
     for file in file_list:
@@ -643,6 +647,7 @@ def getCurrentVGCFile():
             current_file = VAR.DATA_PATH + file
 
     return current_file
+
 
 
 ######################
