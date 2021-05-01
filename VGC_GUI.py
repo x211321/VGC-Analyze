@@ -189,9 +189,9 @@ class GUI(Tk):
         # Show group column
         if len(displayFilter.groupItems):
             self.collectionData.groupData()
-            self.view_frame.item_view.column('#0', width=200, stretch="Yes")
+            self.view_frame.item_view.column("#0", width=200, stretch="Yes")
         else:
-            self.view_frame.item_view.column('#0', width=0, stretch="No")
+            self.view_frame.item_view.column("#0", width=0, stretch="No")
 
         # Display totals
         self.info_frame.update(self)
@@ -350,6 +350,9 @@ class GUI(Tk):
     # showSettingsCallback
     # --------------------
     def showSettingsCallback(self):
+
+        # Set column display
+        self.view_frame.setColumnDisplay(resize=True)
 
         # Read collection data
         self.readData()

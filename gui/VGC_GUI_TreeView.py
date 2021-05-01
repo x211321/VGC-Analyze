@@ -1,3 +1,5 @@
+import VGC_Settings as settings
+
 from VGC_Locale import _
 from VGC_Locale import locCurrencySymbol
 from VGC_Locale import locStrToNum
@@ -72,6 +74,8 @@ class GUI_TreeView(Frame):
 
         self.treeviewSort(list(VAR.VIEW_COLUMNS.keys())[0], False)
 
+        self.setColumnDisplay()
+
 
     def treeviewSort(self, column, reverse, datatype=None):
         if not self.item_view.lastSortItem == column:
@@ -92,3 +96,30 @@ class GUI_TreeView(Frame):
         # reverse sort next time
         self.item_view.lastSortItem = column
         self.item_view.heading(column, command=lambda:self.treeviewSort(column, not reverse, datatype))
+
+
+    def setColumnDisplay(self, resize=False):
+        columns = settings.get("display", "columns", [])
+        displayColumns = ()
+
+        if len(columns):
+            for column in columns:
+                if len(column.strip()):
+                    displayColumns += (column, )
+
+        if len(displayColumns):
+            self.item_view["displaycolumns"] = displayColumns
+        else:
+            self.item_view["displaycolumns"] = "#all"
+
+        if resize:
+            viewWidth   = self.item_view.winfo_reqwidth()
+            columnCount = 0
+
+            for column in VAR.VIEW_COLUMNS:
+                if column in displayColumns or len(displayColumns) == 0:
+                    columnCount += 1
+
+            for column in VAR.VIEW_COLUMNS:
+                if column in displayColumns or len(displayColumns) == 0:
+                    self.item_view.column(column, width=int(viewWidth/columnCount), stretch="Yes")

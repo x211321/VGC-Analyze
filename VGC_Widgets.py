@@ -130,3 +130,48 @@ class Combobox_(ttk.Combobox):
 
     def setValues(self, values):
         self['values'] = values
+
+
+######################
+# Button_
+# --------------------
+class Button_(Button):
+
+    # Constructor
+    def __init__(self, master=None,
+                 id="", text="",
+                 justify="left",
+                 width=None, height=None,
+                 state="normal", relief=None,
+                 bg=None, fg=None,
+                 image=None, command=None):
+
+        super().__init__(master=master, text=text, justify=justify, width=width, height=height, state=state, relief=relief, bg=bg, fg=fg, image=image, command=command)
+
+        self.id = id
+
+
+######################
+# Text_
+# --------------------
+class Text_(Text):
+
+    # Constructor
+    def __init__(self, master=None,
+                 id="", text="",
+                 width=None, height=None,
+                 state="normal", wrap=None):
+
+        super().__init__(master=master, width=width, height=height, state=state, wrap=wrap)
+
+        self.id = id
+
+    def set(self, value):
+        state = self["state"]
+        self.config(state="normal")
+        self.delete("1.0", "end")
+        self.insert("1.0", value)
+        self.config(state=state)
+
+    def get(self):
+        return super().get("1.0", "end").rstrip('\n')

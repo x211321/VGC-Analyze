@@ -363,7 +363,7 @@ class Pop_FilterSelect(object):
         self.parent   = parent
         self.callback = callback
 
-    def show(self, options, activeOptions, filterType):
+    def show(self, options, activeOptions, filterType, maxCol = 0):
         # Close previous window
         self.close()
 
@@ -406,14 +406,15 @@ class Pop_FilterSelect(object):
         # Find longest text
         maxLen = 0
 
-        for option, data in sorted(options):
+        for option, data in options:
             if len(option) > maxLen:
                 maxLen = len(option)
 
-        maxCol = int(150 / maxLen)
+        if maxCol == 0:
+            maxCol = int(150 / maxLen)
 
         # Create checkbuttons
-        for option, data in sorted(options):
+        for option, data in options:
             self.widgets[option] = Checkbutton_(self.frame_options, label=option, bg=VAR.GUI_COLOR_PRIMARY, width=maxLen, anchor="w")
             self.widgets[option].grid(row=row, column=col, sticky="w", padx=5, pady=5)
 

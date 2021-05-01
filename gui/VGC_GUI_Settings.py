@@ -9,6 +9,9 @@ from VGC_Locale import getLocaleCode
 from VGC_Locale import getLocaleName
 
 from gui.VGC_GUI_Popups import centerPopup
+from gui.VGC_GUI_Popups import Pop_FilterSelect
+
+import VGC_Var as VAR
 
 from tkinter import *
 from tkinter import ttk
@@ -16,6 +19,8 @@ from VGC_Img import loadIcon
 
 from VGC_Widgets import Label_
 from VGC_Widgets import Entry_
+from VGC_Widgets import Text_
+from VGC_Widgets import Button_
 from VGC_Widgets import Combobox_
 from VGC_Widgets import Checkbutton_
 
@@ -90,6 +95,9 @@ class GUI_Settings(Toplevel):
         # Locale settings
         self.initLocale()
 
+        # Display settings
+        self.initDisplay()
+
         # Platform holders
         self.initPlatformHolders()
 
@@ -121,6 +129,18 @@ class GUI_Settings(Toplevel):
         self.grid(self.w["locale"])
 
 
+    def initDisplay(self):
+        self.columnSelectPop = Pop_FilterSelect(self, self.columnSelectCallback)
+
+        self.w["display"] = {}
+        self.w["display"]["columns_txt"]    = Label_(self.pages["display"], text=_("Table columns"), bg=VAR.GUI_COLOR_PRIMARY)
+        self.w["display"]["columns"]        = Text_(self.pages["display"], width=50, height=4, wrap=WORD, state="disabled", id="columns")
+        self.w["display"]["columns_spacer"] = Label_(self.pages["display"], bg=VAR.GUI_COLOR_PRIMARY)
+        self.w["display"]["columns_select"] = Button_(self.pages["display"], text=_("Select"), width=20, relief="groove", bg=VAR.GUI_COLOR_PRIMARY, command=self.columnSelect)
+
+        self.grid(self.w["display"])
+
+
     def initPlatformHolders(self):
         self.platformHolders_input   = Frame(self.pages["platformHolders"], bg=VAR.GUI_COLOR_PRIMARY)
         self.platformHolders_buttons = Frame(self.platformHolders_input, bg=VAR.GUI_COLOR_PRIMARY)
@@ -130,16 +150,16 @@ class GUI_Settings(Toplevel):
         self.platformHolder     = Entry_(self.platformHolders_input, width=25)
 
         self.platformHolderKeywords_txt  = Label_(self.platformHolders_input, text=_("Platform keywords"), bg=VAR.GUI_COLOR_PRIMARY)
-        self.platformHolderKeywords      = Text(self.platformHolders_input, width=50, height=4, wrap=WORD)
+        self.platformHolderKeywords      = Text_(self.platformHolders_input, width=50, height=4, wrap=WORD)
         self.platformHolderKeywords_info = Label_(self.platformHolders_input, text=_("(comma separated)"), bg=VAR.GUI_COLOR_PRIMARY)
 
-        self.platformHolder_save   = Button(self.platformHolders_buttons,
-                                            image=self.icon_save, bg=VAR.BUTTON_COLOR_GOOD,
-                                            relief="groove", command=self.savePlatformHolder)
-        self.platformHolder_remove = Button(self.platformHolders_buttons,
-                                            image=self.icon_delete,
-                                            bg=VAR.BUTTON_COLOR_BAD,
-                                            relief="groove", command=self.removePlatformHolder)
+        self.platformHolder_save   = Button_(self.platformHolders_buttons,
+                                             image=self.icon_save, bg=VAR.BUTTON_COLOR_GOOD,
+                                             relief="groove", command=self.savePlatformHolder)
+        self.platformHolder_remove = Button_(self.platformHolders_buttons,
+                                             image=self.icon_delete,
+                                             bg=VAR.BUTTON_COLOR_BAD,
+                                             relief="groove", command=self.removePlatformHolder)
 
         self.platformHolder_txt.grid(row=0, column=0, padx=(0, 10), sticky="nw")
         self.platformHolder.grid(row=0, column=1, padx=(0, 20), sticky="nw")
@@ -186,13 +206,13 @@ class GUI_Settings(Toplevel):
         self.platformOverwrite_txt  = Label_(self.platforms_input, text=_("Overwrite with"), bg=VAR.GUI_COLOR_PRIMARY)
         self.platformOverwrite      = Entry_(self.platforms_input, width=70)
 
-        self.platform_save   = Button(self.platforms_buttons,
-                                      image=self.icon_save, bg=VAR.BUTTON_COLOR_GOOD,
-                                      relief="groove", command=self.savePlatform)
-        self.platform_remove = Button(self.platforms_buttons,
-                                      image=self.icon_delete,
-                                      bg=VAR.BUTTON_COLOR_BAD,
-                                      relief="groove", command=self.removePlatform)
+        self.platform_save   = Button_(self.platforms_buttons,
+                                       image=self.icon_save, bg=VAR.BUTTON_COLOR_GOOD,
+                                       relief="groove", command=self.savePlatform)
+        self.platform_remove = Button_(self.platforms_buttons,
+                                       image=self.icon_delete,
+                                       bg=VAR.BUTTON_COLOR_BAD,
+                                       relief="groove", command=self.removePlatform)
 
         self.platform_txt.grid(row=0, column=0, padx=(0, 10), sticky="nw")
         self.platform.grid(row=0, column=1, padx=(0, 20), sticky="nw")
@@ -227,6 +247,13 @@ class GUI_Settings(Toplevel):
         self.platformsView.bind('<<TreeviewSelect>>', self.selectPlatform)
 
 
+    def columnSelect(self):
+        self.columnSelectPop.show(VAR.VIEW_COLUMNS.items(), settings.get("display", "columns", []), _("table columns"), maxCol=3)
+
+
+    def columnSelectCallback(self, columns):
+        self.setValue("display", self.w["display"]["columns"], columns)
+
     def center(self):
         centerPopup(self, self.parent)
 
@@ -240,9 +267,9 @@ class GUI_Settings(Toplevel):
                 widgets[key].config(bg=VAR.GUI_COLOR_PRIMARY)
 
             if col == 0:
-                sticky = "w"
+                sticky = "nw"
             if col == 1:
-                sticky = "e"
+                sticky = "ne"
 
             widgets[key].grid(row=row, column=col, sticky=sticky, padx=20, pady=10)
 
@@ -251,20 +278,6 @@ class GUI_Settings(Toplevel):
             if col > 1:
                 col  = 0
                 row += 1
-
-
-    def restore(self):
-        for sectionKey in self.w:
-            section = self.w[sectionKey]
-
-            for widgetKey in section:
-                widget = section[widgetKey]
-
-                if len(widget.id):
-                    self.setValue(sectionKey, widget, settings.get(sectionKey, widget.id, ""))
-
-        self.restorePlatformHolders()
-        self.restorePlatforms()
 
 
     def restorePlatformHolders(self, scrollTo = ""):
@@ -374,6 +387,20 @@ class GUI_Settings(Toplevel):
         self.destroy()
 
 
+    def restore(self):
+        for sectionKey in self.w:
+            section = self.w[sectionKey]
+
+            for widgetKey in section:
+                widget = section[widgetKey]
+
+                if len(widget.id):
+                    self.setValue(sectionKey, widget, settings.get(sectionKey, widget.id, ""))
+
+        self.restorePlatformHolders()
+        self.restorePlatforms()
+
+
     def apply(self):
         for sectionKey in self.w:
             section = self.w[sectionKey]
@@ -382,7 +409,6 @@ class GUI_Settings(Toplevel):
                 widget = section[widgetKey]
 
                 if len(widget.id):
-
                     value = self.getValue(sectionKey, widget)
                     settings.set(sectionKey, widget.id, value)
 
@@ -406,6 +432,8 @@ class GUI_Settings(Toplevel):
             return getLocaleCode(value)
         if sectionKey == "locale" and widget.id == "locale":
             return getLocaleCode(value)
+        if sectionKey == "display" and widget.id == "columns":
+            return value.split(", ")
 
         return value
 
@@ -415,6 +443,8 @@ class GUI_Settings(Toplevel):
             value = getLocaleName(value)
         if sectionKey == "locale" and widget.id == "locale":
             value = getLocaleName(value)
+        if sectionKey == "display" and widget.id =="columns":
+            value = ", ".join(value)
 
         widget.set(value)
 

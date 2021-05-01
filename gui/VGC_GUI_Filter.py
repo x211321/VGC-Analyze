@@ -151,7 +151,7 @@ class GUI_Filter(Frame):
     # selectPlatforms
     # --------------------
     def selectPlatforms(self):
-        self.platformSelect.show(self.collectionData.platforms_all.items(), self.multiFilter["platforms"], _("platforms"))
+        self.platformSelect.show(sorted(self.collectionData.platforms_all.items()), self.multiFilter["platforms"], _("platforms"))
 
 
     ######################
@@ -170,7 +170,7 @@ class GUI_Filter(Frame):
     # selectPlatformHolders
     # --------------------
     def selectPlatformHolders(self):
-        self.platformHolderSelect.show(self.collectionData.platformHolders_all.items(), self.multiFilter["platformHolders"], _("platform holders"))
+        self.platformHolderSelect.show(sorted(self.collectionData.platformHolders_all.items()), self.multiFilter["platformHolders"], _("platform holders"))
 
 
     ######################
@@ -189,7 +189,7 @@ class GUI_Filter(Frame):
     # selectRegions
     # --------------------
     def selectRegions(self):
-        self.regionSelect.show( self.collectionData.regions_all.items(), self.multiFilter["regions"], _("regions"))
+        self.regionSelect.show(sorted(self.collectionData.regions_all.items()), self.multiFilter["regions"], _("regions"))
 
 
     ######################
