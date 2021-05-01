@@ -304,7 +304,6 @@ class GUI(Tk):
     # --------------------
     def sortViewItems(self, filterData, items):
         if len(filterData.orderItems) or filterData.orderItemsReverse:
-            print("JOP", filterData.orderItems, filterData.orderItemsReverse)
             if filterData.orderItems == VAR.ORDER_BY_NAME or len(filterData.orderItems) == 0:
                 return sorted(items, key=lambda item: item.name, reverse=filterData.orderItemsReverse)
             if filterData.orderItems == VAR.ORDER_BY_PRICE:

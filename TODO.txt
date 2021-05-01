@@ -4,7 +4,6 @@ Fehlende Barcodes auf Webseite finden
 Filter hilfe (regex, datumsformat, etc.)
 Eigene Messageboxen (positionierbar / Topmost)
 Einstellungsdialog
-	Platform overwrite
 	Anzahl heruntergeladener Dateien die aufbewahrt werden sollen
 Datepicker
 About Dialog
@@ -27,21 +26,24 @@ Bugs
 		Verwirrend
 Treeview contextmenu
 	Bookmark, finished, open on VGC, details, online info
-Date added
-	Listview
-	Filter
-	Group
-	Graph
+
 disclaimer project not affiliated with VGCollect
 html/pdf print
 settings scrollbars
 filter presets
 
 ===DONE===
+Date added
+	Listview
+	Filter
+	Group
+	Graph
+
 Einstellungsdialog
 	Währung
 	Datumsformat
 	Platformhalter keywords
+	Platform overwrite
 Multifilter (mehrere Regionen, Platformen, etc.)
 Dateiname anzeigen
 Combine platforms (x + x hardware + x accessories)
