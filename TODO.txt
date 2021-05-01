@@ -26,13 +26,12 @@ Bugs
 		Verwirrend
 Treeview contextmenu
 	Bookmark, finished, open on VGC, details, online info
-
 disclaimer project not affiliated with VGCollect
 html/pdf print
-settings scrollbars
 filter presets
 
 ===DONE===
+settings scrollbars
 Date added
 	Listview
 	Filter
