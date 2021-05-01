@@ -144,7 +144,10 @@ class GUI_Settings(Toplevel):
     def initPlatformHolders(self):
         self.platformHolders_input   = Frame(self.pages["platformHolders"], bg=VAR.GUI_COLOR_PRIMARY)
         self.platformHolders_buttons = Frame(self.platformHolders_input, bg=VAR.GUI_COLOR_PRIMARY)
-        self.platformHoldersView     = ttk.Treeview(self.pages["platformHolders"])
+
+        self.platformHoldersViewFrame = Frame(self.pages["platformHolders"], bg=VAR.GUI_COLOR_PRIMARY)
+        self.platformHoldersView      = ttk.Treeview(self.platformHoldersViewFrame)
+        self.platformHoldersViewScroll= Scrollbar(self.platformHoldersViewFrame)
 
         self.platformHolder_txt = Label_(self.platformHolders_input, text=_("Platform holder"), bg=VAR.GUI_COLOR_PRIMARY)
         self.platformHolder     = Entry_(self.platformHolders_input, width=25)
@@ -171,12 +174,19 @@ class GUI_Settings(Toplevel):
         self.platformHolder_remove.grid(row=0, column=0, sticky="nw", padx=(0, 10))
         self.platformHolder_save.grid(row=0, column=1, sticky="nw")
 
+        self.platformHoldersViewScroll.pack(side=RIGHT, fill=Y)
+        self.platformHoldersView.pack(expand=True, fill="both")
+
         self.platformHolders_input.grid(row=0, column=0, padx=10, pady=10, sticky="nwse")
-        self.platformHoldersView.grid(row=1, column=0, padx=10, pady=10, sticky="nwse")
+        self.platformHoldersViewFrame.grid(row=1, column=0, padx=10, pady=10, sticky="nwse")
 
         # Input bindings
         self.platformHolder.bind("<Return>", self.savePlatformHolder)
         self.platformHolderKeywords.bind("<Return>", self.savePlatformHolder)
+
+        # Scrollbar bindings
+        self.platformHoldersView.config(yscrollcommand=self.platformHoldersViewScroll.set)
+        self.platformHoldersViewScroll.config(orient=VERTICAL, command=self.platformHoldersView.yview)
 
         # Treeview definition
         self.platformHoldersView['columns']=("Platform holder", "Keywords")
@@ -196,9 +206,11 @@ class GUI_Settings(Toplevel):
 
 
     def initPlatforms(self):
-        self.platforms_input   = Frame(self.pages["platforms"], bg=VAR.GUI_COLOR_PRIMARY)
-        self.platforms_buttons = Frame(self.platforms_input, bg=VAR.GUI_COLOR_PRIMARY)
-        self.platformsView     = ttk.Treeview(self.pages["platforms"])
+        self.platforms_input    = Frame(self.pages["platforms"], bg=VAR.GUI_COLOR_PRIMARY)
+        self.platforms_buttons  = Frame(self.platforms_input, bg=VAR.GUI_COLOR_PRIMARY)
+        self.platformsViewFrame = Frame(self.pages["platforms"], bg=VAR.GUI_COLOR_PRIMARY)
+        self.platformsView      = ttk.Treeview(self.platformsViewFrame)
+        self.platformsViewScroll= Scrollbar(self.platformsViewFrame)
 
         self.platform_txt = Label_(self.platforms_input, text=_("Platform"), bg=VAR.GUI_COLOR_PRIMARY)
         self.platform     = Entry_(self.platforms_input, width=37)
@@ -223,12 +235,19 @@ class GUI_Settings(Toplevel):
         self.platform_remove.grid(row=0, column=0, sticky="nw", padx=(0, 10), pady=(11, 0))
         self.platform_save.grid(row=0, column=1, sticky="nw", pady=(11, 0))
 
+        self.platformsViewScroll.pack(side=RIGHT, fill=Y)
+        self.platformsView.pack(expand=True, fill="both")
+
         self.platforms_input.grid(row=0, column=0, padx=10, pady=10, sticky="nwse")
-        self.platformsView.grid(row=1, column=0, padx=10, pady=10, sticky="nwse")
+        self.platformsViewFrame.grid(row=1, column=0, padx=10, pady=10, sticky="nwse")
 
         # Input bindings
         self.platform.bind("<Return>", self.savePlatform)
         self.platformOverwrite.bind("<Return>", self.savePlatform)
+
+        # Scrollbar bindings
+        self.platformsView.config(yscrollcommand=self.platformsViewScroll.set)
+        self.platformsViewScroll.config(orient=VERTICAL, command=self.platformsView.yview)
 
         # Treeview definition
         self.platformsView['columns']=("Platform", "Overwrite with")
