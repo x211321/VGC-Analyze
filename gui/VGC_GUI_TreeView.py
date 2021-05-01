@@ -48,11 +48,9 @@ class GUI_TreeView(Frame):
         self.item_view.heading("Index", text=""        , anchor="w")
 
         for column in VAR.VIEW_COLUMNS:
-            colData = VAR.VIEW_COLUMNS[column]
-            self.item_view.column(colData["name"], anchor=colData["anchor"], width=colData["width"])
-            self.item_view.heading(colData["name"], text=colData["name"],
-                                                    anchor=colData["anchor"],
-                                                    command=lambda colData=colData:self.treeviewSort(colData["name"], False, colData["type"]))
+            self.item_view.column(column, anchor=VAR.VIEW_COLUMNS[column]["anchor"], width=VAR.VIEW_COLUMNS[column]["width"])
+            self.item_view.heading(column, text=VAR.VIEW_COLUMNS[column]["name"], anchor=VAR.VIEW_COLUMNS[column]["anchor"],
+                                   command=lambda column=column:self.treeviewSort(column, False, VAR.VIEW_COLUMNS[column]["type"]))
 
         # View events
         self.item_view.bind('<<TreeviewSelect>>', self.selectViewItem)
@@ -72,7 +70,7 @@ class GUI_TreeView(Frame):
         self.item_view.pack(expand=True, fill="both")
         self.view_scroll_horizontal.pack(side=BOTTOM, fill=X)
 
-        self.treeviewSort(list(VAR.VIEW_COLUMNS.values())[0]["name"], False)
+        self.treeviewSort(list(VAR.VIEW_COLUMNS.keys())[0], False)
 
 
     def treeviewSort(self, column, reverse, datatype=None):
