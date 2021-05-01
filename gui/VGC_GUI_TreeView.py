@@ -107,19 +107,20 @@ class GUI_TreeView(Frame):
                 if len(column.strip()):
                     displayColumns += (column, )
 
-        if len(displayColumns):
+        if not len(displayColumns):
+            displayColumns = "#all"
+
+        if not self.item_view["displaycolumns"] == displayColumns:
             self.item_view["displaycolumns"] = displayColumns
-        else:
-            self.item_view["displaycolumns"] = "#all"
 
-        if resize:
-            viewWidth   = self.item_view.winfo_reqwidth()
-            columnCount = 0
+            if resize:
+                viewWidth   = self.item_view.winfo_reqwidth()
+                columnCount = 0
 
-            for column in VAR.VIEW_COLUMNS:
-                if column in displayColumns or len(displayColumns) == 0:
-                    columnCount += 1
+                for column in VAR.VIEW_COLUMNS:
+                    if column in displayColumns or len(displayColumns) == 0:
+                        columnCount += 1
 
-            for column in VAR.VIEW_COLUMNS:
-                if column in displayColumns or len(displayColumns) == 0:
-                    self.item_view.column(column, width=int(viewWidth/columnCount), stretch="Yes")
+                for column in VAR.VIEW_COLUMNS:
+                    if column in displayColumns or len(displayColumns) == 0:
+                        self.item_view.column(column, width=int(viewWidth/columnCount), stretch="Yes")
