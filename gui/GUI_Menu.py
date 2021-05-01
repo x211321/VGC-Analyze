@@ -1,4 +1,4 @@
-from lib.VGC_Locale import _
+from lib.Locale import _
 
 from tkinter import *
 from tkinter import ttk

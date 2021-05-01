@@ -1,32 +1,32 @@
-from lib.VGC_Locale import _
-from lib.VGC_Locale import locCurrency
-from lib.VGC_Locale import locDate
+from lib.Locale import _
+from lib.Locale import locCurrency
+from lib.Locale import locDate
 
 import os
 
 from tkinter import *
 from tkinter import ttk
 
-from lib.VGC_Data        import CollectionData
-from lib.VGC_Data        import FilterData
-from lib.VGC_Lib         import YNToX
-from lib.VGC_Lib         import toggleYN
-from lib.VGC_Img         import loadIcon
-from lib.VGC_Export_HTML import Export_HTML
+from lib.Data        import CollectionData
+from lib.Data        import FilterData
+from lib.Lib         import YNToX
+from lib.Lib         import toggleYN
+from lib.Img         import loadIcon
+from lib.Export_HTML import Export_HTML
 
-from gui.VGC_GUI_ItemInfo       import GUI_ItemInfo
-from gui.VGC_GUI_Filter         import GUI_Filter
-from gui.VGC_GUI_CollectionInfo import GUI_CollectionInfo
-from gui.VGC_GUI_TreeView       import GUI_TreeView
-from gui.VGC_GUI_Graph          import GUI_Graph
-from gui.VGC_GUI_Settings       import GUI_Settings
-from gui.VGC_GUI_Menu           import initMainMenu
-from gui.VGC_GUI_Hotkeys        import initHotkeys
-from gui.VGC_GUI_Popups         import initPopups
+from gui.GUI_ItemInfo       import GUI_ItemInfo
+from gui.GUI_Filter         import GUI_Filter
+from gui.GUI_CollectionInfo import GUI_CollectionInfo
+from gui.GUI_TreeView       import GUI_TreeView
+from gui.GUI_Graph          import GUI_Graph
+from gui.GUI_Settings       import GUI_Settings
+from gui.GUI_Menu           import initMainMenu
+from gui.GUI_Hotkeys        import initHotkeys
+from gui.GUI_Popups         import initPopups
 
-import lib.VGC_Var as VAR
+import lib.Var as VAR
 
-from lib.VGC_Json import writeJson
+from lib.Json import writeJson
 
 
 class GUI(Tk):

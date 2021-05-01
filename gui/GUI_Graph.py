@@ -1,5 +1,5 @@
-from lib.VGC_Locale import _
-from lib.VGC_Locale import locCurrency
+from lib.Locale import _
+from lib.Locale import locCurrency
 
 from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
 from matplotlib.figure import Figure
@@ -7,11 +7,11 @@ from matplotlib.figure import Figure
 from tkinter import *
 from tkinter import ttk
 
-import lib.VGC_Var as VAR
+import lib.Var as VAR
 
-from lib.VGC_Widgets import Label_
-from lib.VGC_Widgets import Combobox_
-from lib.VGC_Widgets import Checkbutton_
+from lib.Widgets import Label_
+from lib.Widgets import Combobox_
+from lib.Widgets import Checkbutton_
 
 
 ######################

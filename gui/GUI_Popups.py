@@ -1,4 +1,4 @@
-from lib.VGC_Locale import _
+from lib.Locale import _
 
 import os
 
@@ -6,16 +6,16 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
 
-import lib.VGC_Var as VAR
+import lib.Var as VAR
 
-from lib.VGC_Img import loadIcon
+from lib.Img import loadIcon
 
-from lib.VGC_Widgets  import Label_
-from lib.VGC_Widgets  import Entry_
-from lib.VGC_Widgets  import Checkbutton_
-from lib.VGC_Data     import FilterData
-from lib.VGC_Browser  import openUserProfileInBrowser
-from lib.VGC_Download import downloadCollection
+from lib.Widgets  import Label_
+from lib.Widgets  import Entry_
+from lib.Widgets  import Checkbutton_
+from lib.Data     import FilterData
+from lib.Browser  import openUserProfileInBrowser
+from lib.Download import downloadCollection
 
 
 ######################

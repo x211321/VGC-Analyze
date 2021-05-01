@@ -1,15 +1,15 @@
-import lib.VGC_Settings as settings
+import lib.Settings as settings
 
-from lib.VGC_Locale import _
-from lib.VGC_Locale import locCurrencySymbol
-from lib.VGC_Locale import locStrToNum
+from lib.Locale import _
+from lib.Locale import locCurrencySymbol
+from lib.Locale import locStrToNum
 
-import lib.VGC_Var as VAR
+import lib.Var as VAR
 
 from tkinter import *
 from tkinter import ttk
 
-from gui.VGC_GUI_Fileselect import GUI_File
+from gui.GUI_Fileselect import GUI_File
 
 ######################
 # GUI_TreeView

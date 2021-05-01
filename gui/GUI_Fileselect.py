@@ -1,15 +1,15 @@
-from lib.VGC_Locale import _
+from lib.Locale import _
 
 from tkinter import *
 
 import os
 import glob
 
-import lib.VGC_Var as VAR
+import lib.Var as VAR
 
-from lib.VGC_Widgets import Label_
-from lib.VGC_Widgets import Combobox_
-from lib.VGC_Widgets import Checkbutton_
+from lib.Widgets import Label_
+from lib.Widgets import Combobox_
+from lib.Widgets import Checkbutton_
 
 
 ######################

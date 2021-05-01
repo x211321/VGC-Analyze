@@ -1,4 +1,4 @@
-from lib.VGC_Locale import _
+from lib.Locale import _
 
 ######################
 # initHotkeys

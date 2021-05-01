@@ -1,30 +1,30 @@
-import lib.VGC_Settings as settings
+import lib.Settings as settings
 
-from lib.VGC_Locale import _
-from lib.VGC_Locale import setLanguage
-from lib.VGC_Locale import setLocale
-from lib.VGC_Locale import getAvailableLanguageNames
-from lib.VGC_Locale import getAvailableLocaleNames
-from lib.VGC_Locale import getLocaleCode
-from lib.VGC_Locale import getLocaleName
+from lib.Locale import _
+from lib.Locale import setLanguage
+from lib.Locale import setLocale
+from lib.Locale import getAvailableLanguageNames
+from lib.Locale import getAvailableLocaleNames
+from lib.Locale import getLocaleCode
+from lib.Locale import getLocaleName
 
-from gui.VGC_GUI_Popups import centerPopup
-from gui.VGC_GUI_Popups import Pop_FilterSelect
+from gui.GUI_Popups import centerPopup
+from gui.GUI_Popups import Pop_FilterSelect
 
-import lib.VGC_Var as VAR
+import lib.Var as VAR
 
 from tkinter import *
 from tkinter import ttk
-from lib.VGC_Img import loadIcon
+from lib.Img import loadIcon
 
-from lib.VGC_Widgets import Label_
-from lib.VGC_Widgets import Entry_
-from lib.VGC_Widgets import Text_
-from lib.VGC_Widgets import Button_
-from lib.VGC_Widgets import Combobox_
-from lib.VGC_Widgets import Checkbutton_
+from lib.Widgets import Label_
+from lib.Widgets import Entry_
+from lib.Widgets import Text_
+from lib.Widgets import Button_
+from lib.Widgets import Combobox_
+from lib.Widgets import Checkbutton_
 
-import lib.VGC_Var as VAR
+import lib.Var as VAR
 
 
 class GUI_Settings(Toplevel):
