@@ -1,15 +1,15 @@
-from VGC_Locale import _
+from lib.VGC_Locale import _
 
 from tkinter import *
 from tkinter import ttk
 
-from VGC_Widgets import Label_
-from VGC_Widgets import Entry_
-from VGC_Widgets import Combobox_
+from lib.VGC_Widgets import Label_
+from lib.VGC_Widgets import Entry_
+from lib.VGC_Widgets import Combobox_
 
 from gui.VGC_GUI_Popups import Pop_FilterSelect
 
-import VGC_Var as VAR
+import lib.VGC_Var as VAR
 
 
 ######################

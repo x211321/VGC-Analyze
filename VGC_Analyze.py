@@ -1,13 +1,13 @@
-import VGC_Settings as settings
-from VGC_Locale import setLanguage
-from VGC_Locale import setLocale
+import lib.VGC_Settings as settings
+from lib.VGC_Locale import setLanguage
+from lib.VGC_Locale import setLocale
 
 # Read settings and set locale before any other module gets initialized
 settings.read()
 setLanguage(settings.get("locale", "language", ""))
 setLocale(settings.get("locale", "locale", ""))
 
-from VGC_GUI import GUI
+from gui.VGC_GUI import GUI
 
 
 ######################

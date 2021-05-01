@@ -1,17 +1,18 @@
-from VGC_Locale import _
-from VGC_Locale import locCurrency
-from VGC_Locale import locDate
+from lib.VGC_Locale import _
+from lib.VGC_Locale import locCurrency
+from lib.VGC_Locale import locDate
 
 import os
 
 from tkinter import *
 from tkinter import ttk
 
-from VGC_Data        import CollectionData
-from VGC_Data        import FilterData
-from VGC_Lib         import YNToX
-from VGC_Img         import loadIcon
-from VGC_Export_HTML import Export_HTML
+from lib.VGC_Data        import CollectionData
+from lib.VGC_Data        import FilterData
+from lib.VGC_Lib         import YNToX
+from lib.VGC_Lib         import toggleYN
+from lib.VGC_Img         import loadIcon
+from lib.VGC_Export_HTML import Export_HTML
 
 from gui.VGC_GUI_ItemInfo       import GUI_ItemInfo
 from gui.VGC_GUI_Filter         import GUI_Filter
@@ -23,10 +24,9 @@ from gui.VGC_GUI_Menu           import initMainMenu
 from gui.VGC_GUI_Hotkeys        import initHotkeys
 from gui.VGC_GUI_Popups         import initPopups
 
-import VGC_Var as VAR
+import lib.VGC_Var as VAR
 
-from VGC_Lib import toggleYN
-from VGC_Json import writeJson
+from lib.VGC_Json import writeJson
 
 
 class GUI(Tk):

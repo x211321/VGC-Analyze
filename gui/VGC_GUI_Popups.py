@@ -1,4 +1,4 @@
-from VGC_Locale import _
+from lib.VGC_Locale import _
 
 import os
 
@@ -6,16 +6,16 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
 
-import VGC_Var as VAR
+import lib.VGC_Var as VAR
 
-from VGC_Img import loadIcon
+from lib.VGC_Img import loadIcon
 
-from VGC_Widgets  import Label_
-from VGC_Widgets  import Entry_
-from VGC_Widgets  import Checkbutton_
-from VGC_Data     import FilterData
-from VGC_Browser  import openUserProfileInBrowser
-from VGC_Download import downloadCollection
+from lib.VGC_Widgets  import Label_
+from lib.VGC_Widgets  import Entry_
+from lib.VGC_Widgets  import Checkbutton_
+from lib.VGC_Data     import FilterData
+from lib.VGC_Browser  import openUserProfileInBrowser
+from lib.VGC_Download import downloadCollection
 
 
 ######################
@@ -331,7 +331,7 @@ class Pop_ItemSearch(object):
                     if self.startIndex == -1:
                         break
 
-                if searchString.lower() in self.treeView.item(rowIDs[index])["values"][1].lower():
+                if searchString.lower() in self.treeView.item(rowIDs[index])["values"][2].lower():
                     found           = True
                     self.startIndex = index
                     break

@@ -1,6 +1,6 @@
-from VGC_Locale import _
-from VGC_Locale import locCurrency
-from VGC_Locale import locDate
+from lib.VGC_Locale import _
+from lib.VGC_Locale import locCurrency
+from lib.VGC_Locale import locDate
 
 import threading
 
@@ -10,13 +10,13 @@ import urllib.request
 from tkinter import *
 from tkinter import ttk
 
-from VGC_Widgets        import Label_
-from VGC_Img            import loadIcon
-from VGC_Browser        import openItemInBrowser
-from VGC_Download       import downloadCovers
+from lib.VGC_Widgets    import Label_
+from lib.VGC_Img        import loadIcon
+from lib.VGC_Browser    import openItemInBrowser
+from lib.VGC_Download   import downloadCovers
 from gui.VGC_GUI_Popups import Pop_CoverViewer
 
-import VGC_Var as VAR
+import lib.VGC_Var as VAR
 
 
 ######################

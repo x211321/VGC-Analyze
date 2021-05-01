@@ -1,6 +1,6 @@
-from VGC_Locale import _
-from VGC_Locale import locCurrency
-from VGC_Locale import locDate
+from lib.VGC_Locale import _
+from lib.VGC_Locale import locCurrency
+from lib.VGC_Locale import locDate
 
 import os
 from datetime import datetime
@@ -8,8 +8,8 @@ from datetime import datetime
 from tkinter import *
 from tkinter import ttk
 
-from VGC_Widgets import Label_
-from VGC_Img     import loadIcon
+from lib.VGC_Widgets import Label_
+from lib.VGC_Img     import loadIcon
 
 
 ######################

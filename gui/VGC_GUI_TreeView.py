@@ -1,10 +1,10 @@
-import VGC_Settings as settings
+import lib.VGC_Settings as settings
 
-from VGC_Locale import _
-from VGC_Locale import locCurrencySymbol
-from VGC_Locale import locStrToNum
+from lib.VGC_Locale import _
+from lib.VGC_Locale import locCurrencySymbol
+from lib.VGC_Locale import locStrToNum
 
-import VGC_Var as VAR
+import lib.VGC_Var as VAR
 
 from tkinter import *
 from tkinter import ttk
