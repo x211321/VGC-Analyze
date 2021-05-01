@@ -1,6 +1,7 @@
 # VGC_Analyze data
 img/cache/
 settings/
+export/
 *.csv
 *.exe
 VGC-Local-Data.json

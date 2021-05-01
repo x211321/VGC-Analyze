@@ -7,10 +7,11 @@ import os
 from tkinter import *
 from tkinter import ttk
 
-from VGC_Data import CollectionData
-from VGC_Data import FilterData
-from VGC_Lib  import YNToX
-from VGC_Img  import loadIcon
+from VGC_Data        import CollectionData
+from VGC_Data        import FilterData
+from VGC_Lib         import YNToX
+from VGC_Img         import loadIcon
+from VGC_Export_HTML import Export_HTML
 
 from gui.VGC_GUI_ItemInfo       import GUI_ItemInfo
 from gui.VGC_GUI_Filter         import GUI_Filter
@@ -284,6 +285,7 @@ class GUI(Tk):
     # --------------------
     def itemToViewValues(self, item):
         return (item.index,
+                item.VGC_id,
                 item.name,
                 item.platform,
                 item.region,
@@ -403,3 +405,12 @@ class GUI(Tk):
         self.collectionData.csv_file = VAR.DATA_PATH + self.view_frame.file_frame.file_select.get()
         self.readData()
         self.showData()
+
+
+    ######################
+    # export
+    # --------------------
+    def export(self):
+        e = Export_HTML(self.view_frame.item_view)
+
+        e.export()

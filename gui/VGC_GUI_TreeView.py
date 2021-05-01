@@ -35,7 +35,7 @@ class GUI_TreeView(Frame):
         self.item_view.lastSortItem  = ""
 
         # Define columns
-        columns = ("Index", )
+        columns = ("Index", "VGCID", )
 
         for column in VAR.VIEW_COLUMNS:
             columns += (column, )
@@ -45,9 +45,11 @@ class GUI_TreeView(Frame):
         # Configure columns
         self.item_view.column("#0"   , anchor="w", width=0, stretch="No")
         self.item_view.column("Index", anchor="w", width=0, stretch="No")
+        self.item_view.column("VGCID", anchor="w", width=0, stretch="No")
 
         self.item_view.heading("#0"   , text=_("Group"), anchor="w")
         self.item_view.heading("Index", text=""        , anchor="w")
+        self.item_view.heading("VGCID", text=""        , anchor="w")
 
         for column in VAR.VIEW_COLUMNS:
             self.item_view.column(column, anchor=VAR.VIEW_COLUMNS[column]["anchor"], width=VAR.VIEW_COLUMNS[column]["width"])

@@ -15,3 +15,10 @@ def openItemInBrowser(item):
 # --------------------
 def openUserProfileInBrowser(a):
     webbrowser.open("https://vgcollect.com/settings/", new=0, autoraise=True)
+
+
+######################
+# openBrowser
+# --------------------
+def openBrowser(url):
+    webbrowser.open(url, new=0, autoraise=True)

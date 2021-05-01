@@ -23,6 +23,10 @@ def initMainMenu(gui):
     gui.download_menu = Menu(gui.main_menu, tearoff=0)
     gui.download_menu.add_command(label=_("Download collection"), command=gui.pop_collectionDownload.show, accelerator="Ctrl+D")
 
+    # Export menu
+    gui.export_menu = Menu(gui.main_menu, tearoff=0)
+    gui.export_menu.add_command(label=_("Export HTML"), command=gui.export, accelerator="Ctrl+E")
+
     # Window menu
     gui.window_menu = Menu(gui.main_menu, tearoff=0)
     gui.window_menu.add_command(label=_("Filters"), command=gui.toggleFilterFrame, accelerator="Alt+F")
@@ -36,6 +40,7 @@ def initMainMenu(gui):
     gui.main_menu.add_cascade(label=_("File")    , menu=gui.file_menu)
     gui.main_menu.add_cascade(label=_("Search")  , menu=gui.search_menu)
     gui.main_menu.add_cascade(label=_("Download"), menu=gui.download_menu)
+    gui.main_menu.add_cascade(label=_("Export")  , menu=gui.export_menu)
     gui.main_menu.add_cascade(label=_("Window")  , menu=gui.window_menu)
     gui.main_menu.add_cascade(label=_("About")   , menu=gui.about_menu)
 
