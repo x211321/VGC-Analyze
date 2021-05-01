@@ -35,6 +35,7 @@ Date added
 disclaimer project not affiliated with VGCollect
 html/pdf print
 settings scrollbars
+filter presets
 
 ===DONE===
 Einstellungsdialog
