@@ -2,6 +2,8 @@ from VGC_Locale import _
 from VGC_Locale import locCurrencySymbol
 from VGC_Locale import locStrToNum
 
+import VGC_Var as VAR
+
 from tkinter import *
 from tkinter import ttk
 
@@ -30,52 +32,27 @@ class GUI_TreeView(Frame):
         self.view_scroll_horizontal  = Scrollbar(self)
         self.item_view.lastSortItem  = ""
 
-        # Treeview definition
-        self.item_view['columns']=("Index",
-                                   "Title",
-                                   "Platform",
-                                   "Region",
-                                   "Price",
-                                   "Date",
-                                   "Cart",
-                                   "Box",
-                                   "Manual",
-                                   "Other",
-                                   "Bookmark",
-                                   "Finished",
-                                   "Notes")
+        # Define columns
+        columns = ("Index", )
 
-        # View columns
-        self.item_view.column("#0"      , anchor="w", width=0, stretch="No")
-        self.item_view.column("Index"   , anchor="w", width=0, stretch="No")
-        self.item_view.column("Title"   , anchor="w", width=300)
-        self.item_view.column("Platform", anchor="w", width=100)
-        self.item_view.column("Region"  , anchor="w", width=5)
-        self.item_view.column("Price"   , anchor="e", width=25)
-        self.item_view.column("Date"    , anchor="w", width=10)
-        self.item_view.column("Cart"    , anchor="w", width=5)
-        self.item_view.column("Box"     , anchor="w", width=5)
-        self.item_view.column("Manual"  , anchor="w", width=5)
-        self.item_view.column("Other"   , anchor="w", width=5)
-        self.item_view.column("Bookmark", anchor="w", width=5)
-        self.item_view.column("Finished", anchor="w", width=5)
-        self.item_view.column("Notes"   , anchor="w", width=100)
+        for column in VAR.VIEW_COLUMNS:
+            columns += (column, )
 
-        # View column headers
-        self.item_view.heading("#0"      , text=_("Group")   , anchor="w")
-        self.item_view.heading("Index"   , text=""           , anchor="w")
-        self.item_view.heading("Title"   , text=_("Title")   , anchor="w", command=lambda:self.treeviewSort("Title", False))
-        self.item_view.heading("Platform", text=_("Platform"), anchor="w", command=lambda:self.treeviewSort("Platform", False))
-        self.item_view.heading("Region"  , text=_("Region")  , anchor="w", command=lambda:self.treeviewSort("Region", False))
-        self.item_view.heading("Price"   , text=_("Price")   , anchor="e", command=lambda:self.treeviewSort("Price", False, float))
-        self.item_view.heading("Date"    , text=_("Date")    , anchor="w", command=lambda:self.treeviewSort("Date", False))
-        self.item_view.heading("Cart"    , text=_("Cart")    , anchor="w", command=lambda:self.treeviewSort("Cart", False))
-        self.item_view.heading("Box"     , text=_("Box")     , anchor="w", command=lambda:self.treeviewSort("Box", False))
-        self.item_view.heading("Manual"  , text=_("Manual")  , anchor="w", command=lambda:self.treeviewSort("Manual", False))
-        self.item_view.heading("Other"   , text=_("Other")   , anchor="w", command=lambda:self.treeviewSort("Other", False))
-        self.item_view.heading("Bookmark", text=_("Bookmark"), anchor="w", command=lambda:self.treeviewSort("Bookmark", False))
-        self.item_view.heading("Finished", text=_("Finished"), anchor="w", command=lambda:self.treeviewSort("Finished", False))
-        self.item_view.heading("Notes"   , text=_("Notes")   , anchor="w", command=lambda:self.treeviewSort("Notes", False))
+        self.item_view["columns"] = columns
+
+        # Configure columns
+        self.item_view.column("#0"   , anchor="w", width=0, stretch="No")
+        self.item_view.column("Index", anchor="w", width=0, stretch="No")
+
+        self.item_view.heading("#0"   , text=_("Group"), anchor="w")
+        self.item_view.heading("Index", text=""        , anchor="w")
+
+        for column in VAR.VIEW_COLUMNS:
+            colData = VAR.VIEW_COLUMNS[column]
+            self.item_view.column(colData["name"], anchor=colData["anchor"], width=colData["width"])
+            self.item_view.heading(colData["name"], text=colData["name"],
+                                                    anchor=colData["anchor"],
+                                                    command=lambda colData=colData:self.treeviewSort(colData["name"], False, colData["type"]))
 
         # View events
         self.item_view.bind('<<TreeviewSelect>>', self.selectViewItem)
@@ -95,11 +72,10 @@ class GUI_TreeView(Frame):
         self.item_view.pack(expand=True, fill="both")
         self.view_scroll_horizontal.pack(side=BOTTOM, fill=X)
 
-        self.treeviewSort("Title", False)
+        self.treeviewSort(list(VAR.VIEW_COLUMNS.values())[0]["name"], False)
 
 
     def treeviewSort(self, column, reverse, datatype=None):
-
         if not self.item_view.lastSortItem == column:
             reverse = False
 

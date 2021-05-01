@@ -81,18 +81,19 @@ class CollectionItem(object):
         self.localData  = {}
 
         if csv_line != "":
-            self.VGC_id   = int(csv_fields[CSVColumns.VGC_id])
-            self.name     = csv_fields[CSVColumns.name]
-            self.platform = self.getPlatformName(csv_fields[CSVColumns.platform], combinePlatforms)
-            self.price    = float(csv_fields[CSVColumns.price])
-            self.date     = csv_fields[CSVColumns.date]
-            self.region   = self.getRegion(csv_fields[CSVColumns.platform])
-            self.cart     = csv_fields[CSVColumns.cart]
-            self.box      = csv_fields[CSVColumns.box]
-            self.manual   = csv_fields[CSVColumns.manual]
-            self.other    = csv_fields[CSVColumns.other]
-            self.notes    = csv_fields[CSVColumns.notes]
-            self.dateAdded= csv_fields[CSVColumns.added]
+            self.VGC_id       = int(csv_fields[CSVColumns.VGC_id])
+            self.name         = csv_fields[CSVColumns.name]
+            self.platform     = self.getPlatformName(csv_fields[CSVColumns.platform], combinePlatforms)
+            self.price        = float(csv_fields[CSVColumns.price])
+            self.date         = csv_fields[CSVColumns.date]
+            self.region       = self.getRegion(csv_fields[CSVColumns.platform])
+            self.cart         = csv_fields[CSVColumns.cart]
+            self.box          = csv_fields[CSVColumns.box]
+            self.manual       = csv_fields[CSVColumns.manual]
+            self.other        = csv_fields[CSVColumns.other]
+            self.notes        = csv_fields[CSVColumns.notes]
+            self.dateAdded    = csv_fields[CSVColumns.added].split(" ")[0]
+            self.dateTimeAdded= csv_fields[CSVColumns.added]
 
             if len(self.region) == 0:
                 self.region = _("[None]")
@@ -150,7 +151,7 @@ class CollectionItem(object):
             return ""
 
     def id(self):
-        return str(self.VGC_id) + "-" + self.dateAdded
+        return str(self.VGC_id) + "-" + self.dateTimeAdded
 
     def getLocalData(self, key):
         value = ""
@@ -190,6 +191,8 @@ class FilterData(object):
         self.notesFilter          = ""
         self.dateFilterStart      = ""
         self.dateFilterEnd        = ""
+        self.dateAddedFilterStart = ""
+        self.dateAddedFilterEnd   = ""
         self.priceFilterStart     = 0.0
         self.priceFilterEnd       = 0.0
         self.priceFilterStartSet  = False
@@ -241,6 +244,10 @@ class FilterData(object):
                 self.dateFilterStart      = guessDate(inputs[key].get(), "start")
             if key == "dateEnd":
                 self.dateFilterEnd        = guessDate(inputs[key].get(), "end")
+            if key == "dateAddedStart":
+                self.dateAddedFilterStart = guessDate(inputs[key].get(), "start")
+            if key == "dateAddedEnd":
+                self.dateAddedFilterEnd   = guessDate(inputs[key].get(), "end")
 
             if key == "priceStart":
                 if len(inputs[key].get()) > 0:
@@ -359,6 +366,8 @@ class CollectionData(object):
             self.searchFilter(self.filterData.notesFilter, item.notes) and
             self.stringGreater(self.filterData.dateFilterStart, item.date) and
             self.stringLess(self.filterData.dateFilterEnd, item.date) and
+            self.stringGreater(self.filterData.dateAddedFilterStart, item.dateAdded) and
+            self.stringLess(self.filterData.dateAddedFilterEnd, item.dateAdded) and
             self.priceGreater(self.filterData.priceFilterStart, item.price, self.filterData.priceFilterStartSet) and
             self.priceLess(self.filterData.priceFilterEnd, item.price, self.filterData.priceFilterEndSet) and
             self.stringEqual(self.filterData.cartFilter, item.cart) and
@@ -458,6 +467,15 @@ class CollectionData(object):
 
         if groupBy == VAR.GROUP_BY_DAY:
             group =  item.date
+
+        if groupBy == VAR.GROUP_BY_YEAR_ADDED:
+            group =  item.dateAdded[0:4]
+
+        if groupBy == VAR.GROUP_BY_MONTH_ADDED:
+            group =  item.dateAdded[0:7]
+
+        if groupBy == VAR.GROUP_BY_DAY_ADDED:
+            group =  item.dateAdded
 
         if groupBy == VAR.GROUP_BY_REGION:
             group =  item.region

@@ -50,12 +50,14 @@ class GUI_ItemInfo(Frame):
         # ------------------
         self.item_spacer    = Label_(self, width=2)
 
-        self.item_title_txt = Label_(self, text=_("Title"), anchor="nw")
-        self.item_title     = Label_(self, anchor="nw", width=22, height=4, wraplength=135)
-        self.item_date_txt  = Label_(self, text=_("Purchase date"), anchor="nw")
-        self.item_date      = Label_(self, anchor="nw", width=22)
-        self.item_price_txt = Label_(self, text=_("Purchase price"), anchor="nw")
-        self.item_price     = Label_(self, anchor="nw", width=22)
+        self.item_title_txt     = Label_(self, text=_("Title"), anchor="nw")
+        self.item_title         = Label_(self, anchor="nw", width=22, height=4, wraplength=135)
+        self.item_date_txt      = Label_(self, text=_("Date (purchased)"), anchor="nw")
+        self.item_date          = Label_(self, anchor="nw", width=22)
+        self.item_dateAdded_txt = Label_(self, text=_("Date (added)"), anchor="nw")
+        self.item_dateAdded     = Label_(self, anchor="nw", width=22)
+        self.item_price_txt     = Label_(self, text=_("Purchase price"), anchor="nw")
+        self.item_price         = Label_(self, anchor="nw", width=22)
 
         # Front cover widgets
         self.item_front_txt  = Label_(self, text=_("Front cover"), anchor="w")
@@ -82,17 +84,20 @@ class GUI_ItemInfo(Frame):
         self.item_date_txt.grid(row=3, column=0, columnspan=2, sticky="nwe")
         self.item_date.grid(row=4, column=1, sticky="nwe")
 
-        self.item_price_txt.grid(row=5, column=0, columnspan=2, sticky="nwe")
-        self.item_price.grid(row=6, column=1, sticky="nwe")
+        self.item_dateAdded_txt.grid(row=5, column=0, columnspan=2, sticky="nwe")
+        self.item_dateAdded.grid(row=6, column=1, sticky="nwe")
 
-        self.item_front_txt.grid(row=7, column=0, columnspan=2, sticky="nwe")
-        self.item_front.grid(row=8, column=1, sticky="nwe")
+        self.item_price_txt.grid(row=7, column=0, columnspan=2, sticky="nwe")
+        self.item_price.grid(row=8, column=1, sticky="nwe")
 
-        self.item_back_txt.grid(row=9, column=0, columnspan=2, sticky="nwe")
-        self.item_back.grid(row=10, column=1, sticky="nwe")
+        self.item_front_txt.grid(row=9, column=0, columnspan=2, sticky="nwe")
+        self.item_front.grid(row=10, column=1, sticky="nwe")
 
-        self.item_cart_txt.grid(row=11, column=0, columnspan=2, sticky="nwe")
-        self.item_cart.grid(row=12, column=1, sticky="nwe")
+        self.item_back_txt.grid(row=11, column=0, columnspan=2, sticky="nwe")
+        self.item_back.grid(row=12, column=1, sticky="nwe")
+
+        self.item_cart_txt.grid(row=13, column=0, columnspan=2, sticky="nwe")
+        self.item_cart.grid(row=14, column=1, sticky="nwe")
 
         # Frame for item toolbar
         self.item_tool_frame = Frame(self , width=200 , height=10 , pady=0 , padx=0)
@@ -127,6 +132,7 @@ class GUI_ItemInfo(Frame):
     def update(self):
         self.item_title.set(self.activeItem().name)
         self.item_date.set(locDate(self.activeItem().date, showDay=True))
+        self.item_dateAdded.set(locDate(self.activeItem().dateAdded, showDay=True))
         self.item_price.set(locCurrency(self.activeItem().price))
         self.item_id.set("VGC ID: " + str(self.activeItem().VGC_id))
 

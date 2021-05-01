@@ -289,6 +289,7 @@ class GUI(Tk):
                 item.region,
                 locCurrency(item.price),
                 locDate(item.date),
+                locDate(item.dateAdded),
                 YNToX(item.cart),
                 YNToX(item.box),
                 YNToX(item.manual),
@@ -310,6 +311,8 @@ class GUI(Tk):
                 return sorted(items, key=lambda item: item.price, reverse=filterData.orderItemsReverse)
             if filterData.orderItems == VAR.ORDER_BY_DATE :
                 return sorted(items, key=lambda item: item.date, reverse=filterData.orderItemsReverse)
+            if filterData.orderItems == VAR.ORDER_BY_DATE_ADDED :
+                return sorted(items, key=lambda item: item.dateAdded, reverse=filterData.orderItemsReverse)
             if filterData.orderItems == VAR.ORDER_BY_REGION :
                 return sorted(items, key=lambda item: item.region, reverse=filterData.orderItemsReverse)
             if filterData.orderItems == VAR.ORDER_BY_PLATFORM :

@@ -38,8 +38,10 @@ GRAPH_TYPE_PIE                  = _("Pie")
 GRAPH_TYPE_AREA                 = _("Area")
 GRAPH_TYPE_LINE                 = _("Line")
 
-GRAPH_CONTENT_YEARS             = _("Years")
-GRAPH_CONTENT_MONTHS            = _("Months")
+GRAPH_CONTENT_YEARS             = _("Years (purchased)")
+GRAPH_CONTENT_MONTHS            = _("Months (purchased)")
+GRAPH_CONTENT_YEARS_ADDED       = _("Years (added)")
+GRAPH_CONTENT_MONTHS_ADDED      = _("Months (added)")
 GRAPH_CONTENT_PLATFORMS         = _("Platforms")
 GRAPH_CONTENT_REGIONS           = _("Regions")
 GRAPH_CONTENT_PLATFORM_HOLDERS  = _("Platform holders")
@@ -52,24 +54,49 @@ GRAPH_DATA_TOTALPRICE       = _("Total price")
 GRAPH_DATA_ITEMCOUNTGROWTH  = _("Item count (growth)")
 GRAPH_DATA_TOTALPRICEGROWTH = _("Total price (growth)")
 
-GROUP_BY_YEAR           = _("year")
-GROUP_BY_MONTH          = _("month")
-GROUP_BY_DAY            = _("day")
+# Group by
+GROUP_BY_YEAR           = _("year (purchased)")
+GROUP_BY_MONTH          = _("month (purchased)")
+GROUP_BY_DAY            = _("day (purchased)")
+GROUP_BY_YEAR_ADDED     = _("year (added)")
+GROUP_BY_MONTH_ADDED    = _("month (added)")
+GROUP_BY_DAY_ADDED      = _("day (added)")
 GROUP_BY_NAME           = _("name")
 GROUP_BY_REGION         = _("region")
 GROUP_BY_PLATFORM       = _("platform")
 GROUP_BY_PLATFORMHOLDER = _("platform holder")
 GROUP_BY_NOTES          = _("notes")
 
-ORDER_BY_NAME     = _("name")
-ORDER_BY_PRICE    = _("price")
-ORDER_BY_DATE     = _("date")
-ORDER_BY_REGION   = _("region")
-ORDER_BY_PLATFORM = _("platform")
-ORDER_BY_NOTES    = _("notes")
+# Order by
+ORDER_BY_NAME       = _("name")
+ORDER_BY_PRICE      = _("price")
+ORDER_BY_DATE       = _("date (purchased)")
+ORDER_BY_DATE_ADDED = _("date (added)")
+ORDER_BY_REGION     = _("region")
+ORDER_BY_PLATFORM   = _("platform")
+ORDER_BY_NOTES      = _("notes")
 
+# Order direction
 ORDER_DIRECTION_ASCENDING  = _("ascending")
 ORDER_DIRECTION_DESCENDING = _("descending")
 
 ITEM_ATTRIBUTE_YES = _("Yes")
 ITEM_ATTRIBUTE_NO  = _("No")
+
+# Treeview columns
+VIEW_COLUMNS = {}
+
+VIEW_COLUMNS["Title"]            = {"name": _("Title")           , "anchor": "w", "type": None , "width": 300}
+VIEW_COLUMNS["Platform"]         = {"name": _("Platform")        , "anchor": "w", "type": None , "width": 100}
+VIEW_COLUMNS["Region"]           = {"name": _("Region")          , "anchor": "w", "type": None , "width":   5}
+VIEW_COLUMNS["Price"]            = {"name": _("Price")           , "anchor": "e", "type": float, "width":  25}
+VIEW_COLUMNS["Date (purchased)"] = {"name": _("Date (purchased)"), "anchor": "w", "type": None , "width":  10}
+VIEW_COLUMNS["Date (added)"]     = {"name": _("Date (added)")    , "anchor": "w", "type": None , "width":  10}
+VIEW_COLUMNS["Cart"]             = {"name": _("Cart")            , "anchor": "w", "type": None , "width":   5}
+VIEW_COLUMNS["Box"]              = {"name": _("Box")             , "anchor": "w", "type": None , "width":   5}
+VIEW_COLUMNS["Manual"]           = {"name": _("Manual")          , "anchor": "w", "type": None , "width":   5}
+VIEW_COLUMNS["Other"]            = {"name": _("Other")           , "anchor": "w", "type": None , "width":   5}
+VIEW_COLUMNS["Bookmark"]         = {"name": _("Bookmark")        , "anchor": "w", "type": None , "width":   5}
+VIEW_COLUMNS["Finished"]         = {"name": _("Finished")        , "anchor": "w", "type": None , "width":   5}
+VIEW_COLUMNS["Notes"]            = {"name": _("Notes")           , "anchor": "w", "type": None , "width": 100}
+

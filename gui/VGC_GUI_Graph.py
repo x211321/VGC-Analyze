@@ -112,6 +112,8 @@ class GUI_Graph(Frame):
         if not graphType == VAR.GRAPH_TYPE_AREA and not graphType == VAR.GRAPH_TYPE_LINE:
             content.append(VAR.GRAPH_CONTENT_YEARS)
             content.append(VAR.GRAPH_CONTENT_MONTHS)
+            content.append(VAR.GRAPH_CONTENT_YEARS_ADDED)
+            content.append(VAR.GRAPH_CONTENT_MONTHS_ADDED)
         content.append(VAR.GRAPH_CONTENT_REGIONS)
         content.append(VAR.GRAPH_CONTENT_PLATFORMS)
         content.append(VAR.GRAPH_CONTENT_PLATFORM_HOLDERS)
@@ -206,6 +208,10 @@ class GUI_Graph(Frame):
             group = VAR.GROUP_BY_YEAR
         if graphContent == VAR.GRAPH_CONTENT_MONTHS:
             group = VAR.GROUP_BY_MONTH
+        if graphContent == VAR.GRAPH_CONTENT_YEARS_ADDED:
+            group = VAR.GROUP_BY_YEAR_ADDED
+        if graphContent == VAR.GRAPH_CONTENT_MONTHS_ADDED:
+            group = VAR.GROUP_BY_MONTH_ADDED
         if graphContent == VAR.GRAPH_CONTENT_PLATFORMS:
             group = VAR.GROUP_BY_PLATFORM
             if graphData == VAR.GRAPH_DATA_ITEMCOUNTGROWTH or graphData == VAR.GRAPH_DATA_TOTALPRICEGROWTH:
