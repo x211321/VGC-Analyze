@@ -55,7 +55,7 @@ class Export_HTML(object):
         for row in rows:
             if row["key"][0] == "#":
                 htmlContent += '\t\t\t<tr class="group_header_row">\n'
-                htmlContent += '\t\t\t\t<td class="group_header" colspan="'+str(len(activeColumns))+'">' + row["key"][1:] + '</td>\n'
+                htmlContent += '\t\t\t\t<td class="group_header" colspan="'+str(len(activeColumns))+'">' + row["key"][1:] + ' ' + self.getColumnValue("Title", row) + ' ' + self.getColumnValue("Price", row) + '</td>\n'
                 htmlContent += '\t\t\t</tr>\n'
             else:
                 htmlContent += '\t\t\t<tr class="item_row">\n'
