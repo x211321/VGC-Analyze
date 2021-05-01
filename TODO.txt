@@ -27,6 +27,13 @@ Bugs
 		Verwirrend
 Treeview contextmenu
 	Bookmark, finished, open on VGC, details, online info
+Date added
+	Listview
+	Filter
+	Group
+	Graph
+disclaimer project not affiliated with VGCollect
+html/pdf print
 
 ===DONE===
 Einstellungsdialog
