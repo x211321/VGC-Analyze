@@ -123,6 +123,7 @@ class Pop_CollectionDownload(object):
         self.window.resizable(False, False)
         self.window.iconphoto(False, loadIcon("cloud-download-outline", 15, 15))
         self.window.bind('<Escape>', lambda x:self.close())
+        self.window.grab_set()
         self.window.focus_force()
 
         self.window.columnconfigure(0, weight=1)
