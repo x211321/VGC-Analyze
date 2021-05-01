@@ -222,6 +222,7 @@ class GUI(Tk):
                                           iid   = "#"+group,
                                           text  = group,
                                           values=("",
+                                                  "",
                                                   "[" + str(groupData.item_count) + " " + _("items") + "]",
                                                   "",
                                                   "",
