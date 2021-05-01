@@ -27,10 +27,10 @@ Bugs
 Treeview contextmenu
 	Bookmark, finished, open on VGC, details, online info
 disclaimer project not affiliated with VGCollect
-html/pdf print
 filter presets
 
 ===DONE===
+html print
 settings scrollbars
 Date added
 	Listview
