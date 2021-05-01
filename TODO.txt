@@ -34,6 +34,7 @@ Date added
 	Graph
 disclaimer project not affiliated with VGCollect
 html/pdf print
+settings scrollbars
 
 ===DONE===
 Einstellungsdialog
