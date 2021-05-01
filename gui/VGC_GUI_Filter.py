@@ -117,15 +117,15 @@ class GUI_Filter(Frame):
             self.filterInputs[key].grid(row=row, column=col, sticky="nw", columnspan=colspan)
 
             if (row) % 2 == 0:
-                self.filterInputs[key].grid(pady=(0,5))
+                self.filterInputs[key].grid(pady=(0,3))
 
             self.filterInputs[key].bind("<Return>", self.showData)
 
         self.filter_reset.config(text=_("Reset filter"), command=self.reset)
-        self.filter_reset.grid(row=100, column=0, sticky="nw", pady=(20, 5))
+        self.filter_reset.grid(row=100, column=0, sticky="nw", pady=(10, 5))
 
         self.filter_apply.config(text=_("Apply filter"), command=self.showData)
-        self.filter_apply.grid(row=100, column=1, sticky="nw", pady=(20, 5))
+        self.filter_apply.grid(row=100, column=1, sticky="nw", pady=(10, 5))
 
 
     ######################
