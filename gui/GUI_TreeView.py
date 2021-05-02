@@ -54,7 +54,7 @@ class GUI_TreeView(Frame):
         for column in VAR.VIEW_COLUMNS:
             self.item_view.column(column, anchor=VAR.VIEW_COLUMNS[column]["anchor"], width=VAR.VIEW_COLUMNS[column]["width"])
             self.item_view.heading(column, text=VAR.VIEW_COLUMNS[column]["name"], anchor=VAR.VIEW_COLUMNS[column]["anchor"],
-                                   command=lambda column=column:self.treeviewSort(column, False, VAR.VIEW_COLUMNS[column]["type"]))
+                                   command=lambda column=column:self.treeviewSort(column, False, VAR.VIEW_COLUMNS[column]["type"], VAR.VIEW_COLUMNS[column]["grouptype"]))
 
         # View events
         self.item_view.bind('<<TreeviewSelect>>', self.selectViewItem)
@@ -74,20 +74,30 @@ class GUI_TreeView(Frame):
         self.item_view.pack(expand=True, fill="both")
         self.view_scroll_horizontal.pack(side=BOTTOM, fill=X)
 
-        self.treeviewSort(list(VAR.VIEW_COLUMNS.keys())[0], False)
+        column = list(VAR.VIEW_COLUMNS.keys())[0]
+        self.treeviewSort(column, False, VAR.VIEW_COLUMNS[column]["type"], VAR.VIEW_COLUMNS[column]["grouptype"])
 
         self.setColumnDisplay()
 
 
-    def treeviewSort(self, column, reverse, datatype=None):
+    def treeviewSort(self, column, reverse, datatype=None, groupdatatype=None):
         if not self.item_view.lastSortItem == column:
             reverse = False
 
+        groupMode = False
+
+        try:
+            if(self.item_view.get_children()[0][0]) == "#":
+                groupMode = True
+        except:
+            groupMode = False
 
         itemList = [(self.item_view.set(row, column), row) for row in self.item_view.get_children('')]
 
-        if datatype:
-            itemList.sort(reverse=reverse, key=lambda tuple: datatype(locStrToNum(tuple[0].lower().strip("abcdefghijklmnopqrstuvwxyz[]: "+locCurrencySymbol()))))
+        if groupMode and groupdatatype:
+            itemList.sort(reverse=reverse, key=lambda tuple: groupdatatype(locStrToNum("".join(char for char in tuple[0].lower() if char in ",.1234567890"))))
+        elif datatype:
+            itemList.sort(reverse=reverse, key=lambda tuple: datatype(locStrToNum("".join(char for char in tuple[0].lower() if char in ",.1234567890"))))
         else:
             itemList.sort(reverse=reverse, key=lambda tuple: tuple[0].lower())
 
@@ -97,7 +107,7 @@ class GUI_TreeView(Frame):
 
         # reverse sort next time
         self.item_view.lastSortItem = column
-        self.item_view.heading(column, command=lambda:self.treeviewSort(column, not reverse, datatype))
+        self.item_view.heading(column, command=lambda:self.treeviewSort(column, not reverse, datatype, groupdatatype))
 
 
     def setColumnDisplay(self, resize=False):
