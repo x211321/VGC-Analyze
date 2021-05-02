@@ -57,11 +57,11 @@ class GUI_Filter(Frame):
         self.filterInputs["notes_regex"] = Button_(self.filterInputs["notes_frame"], width=15, row=0, col=1, height=13, image=self.regexIcon, relief="groove", bg=VAR.GUI_COLOR_PRIMARY, toggle=True)
 
         self.filterInputs["platforms_txt"]          = Label_(self, width=25, _pady=(2,0), text=_("Platforms"))
-        self.filterInputs["platforms_select"]       = Button_(self, width=25, text=_("Select"), relief="groove", command=self.selectPlatforms, bg=VAR.INPUT_COLOR)
+        self.filterInputs["platforms_select"]       = Button_(self, width=25, id="select", text=_("Select"), relief="groove", command=self.selectPlatforms, bg=VAR.INPUT_COLOR)
         self.filterInputs["platformHolders_txt"]    = Label_(self, width=25, _pady=(2,0), text=_("Platform holders"))
-        self.filterInputs["platformHolders_select"] = Button_(self, width=25, text=_("Select"), relief="groove", command=self.selectPlatformHolders, bg=VAR.INPUT_COLOR)
+        self.filterInputs["platformHolders_select"] = Button_(self, width=25, id="select", text=_("Select"), relief="groove", command=self.selectPlatformHolders, bg=VAR.INPUT_COLOR)
         self.filterInputs["regions_txt"]            = Label_(self, width=25, _pady=(2,0), text=_("Regions"))
-        self.filterInputs["regions_select"]         = Button_(self, width=25, text=_("Select"), relief="groove", command=self.selectRegions, bg=VAR.INPUT_COLOR)
+        self.filterInputs["regions_select"]         = Button_(self, width=25, id="select", text=_("Select"), relief="groove", command=self.selectRegions, bg=VAR.INPUT_COLOR)
         self.filterInputs["dateStart_txt"]          = Label_(self, width=25, _pady=(2,0), text=_("Min. date (purchased)"))
         self.filterInputs["dateStart"]              = Entry_(self, width=30)
         self.filterInputs["dateEnd_txt"]            = Label_(self, width=25, _pady=(2,0), text=_("Max. date (purchased)"))
@@ -143,12 +143,15 @@ class GUI_Filter(Frame):
     # --------------------
     def reset(self):
         for key in self.filterInputs:
-            if self.filterInputs[key].__class__.__name__ == "Entry_":
-                self.filterInputs[key].delete(0, END)
-            if self.filterInputs[key].__class__.__name__ == "Combobox_":
-                self.filterInputs[key].set("")
-            if self.filterInputs[key].__class__.__name__ == "Button":
-                self.filterInputs[key].config(text=_("Select"))
+            widget = self.filterInputs[key]
+
+            if widget.__class__.__name__ == "Entry_":
+                widget.delete(0, END)
+            if widget.__class__.__name__ == "Combobox_":
+                widget.set("")
+            if widget.__class__.__name__ == "Button_":
+                if widget.id == "select":
+                    self.filterInputs[key].config(text=_("Select"), bg=VAR.GUI_COLOR_PRIMARY)
 
         self.multiFilter["platforms"] = []
         self.multiFilter["platformHolders"] = []
@@ -171,9 +174,11 @@ class GUI_Filter(Frame):
         self.multiFilter["platforms"] = platforms
 
         if len(platforms):
-            self.filterInputs["platforms_select"].config(text=str(len(platforms)) + _(" selected"))
+            self.filterInputs["platforms_select"].config(text=str(len(platforms)) + _(" selected"), bg=VAR.BUTTON_COLOR_TOGGLE)
         else:
-            self.filterInputs["platforms_select"].config(text=_("Select"))
+            self.filterInputs["platforms_select"].config(text=_("Select"), bg=VAR.GUI_COLOR_PRIMARY)
+
+        self.showData()
 
 
     ######################
@@ -190,9 +195,11 @@ class GUI_Filter(Frame):
         self.multiFilter["platformHolders"] = platformHolders
 
         if len(platformHolders):
-            self.filterInputs["platformHolders_select"].config(text=str(len(platformHolders)) + _(" selected"))
+            self.filterInputs["platformHolders_select"].config(text=str(len(platformHolders)) + _(" selected"), bg=VAR.BUTTON_COLOR_TOGGLE)
         else:
-            self.filterInputs["platformHolders_select"].config(text=_("Select"))
+            self.filterInputs["platformHolders_select"].config(text=_("Select"), bg=VAR.GUI_COLOR_PRIMARY)
+
+        self.showData()
 
 
     ######################
@@ -209,9 +216,11 @@ class GUI_Filter(Frame):
         self.multiFilter["regions"] = regions
 
         if len(regions):
-            self.filterInputs["regions_select"].config(text=str(len(regions)) + _(" selected"))
+            self.filterInputs["regions_select"].config(text=str(len(regions)) + _(" selected"), bg=VAR.BUTTON_COLOR_TOGGLE)
         else:
-            self.filterInputs["regions_select"].config(text=_("Select"))
+            self.filterInputs["regions_select"].config(text=_("Select"), bg=VAR.GUI_COLOR_PRIMARY)
+
+        self.showData()
 
 
     ######################
