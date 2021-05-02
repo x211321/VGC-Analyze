@@ -8,7 +8,6 @@ Einstellungsdialog
 Datepicker
 About Dialog
 Listview Pos1 / Ende / Bild auf / Bild ab
-EXE bundle img https://stackoverflow.com/questions/48134269/python-pyinstaller-bundle-image-in-gui-to-onefile-exe
 EXE virus https://stackoverflow.com/questions/43777106/program-made-with-pyinstaller-now-seen-as-a-trojan-horse-by-avg
 Multiselect
 	Bookmark all (selected) / contextmenu
@@ -30,6 +29,7 @@ disclaimer project not affiliated with VGCollect
 filter presets
 
 ===DONE===
+EXE bundle img
 html print
 settings scrollbars
 Date added
@@ -37,7 +37,6 @@ Date added
 	Filter
 	Group
 	Graph
-
 Einstellungsdialog
 	Währung
 	Datumsformat
