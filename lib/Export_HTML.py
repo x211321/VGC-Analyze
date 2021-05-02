@@ -31,9 +31,6 @@ class Export_HTML(object):
         temp = settings.get("display", "columns", [])
         activeColumns = []
 
-        if "" in temp:
-            temp.remove("")
-
         for column in VAR.VIEW_COLUMNS:
             if column in temp or len(temp) == 0:
                 activeColumns.append(column)
