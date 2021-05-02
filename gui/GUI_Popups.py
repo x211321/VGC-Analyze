@@ -124,7 +124,7 @@ class Pop_CollectionDownload(object):
         self.window.resizable(False, False)
         self.window.iconphoto(False, loadIcon("cloud-download-outline", 15, 15))
         self.window.bind('<Escape>', lambda x:self.close())
-        self.window.grab_set()
+        # self.window.grab_set()
         self.window.focus_force()
 
         self.window.columnconfigure(0, weight=1)
@@ -377,7 +377,7 @@ class Pop_FilterSelect(object):
         self.window.iconphoto(False, loadIcon("filter-outline", 15, 15))
         self.window.bind('<Escape>', lambda x:self.close())
         self.window.focus_force()
-        self.window.grab_set()
+        # self.window.grab_set()
 
         self.frame_options = Frame(self.window, bg=VAR.GUI_COLOR_PRIMARY)
         self.frame_buttons = Frame(self.window, bg=VAR.GUI_COLOR_SECONDARY)

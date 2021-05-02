@@ -42,7 +42,7 @@ class GUI_Settings(Toplevel):
         self.bind('<Escape>', self.close)
         self.focus_force()
         self.withdraw()
-        self.grab_set()
+        # self.grab_set()
 
         # Add frames
         self.tab_frame = Frame(self, bg=VAR.GUI_COLOR_PRIMARY)
