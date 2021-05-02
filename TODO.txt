@@ -18,8 +18,6 @@ View double click -> detailed item view
 	Covers
 Graph canvas scroll bar
 Download history
-Bugs
-	klammern in filter strings -> regex kein ergebnis
 Treeview contextmenu
 	Bookmark, finished, open on VGC, details, online info
 disclaimer project not affiliated with VGCollect
