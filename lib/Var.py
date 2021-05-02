@@ -38,11 +38,11 @@ COVER_WIDTH      = 120
 
 # Asset vars
 try:
-    print("Working from pyinstaller temp dir")
     ASSETS_PATH      = os.path.join(sys._MEIPASS, "assets", "")
+    print("Working from pyinstaller temp dir")
 except:
-    print("Working locally")
     ASSETS_PATH      = os.path.join("assets", "")
+    print("Working locally")
 
 ICON_PATH      = os.path.join(ASSETS_PATH, "icons", "")
 IMG_COVER_NONE = os.path.join(ASSETS_PATH, "cover_placeholder.jpg")
