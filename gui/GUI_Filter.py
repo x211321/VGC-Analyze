@@ -129,10 +129,10 @@ class GUI_Filter(Frame):
             widget.bind("<Return>", self.showData)
             rowCount += 1
 
-        self.filter_button_frame.grid(row=rowCount, column=0)
+        self.filter_button_frame.grid(row=rowCount, column=0, padx=0, pady=0, sticky="nw")
 
         self.filter_reset.config(text=_("Reset filter"), command=self.reset)
-        self.filter_reset.grid(row=0, column=0, sticky="nw", padx=(0,18), pady=(10, 5))
+        self.filter_reset.grid(row=0, column=0, sticky="nw", padx=(0,22), pady=(10, 5))
 
         self.filter_apply.config(text=_("Apply filter"), command=self.showData)
         self.filter_apply.grid(row=0, column=1, sticky="nw", pady=(10, 5))
