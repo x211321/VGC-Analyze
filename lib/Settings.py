@@ -4,7 +4,7 @@ import os
 # Settings must be read before
 # VGC_Var is initialized since VGC_Var
 # contains translatable strings.
-SETTINGS_PATH         = "./data/settings/"
+SETTINGS_PATH         = "./VGC_Analyze_data/settings/"
 SETTINGS_FILE         = SETTINGS_PATH + "settings.json"
 PLATFORM_HOLDERS_FILE = SETTINGS_PATH + "platform_holders.json"
 PLATFORMS_FILE        = SETTINGS_PATH + "platforms.json"
