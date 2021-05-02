@@ -1,5 +1,5 @@
 # VGC_Analyze data
-img/cache/
+VGC_Analyze_data/
 settings/
 export/
 *.csv

@@ -4,8 +4,8 @@ from lib.Locale import _
 
 FILE_PREFIX             = "collection-"
 
-DATA_PATH               = "./data/"
-EXPORT_PATH             = "./export/"
+DATA_PATH               = "./VGC_Analyze_data/"
+EXPORT_PATH             = DATA_PATH + "export/"
 LOCAL_DATA              = DATA_PATH + "local/"
 DOWNLOAD_PATH           = DATA_PATH
 DOWNLOAD_FILE           = DOWNLOAD_PATH + FILE_PREFIX + "VGC-Analyze-Download.csv"
@@ -29,7 +29,7 @@ CAT_ACCESSORY    = "Accessory"
 CAT_ACCESSORIES  = "Accessories"
 
 # Img vars
-IMG_PATH         = "./img/"
+IMG_PATH         = DATA_PATH + "img/"
 IMG_CACHE_PATH   = IMG_PATH + "cache/"
 IMG_CACHE_FRONT  = IMG_CACHE_PATH + "front/"
 IMG_CACHE_BACK   = IMG_CACHE_PATH + "back/"
