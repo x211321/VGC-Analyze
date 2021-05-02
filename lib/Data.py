@@ -134,11 +134,11 @@ class CollectionItem(object):
 
         if combinePlatforms:
             if not platformString == VAR.CAT_HARDWARE:
-                platformString = platformString.removesuffix(VAR.CAT_HARDWARE).strip()
+                platformString = platformString.replace(VAR.CAT_HARDWARE, "").strip()
             if not platformString == VAR.CAT_ACCESSORY:
-                platformString = platformString.removesuffix(VAR.CAT_ACCESSORY).strip()
+                platformString = platformString.replace(VAR.CAT_ACCESSORY, "").strip()
             if not platformString == VAR.CAT_ACCESSORIES:
-                platformString = platformString.removesuffix(VAR.CAT_ACCESSORIES).strip()
+                platformString = platformString.replace(VAR.CAT_ACCESSORIES, "").strip()
 
         return platformString
 

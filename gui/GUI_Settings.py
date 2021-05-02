@@ -1,5 +1,7 @@
 import lib.Settings as settings
 
+import platform
+
 from lib.Locale import _
 from lib.Locale import setLanguage
 from lib.Locale import setLocale
@@ -124,8 +126,9 @@ class GUI_Settings(Toplevel):
         self.w["locale"]["language_txt"] = Label_(self.pages["locale"], text=_("Language (requires restart)"))
         self.w["locale"]["language"]     = Combobox_(self.pages["locale"], id="language", values=getAvailableLanguageNames(), width=25, state="readonly")
 
-        self.w["locale"]["locale_txt"]   = Label_(self.pages["locale"], text=_("Locale"))
-        self.w["locale"]["locale"]       = Combobox_(self.pages["locale"], id="locale", values=getAvailableLocaleNames(), width=25, state="readonly")
+        if platform.system() == "Windows":
+            self.w["locale"]["locale_txt"]   = Label_(self.pages["locale"], text=_("Locale"))
+            self.w["locale"]["locale"]       = Combobox_(self.pages["locale"], id="locale", values=getAvailableLocaleNames(), width=25, state="readonly")
 
         self.grid(self.w["locale"])
 
@@ -448,12 +451,13 @@ class GUI_Settings(Toplevel):
     def getValue(self, sectionKey, widget):
         value = widget.get()
 
-        if sectionKey == "locale" and widget.id == "language":
-            return getLocaleCode(value)
-        if sectionKey == "locale" and widget.id == "locale":
-            return getLocaleCode(value)
-        if sectionKey == "display" and widget.id == "columns":
-            return value.split(", ")
+        if len(value):
+            if sectionKey == "locale" and widget.id == "language":
+                return getLocaleCode(value)
+            if sectionKey == "locale" and widget.id == "locale":
+                return getLocaleCode(value)
+            if sectionKey == "display" and widget.id == "columns":
+                return value.split(", ")
 
         return value
 

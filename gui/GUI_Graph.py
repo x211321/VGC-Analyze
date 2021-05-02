@@ -75,7 +75,7 @@ class GUI_Graph(Frame):
 
         self.graph_hover_info.grid(row=0, column=7)
 
-        self.graph_canvas = FigureCanvasTkAgg(master=self.graph_sub_frame)
+        self.graph_canvas = FigureCanvasTkAgg(master=self.graph_sub_frame, figure=Figure())
         self.graph_sub_frame.pack_propagate(False)
         self.graph_canvas.get_tk_widget().pack(expand=True, fill="both")
 
@@ -421,7 +421,7 @@ class GUI_Graph(Frame):
             ax.autoscale(True)
             ax.set_title(graphContent)
 
-            wedges, temp = ax.pie(percentages, labels=displayLabels, explode=explode, startangle=90, normalize=True, wedgeprops={'alpha':0.75})
+            wedges, temp = ax.pie(percentages, labels=displayLabels, explode=explode, startangle=90, wedgeprops={'alpha':0.75})
 
             colors = [w.get_facecolor() for w in wedges]
 

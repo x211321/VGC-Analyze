@@ -146,8 +146,8 @@ class Pop_CollectionDownload(object):
         self.btn_cancel   = Button(self.button_frame, width=18, text=_("Cancel"), relief="groove", bg=VAR.BUTTON_COLOR_BAD, command=self.close)
         self.btn_spacer   = Label_(self.button_frame, bg=VAR.GUI_COLOR_SECONDARY)
         self.btn_download = Button(self.button_frame, width=18, text=_("Download"), relief="groove", bg=VAR.BUTTON_COLOR_GOOD, command=self.download)
-        self.label_info   = Label_(self.button_frame, width=35)
-        self.label_link   = Label_(self.button_frame, width=35, anchor="center")
+        self.label_info   = Label_(self.button_frame, width=35, bg=VAR.GUI_COLOR_SECONDARY)
+        self.label_link   = Label_(self.button_frame, width=35, anchor="center", bg=VAR.GUI_COLOR_SECONDARY)
 
         self.label_user.grid(row=0, column=0, pady=(15,10), padx=10, sticky="w")
         self.input_user.grid(row=0, column=1, pady=(15,10), padx=10, sticky="w")

@@ -54,8 +54,7 @@ def set(section, key, value):
 def defaultSettings():
     return {
                 "locale": {
-                    "language": "en_US",
-                    "locale": "en_US"
+                    "language": "en_US"
                 }
             }
 
