@@ -17,18 +17,22 @@ class Label_(Label):
 
     # Constructor
     def __init__(self, master=None,
-                 id="", text="",
+                 id="", text="", col=None, row=None,
                  anchor="nw", justify="left",
                  width=0, height=0,
-                 padx=0, pady=0,
+                 _padx=None, _pady=None,
                  wraplength=0, font=None,
                  img="", imgdef="", imgwidth=0,
                  bg=None, fg=None,
                  relief=None):
 
-        super().__init__(master=master, width=width, height=height, anchor=anchor, justify=justify, padx=padx, pady=pady, wraplength=wraplength, bg=bg, fg=fg, relief=relief)
+        super().__init__(master=master, width=width, height=height, anchor=anchor, justify=justify, wraplength=wraplength, bg=bg, fg=fg, relief=relief)
 
         self.id       = id
+        self.col      = col
+        self.row      = row
+        self._padx    = _padx
+        self._pady    = _pady
         self.imgdef   = imgdef
         self.text     = StringVar(self, text, id)
         self.imgwidth = imgwidth
@@ -61,16 +65,21 @@ class Entry_(Entry):
 
     # Constructor
     def __init__(self, master=None,
-                 id="", text="",
+                 id="", text="", col=None, row=None,
                  justify="left",
                  width=0, show="",
+                 _padx=None, _pady=None,
                  bg=VAR.INPUT_COLOR, fg=None,
                  relief=None):
 
         super().__init__(master=master, justify=justify, width=width, show=show, bg=bg, fg=fg, relief=relief)
 
-        self.id   = id
-        self.text = StringVar(self, text, id)
+        self.id    = id
+        self.col   = col
+        self.row   = row
+        self._padx = _padx
+        self._pady = _pady
+        self.text  = StringVar(self, text, id)
         self.config(textvariable=self.text)
 
     def get(self):
@@ -87,18 +96,22 @@ class Checkbutton_(Checkbutton):
 
     # Constructor
     def __init__(self, master=None,
-                 id="", check=0,
+                 id="", check=0, col=None, row=None,
                  label="",
                  justify="left",
-                 padx=0, pady=0,
+                 _padx=None, _pady=None,
                  width=0, command=None,
                  default = False,
                  bg = None,
                  anchor = None):
 
-        super().__init__(master=master, text=label, padx=padx, pady=pady, justify=justify, width=width, command=command, bg=bg, anchor=anchor)
+        super().__init__(master=master, text=label, justify=justify, width=width, command=command, bg=bg, anchor=anchor)
 
-        self.id   = id
+        self.id    = id
+        self.col   = col
+        self.row   = row
+        self._padx = _padx
+        self._pady = _pady
         self.value = IntVar(self, check, id)
         self.config(variable=self.value)
 
@@ -118,15 +131,20 @@ class Combobox_(ttk.Combobox):
 
     # Constructor
     def __init__(self, master=None,
-                 id="", text="",
+                 id="", text="", col=None, row=None,
                  justify="left",
                  width=0, height=10,
+                 _padx=None, _pady=None,
                  show="", values=None,
                  state=""):
 
         super().__init__(master=master, justify=justify, width=width, height=height, values=values, state=state)
 
-        self.id = id
+        self.id    = id
+        self.col   = col
+        self.row   = row
+        self._padx = _padx
+        self._pady = _pady
 
     def setValues(self, values):
         self['values'] = values
@@ -139,16 +157,21 @@ class Button_(Button):
 
     # Constructor
     def __init__(self, master=None,
-                 id="", text="",
+                 id="", text="", col=None, row=None,
                  justify="left",
                  width=None, height=None,
+                 _padx=None, _pady=None,
                  state="normal", relief=None,
                  bg=None, fg=None,
                  image=None, command=None):
 
         super().__init__(master=master, text=text, justify=justify, width=width, height=height, state=state, relief=relief, bg=bg, fg=fg, image=image, command=command)
 
-        self.id = id
+        self.id    = id
+        self.col   = col
+        self.row   = row
+        self._padx = _padx
+        self._pady = _pady
 
 
 ######################
@@ -158,13 +181,18 @@ class Text_(Text):
 
     # Constructor
     def __init__(self, master=None,
-                 id="", text="",
+                 id="", text="", col=None, row=None,
                  width=None, height=None,
+                 _padx=None, _pady=None,
                  state="normal", wrap=None):
 
         super().__init__(master=master, width=width, height=height, state=state, wrap=wrap)
 
-        self.id = id
+        self.id    = id
+        self.col   = col
+        self.row   = row
+        self._padx = _padx
+        self._pady = _pady
 
     def set(self, value):
         state = self["state"]

@@ -6,6 +6,8 @@ from tkinter import ttk
 from lib.Widgets import Label_
 from lib.Widgets import Entry_
 from lib.Widgets import Combobox_
+from lib.Widgets import Button_
+from lib.Img import loadIcon
 
 from gui.GUI_Popups import Pop_FilterSelect
 
@@ -27,6 +29,8 @@ class GUI_Filter(Frame):
         self.platformHolderSelect = Pop_FilterSelect(master, self.selectPlatformHoldersCallback)
         self.regionSelect         = Pop_FilterSelect(master, self.selectRegionsCallback)
 
+        self.regexIcon = loadIcon("regex-outline", 15, 15)
+
         self.init()
 
 
@@ -42,90 +46,96 @@ class GUI_Filter(Frame):
         # ------------------
         self.filterInputs = {}
 
-        self.filterInputs["name_txt"]               = Label_(self, width=25, text=_("Title"))
-        self.filterInputs["name"]                   = Entry_(self, width=30)
-        self.filterInputs["platforms_txt"]          = Label_(self, width=25, text=_("Platforms"))
-        self.filterInputs["platforms_select"]       = Button(self, width=25, text=_("Select"), relief="groove", command=self.selectPlatforms, bg=VAR.INPUT_COLOR)
-        self.filterInputs["platformHolders_txt"]    = Label_(self, width=25, text=_("Platform holders"))
-        self.filterInputs["platformHolders_select"] = Button(self, width=25, text=_("Select"), relief="groove", command=self.selectPlatformHolders, bg=VAR.INPUT_COLOR)
-        self.filterInputs["regions_txt"]            = Label_(self, width=25, text=_("Regions"))
-        self.filterInputs["regions_select"]         = Button(self, width=25, text=_("Select"), relief="groove", command=self.selectRegions, bg=VAR.INPUT_COLOR)
-        self.filterInputs["notes_txt"]              = Label_(self, width=25, text=_("Notes"))
-        self.filterInputs["notes"]                  = Entry_(self, width=30)
-        self.filterInputs["dateStart_txt"]          = Label_(self, width=25, text=_("Min. date (purchased)"))
+        self.filterInputs["name_txt"]   = Label_(self, width=25, _pady=(0,0), text=_("Title"))
+        self.filterInputs["name_frame"] = Frame(self)
+        self.filterInputs["name"]       = Entry_(self.filterInputs["name_frame"], width=25, row=0, col=0, _padx=(0,10))
+        self.filterInputs["name_regex"] = Button_(self.filterInputs["name_frame"], width=15, row=0, col=1, height=13, image=self.regexIcon, relief="groove", bg=VAR.GUI_COLOR_PRIMARY)
+
+        self.filterInputs["notes_txt"]   = Label_(self, width=25, _pady=(2,0), text=_("Notes"))
+        self.filterInputs["notes_frame"] = Frame(self)
+        self.filterInputs["notes"]       = Entry_(self.filterInputs["notes_frame"], width=25, row=0, col=0, _padx=(0,10))
+        self.filterInputs["notes_regex"] = Button_(self.filterInputs["notes_frame"], width=15, row=0, col=1, height=13, image=self.regexIcon, relief="groove", bg=VAR.GUI_COLOR_PRIMARY)
+
+        self.filterInputs["platforms_txt"]          = Label_(self, width=25, _pady=(2,0), text=_("Platforms"))
+        self.filterInputs["platforms_select"]       = Button_(self, width=25, text=_("Select"), relief="groove", command=self.selectPlatforms, bg=VAR.INPUT_COLOR)
+        self.filterInputs["platformHolders_txt"]    = Label_(self, width=25, _pady=(2,0), text=_("Platform holders"))
+        self.filterInputs["platformHolders_select"] = Button_(self, width=25, text=_("Select"), relief="groove", command=self.selectPlatformHolders, bg=VAR.INPUT_COLOR)
+        self.filterInputs["regions_txt"]            = Label_(self, width=25, _pady=(2,0), text=_("Regions"))
+        self.filterInputs["regions_select"]         = Button_(self, width=25, text=_("Select"), relief="groove", command=self.selectRegions, bg=VAR.INPUT_COLOR)
+        self.filterInputs["dateStart_txt"]          = Label_(self, width=25, _pady=(2,0), text=_("Min. date (purchased)"))
         self.filterInputs["dateStart"]              = Entry_(self, width=30)
-        self.filterInputs["dateEnd_txt"]            = Label_(self, width=25, text=_("Max. date (purchased)"))
+        self.filterInputs["dateEnd_txt"]            = Label_(self, width=25, _pady=(2,0), text=_("Max. date (purchased)"))
         self.filterInputs["dateEnd"]                = Entry_(self, width=30)
-        self.filterInputs["dateAddedStart_txt"]     = Label_(self, width=25, text=_("Min. date (added)"))
+        self.filterInputs["dateAddedStart_txt"]     = Label_(self, width=25, _pady=(2,0), text=_("Min. date (added)"))
         self.filterInputs["dateAddedStart"]         = Entry_(self, width=30)
-        self.filterInputs["dateAddedEnd_txt"]       = Label_(self, width=25, text=_("Max. date (added)"))
+        self.filterInputs["dateAddedEnd_txt"]       = Label_(self, width=25, _pady=(2,0), text=_("Max. date (added)"))
         self.filterInputs["dateAddedEnd"]           = Entry_(self, width=30)
-        self.filterInputs["priceStart_txt"]         = Label_(self, width=25, text=_("Min. purchase price"))
+        self.filterInputs["priceStart_txt"]         = Label_(self, width=25, _pady=(2,0), text=_("Min. purchase price"))
         self.filterInputs["priceStart"]             = Entry_(self, width=30)
-        self.filterInputs["priceEnd_txt"]           = Label_(self, width=25, text=_("Max. purchase price"))
+        self.filterInputs["priceEnd_txt"]           = Label_(self, width=25, _pady=(2,0), text=_("Max. purchase price"))
         self.filterInputs["priceEnd"]               = Entry_(self, width=30)
-        self.filterInputs["group_txt"]              = Label_(self, text=_("Group by"), width=25)
-        self.filterInputs["group"]                  = Combobox_(self, state="readonly", width=27)
-        self.filterInputs["cart_txt"]               = Label_(self, width=10, text=_("Cart"))
-        self.filterInputs["box_txt"]                = Label_(self, width=10, text=_("Box"))
-        self.filterInputs["cart"]                   = Combobox_(self, values=("", VAR.ITEM_ATTRIBUTE_YES, VAR.ITEM_ATTRIBUTE_NO), state="readonly", width=10)
-        self.filterInputs["box"]                    = Combobox_(self, values=("", VAR.ITEM_ATTRIBUTE_YES, VAR.ITEM_ATTRIBUTE_NO), state="readonly", width=10)
-        self.filterInputs["manual_txt"]             = Label_(self, width=10, text=_("Manual"))
-        self.filterInputs["other_txt"]              = Label_(self, width=10, text=_("Other"))
-        self.filterInputs["manual"]                 = Combobox_(self, values=("", VAR.ITEM_ATTRIBUTE_YES, VAR.ITEM_ATTRIBUTE_NO), state="readonly", width=10)
-        self.filterInputs["other"]                  = Combobox_(self, values=("", VAR.ITEM_ATTRIBUTE_YES, VAR.ITEM_ATTRIBUTE_NO), state="readonly", width=10)
-        self.filterInputs["bookmarked_txt"]         = Label_(self, text=_("Bookmarked"), width=10)
-        self.filterInputs["finished_txt"]           = Label_(self, text=_("Finished"), width=10)
-        self.filterInputs["bookmarked"]             = Combobox_(self, values=("", VAR.ITEM_ATTRIBUTE_YES, VAR.ITEM_ATTRIBUTE_NO), state="readonly", width=10)
-        self.filterInputs["finished"]               = Combobox_(self, values=("", VAR.ITEM_ATTRIBUTE_YES, VAR.ITEM_ATTRIBUTE_NO), state="readonly", width=10)
-        self.filterInputs["order_txt"]              = Label_(self, text=_("Sort by"), width=10)
-        self.filterInputs["order_dir_txt"]          = Label_(self, text=_("Sort direction"), width=10)
-        self.filterInputs["order"]                  = Combobox_(self, state="readonly", width=10)
-        self.filterInputs["orderDirection"]         = Combobox_(self, values=("", VAR.ORDER_DIRECTION_ASCENDING, VAR.ORDER_DIRECTION_DESCENDING), state="readonly", width=10)
+        self.filterInputs["group_txt"]              = Label_(self, width=25, _pady=(2,0), text=_("Group by"))
+        self.filterInputs["group"]                  = Combobox_(self, width=27, state="readonly")
 
-        self.filter_apply = Button(self, width=10, relief="groove", bg=VAR.BUTTON_COLOR_GOOD)
-        self.filter_reset = Button(self, width=10, relief="groove", bg=VAR.BUTTON_COLOR_BAD)
+        self.filterInputs["cb_frame"] = Frame(self)
+        self.filterInputs["cart_txt"] = Label_(self.filterInputs["cb_frame"], width=10, _pady=(2,0), row=0, col=0, _padx=(0,18), text=_("Cart"))
+        self.filterInputs["box_txt"]  = Label_(self.filterInputs["cb_frame"], width=10, _pady=(2,0), row=0, col=1, text=_("Box"))
+        self.filterInputs["cart"]     = Combobox_(self.filterInputs["cb_frame"], width=10, row=1, col=0, _padx=(0,18), values=("", VAR.ITEM_ATTRIBUTE_YES, VAR.ITEM_ATTRIBUTE_NO), state="readonly")
+        self.filterInputs["box"]      = Combobox_(self.filterInputs["cb_frame"], width=10, row=1, col=1, values=("", VAR.ITEM_ATTRIBUTE_YES, VAR.ITEM_ATTRIBUTE_NO), state="readonly")
 
-        row = 0
-        col = 0
+        self.filterInputs["mo_frame"]   = Frame(self)
+        self.filterInputs["manual_txt"] = Label_(self.filterInputs["mo_frame"], width=10, _pady=(2,0), row=0, col=0, _padx=(0,18), text=_("Manual"))
+        self.filterInputs["other_txt"]  = Label_(self.filterInputs["mo_frame"], width=10, _pady=(2,0), row=0, col=1, text=_("Other"))
+        self.filterInputs["manual"]     = Combobox_(self.filterInputs["mo_frame"], width=10, row=1, col=0, _padx=(0,18), values=("", VAR.ITEM_ATTRIBUTE_YES, VAR.ITEM_ATTRIBUTE_NO), state="readonly")
+        self.filterInputs["other"]      = Combobox_(self.filterInputs["mo_frame"], width=10, row=1, col=1, values=("", VAR.ITEM_ATTRIBUTE_YES, VAR.ITEM_ATTRIBUTE_NO), state="readonly")
 
-        itemWidth        = 0
-        colspan          = 0
-        rowWidth         = 25
-        rowWidth_current = 0
+        self.filterInputs["bf_frame"]       = Frame(self)
+        self.filterInputs["bookmarked_txt"] = Label_(self.filterInputs["bf_frame"], width=10, _pady=(2,0), row=0, col=0, _padx=(0,18), text=_("Bookmarked"))
+        self.filterInputs["finished_txt"]   = Label_(self.filterInputs["bf_frame"], width=10, _pady=(2,0), row=0, col=1, text=_("Finished"))
+        self.filterInputs["bookmarked"]     = Combobox_(self.filterInputs["bf_frame"], width=10, row=1, col=0, _padx=(0,18), values=("", VAR.ITEM_ATTRIBUTE_YES, VAR.ITEM_ATTRIBUTE_NO), state="readonly")
+        self.filterInputs["finished"]       = Combobox_(self.filterInputs["bf_frame"], width=10, row=1, col=1, values=("", VAR.ITEM_ATTRIBUTE_YES, VAR.ITEM_ATTRIBUTE_NO), state="readonly")
+
+        self.filterInputs["oo_frame"]       = Frame(self)
+        self.filterInputs["order_txt"]      = Label_(self.filterInputs["oo_frame"], width=10, _pady=(2,0), row=0, col=0, _padx=(0,18), text=_("Sort by"))
+        self.filterInputs["order_dir_txt"]  = Label_(self.filterInputs["oo_frame"], width=10, _pady=(2,0), row=0, col=1, text=_("Sort direction"))
+        self.filterInputs["order"]          = Combobox_(self.filterInputs["oo_frame"], width=10, row=1, col=0, _padx=(0,18), state="readonly")
+        self.filterInputs["orderDirection"] = Combobox_(self.filterInputs["oo_frame"], width=10, row=1, col=1, values=("", VAR.ORDER_DIRECTION_ASCENDING, VAR.ORDER_DIRECTION_DESCENDING), state="readonly")
+
+        self.filter_button_frame = Frame(self)
+        self.filter_apply = Button_(self.filter_button_frame, width=10, relief="groove", bg=VAR.BUTTON_COLOR_GOOD)
+        self.filter_reset = Button_(self.filter_button_frame, width=10, relief="groove", bg=VAR.BUTTON_COLOR_BAD)
+
+        rowCount = 0
 
         for key in self.filterInputs:
-            itemWidth = self.filterInputs[key]['width']
+            widget = self.filterInputs[key]
 
-            if rowWidth_current and (rowWidth_current + itemWidth <= rowWidth):
-                col +=1
+            col  = 0
+            row  = rowCount
+            padx = 0
+            pady = 0
 
-            rowWidth_current += itemWidth
+            if widget.__class__.__name__[-1] == "_":
+                if not widget.col == None:
+                    col = widget.col
+                if not widget.row == None:
+                    row = widget.row
+                if not widget._padx == None:
+                    padx = widget._padx
+                if not widget._pady == None:
+                    pady = widget._pady
 
-            if rowWidth_current >= rowWidth:
-                rowWidth_current = itemWidth
-                row += 1
-                col  = 0
+            widget.grid(row=row, column=col, sticky="nw", padx=padx, pady=pady)
+            widget.bind("<Return>", self.showData)
+            rowCount += 1
 
-            if itemWidth >= rowWidth:
-                colspan = 2
-            else:
-                colspan = 1
-                if col == 0:
-                    self.filterInputs[key].grid(padx=(0, 18))
-
-            self.filterInputs[key].grid(row=row, column=col, sticky="nw", columnspan=colspan)
-
-            if (row) % 2 == 0:
-                self.filterInputs[key].grid(pady=(0,3))
-
-            self.filterInputs[key].bind("<Return>", self.showData)
+        self.filter_button_frame.grid(row=rowCount, column=0)
 
         self.filter_reset.config(text=_("Reset filter"), command=self.reset)
-        self.filter_reset.grid(row=100, column=0, sticky="nw", pady=(10, 5))
+        self.filter_reset.grid(row=0, column=0, sticky="nw", padx=(0,18), pady=(10, 5))
 
         self.filter_apply.config(text=_("Apply filter"), command=self.showData)
-        self.filter_apply.grid(row=100, column=1, sticky="nw", pady=(10, 5))
+        self.filter_apply.grid(row=0, column=1, sticky="nw", pady=(10, 5))
 
 
     ######################
