@@ -13,6 +13,7 @@ from lib.Img import loadIcon
 from lib.Widgets  import Label_
 from lib.Widgets  import Entry_
 from lib.Widgets  import Checkbutton_
+from lib.Widgets  import Button_
 from lib.Data     import FilterData
 from lib.Browser  import openUserProfileInBrowser
 from lib.Download import downloadCollection
@@ -417,11 +418,11 @@ class Pop_FilterSelect(object):
 
         # Create checkbuttons
         for option, data in options:
-            self.widgets[option] = Checkbutton_(self.frame_options, label=option, bg=VAR.GUI_COLOR_PRIMARY, width=maxLen, anchor="w")
+            self.widgets[option] = Button_(self.frame_options, text=option, bg=VAR.GUI_COLOR_PRIMARY, width=maxLen, relief="groove", toggle=True)
             self.widgets[option].grid(row=row, column=col, sticky="w", padx=5, pady=5)
 
             if option in activeOptions:
-                self.widgets[option].set(True)
+                self.widgets[option].setToggle(True)
 
             col += 1
 
@@ -447,17 +448,17 @@ class Pop_FilterSelect(object):
 
     def reset(self):
         for widget in self.widgets:
-            self.widgets[widget].set(False)
+            self.widgets[widget].setToggle(False)
 
     def selectAll(self):
         for widget in self.widgets:
-            self.widgets[widget].set(True)
+            self.widgets[widget].setToggle(True)
 
     def confirm(self):
         selectedOptions = []
 
         for widget in self.widgets:
-            if self.widgets[widget].get() == True:
+            if self.widgets[widget].toggleState == True:
                 selectedOptions.append(widget)
 
         if not self.callback == None:

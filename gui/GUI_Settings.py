@@ -268,7 +268,7 @@ class GUI_Settings(Toplevel):
 
 
     def columnSelect(self):
-        self.columnSelectPop.show(VAR.VIEW_COLUMNS.items(), settings.get("display", "columns", []), _("table columns"), maxCol=3)
+        self.columnSelectPop.show(VAR.VIEW_COLUMNS.items(), settings.get("display", "columns", []), _("table columns"), maxCol=4)
 
 
     def columnSelectCallback(self, columns):

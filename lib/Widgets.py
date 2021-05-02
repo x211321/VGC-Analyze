@@ -180,13 +180,16 @@ class Button_(Button):
         if self.toggle:
             self.config(command=self.toggleButtonState)
 
-    def toggleButtonState(self):
+    def setToggle(self, newToggleState):
+        self.toggleState = newToggleState
+
         if self.toggleState:
-            self.config(bg=self.bg)
-            self.toggleState = False
-        else:
             self.config(bg=VAR.BUTTON_COLOR_TOGGLE)
-            self.toggleState = True
+        else:
+            self.config(bg=self.bg)
+
+    def toggleButtonState(self):
+        self.setToggle(not self.toggleState)
 
 
 ######################
