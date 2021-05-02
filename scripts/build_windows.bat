@@ -23,5 +23,5 @@ rmdir /S /Q .\virtual_env\Lib\site-packages\matplotlib\mpl-data\plot_directive
 rmdir /S /Q .\virtual_env\Lib\site-packages\matplotlib\mpl-data\sample_data
 rmdir /S /Q .\virtual_env\Lib\site-packages\matplotlib\mpl-data\stylelib
 
-@REM pyinstaller --onefile --windowed ..\..\VGC_Analyze.py
-pyinstaller ..\..\VGC_Analyze.py
+pyinstaller --onefile --windowed --add-data "%CD%\..\..\assets;assets" ..\..\VGC_Analyze.py
+@REM pyinstaller ..\..\VGC_Analyze.py

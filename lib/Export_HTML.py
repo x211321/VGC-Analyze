@@ -122,7 +122,7 @@ class Export_HTML(object):
               """
 
         if not os.path.exists(VAR.EXPORT_PATH):
-            os.path.makedirs(VAR.EXPORT_PATH)
+            os.makedirs(VAR.EXPORT_PATH)
 
         # Only write css when file doesn't exist yet
         # gives the user the option to place custom css

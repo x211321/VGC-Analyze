@@ -1,3 +1,5 @@
+import os
+import sys
 from lib.Locale import _
 
 FILE_PREFIX             = "collection-"
@@ -8,6 +10,9 @@ LOCAL_DATA              = DATA_PATH + "local/"
 DOWNLOAD_PATH           = DATA_PATH
 DOWNLOAD_FILE           = DOWNLOAD_PATH + FILE_PREFIX + "VGC-Analyze-Download.csv"
 LOCAL_DATA_FILE         = LOCAL_DATA + "VGC-Local-Data.json"
+
+if not os.path.exists(DATA_PATH):
+    os.makedirs(DATA_PATH)
 
 # Colors
 BUTTON_COLOR_GOOD = "#BDF593"
@@ -32,9 +37,15 @@ IMG_CACHE_CART   = IMG_CACHE_PATH + "cart/"
 COVER_WIDTH      = 120
 
 # Asset vars
-ASSETS_PATH      = "./assets/"
-ICON_PATH        = ASSETS_PATH + "icons/"
-IMG_COVER_NONE   = ASSETS_PATH + "cover_placeholder.jpg"
+try:
+    print("Working from pyinstaller temp dir")
+    ASSETS_PATH      = os.path.join(sys._MEIPASS, "assets", "")
+except:
+    print("Working locally")
+    ASSETS_PATH      = os.path.join("assets", "")
+
+ICON_PATH      = os.path.join(ASSETS_PATH, "icons", "")
+IMG_COVER_NONE = os.path.join(ASSETS_PATH, "cover_placeholder.jpg")
 
 # Graph vars
 GRAPH_TYPE_BAR                  = _("Bar")

@@ -1,4 +1,5 @@
 import os
+import sys
 import gettext
 import locale
 from datetime import datetime
@@ -6,7 +7,11 @@ from datetime import datetime
 from lib.Locale_Languages import languages
 from lib.Locale_Countries import countries
 
-langDir = "./assets/locales/"
+# Asset vars
+try:
+    langDir = os.path.join(sys._MEIPASS, "assets", "locales", "")
+except:
+    langDir = os.path.join("assets", "locales", "")
 
 _ = None
 
