@@ -185,10 +185,12 @@ class FilterData(object):
     # Constructor
     def __init__(self):
         self.itemFilter           = ""
+        self.itemFilterRegEx      = False
         self.platformFilter       = []
         self.platformHolderFilter = []
         self.regionFilter         = ""
         self.notesFilter          = ""
+        self.notesFilterRegEx     = False
         self.dateFilterStart      = ""
         self.dateFilterEnd        = ""
         self.dateAddedFilterStart = ""
@@ -238,8 +240,12 @@ class FilterData(object):
         for key in inputs:
             if key == "name":
                 self.itemFilter           = inputs[key].get()
+            if key =="name_regex":
+                self.itemFilterRegEx      = inputs[key].toggleState
             if key == "notes":
                 self.notesFilter          = inputs[key].get()
+            if key =="notes_regex":
+                self.notesFilterRegEx     = inputs[key].toggleState
             if key == "dateStart":
                 self.dateFilterStart      = guessDate(inputs[key].get(), "start")
             if key == "dateEnd":
@@ -359,11 +365,13 @@ class CollectionData(object):
 
     # filter
     def filter(self, item):
-        if (self.searchFilter(self.filterData.itemFilter, item.name) and
-            (len(self.filterData.platformFilter) == 0 or item.platform in self.filterData.platformFilter) and
+        if ((len(self.filterData.platformFilter) == 0 or item.platform in self.filterData.platformFilter) and
             (len(self.filterData.platformHolderFilter) == 0 or item.platformHolder in self.filterData.platformHolderFilter) and
             (len(self.filterData.regionFilter) == 0 or item.region in self.filterData.regionFilter) and
-            self.searchFilter(self.filterData.notesFilter, item.notes) and
+            (not self.filterData.itemFilterRegEx or self.searchFilter(self.filterData.itemFilter, item.name)) and
+            (self.filterData.itemFilterRegEx or self.inStringFilter(self.filterData.itemFilter, item.name)) and
+            (not self.filterData.notesFilterRegEx or self.searchFilter(self.filterData.notesFilter, item.notes)) and
+            (self.filterData.notesFilterRegEx or self.inStringFilter(self.filterData.notesFilter, item.notes)) and
             self.stringGreater(self.filterData.dateFilterStart, item.date) and
             self.stringLess(self.filterData.dateFilterEnd, item.date) and
             self.stringGreater(self.filterData.dateAddedFilterStart, item.dateAdded) and
@@ -521,6 +529,14 @@ class CollectionData(object):
     # searchFilter
     def searchFilter(self, filterVal, itemVal):
         if re.search(filterVal.lower(), itemVal.lower()) != None:
+            return True
+        else:
+            return False
+
+
+    # inStringFIlter
+    def inStringFilter(self, filterVal, itemVal):
+        if filterVal.lower() in itemVal.lower():
             return True
         else:
             return False

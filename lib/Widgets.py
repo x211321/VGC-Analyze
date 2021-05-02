@@ -163,15 +163,30 @@ class Button_(Button):
                  _padx=None, _pady=None,
                  state="normal", relief=None,
                  bg=None, fg=None,
-                 image=None, command=None):
+                 image=None, command=None,
+                 toggle=False):
 
         super().__init__(master=master, text=text, justify=justify, width=width, height=height, state=state, relief=relief, bg=bg, fg=fg, image=image, command=command)
 
-        self.id    = id
-        self.col   = col
-        self.row   = row
-        self._padx = _padx
-        self._pady = _pady
+        self.id          = id
+        self.col         = col
+        self.row         = row
+        self.bg          = bg
+        self._padx       = _padx
+        self._pady       = _pady
+        self.toggle      = toggle
+        self.toggleState = False
+
+        if self.toggle:
+            self.config(command=self.toggleButtonState)
+
+    def toggleButtonState(self):
+        if self.toggleState:
+            self.config(bg=self.bg)
+            self.toggleState = False
+        else:
+            self.config(bg=VAR.BUTTON_COLOR_TOGGLE)
+            self.toggleState = True
 
 
 ######################
