@@ -75,7 +75,7 @@ class GUI_Filter(Frame):
         self.filterInputs["priceEnd_txt"]           = Label_(self, width=25, _pady=(2,0), text=_("Max. purchase price"))
         self.filterInputs["priceEnd"]               = Entry_(self, width=30)
         self.filterInputs["group_txt"]              = Label_(self, width=25, _pady=(2,0), text=_("Group by"))
-        self.filterInputs["group"]                  = Combobox_(self, width=27, state="readonly")
+        self.filterInputs["group"]                  = Combobox_(self, width=27, height=20, state="readonly")
 
         self.filterInputs["cb_frame"] = Frame(self)
         self.filterInputs["cart_txt"] = Label_(self.filterInputs["cb_frame"], width=10, _pady=(2,0), row=0, col=0, _padx=(0,18), text=_("Cart"))
