@@ -20,15 +20,15 @@ msgstr ""
 msgid "items"
 msgstr "Einträge"
 
-#: ../gui/GUI_Filter.py:47 ../gui/GUI_Settings.py:92 ../lib/Var.py:46
+#: ../gui/GUI_Filter.py:59 ../gui/GUI_Settings.py:92 ../lib/Var.py:61
 msgid "Platforms"
 msgstr "Plattformen"
 
-#: ../gui/GUI_Filter.py:51 ../lib/Var.py:47
+#: ../gui/GUI_Filter.py:63 ../lib/Var.py:62
 msgid "Regions"
 msgstr "Regionen"
 
-#: ../gui/GUI_Filter.py:49 ../gui/GUI_Settings.py:91 ../lib/Var.py:48
+#: ../gui/GUI_Filter.py:61 ../gui/GUI_Settings.py:91 ../lib/Var.py:63
 msgid "Platform holders"
 msgstr "Plattformhalter"
 
@@ -64,25 +64,25 @@ msgstr "Aktive VGC-Datei:"
 msgid "Combine related platforms"
 msgstr "Verwandte Plattformen zusammenfassen"
 
-#: ../gui/GUI_Filter.py:45 ../gui/GUI_ItemInfo.py:53 ../lib/Var.py:90
+#: ../gui/GUI_Filter.py:49 ../gui/GUI_ItemInfo.py:53 ../lib/Var.py:105
 msgid "Title"
 msgstr "Titel"
 
-#: ../gui/GUI_Filter.py:48 ../gui/GUI_Filter.py:50 ../gui/GUI_Filter.py:52
-#: ../gui/GUI_Filter.py:141 ../gui/GUI_Filter.py:166 ../gui/GUI_Filter.py:185
-#: ../gui/GUI_Filter.py:204 ../gui/GUI_Settings.py:140
+#: ../gui/GUI_Filter.py:60 ../gui/GUI_Filter.py:62 ../gui/GUI_Filter.py:64
+#: ../gui/GUI_Filter.py:154 ../gui/GUI_Filter.py:179 ../gui/GUI_Filter.py:200
+#: ../gui/GUI_Filter.py:221 ../gui/GUI_Settings.py:140
 msgid "Select"
 msgstr "Auswählen"
 
-#: ../gui/GUI_Filter.py:53 ../lib/Var.py:102
+#: ../gui/GUI_Filter.py:54 ../lib/Var.py:117
 msgid "Notes"
 msgstr "Notizen"
 
-#: ../gui/GUI_Filter.py:63
+#: ../gui/GUI_Filter.py:73
 msgid "Min. purchase price"
 msgstr "Min. Kaufpreis"
 
-#: ../gui/GUI_Filter.py:65
+#: ../gui/GUI_Filter.py:75
 msgid "Max. purchase price"
 msgstr "Max. Kaufpreis"
 
@@ -122,11 +122,11 @@ msgstr "Modul"
 msgid "Quit"
 msgstr "Beenden"
 
-#: ../gui/GUI_Menu.py:20 ../gui/GUI_Popups.py:250
+#: ../gui/GUI_Menu.py:20 ../gui/GUI_Popups.py:251
 msgid "Search for item"
 msgstr "Eintrag suchen"
 
-#: ../gui/GUI_Menu.py:24 ../gui/GUI_Popups.py:122
+#: ../gui/GUI_Menu.py:24 ../gui/GUI_Popups.py:123
 msgid "Download collection"
 msgstr "Sammlung herunterladen"
 
@@ -154,11 +154,11 @@ msgstr "Über VGC Analyzer"
 msgid "File"
 msgstr "Datei"
 
-#: ../gui/GUI_Menu.py:41 ../gui/GUI_Popups.py:272
+#: ../gui/GUI_Menu.py:41 ../gui/GUI_Popups.py:273
 msgid "Search"
 msgstr "Suchen"
 
-#: ../gui/GUI_Menu.py:42 ../gui/GUI_Popups.py:147 ../gui/GUI_Settings.py:90
+#: ../gui/GUI_Menu.py:42 ../gui/GUI_Popups.py:148 ../gui/GUI_Settings.py:90
 msgid "Download"
 msgstr "Herunterladen"
 
@@ -170,20 +170,20 @@ msgstr "Fenster"
 msgid "About"
 msgstr "Über"
 
-#: ../gui/GUI_Popups.py:141
+#: ../gui/GUI_Popups.py:142
 msgid "VGC Username"
 msgstr "VGC Benutzername"
 
-#: ../gui/GUI_Popups.py:143
+#: ../gui/GUI_Popups.py:144
 msgid "Password"
 msgstr "Passwort"
 
-#: ../gui/GUI_Popups.py:145 ../gui/GUI_Popups.py:270 ../gui/GUI_Popups.py:387
+#: ../gui/GUI_Popups.py:146 ../gui/GUI_Popups.py:271 ../gui/GUI_Popups.py:388
 #: ../gui/GUI_Settings.py:58
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: ../gui/GUI_Popups.py:164
+#: ../gui/GUI_Popups.py:165
 msgid ""
 "The provided login credentials will be used to\n"
 "download a backup of your collection from\n"
@@ -219,43 +219,43 @@ msgstr ""
 "\n"
 "3) \tStarte VGC Analyzer neu"
 
-#: ../gui/GUI_Popups.py:176
+#: ../gui/GUI_Popups.py:177
 msgid "VGCollect.com user profile"
 msgstr "VGCollect.com Benutzerprofil"
 
-#: ../gui/GUI_Popups.py:206
+#: ../gui/GUI_Popups.py:207
 msgid "Login credentials incomplete"
 msgstr "Anmeldedaten unvollständig"
 
-#: ../gui/GUI_Popups.py:206 ../gui/GUI_Popups.py:213 ../gui/GUI_Popups.py:218
+#: ../gui/GUI_Popups.py:207 ../gui/GUI_Popups.py:214 ../gui/GUI_Popups.py:219
 msgid "Collection download"
 msgstr "Sammlung herunterladen"
 
-#: ../gui/GUI_Popups.py:213
+#: ../gui/GUI_Popups.py:214
 msgid "Download successful"
 msgstr "Download erfolgreich"
 
-#: ../gui/GUI_Popups.py:266
+#: ../gui/GUI_Popups.py:267
 msgid "Search for"
 msgstr "Suchen nach"
 
-#: ../gui/GUI_Popups.py:349
+#: ../gui/GUI_Popups.py:350
 msgid "Couldn't find"
 msgstr "Nicht gefunden"
 
-#: ../gui/GUI_Popups.py:374
+#: ../gui/GUI_Popups.py:375
 msgid "Select "
 msgstr "Auswählen "
 
-#: ../gui/GUI_Popups.py:388
+#: ../gui/GUI_Popups.py:389
 msgid "Reset"
 msgstr "Zurücksetzten"
 
-#: ../gui/GUI_Popups.py:389
+#: ../gui/GUI_Popups.py:390
 msgid "Select all"
 msgstr "Alle auswählen"
 
-#: ../gui/GUI_Popups.py:390 ../gui/GUI_Settings.py:60
+#: ../gui/GUI_Popups.py:391 ../gui/GUI_Settings.py:60
 msgid "OK"
 msgstr "OK"
 
@@ -263,55 +263,55 @@ msgstr "OK"
 msgid "Group"
 msgstr "Gruppe"
 
-#: ../gui/GUI_Settings.py:216 ../gui/GUI_Settings.py:263 ../lib/Var.py:91
+#: ../gui/GUI_Settings.py:216 ../gui/GUI_Settings.py:263 ../lib/Var.py:106
 msgid "Platform"
 msgstr "Plattform"
 
-#: ../gui/GUI_Filter.py:69 ../lib/Var.py:96
+#: ../gui/GUI_Filter.py:81 ../lib/Var.py:111
 msgid "Cart"
 msgstr "Modul"
 
-#: ../gui/GUI_Filter.py:70 ../lib/Var.py:97
+#: ../gui/GUI_Filter.py:82 ../lib/Var.py:112
 msgid "Box"
 msgstr "Verpackung"
 
-#: ../gui/GUI_Filter.py:73 ../lib/Var.py:98
+#: ../gui/GUI_Filter.py:87 ../lib/Var.py:113
 msgid "Manual"
 msgstr "Anleitung"
 
-#: ../gui/GUI_Filter.py:74 ../lib/Var.py:99
+#: ../gui/GUI_Filter.py:88 ../lib/Var.py:114
 msgid "Other"
 msgstr "Andere"
 
-#: ../gui/GUI_Filter.py:78 ../lib/Var.py:101
+#: ../gui/GUI_Filter.py:94 ../lib/Var.py:116
 msgid "Finished"
 msgstr "Abgeschlossen"
 
-#: ../gui/GUI_Filter.py:164 ../gui/GUI_Filter.py:183 ../gui/GUI_Filter.py:202
+#: ../gui/GUI_Filter.py:177 ../gui/GUI_Filter.py:198 ../gui/GUI_Filter.py:219
 msgid " selected"
 msgstr " ausgewählt"
 
-#: ../gui/GUI_Filter.py:67
+#: ../gui/GUI_Filter.py:77
 msgid "Group by"
 msgstr "Gruppieren"
 
-#: ../gui/GUI_Filter.py:77
+#: ../gui/GUI_Filter.py:93
 msgid "Bookmarked"
 msgstr "Lesezeichen"
 
-#: ../gui/GUI_Filter.py:81
+#: ../gui/GUI_Filter.py:99
 msgid "Sort by"
 msgstr "Sortieren"
 
-#: ../gui/GUI_Filter.py:82
+#: ../gui/GUI_Filter.py:100
 msgid "Sort direction"
 msgstr "Reihenfolge"
 
-#: ../gui/GUI_Filter.py:124
+#: ../gui/GUI_Filter.py:134
 msgid "Reset filter"
 msgstr "Zurücksetzten"
 
-#: ../gui/GUI_Filter.py:127
+#: ../gui/GUI_Filter.py:137
 msgid "Apply filter"
 msgstr "Anwenden"
 
@@ -319,15 +319,15 @@ msgstr "Anwenden"
 msgid "total price: "
 msgstr "Gesamtpreis: "
 
-#: ../gui/GUI_Filter.py:154
+#: ../gui/GUI_Filter.py:167
 msgid "platforms"
 msgstr "Plattformen"
 
-#: ../gui/GUI_Filter.py:173
+#: ../gui/GUI_Filter.py:188
 msgid "platform holders"
 msgstr "Plattformhalter"
 
-#: ../gui/GUI_Filter.py:192
+#: ../gui/GUI_Filter.py:209
 msgid "regions"
 msgstr "Regionen"
 
@@ -363,15 +363,15 @@ msgstr "Am wenigsten Gruppenelemente:"
 msgid "Most group items:"
 msgstr "Am meisten Gruppenelemente:"
 
-#: ../gui/GUI_Popups.py:67
+#: ../gui/GUI_Popups.py:68
 msgid "front cover"
 msgstr "Vorderseite"
 
-#: ../gui/GUI_Popups.py:70
+#: ../gui/GUI_Popups.py:71
 msgid "back cover"
 msgstr "Rückseite"
 
-#: ../gui/GUI_Popups.py:73
+#: ../gui/GUI_Popups.py:74
 msgid "cart cover"
 msgstr "Modul"
 
@@ -395,27 +395,27 @@ msgstr "Sprache (erfordert Neustart)"
 msgid "Overwrite with"
 msgstr "Überschreiben mit"
 
-#: ../gui/GUI_ItemInfo.py:55 ../lib/Var.py:94
+#: ../gui/GUI_ItemInfo.py:55 ../lib/Var.py:109
 msgid "Date (purchased)"
 msgstr "Datum (gekauft)"
 
-#: ../gui/GUI_ItemInfo.py:57 ../lib/Var.py:95
+#: ../gui/GUI_ItemInfo.py:57 ../lib/Var.py:110
 msgid "Date (added)"
 msgstr "Datum (hinzugefügt)"
 
-#: ../gui/GUI_Filter.py:55
+#: ../gui/GUI_Filter.py:65
 msgid "Min. date (purchased)"
 msgstr "Min. Datum (gekauft)"
 
-#: ../gui/GUI_Filter.py:57
+#: ../gui/GUI_Filter.py:67
 msgid "Max. date (purchased)"
 msgstr "Max. Datum (gekauft)"
 
-#: ../gui/GUI_Filter.py:59
+#: ../gui/GUI_Filter.py:69
 msgid "Min. date (added)"
 msgstr "Min. Datum (hinzugefügt)"
 
-#: ../gui/GUI_Filter.py:61
+#: ../gui/GUI_Filter.py:71
 msgid "Max. date (added)"
 msgstr "Max. Datum (hinzugefügt)"
 
@@ -451,138 +451,138 @@ msgstr "Download fehlgeschlagen - Fehlercode: "
 msgid "Login error - Code: "
 msgstr "Anmeldung fehlgeschlagen - Fehlercode: "
 
-#: ../lib/Var.py:37
+#: ../lib/Var.py:52
 msgid "Bar"
 msgstr "Säulen"
 
-#: ../lib/Var.py:38
+#: ../lib/Var.py:53
 msgid "Pie"
 msgstr "Kreis"
 
-#: ../lib/Var.py:39
+#: ../lib/Var.py:54
 msgid "Area"
 msgstr "Fläche"
 
-#: ../lib/Var.py:40
+#: ../lib/Var.py:55
 msgid "Line"
 msgstr "Linien"
 
-#: ../lib/Var.py:53
+#: ../lib/Var.py:68
 msgid "Item count"
 msgstr "Anzahl Einträge"
 
-#: ../lib/Var.py:54
+#: ../lib/Var.py:69
 msgid "Total price"
 msgstr "Gesamtpreis"
 
-#: ../lib/Var.py:55
+#: ../lib/Var.py:70
 msgid "Item count (growth)"
 msgstr "Anzahl Einträge (Wachstum)"
 
-#: ../lib/Var.py:56
+#: ../lib/Var.py:71
 msgid "Total price (growth)"
 msgstr "Gesamtpreis (Wachstum)"
 
-#: ../lib/Var.py:92
+#: ../lib/Var.py:107
 msgid "Region"
 msgstr "Region"
 
-#: ../lib/Var.py:93
+#: ../lib/Var.py:108
 msgid "Price"
 msgstr "Preis"
 
-#: ../lib/Var.py:100
+#: ../lib/Var.py:115
 msgid "Bookmark"
 msgstr "Lesezeichen"
 
-#: ../lib/Var.py:65 ../lib/Var.py:72
+#: ../lib/Var.py:80 ../lib/Var.py:87
 msgid "name"
 msgstr "Name"
 
-#: ../lib/Var.py:66 ../lib/Var.py:76
+#: ../lib/Var.py:81 ../lib/Var.py:91
 msgid "region"
 msgstr "Region"
 
-#: ../lib/Var.py:67 ../lib/Var.py:77
+#: ../lib/Var.py:82 ../lib/Var.py:92
 msgid "platform"
 msgstr "Plattform"
 
-#: ../lib/Var.py:68
+#: ../lib/Var.py:83
 msgid "platform holder"
 msgstr "Plattformhalter"
 
-#: ../lib/Var.py:69 ../lib/Var.py:78
+#: ../lib/Var.py:84 ../lib/Var.py:93
 msgid "notes"
 msgstr "Notizen"
 
-#: ../lib/Var.py:73
+#: ../lib/Var.py:88
 msgid "price"
 msgstr "Preis"
 
-#: ../lib/Var.py:81
+#: ../lib/Var.py:96
 msgid "ascending"
 msgstr "Aufsteigend"
 
-#: ../lib/Var.py:82
+#: ../lib/Var.py:97
 msgid "descending"
 msgstr "Absteigend"
 
-#: ../lib/Var.py:84
+#: ../lib/Var.py:99
 msgid "Yes"
 msgstr "Ja"
 
-#: ../lib/Var.py:85
+#: ../lib/Var.py:100
 msgid "No"
 msgstr "Nein"
 
-#: ../lib/Data.py:99 ../lib/Data.py:496
+#: ../lib/Data.py:99 ../lib/Data.py:504
 msgid "[None]"
 msgstr "[Keine]"
 
-#: ../lib/Var.py:42
+#: ../lib/Var.py:57
 msgid "Years (purchased)"
 msgstr "Jahre (gekauft)"
 
-#: ../lib/Var.py:43
+#: ../lib/Var.py:58
 msgid "Months (purchased)"
 msgstr "Monate (gekauft)"
 
-#: ../lib/Var.py:44
+#: ../lib/Var.py:59
 msgid "Years (added)"
 msgstr "Jahre (hinzugefügt)"
 
-#: ../lib/Var.py:45
+#: ../lib/Var.py:60
 msgid "Months (added)"
 msgstr "Monate (hinzugefügt)"
 
-#: ../lib/Var.py:59
+#: ../lib/Var.py:74
 msgid "year (purchased)"
 msgstr "Jahr (gekauft)"
 
-#: ../lib/Var.py:60
+#: ../lib/Var.py:75
 msgid "month (purchased)"
 msgstr "Monat (gekauft)"
 
-#: ../lib/Var.py:61
+#: ../lib/Var.py:76
 msgid "day (purchased)"
 msgstr "Tag (gekauft)"
 
-#: ../lib/Var.py:62
+#: ../lib/Var.py:77
 msgid "year (added)"
 msgstr "Jahr (hinzugefügt)"
 
-#: ../lib/Var.py:63
+#: ../lib/Var.py:78
 msgid "month (added)"
 msgstr "Monat (hinzugefügt)"
 
-#: ../lib/Var.py:64
+#: ../lib/Var.py:79
 msgid "day (added)"
 msgstr "Tag (hinzugefügt)"
 
-#: ../lib/Var.py:74
+#: ../lib/Var.py:89
 msgid "date (purchased)"
 msgstr "Datum (gekauft)"
 
-#: ../lib/Var.py:75
+#: ../lib/Var.py:90
 msgid "date (added)"
 msgstr "Datum (hinzugefügt)"
