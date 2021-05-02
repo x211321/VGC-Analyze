@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2021-04-28 22:10+0200\n"
-"PO-Revision-Date: 2021-05-02 01:50+0200\n"
+"PO-Revision-Date: 2021-05-02 10:55+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -586,36 +586,3 @@ msgstr "Datum (gekauft)"
 #: ../lib/Var.py:75
 msgid "date (added)"
 msgstr "Datum (hinzugefügt)"
-
-#~ msgid "Years"
-#~ msgstr "Jahre"
-
-#~ msgid "Months"
-#~ msgstr "Monate"
-
-#~ msgid "Min. purchase date"
-#~ msgstr "Min. Kaufdatum"
-
-#~ msgid "Max. purchase date"
-#~ msgstr "Max. Kaufdatum"
-
-#~ msgid "Purchase date"
-#~ msgstr "Kaufdatum"
-
-#~ msgid "Date"
-#~ msgstr "Datum"
-
-#~ msgid "year"
-#~ msgstr "Jahr"
-
-#~ msgid "month"
-#~ msgstr "Monat"
-
-#~ msgid "day"
-#~ msgstr "Tag"
-
-#~ msgid "date"
-#~ msgstr "Datum"
-
-#~ msgid "Language"
-#~ msgstr "Sprache"

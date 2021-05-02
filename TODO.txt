@@ -21,8 +21,6 @@ Download history
 Bugs
 	klammern in filter strings -> regex kein ergebnis
 	treeview header sort im group modus
-	Sortier + Richtungs Combobox funktioniert nur noch im Gruppenmodus
-		Verwirrend
 Treeview contextmenu
 	Bookmark, finished, open on VGC, details, online info
 disclaimer project not affiliated with VGCollect

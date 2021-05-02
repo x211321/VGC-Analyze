@@ -239,11 +239,11 @@ class GUI(Tk):
 
             else:
                 # Normal display
-                for item in self.collectionData.getFilteredData():
+                for item in self.sortViewItems(displayFilter, self.collectionData.getFilteredData()):
                     self.insertViewItem(tvIndex, item, "")
                     tvIndex += 1
 
-                self.view_frame.treeviewSort("Title", False)
+                # self.view_frame.treeviewSort("Title", False)
 
 
     ######################
