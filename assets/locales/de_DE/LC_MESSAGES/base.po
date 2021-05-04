@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2021-04-28 22:10+0200\n"
-"PO-Revision-Date: 2021-05-02 10:55+0200\n"
+"PO-Revision-Date: 2021-05-04 18:59+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -16,11 +16,11 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 "X-Generator: Poedit 2.4.3\n"
 
-#: ../gui/GUI.py:226
+#: ../gui/GUI.py:243
 msgid "items"
 msgstr "Einträge"
 
-#: ../gui/GUI_Filter.py:59 ../gui/GUI_Settings.py:92 ../lib/Var.py:61
+#: ../gui/GUI_Filter.py:59 ../gui/GUI_Settings.py:94 ../lib/Var.py:61
 msgid "Platforms"
 msgstr "Plattformen"
 
@@ -28,7 +28,7 @@ msgstr "Plattformen"
 msgid "Regions"
 msgstr "Regionen"
 
-#: ../gui/GUI_Filter.py:61 ../gui/GUI_Settings.py:91 ../lib/Var.py:63
+#: ../gui/GUI_Filter.py:61 ../gui/GUI_Settings.py:93 ../lib/Var.py:63
 msgid "Platform holders"
 msgstr "Plattformhalter"
 
@@ -70,7 +70,7 @@ msgstr "Titel"
 
 #: ../gui/GUI_Filter.py:60 ../gui/GUI_Filter.py:62 ../gui/GUI_Filter.py:64
 #: ../gui/GUI_Filter.py:154 ../gui/GUI_Filter.py:179 ../gui/GUI_Filter.py:200
-#: ../gui/GUI_Filter.py:221 ../gui/GUI_Settings.py:140
+#: ../gui/GUI_Filter.py:221 ../gui/GUI_Settings.py:143
 msgid "Select"
 msgstr "Auswählen"
 
@@ -142,7 +142,7 @@ msgstr "Eintragsinformationen"
 msgid "Graphs"
 msgstr "Diagramme"
 
-#: ../gui/GUI_Menu.py:15 ../gui/GUI_Settings.py:39
+#: ../gui/GUI_Menu.py:15 ../gui/GUI_Settings.py:41
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -158,7 +158,7 @@ msgstr "Datei"
 msgid "Search"
 msgstr "Suchen"
 
-#: ../gui/GUI_Menu.py:42 ../gui/GUI_Popups.py:148 ../gui/GUI_Settings.py:90
+#: ../gui/GUI_Menu.py:42 ../gui/GUI_Popups.py:148 ../gui/GUI_Settings.py:92
 msgid "Download"
 msgstr "Herunterladen"
 
@@ -179,7 +179,7 @@ msgid "Password"
 msgstr "Passwort"
 
 #: ../gui/GUI_Popups.py:146 ../gui/GUI_Popups.py:271 ../gui/GUI_Popups.py:388
-#: ../gui/GUI_Settings.py:58
+#: ../gui/GUI_Settings.py:60
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -255,15 +255,15 @@ msgstr "Zurücksetzten"
 msgid "Select all"
 msgstr "Alle auswählen"
 
-#: ../gui/GUI_Popups.py:391 ../gui/GUI_Settings.py:60
+#: ../gui/GUI_Popups.py:391 ../gui/GUI_Settings.py:62
 msgid "OK"
 msgstr "OK"
 
-#: ../gui/GUI_TreeView.py:50
+#: ../gui/GUI_TreeView.py:51
 msgid "Group"
 msgstr "Gruppe"
 
-#: ../gui/GUI_Settings.py:216 ../gui/GUI_Settings.py:263 ../lib/Var.py:106
+#: ../gui/GUI_Settings.py:219 ../gui/GUI_Settings.py:266 ../lib/Var.py:106
 msgid "Platform"
 msgstr "Plattform"
 
@@ -315,7 +315,7 @@ msgstr "Zurücksetzten"
 msgid "Apply filter"
 msgstr "Anwenden"
 
-#: ../gui/GUI.py:229
+#: ../gui/GUI.py:246
 msgid "total price: "
 msgstr "Gesamtpreis: "
 
@@ -331,11 +331,11 @@ msgstr "Plattformhalter"
 msgid "regions"
 msgstr "Regionen"
 
-#: ../gui/GUI_Settings.py:88 ../gui/GUI_Settings.py:127
+#: ../gui/GUI_Settings.py:90 ../gui/GUI_Settings.py:130
 msgid "Locale"
 msgstr "Gebietsschema"
 
-#: ../gui/GUI_Settings.py:89
+#: ../gui/GUI_Settings.py:91
 msgid "Display"
 msgstr "Anzeige"
 
@@ -375,23 +375,23 @@ msgstr "Rückseite"
 msgid "cart cover"
 msgstr "Modul"
 
-#: ../gui/GUI_Settings.py:153 ../gui/GUI_Settings.py:202
+#: ../gui/GUI_Settings.py:156 ../gui/GUI_Settings.py:205
 msgid "Platform holder"
 msgstr "Plattformhalter"
 
-#: ../gui/GUI_Settings.py:156 ../gui/GUI_Settings.py:203
+#: ../gui/GUI_Settings.py:159 ../gui/GUI_Settings.py:206
 msgid "Platform keywords"
 msgstr "Plattform Schlüsselwörter"
 
-#: ../gui/GUI_Settings.py:158
+#: ../gui/GUI_Settings.py:161
 msgid "(comma separated)"
 msgstr "(kommagetrennt)"
 
-#: ../gui/GUI_Settings.py:124
+#: ../gui/GUI_Settings.py:126
 msgid "Language (requires restart)"
 msgstr "Sprache (erfordert Neustart)"
 
-#: ../gui/GUI_Settings.py:219 ../gui/GUI_Settings.py:264
+#: ../gui/GUI_Settings.py:222 ../gui/GUI_Settings.py:267
 msgid "Overwrite with"
 msgstr "Überschreiben mit"
 
@@ -419,11 +419,11 @@ msgstr "Min. Datum (hinzugefügt)"
 msgid "Max. date (added)"
 msgstr "Max. Datum (hinzugefügt)"
 
-#: ../gui/GUI_Settings.py:137
+#: ../gui/GUI_Settings.py:140
 msgid "Table columns"
 msgstr "Tabellenspalen"
 
-#: ../gui/GUI_Settings.py:271
+#: ../gui/GUI_Settings.py:274
 msgid "table columns"
 msgstr "Tabellenspalten"
 
@@ -586,3 +586,19 @@ msgstr "Datum (gekauft)"
 #: ../lib/Var.py:90
 msgid "date (added)"
 msgstr "Datum (hinzugefügt)"
+
+#: ../gui/GUI.py:86
+msgid "Toggle bookmark"
+msgstr "Lesezeichen umschalten"
+
+#: ../gui/GUI.py:87
+msgid "Toggle completed"
+msgstr "Abgeschlossen umschalten"
+
+#: ../gui/GUI.py:89
+msgid "Open on VGCollect.com"
+msgstr "Auf VGCollect.com öffnen"
+
+#: ../gui/GUI.py:88
+msgid "Update cover art"
+msgstr "Cover art aktualisieren"

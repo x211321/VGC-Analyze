@@ -85,7 +85,7 @@ class GUI(Tk):
         self.treeMenu = Menu(self, tearoff=0)
         self.treeMenu.add_command(label=_("Toggle bookmark"), command=self.toggleBookmark)
         self.treeMenu.add_command(label=_("Toggle completed"), command=self.toggleFinished)
-        self.treeMenu.add_command(label=_("Update covers"), command=self.item_frame.updateCover)
+        self.treeMenu.add_command(label=_("Update cover art"), command=self.item_frame.updateCover)
         self.treeMenu.add_command(label=_("Open on VGCollect.com"), command=self.item_frame.openOnVGCollect)
 
         # Init

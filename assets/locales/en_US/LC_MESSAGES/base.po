@@ -5,11 +5,11 @@
 msgid ""
 msgstr ""
 
-#: ../gui/GUI.py:226
+#: ../gui/GUI.py:243
 msgid "items"
 msgstr ""
 
-#: ../gui/GUI_Filter.py:59 ../gui/GUI_Settings.py:92 ../lib/Var.py:61
+#: ../gui/GUI_Filter.py:59 ../gui/GUI_Settings.py:94 ../lib/Var.py:61
 msgid "Platforms"
 msgstr ""
 
@@ -17,7 +17,7 @@ msgstr ""
 msgid "Regions"
 msgstr ""
 
-#: ../gui/GUI_Filter.py:61 ../gui/GUI_Settings.py:91 ../lib/Var.py:63
+#: ../gui/GUI_Filter.py:61 ../gui/GUI_Settings.py:93 ../lib/Var.py:63
 msgid "Platform holders"
 msgstr ""
 
@@ -59,7 +59,7 @@ msgstr ""
 
 #: ../gui/GUI_Filter.py:60 ../gui/GUI_Filter.py:62 ../gui/GUI_Filter.py:64
 #: ../gui/GUI_Filter.py:154 ../gui/GUI_Filter.py:179 ../gui/GUI_Filter.py:200
-#: ../gui/GUI_Filter.py:221 ../gui/GUI_Settings.py:140
+#: ../gui/GUI_Filter.py:221 ../gui/GUI_Settings.py:143
 msgid "Select"
 msgstr ""
 
@@ -131,7 +131,7 @@ msgstr ""
 msgid "Graphs"
 msgstr ""
 
-#: ../gui/GUI_Menu.py:15 ../gui/GUI_Settings.py:39
+#: ../gui/GUI_Menu.py:15 ../gui/GUI_Settings.py:41
 msgid "Settings"
 msgstr ""
 
@@ -147,7 +147,7 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: ../gui/GUI_Menu.py:42 ../gui/GUI_Popups.py:148 ../gui/GUI_Settings.py:90
+#: ../gui/GUI_Menu.py:42 ../gui/GUI_Popups.py:148 ../gui/GUI_Settings.py:92
 msgid "Download"
 msgstr ""
 
@@ -168,7 +168,7 @@ msgid "Password"
 msgstr ""
 
 #: ../gui/GUI_Popups.py:146 ../gui/GUI_Popups.py:271 ../gui/GUI_Popups.py:388
-#: ../gui/GUI_Settings.py:58
+#: ../gui/GUI_Settings.py:60
 msgid "Cancel"
 msgstr ""
 
@@ -228,15 +228,15 @@ msgstr ""
 msgid "Select all"
 msgstr ""
 
-#: ../gui/GUI_Popups.py:391 ../gui/GUI_Settings.py:60
+#: ../gui/GUI_Popups.py:391 ../gui/GUI_Settings.py:62
 msgid "OK"
 msgstr ""
 
-#: ../gui/GUI_TreeView.py:50
+#: ../gui/GUI_TreeView.py:51
 msgid "Group"
 msgstr ""
 
-#: ../gui/GUI_Settings.py:216 ../gui/GUI_Settings.py:263 ../lib/Var.py:106
+#: ../gui/GUI_Settings.py:219 ../gui/GUI_Settings.py:266 ../lib/Var.py:106
 msgid "Platform"
 msgstr ""
 
@@ -288,7 +288,7 @@ msgstr ""
 msgid "Apply filter"
 msgstr ""
 
-#: ../gui/GUI.py:229
+#: ../gui/GUI.py:246
 msgid "total price: "
 msgstr ""
 
@@ -304,11 +304,11 @@ msgstr ""
 msgid "regions"
 msgstr ""
 
-#: ../gui/GUI_Settings.py:88 ../gui/GUI_Settings.py:127
+#: ../gui/GUI_Settings.py:90 ../gui/GUI_Settings.py:130
 msgid "Locale"
 msgstr ""
 
-#: ../gui/GUI_Settings.py:89
+#: ../gui/GUI_Settings.py:91
 msgid "Display"
 msgstr ""
 
@@ -348,23 +348,23 @@ msgstr ""
 msgid "cart cover"
 msgstr ""
 
-#: ../gui/GUI_Settings.py:153 ../gui/GUI_Settings.py:202
+#: ../gui/GUI_Settings.py:156 ../gui/GUI_Settings.py:205
 msgid "Platform holder"
 msgstr ""
 
-#: ../gui/GUI_Settings.py:156 ../gui/GUI_Settings.py:203
+#: ../gui/GUI_Settings.py:159 ../gui/GUI_Settings.py:206
 msgid "Platform keywords"
 msgstr ""
 
-#: ../gui/GUI_Settings.py:158
+#: ../gui/GUI_Settings.py:161
 msgid "(comma separated)"
 msgstr ""
 
-#: ../gui/GUI_Settings.py:124
+#: ../gui/GUI_Settings.py:126
 msgid "Language (requires restart)"
 msgstr ""
 
-#: ../gui/GUI_Settings.py:219 ../gui/GUI_Settings.py:264
+#: ../gui/GUI_Settings.py:222 ../gui/GUI_Settings.py:267
 msgid "Overwrite with"
 msgstr ""
 
@@ -392,11 +392,11 @@ msgstr ""
 msgid "Max. date (added)"
 msgstr ""
 
-#: ../gui/GUI_Settings.py:137
+#: ../gui/GUI_Settings.py:140
 msgid "Table columns"
 msgstr ""
 
-#: ../gui/GUI_Settings.py:271
+#: ../gui/GUI_Settings.py:274
 msgid "table columns"
 msgstr ""
 
@@ -559,6 +559,25 @@ msgstr ""
 #: ../lib/Var.py:90
 msgid "date (added)"
 msgstr ""
+
+#: ../gui/GUI.py:86
+msgid "Toggle bookmark"
+msgstr ""
+
+#: ../gui/GUI.py:87
+msgid "Toggle completed"
+msgstr ""
+
+#: ../gui/GUI.py:89
+msgid "Open on VGCollect.com"
+msgstr ""
+
+#: ../gui/GUI.py:88
+msgid "Update cover art"
+msgstr ""
+
+#~ msgid "Update covers"
+#~ msgstr ""
 
 #~ msgid "Years"
 #~ msgstr ""
