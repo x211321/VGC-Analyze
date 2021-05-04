@@ -81,6 +81,13 @@ class GUI(Tk):
         self.grid_rowconfigure(1, weight=0)
         self.grid_columnconfigure(1, weight=1)
 
+        # TreeView context menu
+        self.treeMenu = Menu(self, tearoff=0)
+        self.treeMenu.add_command(label=_("Toggle bookmark"), command=self.toggleBookmark)
+        self.treeMenu.add_command(label=_("Toggle completed"), command=self.toggleFinished)
+        self.treeMenu.add_command(label=_("Update covers"), command=self.item_frame.updateCover)
+        self.treeMenu.add_command(label=_("Open on VGCollect.com"), command=self.item_frame.openOnVGCollect)
+
         # Init
         self.init()
 
@@ -333,6 +340,29 @@ class GUI(Tk):
                 return sorted(items, key=lambda item: item.notes, reverse=filterData.orderItemsReverse)
         else:
             return items
+
+
+    ######################
+    # showViewContextMenu
+    # --------------------
+    def showViewContextMenu(self, event = None):
+        try:
+            # Get row under cursor
+            row = self.view_frame.item_view.identify_row(event.y)
+
+            if len(row):
+                # Get row data
+                rowData = self.view_frame.item_view.set(row)
+
+                # Select row
+                self.view_frame.item_view.focus(row)
+                self.view_frame.item_view.selection_set(row)
+
+                # Show menu
+                self.treeMenu.selection = rowData
+                self.treeMenu.post(event.x_root, event.y_root)
+        finally:
+            self.treeMenu.grab_release()
 
 
     ######################

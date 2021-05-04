@@ -19,9 +19,10 @@ class GUI_TreeView(Frame):
     def __init__(self, master, width=0, height=0, pady=0, padx=0):
         super().__init__(master=master, width=width, height=height, pady=pady, padx=padx)
 
-        self.selectViewItem    = master.selectViewItem
-        self.setCurrentVGCFile = master.setCurrentVGCFile
-        self.collectionData    = master.collectionData
+        self.selectViewItem      = master.selectViewItem
+        self.setCurrentVGCFile   = master.setCurrentVGCFile
+        self.collectionData      = master.collectionData
+        self.showViewContextMenu = master.showViewContextMenu
 
         self.init()
 
@@ -58,6 +59,7 @@ class GUI_TreeView(Frame):
 
         # View events
         self.item_view.bind('<<TreeviewSelect>>', self.selectViewItem)
+        self.item_view.bind("<Button-3>", self.showViewContextMenu)
 
         # View scrollbar
         self.item_view.config(yscrollcommand=self.view_scroll_vertical.set)

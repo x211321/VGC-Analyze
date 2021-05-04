@@ -129,6 +129,9 @@ class GUI_ItemInfo(Frame):
         self.item_itemdata.grid(row=1, column=4, sticky="ne", padx=(3,10), pady=5)
 
 
+    ######################
+    # update
+    # --------------------
     def update(self):
         self.item_title.set(self.activeItem().name)
         self.item_date.set(locDate(self.activeItem().date, showDay=True))
@@ -164,7 +167,7 @@ class GUI_ItemInfo(Frame):
         self.coverButton_coverViewer.place(height=25, width=25, x=29, y=2)
 
         self.coverButton_coverUpdate = Button(label, bg=VAR.INPUT_COLOR, image=self.item_refresh_ico,
-                                              relief="groove", command=lambda:self.updateCover(type, self.activeItem()))
+                                              relief="groove", command=lambda:self.updateCover(type))
         self.coverButton_coverUpdate.place(height=25, width=25, x=2, y=2)
 
 
@@ -196,9 +199,9 @@ class GUI_ItemInfo(Frame):
     ######################
     # updateCover
     # --------------------
-    def updateCover(self, coverType, item = None):
-        if not item == None:
-            downloadCovers(item, True, coverType)
+    def updateCover(self, coverType = ""):
+        if self.activeItem().VGC_id > 0:
+            downloadCovers(self.activeItem(), True, coverType)
             self.update()
 
 

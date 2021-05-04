@@ -18,12 +18,12 @@ View double click -> detailed item view
 	Covers
 Graph canvas scroll bar
 Download history
-Treeview contextmenu
-	Bookmark, finished, open on VGC, details, online info
 disclaimer project not affiliated with VGCollect
 filter presets
 
 ===DONE===
+Treeview contextmenu
+	Bookmark, finished, open on VGC
 EXE bundle img
 html print
 settings scrollbars
