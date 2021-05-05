@@ -12,16 +12,16 @@ EXE virus https://stackoverflow.com/questions/43777106/program-made-with-pyinsta
 Multiselect
 	Bookmark all (selected) / contextmenu
 	Remove all bookmarks (selected) / contextmenu
-View double click -> detailed item view
-	CSV data
-	Local data
-	Covers
 Graph canvas scroll bar
 Download history
 disclaimer project not affiliated with VGCollect
 filter presets
 
 ===DONE===
+View double click -> detailed item view
+	CSV data
+	Local data
+	Covers
 Treeview contextmenu
 	Bookmark, finished, open on VGC
 EXE bundle img
