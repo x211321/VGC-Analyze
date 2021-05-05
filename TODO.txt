@@ -1,21 +1,23 @@
 Duplikate finden
 Fehlende Cover auf Webseite finden
-Fehlende Barcodes auf Webseite finden
 Filter hilfe (regex, datumsformat, etc.)
 Eigene Messageboxen (positionierbar / Topmost)
 Einstellungsdialog
 	Anzahl heruntergeladener Dateien die aufbewahrt werden sollen
 Datepicker
 About Dialog
+	disclaimer project not affiliated with VGCollect
 Listview Pos1 / Ende / Bild auf / Bild ab
+Download history
+filter presets
+
+===Low priority===
 EXE virus https://stackoverflow.com/questions/43777106/program-made-with-pyinstaller-now-seen-as-a-trojan-horse-by-avg
 Multiselect
 	Bookmark all (selected) / contextmenu
 	Remove all bookmarks (selected) / contextmenu
 Graph canvas scroll bar
-Download history
-disclaimer project not affiliated with VGCollect
-filter presets
+Fehlende Barcodes auf Webseite finden
 
 ===DONE===
 View double click -> detailed item view
