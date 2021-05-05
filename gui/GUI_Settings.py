@@ -137,11 +137,11 @@ class GUI_Settings(Toplevel):
         self.columnSelectPop = Pop_FilterSelect(self, self.columnSelectCallback)
 
         self.w["display"] = {}
-        self.w["display"]["columns_txt"]    = Label_(self.pages["display"], text=_("Table columns"), bg=VAR.GUI_COLOR_PRIMARY)
-        self.w["display"]["columns"]        = Text_(self.pages["display"], width=50, height=4, wrap=WORD, state="disabled", id="columns")
-        self.w["display"]["columns_spacer"] = Label_(self.pages["display"], bg=VAR.GUI_COLOR_PRIMARY)
-        self.w["display"]["columns_select"] = Button_(self.pages["display"], text=_("Select"), width=20, relief="groove", bg=VAR.GUI_COLOR_PRIMARY, command=self.columnSelect)
-
+        self.w["display"]["columns_txt"]       = Label_(self.pages["display"], text=_("Table columns"), bg=VAR.GUI_COLOR_PRIMARY)
+        self.w["display"]["columns"]           = Text_(self.pages["display"], width=50, height=4, wrap=WORD, state="disabled", id="columns")
+        self.w["display"]["columns_spacer"]    = Label_(self.pages["display"], bg=VAR.GUI_COLOR_PRIMARY)
+        self.w["display"]["columns_select"]    = Button_(self.pages["display"], text=_("Select"), width=20, relief="groove", bg=VAR.GUI_COLOR_PRIMARY, command=self.columnSelect)
+        self.w["display"]["details_on_dclick"] = Checkbutton_(self.pages["display"], label=_("Item details on double-click"), id="detailsOnDoubleClick")
         self.grid(self.w["display"])
 
 
@@ -451,7 +451,7 @@ class GUI_Settings(Toplevel):
     def getValue(self, sectionKey, widget):
         value = widget.get()
 
-        if len(value):
+        if (type(value) == str) and len(value):
             if sectionKey == "locale" and widget.id == "language":
                 return getLocaleCode(value)
             if sectionKey == "locale" and widget.id == "locale":

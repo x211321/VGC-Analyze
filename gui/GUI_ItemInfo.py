@@ -110,18 +110,17 @@ class GUI_ItemInfo(Frame):
 
         self.item_tool_frame.columnconfigure(0, weight=1)
 
-        self.item_spacer.grid(row=0, column=0)
-        self.item_id.grid(row=0, column=1, columnspan=4, sticky="e", padx=(3,10))
-
         self.item_open_website.config(command=self.openOnVGCollect)
-        self.item_open_website.grid(row=1, column=1, sticky="ne", padx=3, pady=5)
+        self.item_open_website.grid(row=0, column=1, sticky="ne", padx=3, pady=5)
 
         self.item_bookmark.config(command=self.toggleBookmark)
-        self.item_bookmark.grid(row=1, column=2, sticky="ne", padx=(3), pady=5)
+        self.item_bookmark.grid(row=0, column=2, sticky="ne", padx=(3), pady=5)
 
         self.item_finished.config(command=self.toggleFinished)
-        self.item_finished.grid(row=1, column=3, sticky="ne", padx=(3), pady=5)
+        self.item_finished.grid(row=0, column=3, sticky="ne", padx=(3), pady=5)
 
+        self.item_spacer.grid(row=1, column=0)
+        self.item_id.grid(row=1, column=1, columnspan=4, sticky="e", padx=(3,10))
 
     ######################
     # update

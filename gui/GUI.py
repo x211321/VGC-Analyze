@@ -1,3 +1,4 @@
+import lib.Settings as settings
 from lib.Locale import _
 from lib.Locale import locCurrency
 from lib.Locale import locDate
@@ -66,7 +67,7 @@ class GUI(Tk):
 
         # Frames
         # ------------------
-        self.filter_frame = GUI_Filter(self, width=200 , height=550, pady=10, padx=10)
+        self.filter_frame = GUI_Filter(self, width=200 , height=550, pady=0, padx=10)
         self.view_frame   = GUI_TreeView(self, width=600 , height=550, pady=0 , padx=0)
         self.item_frame   = GUI_ItemInfo(self, width=200 , height=550, pady=0 , padx=0)
         self.graph_frame  = GUI_Graph(self, width=1000, height=200, pady=0 , padx=0)
@@ -436,7 +437,8 @@ class GUI(Tk):
     # showItemDetails
     # --------------------
     def showItemDetails(self, a = None):
-        self.pop_itemDetails.show(self.activeItem())
+        if a == None or settings.get("display", "detailsOnDoubleClick", True):
+            self.pop_itemDetails.show(self.activeItem())
 
 
     ######################

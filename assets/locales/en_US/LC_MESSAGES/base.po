@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 
-#: ../gui/GUI.py:247
+#: ../gui/GUI.py:248
 msgid "items"
 msgstr ""
 
@@ -289,7 +289,7 @@ msgstr ""
 msgid "Apply filter"
 msgstr ""
 
-#: ../gui/GUI.py:250
+#: ../gui/GUI.py:251
 msgid "total price: "
 msgstr ""
 
@@ -562,23 +562,23 @@ msgstr ""
 msgid "date (added)"
 msgstr ""
 
-#: ../gui/GUI.py:89
+#: ../gui/GUI.py:90
 msgid "Toggle bookmark"
 msgstr ""
 
-#: ../gui/GUI.py:90
+#: ../gui/GUI.py:91
 msgid "Toggle completed"
 msgstr ""
 
-#: ../gui/GUI.py:92
+#: ../gui/GUI.py:93
 msgid "Open on VGCollect.com"
 msgstr ""
 
-#: ../gui/GUI.py:91
+#: ../gui/GUI.py:92
 msgid "Update cover art"
 msgstr ""
 
-#: ../gui/GUI.py:88
+#: ../gui/GUI.py:89
 msgid "Item details"
 msgstr ""
 
@@ -636,6 +636,10 @@ msgstr ""
 
 #: ../gui/GUI_Popups.py:622
 msgid "Refresh VGC data"
+msgstr ""
+
+#: ../gui/GUI_Settings.py:144
+msgid "Item details on double-click"
 msgstr ""
 
 #~ msgid "Get VGC Data"

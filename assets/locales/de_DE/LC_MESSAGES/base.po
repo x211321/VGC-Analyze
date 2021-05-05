@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2021-04-28 22:10+0200\n"
-"PO-Revision-Date: 2021-05-05 19:13+0200\n"
+"PO-Revision-Date: 2021-05-05 20:57+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 "X-Generator: Poedit 2.4.3\n"
 
-#: ../gui/GUI.py:247
+#: ../gui/GUI.py:248
 msgid "items"
 msgstr "Einträge"
 
@@ -316,7 +316,7 @@ msgstr "Zurücksetzten"
 msgid "Apply filter"
 msgstr "Anwenden"
 
-#: ../gui/GUI.py:250
+#: ../gui/GUI.py:251
 msgid "total price: "
 msgstr "Gesamtpreis: "
 
@@ -589,23 +589,23 @@ msgstr "Datum (gekauft)"
 msgid "date (added)"
 msgstr "Datum (hinzugefügt)"
 
-#: ../gui/GUI.py:89
+#: ../gui/GUI.py:90
 msgid "Toggle bookmark"
 msgstr "Lesezeichen umschalten"
 
-#: ../gui/GUI.py:90
+#: ../gui/GUI.py:91
 msgid "Toggle completed"
 msgstr "Abgeschlossen umschalten"
 
-#: ../gui/GUI.py:92
+#: ../gui/GUI.py:93
 msgid "Open on VGCollect.com"
 msgstr "Auf VGCollect.com öffnen"
 
-#: ../gui/GUI.py:91
+#: ../gui/GUI.py:92
 msgid "Update cover art"
 msgstr "Cover art aktualisieren"
 
-#: ../gui/GUI.py:88
+#: ../gui/GUI.py:89
 msgid "Item details"
 msgstr "Details"
 
@@ -664,6 +664,10 @@ msgstr "VGC Daten abrufen"
 #: ../gui/GUI_Popups.py:622
 msgid "Refresh VGC data"
 msgstr "VGC Daten aktualisieren"
+
+#: ../gui/GUI_Settings.py:144
+msgid "Item details on double-click"
+msgstr "Bei Doppelklick Details anzeigen"
 
 #~ msgid "Get VGC Data"
 #~ msgstr "VGC Daten abrufen"

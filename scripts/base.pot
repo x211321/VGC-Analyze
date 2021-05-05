@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2021-05-05 19:12+0200\n"
+"POT-Creation-Date: 2021-05-05 20:56+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,31 +15,31 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 
 
-#: ../gui/GUI.py:88
+#: ../gui/GUI.py:89
 msgid "Item details"
 msgstr ""
 
-#: ../gui/GUI.py:89
+#: ../gui/GUI.py:90
 msgid "Toggle bookmark"
 msgstr ""
 
-#: ../gui/GUI.py:90
+#: ../gui/GUI.py:91
 msgid "Toggle completed"
 msgstr ""
 
-#: ../gui/GUI.py:91
+#: ../gui/GUI.py:92
 msgid "Update cover art"
 msgstr ""
 
-#: ../gui/GUI.py:92
+#: ../gui/GUI.py:93
 msgid "Open on VGCollect.com"
 msgstr ""
 
-#: ../gui/GUI.py:247
+#: ../gui/GUI.py:248
 msgid "items"
 msgstr ""
 
-#: ../gui/GUI.py:250
+#: ../gui/GUI.py:251
 msgid "total price: "
 msgstr ""
 
@@ -478,6 +478,10 @@ msgstr ""
 
 #: ../gui/GUI_Settings.py:140
 msgid "Table columns"
+msgstr ""
+
+#: ../gui/GUI_Settings.py:144
+msgid "Item details on double-click"
 msgstr ""
 
 #: ../gui/GUI_Settings.py:159 ../gui/GUI_Settings.py:206

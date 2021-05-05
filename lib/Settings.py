@@ -36,7 +36,10 @@ def get(section, key, default):
         if key in settings_data[section].keys():
             return settings_data[section][key]
         else:
-            print("Unknown settings key")
+            if key in defaultSettings()[section].keys():
+                return defaultSettings()[section][key]
+            else:
+                print("Unknown settings key")
     else:
         print("Unknown settings section")
 
@@ -55,6 +58,9 @@ def defaultSettings():
     return {
                 "locale": {
                     "language": "en_US"
+                },
+                "display": {
+                    "detailsOnDoubleClick": 1
                 }
             }
 
