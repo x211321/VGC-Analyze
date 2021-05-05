@@ -26,7 +26,7 @@ class Label_(Label):
                  bg=None, fg=None,
                  relief=None):
 
-        super().__init__(master=master, width=width, height=height, anchor=anchor, justify=justify, wraplength=wraplength, bg=bg, fg=fg, relief=relief)
+        super().__init__(master=master, width=width, height=height, anchor=anchor, justify=justify, wraplength=wraplength, bg=bg, fg=fg, relief=relief, font=font)
 
         self.id       = id
         self.col      = col

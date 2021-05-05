@@ -10,6 +10,7 @@ LOCAL_DATA              = DATA_PATH + "local/"
 DOWNLOAD_PATH           = DATA_PATH
 DOWNLOAD_FILE           = DOWNLOAD_PATH + FILE_PREFIX + "VGC-Analyze-Download.csv"
 LOCAL_DATA_FILE         = LOCAL_DATA + "VGC-Local-Data.json"
+ONLINE_DATA_FILE        = LOCAL_DATA + "VGC-Online-Data.json"
 
 if not os.path.exists(DATA_PATH):
     os.makedirs(DATA_PATH)

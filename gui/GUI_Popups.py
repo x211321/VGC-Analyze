@@ -25,6 +25,7 @@ from lib.Download import downloadCollection
 def initPopups(gui):
     gui.pop_collectionDownload = Pop_CollectionDownload(gui, gui.collectionDownload_callback)
     gui.pop_itemSearch         = Pop_ItemSearch(gui, gui.view_frame.item_view)
+    gui.pop_itemDetails        = Pop_ItemDetails(gui)
 
 
 ######################
@@ -465,3 +466,183 @@ class Pop_FilterSelect(object):
             self.callback(selectedOptions)
 
         self.close()
+
+
+######################
+# Pop_ItemDetails
+# --------------------
+class Pop_ItemDetails(object):
+
+    window = None
+
+    def __init__(self, parent):
+
+        self.parent = parent
+        self.getOnlineItemData = parent.getOnlineItemData
+
+    def show(self, item):
+        self.item = item
+
+        # Close previous window
+        self.close()
+
+        # Create new window
+        self.window = Toplevel(bg=VAR.GUI_COLOR_PRIMARY)
+        self.window.withdraw()
+        self.window.wm_title(_("Detailed item info for ") + self.item.name)
+        self.window.resizable(False, False)
+        self.window.iconphoto(False, loadIcon("information-outline", 15, 15))
+        self.window.bind('<Escape>', lambda x:self.close())
+        self.window.focus_force()
+
+        self.container       = Frame(self.window, bg=VAR.GUI_COLOR_PRIMARY)
+        self.titleFrame      = Frame(self.container, bg=VAR.GUI_COLOR_PRIMARY)
+        self.infoframe_      = Frame(self.container, bg=VAR.GUI_COLOR_PRIMARY, highlightthickness=1, highlightbackground="black")
+        self.infoFrame       = Frame(self.infoframe_, bg=VAR.GUI_COLOR_PRIMARY)
+        self.onlineInfoFrame_= Frame(self.container, bg=VAR.GUI_COLOR_PRIMARY, highlightthickness=1, highlightbackground="black")
+        self.onlineInfoFrame = Frame(self.onlineInfoFrame_, bg=VAR.GUI_COLOR_PRIMARY)
+        self.coverFrame      = Frame(self.container, bg=VAR.GUI_COLOR_PRIMARY)
+        self.buttonFrame     = Frame(self.container, bg=VAR.GUI_COLOR_SECONDARY)
+
+        self.container.grid(row=0, column=0, sticky="nwse")
+        self.titleFrame.grid(row=0, column=0, sticky="nw", padx=20, pady=5, columnspan=2)
+        self.infoframe_.grid(row=1, column=0, sticky="nw", padx=(20,5), pady=5)
+        self.infoFrame.grid(row=0, column=0, sticky="nwse", padx=10, pady=10)
+        self.onlineInfoFrame_.grid(row=2, column=0, sticky="nw", padx=(20,5), pady=(5,15))
+        self.onlineInfoFrame.grid(row=0, column=0, sticky="nwse", padx=10, pady=10)
+        self.coverFrame.grid(row=1, column=1, sticky="nw", padx=(5,20), pady=(5,20), rowspan=2)
+        self.buttonFrame.grid(row=3, column=0, sticky="nwse", columnspan=2)
+
+        # Title
+        self.info_name = Label_(self.titleFrame, bg=VAR.GUI_COLOR_PRIMARY, text=self.item.name, font=(15))
+        self.info_name.grid(row=0, column=0, sticky="nw", columnspan=2)
+
+        # Info
+        self.info_platform_txt       = Label_(self.infoFrame, bg=VAR.GUI_COLOR_PRIMARY, text=_("Platform"))
+        self.info_platform           = Label_(self.infoFrame, bg=VAR.GUI_COLOR_PRIMARY, text=self.item.platform)
+        self.info_region_txt         = Label_(self.infoFrame, bg=VAR.GUI_COLOR_PRIMARY, text=_("Region"))
+        self.info_region             = Label_(self.infoFrame, bg=VAR.GUI_COLOR_PRIMARY, text=self.item.region)
+        self.info_platformHolder_txt = Label_(self.infoFrame, bg=VAR.GUI_COLOR_PRIMARY, text=_("Platform holder"))
+        self.info_platformHolder     = Label_(self.infoFrame, bg=VAR.GUI_COLOR_PRIMARY, text=self.item.platformHolder)
+        self.info_price_txt          = Label_(self.infoFrame, bg=VAR.GUI_COLOR_PRIMARY, text=_("Purchase price"))
+        self.info_price              = Label_(self.infoFrame, bg=VAR.GUI_COLOR_PRIMARY, text=self.item.price)
+        self.info_date_txt           = Label_(self.infoFrame, bg=VAR.GUI_COLOR_PRIMARY, text=_("Purchased"))
+        self.info_date               = Label_(self.infoFrame, bg=VAR.GUI_COLOR_PRIMARY, text=self.item.date)
+        self.info_dateAdded_txt      = Label_(self.infoFrame, bg=VAR.GUI_COLOR_PRIMARY, text=_("Added"))
+        self.info_dateAdded          = Label_(self.infoFrame, bg=VAR.GUI_COLOR_PRIMARY, text=self.item.dateTimeAdded)
+
+        self.info_platform_txt.grid(row=1, column=0, sticky="nw")
+        self.info_platform.grid(row=1, column=1, sticky="nw")
+        self.info_region_txt.grid(row=2, column=0, sticky="nw")
+        self.info_region.grid(row=2, column=1, sticky="nw")
+        self.info_platformHolder_txt.grid(row=3, column=0, sticky="nw")
+        self.info_platformHolder.grid(row=3, column=1, sticky="nw")
+        self.info_price_txt.grid(row=4, column=0, sticky="nw")
+        self.info_price.grid(row=4, column=1, sticky="nw")
+        self.info_date_txt.grid(row=5, column=0, sticky="nw")
+        self.info_date.grid(row=5, column=1, sticky="nw")
+        self.info_dateAdded_txt.grid(row=6, column=0, sticky="nw")
+        self.info_dateAdded.grid(row=6, column=1, sticky="nw")
+
+        # Online info
+        self.button_getOnlineInfo        = Button_(self.onlineInfoFrame, text=_("Get VGC Data"), bg=VAR.GUI_COLOR_PRIMARY, width=25, relief="groove", command=self.getOnline)
+        self.onlineInfo_altname_text     = Label_(self.onlineInfoFrame, text=_("Alt-Name"), bg=VAR.GUI_COLOR_PRIMARY)
+        self.onlineInfo_altname          = Label_(self.onlineInfoFrame, bg=VAR.GUI_COLOR_PRIMARY)
+        self.onlineInfo_releasetype_text = Label_(self.onlineInfoFrame, text=_("Release Type"), bg=VAR.GUI_COLOR_PRIMARY)
+        self.onlineInfo_releasetype      = Label_(self.onlineInfoFrame, bg=VAR.GUI_COLOR_PRIMARY)
+        self.onlineInfo_developer_text   = Label_(self.onlineInfoFrame, text=_("Developer(s)"), bg=VAR.GUI_COLOR_PRIMARY)
+        self.onlineInfo_developer        = Label_(self.onlineInfoFrame, bg=VAR.GUI_COLOR_PRIMARY)
+        self.onlineInfo_publisher_text   = Label_(self.onlineInfoFrame, text=_("Publisher(s)"), bg=VAR.GUI_COLOR_PRIMARY)
+        self.onlineInfo_publisher        = Label_(self.onlineInfoFrame, bg=VAR.GUI_COLOR_PRIMARY)
+        self.onlineInfo_genre_text       = Label_(self.onlineInfoFrame, text=_("Genre"), bg=VAR.GUI_COLOR_PRIMARY)
+        self.onlineInfo_genre            = Label_(self.onlineInfoFrame, bg=VAR.GUI_COLOR_PRIMARY)
+        self.onlineInfo_rating_text      = Label_(self.onlineInfoFrame, text=_("Rating"), bg=VAR.GUI_COLOR_PRIMARY)
+        self.onlineInfo_rating           = Label_(self.onlineInfoFrame, bg=VAR.GUI_COLOR_PRIMARY)
+        self.onlineInfo_itemnumber_text  = Label_(self.onlineInfoFrame, text=_("Item Number"), bg=VAR.GUI_COLOR_PRIMARY)
+        self.onlineInfo_itemnumber       = Label_(self.onlineInfoFrame, bg=VAR.GUI_COLOR_PRIMARY)
+        self.onlineInfo_barcode_text     = Label_(self.onlineInfoFrame, text=_("Barcode"), bg=VAR.GUI_COLOR_PRIMARY)
+        self.onlineInfo_barcode          = Label_(self.onlineInfoFrame, bg=VAR.GUI_COLOR_PRIMARY)
+        self.onlineInfo_releasedate_text = Label_(self.onlineInfoFrame, text=_("Release Date"), bg=VAR.GUI_COLOR_PRIMARY)
+        self.onlineInfo_releasedate      = Label_(self.onlineInfoFrame, bg=VAR.GUI_COLOR_PRIMARY)
+
+        self.showOnline()
+
+        # Covers
+        self.cover_front = Label_(self.coverFrame, imgdef=VAR.IMG_COVER_NONE, imgwidth=VAR.COVER_WIDTH*2)
+        self.cover_back  = Label_(self.coverFrame, imgdef=VAR.IMG_COVER_NONE, imgwidth=VAR.COVER_WIDTH*2)
+        self.cover_cart  = Label_(self.coverFrame, imgdef=VAR.IMG_COVER_NONE, imgwidth=VAR.COVER_WIDTH*2)
+
+        if os.path.exists(VAR.IMG_CACHE_FRONT + str(self.item.VGC_id) + ".jpg"):
+            self.cover_front.setImage(VAR.IMG_CACHE_FRONT + str(self.item.VGC_id) + ".jpg")
+            self.cover_front.grid(row=0, column=0, padx=5, sticky="nw")
+        if os.path.exists(VAR.IMG_CACHE_BACK + str(self.item.VGC_id) + ".jpg"):
+            self.cover_back.setImage(VAR.IMG_CACHE_BACK + str(self.item.VGC_id) + ".jpg")
+            self.cover_back.grid(row=0, column=1, padx=5, sticky="nw")
+        if os.path.exists(VAR.IMG_CACHE_CART + str(self.item.VGC_id) + ".jpg"):
+            self.cover_cart.setImage(VAR.IMG_CACHE_CART + str(self.item.VGC_id) + ".jpg")
+            self.cover_cart.grid(row=0, column=2, padx=5, sticky="nw")
+
+        # Buttons
+        self.buttonFrame.columnconfigure(0, weight=1)
+        self.button_close = Button_(self.buttonFrame, text="Close", width=25, command=self.close, bg=VAR.GUI_COLOR_PRIMARY, relief="groove")
+        self.button_close.grid(row=0, column=0, padx=10, pady=20)
+
+        # Center window
+        self.center()
+
+        # Show window
+        self.window.deiconify()
+
+        # Run main loop of new window
+        self.window.mainloop()
+
+    def center(self):
+        centerPopup(self.window, self.parent)
+
+    def close(self):
+        if not self.window == None:
+            self.window.destroy()
+
+    def getOnline(self):
+        self.item.onlineData = self.getOnlineItemData()
+
+        self.showOnline()
+
+    def showOnline(self):
+        if len(self.item.onlineData):
+            self.onlineInfo_altname.set(self.item.getOnlineData("Alt-Name"))
+            self.onlineInfo_releasetype.set(self.item.getOnlineData("Release Type"))
+            self.onlineInfo_developer.set(self.item.getOnlineData("Developer(s)"))
+            self.onlineInfo_publisher.set(self.item.getOnlineData("Publisher(s)"))
+            self.onlineInfo_genre.set(self.item.getOnlineData("Genre"))
+            self.onlineInfo_rating.set(self.item.getOnlineData("Rating"))
+            self.onlineInfo_itemnumber.set(self.item.getOnlineData("Item Number"))
+            self.onlineInfo_barcode.set(self.item.getOnlineData("Barcode"))
+            self.onlineInfo_releasedate.set(self.item.getOnlineData("Release Date"))
+            self.button_getOnlineInfo.config(text=_("Refresh VGC Data"))
+
+            self.onlineInfo_altname_text.grid(row=0, column=0, sticky="nw")
+            self.onlineInfo_altname.grid(row=0, column=1, sticky="nw")
+            self.onlineInfo_releasetype_text.grid(row=1, column=0, sticky="nw")
+            self.onlineInfo_releasetype.grid(row=1, column=1, sticky="nw")
+            self.onlineInfo_developer_text.grid(row=2, column=0, sticky="nw")
+            self.onlineInfo_developer.grid(row=2, column=1, sticky="nw")
+            self.onlineInfo_publisher_text.grid(row=3, column=0, sticky="nw")
+            self.onlineInfo_publisher.grid(row=3, column=1, sticky="nw")
+            self.onlineInfo_genre_text.grid(row=4, column=0, sticky="nw")
+            self.onlineInfo_genre.grid(row=4, column=1, sticky="nw")
+            self.onlineInfo_rating_text.grid(row=5, column=0, sticky="nw")
+            self.onlineInfo_rating.grid(row=5, column=1, sticky="nw")
+            self.onlineInfo_itemnumber_text.grid(row=6, column=0, sticky="nw")
+            self.onlineInfo_itemnumber.grid(row=6, column=1, sticky="nw")
+            self.onlineInfo_barcode_text.grid(row=7, column=0, sticky="nw")
+            self.onlineInfo_barcode.grid(row=7, column=1, sticky="nw")
+            self.onlineInfo_releasedate_text.grid(row=8, column=0, sticky="nw")
+            self.onlineInfo_releasedate.grid(row=8, column=1, sticky="nw")
+            self.button_getOnlineInfo.grid(row=9, column=0, columnspan=2, sticky="nwse", pady=(10,0))
+
+            self.window.update()
+            self.window.geometry("{0}x{1}".format(self.container.winfo_reqwidth(), self.container.winfo_reqheight()))
+            self.center()
+        else:
+            self.button_getOnlineInfo.grid(row=0, column=0, sticky="nwse")

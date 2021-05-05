@@ -4,9 +4,6 @@ from lib.Locale import locDate
 
 import threading
 
-import re
-import urllib.request
-
 from tkinter import *
 from tkinter import ttk
 
@@ -125,9 +122,6 @@ class GUI_ItemInfo(Frame):
         self.item_finished.config(command=self.toggleFinished)
         self.item_finished.grid(row=1, column=3, sticky="ne", padx=(3), pady=5)
 
-        self.item_itemdata.config(command=self.getItemData)
-        self.item_itemdata.grid(row=1, column=4, sticky="ne", padx=(3,10), pady=5)
-
 
     ######################
     # update
@@ -203,33 +197,3 @@ class GUI_ItemInfo(Frame):
         if self.activeItem().VGC_id > 0:
             downloadCovers(self.activeItem(), True, coverType)
             self.update()
-
-
-    ######################
-    # getItemData
-    # --------------------
-    def getItemData(self):
-        result = {}
-        url = "https://vgcollect.com/item/" + str(self.activeItem().VGC_id)
-
-        # Create request
-        request = urllib.request.Request(url)
-
-
-        # Get Page
-        response = urllib.request.urlopen(request)
-
-        # Parsing page text
-        tableBodies = str(response.read()).split("<table class=\"table\">")
-        tableBody = tableBodies[1].replace("\\r\\n", "")
-
-        data = re.split("</*tbody>", tableBody)
-
-        for line in re.split("<tr> * *<td.*?>", re.sub(" +", " ", data[1])):
-            values = re.split("</td> * *<td>", line)
-
-            if len(values) >= 2:
-                result[values[0].strip(": ")] = values[1].replace("</td>", "").replace("</tr>", "").strip()
-
-        print(result)
-        return result

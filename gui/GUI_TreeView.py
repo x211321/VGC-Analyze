@@ -23,6 +23,7 @@ class GUI_TreeView(Frame):
         self.setCurrentVGCFile   = master.setCurrentVGCFile
         self.collectionData      = master.collectionData
         self.showViewContextMenu = master.showViewContextMenu
+        self.showItemDetails     = master.showItemDetails
 
         self.init()
 
@@ -60,6 +61,7 @@ class GUI_TreeView(Frame):
         # View events
         self.item_view.bind('<<TreeviewSelect>>', self.selectViewItem)
         self.item_view.bind("<Button-3>", self.showViewContextMenu)
+        self.item_view.bind("<Double-1>", self.showItemDetails)
 
         # View scrollbar
         self.item_view.config(yscrollcommand=self.view_scroll_vertical.set)

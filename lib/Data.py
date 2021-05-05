@@ -59,7 +59,7 @@ class CollectionItem(object):
 
     # Constructor
     # Parses csv-line to CollectionItem
-    def __init__(self, csv_line = "", index = 0, localItemData_List = {}, combinePlatforms = False):
+    def __init__(self, csv_line = "", index = 0, localItemData_List = {}, onlineItemData_List = {}, combinePlatforms = False):
         csv_fields  = csv_line.split("\",\"")
 
         for index, field in enumerate(csv_fields):
@@ -79,6 +79,7 @@ class CollectionItem(object):
         self.dateAdded  = ""
         self.index      = index
         self.localData  = {}
+        self.onlineData = {}
 
         if csv_line != "":
             self.VGC_id       = int(csv_fields[CSVColumns.VGC_id])
@@ -122,6 +123,8 @@ class CollectionItem(object):
 
             if self.id() in localItemData_List.keys():
                 self.localData = localItemData_List[self.id()]
+            if self.id() in onlineItemData_List.keys():
+                self.onlineData = onlineItemData_List[self.id()]
 
     def getPlatformName(self, platformString, combinePlatforms):
 
@@ -161,6 +164,13 @@ class CollectionItem(object):
 
         return value
 
+    def getOnlineData(self, key):
+        value = ""
+
+        if key in self.onlineData:
+            value = self.onlineData[key]
+
+        return value
 
 ######################
 # DataTotal
@@ -309,7 +319,8 @@ class CollectionData(object):
     # Constructor
     def __init__(self, filterData):
         self.setFilter(filterData)
-        self.localData_list        = readJson(VAR.LOCAL_DATA_FILE)
+        self.localData_list  = readJson(VAR.LOCAL_DATA_FILE)
+        self.onlineData_list = readJson(VAR.ONLINE_DATA_FILE)
 
 
     # setFilter
@@ -338,6 +349,8 @@ class CollectionData(object):
         for item in self.collection_items:
             if item.localData:
                 self.localData_list[item.id()] = item.localData
+            if item.onlineData:
+                self.onlineData_list[item.id()] = item.onlineData
 
 
     # parseData
@@ -349,7 +362,7 @@ class CollectionData(object):
         index = 0
 
         for line in self.csv_lines[1:]:
-            item = CollectionItem(line, localItemData_List=self.localData_list, combinePlatforms=combinePlatforms)
+            item = CollectionItem(line, localItemData_List=self.localData_list, onlineItemData_List=self.onlineData_list, combinePlatforms=combinePlatforms)
 
             item.index = index
 

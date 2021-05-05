@@ -4,6 +4,8 @@ from lib.Locale import locDate
 
 import os
 import platform
+import re
+import urllib.request
 
 from tkinter import *
 from tkinter import ttk
@@ -83,6 +85,7 @@ class GUI(Tk):
 
         # TreeView context menu
         self.treeMenu = Menu(self, tearoff=0)
+        self.treeMenu.add_command(label=_("Item details"), command=self.showItemDetails)
         self.treeMenu.add_command(label=_("Toggle bookmark"), command=self.toggleBookmark)
         self.treeMenu.add_command(label=_("Toggle completed"), command=self.toggleFinished)
         self.treeMenu.add_command(label=_("Update cover art"), command=self.item_frame.updateCover)
@@ -133,6 +136,7 @@ class GUI(Tk):
     def onClose(self):
         self.collectionData.buildSaveData()
         writeJson(self.collectionData.localData_list, VAR.LOCAL_DATA_FILE)
+        writeJson(self.collectionData.onlineData_list, VAR.ONLINE_DATA_FILE)
         self.destroy()
 
 
@@ -429,6 +433,13 @@ class GUI(Tk):
 
 
     ######################
+    # showItemDetails
+    # --------------------
+    def showItemDetails(self, a = None):
+        self.pop_itemDetails.show(self.activeItem())
+
+
+    ######################
     # collectionDownload_callback
     # --------------------
     def collectionDownload_callback(self, result, newPath):
@@ -455,3 +466,32 @@ class GUI(Tk):
         e = Export_HTML(self.view_frame.item_view)
 
         e.export()
+
+
+    ######################
+    # getOnlineItemData
+    # --------------------
+    def getOnlineItemData(self):
+        result = {}
+        url = "https://vgcollect.com/item/" + str(self.activeItem().VGC_id)
+
+        # Create request
+        request = urllib.request.Request(url)
+
+
+        # Get Page
+        response = urllib.request.urlopen(request)
+
+        # Parsing page text
+        tableBodies = str(response.read()).split("<table class=\"table\">")
+        tableBody = tableBodies[1].replace("\\r\\n", "")
+
+        data = re.split("</*tbody>", tableBody)
+
+        for line in re.split("<tr> * *<td.*?>", re.sub(" +", " ", data[1])):
+            values = re.split("</td> * *<td>", line)
+
+            if len(values) >= 2:
+                result[values[0].strip(": ")] = values[1].replace("</td>", "").replace("</tr>", "").strip()
+
+        return result
