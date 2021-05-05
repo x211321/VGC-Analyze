@@ -545,7 +545,7 @@ class Pop_ItemDetails(object):
         self.info_dateAdded.grid(row=6, column=1, sticky="nw")
 
         # Online info
-        self.button_getOnlineInfo        = Button_(self.onlineInfoFrame, text=_("Get VGC Data"), bg=VAR.GUI_COLOR_PRIMARY, width=25, relief="groove", command=self.getOnline)
+        self.button_getOnlineInfo        = Button_(self.onlineInfoFrame, text=_("Get VGC data"), bg=VAR.GUI_COLOR_PRIMARY, width=25, relief="groove", command=self.getOnline)
         self.onlineInfo_altname_text     = Label_(self.onlineInfoFrame, text=_("Alt-Name"), bg=VAR.GUI_COLOR_PRIMARY)
         self.onlineInfo_altname          = Label_(self.onlineInfoFrame, bg=VAR.GUI_COLOR_PRIMARY)
         self.onlineInfo_releasetype_text = Label_(self.onlineInfoFrame, text=_("Release Type"), bg=VAR.GUI_COLOR_PRIMARY)
@@ -619,7 +619,7 @@ class Pop_ItemDetails(object):
             self.onlineInfo_itemnumber.set(self.item.getOnlineData("Item Number"))
             self.onlineInfo_barcode.set(self.item.getOnlineData("Barcode"))
             self.onlineInfo_releasedate.set(self.item.getOnlineData("Release Date"))
-            self.button_getOnlineInfo.config(text=_("Refresh VGC Data"))
+            self.button_getOnlineInfo.config(text=_("Refresh VGC data"))
 
             self.onlineInfo_altname_text.grid(row=0, column=0, sticky="nw")
             self.onlineInfo_altname.grid(row=0, column=1, sticky="nw")
