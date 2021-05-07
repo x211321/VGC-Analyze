@@ -140,6 +140,8 @@ class GUI_Settings(Toplevel):
         self.w["display"]["columns_spacer"]    = Label_(self.pages["display"], bg=VAR.GUI_COLOR_PRIMARY)
         self.w["display"]["columns_select"]    = Button_(self.pages["display"], text=_("Select"), width=20, relief="groove", bg=VAR.GUI_COLOR_PRIMARY, command=self.columnSelect)
         self.w["display"]["details_on_dclick"] = Checkbutton_(self.pages["display"], label=_("Item details on double-click"), id="detailsOnDoubleClick")
+        self.w["display"]["spacer"]            = Label_(self.pages["display"], bg=VAR.GUI_COLOR_PRIMARY)
+        self.w["display"]["refresh_on_filter"] = Checkbutton_(self.pages["display"], label=_("Refresh table on filter select"), id="refreshOnFilterSelect")
         self.grid(self.w["display"])
 
 

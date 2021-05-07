@@ -402,6 +402,12 @@ class GUI(Tk):
         # Set column display
         self.view_frame.setColumnDisplay(resize=True)
 
+        # Filter bindings
+        if settings.get("display", "refreshOnFilterSelect", True):
+            self.filter_frame.bindComboboxes()
+        else:
+            self.filter_frame.unbindComboboxes()
+
         # Read collection data
         self.readData()
 

@@ -1,4 +1,5 @@
 from lib.Locale import _
+import lib.Settings as settings
 
 from tkinter import *
 from tkinter import ttk
@@ -100,6 +101,9 @@ class GUI_Filter(Frame):
         self.filterInputs["order_dir_txt"]  = Label_(self.filterInputs["oo_frame"], width=10, _pady=(2,0), row=0, col=1, text=_("Sort direction"))
         self.filterInputs["order"]          = Combobox_(self.filterInputs["oo_frame"], width=10, row=1, col=0, _padx=(0,18), state="readonly")
         self.filterInputs["orderDirection"] = Combobox_(self.filterInputs["oo_frame"], width=10, row=1, col=1, values=("", VAR.ORDER_DIRECTION_ASCENDING, VAR.ORDER_DIRECTION_DESCENDING), state="readonly")
+
+        if settings.get("display", "refreshOnFilterSelect", True):
+            self.bindComboboxes()
 
         self.filter_button_frame = Frame(self)
         self.filter_apply = Button_(self.filter_button_frame, width=10, relief="groove", bg=VAR.BUTTON_COLOR_GOOD)
@@ -263,3 +267,23 @@ class GUI_Filter(Frame):
         orders.append(VAR.ORDER_BY_NOTES)
 
         self.filterInputs["order"].setValues(orders)
+
+
+    ######################
+    # unbindComboboxes
+    # --------------------
+    def unbindComboboxes(self):
+        for inputKey in self.filterInputs:
+            input = self.filterInputs[inputKey]
+            if input.__class__.__name__ == "Combobox_":
+                input.unbind("<<ComboboxSelected>>")
+
+
+    ######################
+    # bindComboboxes
+    # --------------------
+    def bindComboboxes(self):
+        for inputKey in self.filterInputs:
+            input = self.filterInputs[inputKey]
+            if input.__class__.__name__ == "Combobox_":
+                input.bind("<<ComboboxSelected>>", self.showData)
