@@ -36,7 +36,7 @@ Date and price of purchase as well as the cart, box, manual and "others" attribu
 VGC_Analyze is written in Python, using the Tkinter/Tk GUI Toolkit and should thus run on most modern desktop operating systems.
 
 ## Windows
-Currently there are two ways to run VGC_Analyze on windows. Provided on this page you'll find a zip file including the raw Python script - which can be run through the Python interpreter - as well as a self containing binary bundle which provides its own Python runtime and all required dependencies.
+Currently there are two ways to run VGC_Analyze on windows. Provided on this page (sidebar - releases) you'll find a zip file including the raw Python script - which can be run through the Python interpreter - as well as a self containing binary bundle which provides its own Python runtime and all required dependencies.
 
 ## Windows - Script version
 **Make sure you have a recent version of Python 3 installed.**
