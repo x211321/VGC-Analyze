@@ -79,7 +79,6 @@ class GUI_Settings(Toplevel):
         self.pages = {}
         self.pages["locale"]          = Frame(self.tab)
         self.pages["display"]         = Frame(self.tab)
-        self.pages["download"]        = Frame(self.tab)
         self.pages["platformHolders"] = Frame(self.tab)
         self.pages["platforms"]       = Frame(self.tab)
 
@@ -89,7 +88,6 @@ class GUI_Settings(Toplevel):
 
         self.tab.add(self.pages["locale"], text=_("Locale"))
         self.tab.add(self.pages["display"], text=_("Display"))
-        self.tab.add(self.pages["download"], text=_("Download"))
         self.tab.add(self.pages["platformHolders"], text=_("Platform holders"))
         self.tab.add(self.pages["platforms"], text=_("Platforms"))
 
