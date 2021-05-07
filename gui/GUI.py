@@ -384,7 +384,7 @@ class GUI(Tk):
     # showAbout
     # --------------------
     def showAbout(self):
-        print()
+        self.pop_about.show()
 
 
     ######################

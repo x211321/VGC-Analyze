@@ -330,13 +330,12 @@ class GUI_Settings(Toplevel):
 
         if len(self.platformHoldersView.item(selection)["values"]):
             self.platformHolder.set(self.platformHoldersView.item(selection)["values"][0])
-            self.platformHolderKeywords.delete("1.0", "end")
-            self.platformHolderKeywords.insert("1.0", self.platformHoldersView.item(selection)["values"][1])
+            self.platformHolderKeywords.set(self.platformHoldersView.item(selection)["values"][1])
 
 
     def savePlatformHolder(self, a = None):
         platformHolder = self.platformHolder.get().strip()
-        keywords = self.platformHolderKeywords.get("1.0", "end").split(",")
+        keywords = self.platformHolderKeywords.get().split(",")
 
         if len(platformHolder) and len(keywords):
             keywords = [keyword.strip().lower() for keyword in keywords]

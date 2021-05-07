@@ -16,6 +16,7 @@ from lib.Widgets  import Checkbutton_
 from lib.Widgets  import Button_
 from lib.Data     import FilterData
 from lib.Browser  import openUserProfileInBrowser
+from lib.Browser  import openGithub
 from lib.Download import downloadCollection
 
 
@@ -26,6 +27,7 @@ def initPopups(gui):
     gui.pop_collectionDownload = Pop_CollectionDownload(gui, gui.collectionDownload_callback)
     gui.pop_itemSearch         = Pop_ItemSearch(gui, gui.view_frame.item_view)
     gui.pop_itemDetails        = Pop_ItemDetails(gui)
+    gui.pop_about              = Pop_About(gui)
 
 
 ######################
@@ -646,3 +648,91 @@ class Pop_ItemDetails(object):
             self.center()
         else:
             self.button_getOnlineInfo.grid(row=0, column=0, sticky="nwse")
+
+
+######################
+# Pop_About
+# --------------------
+class Pop_About(object):
+
+    window   = None
+    parent   = None
+
+    def __init__(self, parent):
+        self.parent = parent
+
+    def show(self):
+
+        self.close()
+
+        # Create new window
+        self.window = Toplevel(bg=VAR.GUI_COLOR_PRIMARY)
+        self.window.withdraw()
+        self.window.wm_title(_("About VGC Analyze"))
+        self.window.resizable(False, False)
+        self.window.iconphoto(False, loadIcon("game-controller-outline", 15, 15))
+        self.window.bind('<Escape>', lambda x:self.close())
+        self.window.focus_force()
+
+        self.window.columnconfigure(0, weight=1)
+
+        # Functions
+        # ------------------
+        self.label_frame  = Frame(self.window, bg=VAR.GUI_COLOR_PRIMARY)
+        self.button_frame = Frame(self.window, bg=VAR.GUI_COLOR_SECONDARY)
+
+        self.label_frame.grid(row=0, column=0, sticky="nwse")
+        self.button_frame.grid(row=1, column=0, sticky="nwse")
+
+        self.button_frame.columnconfigure(0, weight=1)
+
+        self.label_title = Label_(self.label_frame, text="VGC Analyzer", font=(20), bg=VAR.GUI_COLOR_PRIMARY)
+        self.label_description = Label_(self.label_frame, text=_("A data analyzer for your VGCollect.com video game collection"), bg=VAR.GUI_COLOR_PRIMARY)
+        self.label_disclamer = Label_(self.label_frame, text=_("VGC Analyze is a hobby project, not affiliated with or endorsed by VGCollect.com"), bg=VAR.GUI_COLOR_PRIMARY)
+        self.label_license = Label_(self.label_frame, bg=VAR.GUI_COLOR_PRIMARY)
+        self.label_link = Label_(self.label_frame, bg=VAR.GUI_COLOR_PRIMARY)
+        self.btn_close = Button_(self.button_frame, width=18, text=_("Close"), relief="groove", bg=VAR.GUI_COLOR_PRIMARY, command=self.close)
+
+        self.label_license.set( 'MIT License\n\n'
+                                'Copyright (c) 2021 x211321, pfochel\n\n'
+                                'Permission is hereby granted, free of charge, to any person obtaining a copy\n'
+                                'of this software and associated documentation files (the "Software"), to deal\n'
+                                'in the Software without restriction, including without limitation the rights\n'
+                                'to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n'
+                                'copies of the Software, and to permit persons to whom the Software is\n'
+                                'furnished to do so, subject to the following conditions:\n\n'
+                                'The above copyright notice and this permission notice shall be included in all\n'
+                                'copies or substantial portions of the Software.\n\n'
+                                'THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n'
+                                'IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n'
+                                'FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\n'
+                                'AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\n'
+                                'LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\n'
+                                'OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n'
+                                'SOFTWARE.')
+
+        self.label_link.set(_("VGC Analyze GitHub"))
+        self.label_link.config(fg="blue", cursor="hand2")
+        self.label_link.bind("<Button-1>", openGithub)
+
+        self.label_title.grid(row=0, column=0, padx=10, pady=10)
+        self.label_description.grid(row=1, column=0, padx=10, pady=10)
+        self.label_disclamer.grid(row=2, column=0, padx=10, pady=10)
+        self.label_link.grid(row=3, column=0, padx=10, pady=10)
+        self.label_license.grid(row=4, column=0, padx=10, pady=10)
+        self.btn_close.grid(row=0, column=0, pady=20)
+
+
+        self.center()
+
+        self.window.deiconify()
+
+        # Run main loop of new window
+        self.window.mainloop()
+
+    def center(self):
+        centerPopup(self.window, self.parent)
+
+    def close(self):
+        if not self.window == None:
+            self.window.destroy()

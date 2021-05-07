@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2021-04-28 22:10+0200\n"
-"PO-Revision-Date: 2021-05-05 20:57+0200\n"
+"PO-Revision-Date: 2021-05-07 23:08+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -20,7 +20,7 @@ msgstr ""
 msgid "items"
 msgstr "Einträge"
 
-#: ../gui/GUI_Filter.py:59 ../gui/GUI_Settings.py:94 ../lib/Var.py:62
+#: ../gui/GUI_Filter.py:59 ../gui/GUI_Settings.py:92 ../lib/Var.py:62
 msgid "Platforms"
 msgstr "Plattformen"
 
@@ -28,7 +28,7 @@ msgstr "Plattformen"
 msgid "Regions"
 msgstr "Regionen"
 
-#: ../gui/GUI_Filter.py:61 ../gui/GUI_Settings.py:93 ../lib/Var.py:64
+#: ../gui/GUI_Filter.py:61 ../gui/GUI_Settings.py:91 ../lib/Var.py:64
 msgid "Platform holders"
 msgstr "Plattformhalter"
 
@@ -70,7 +70,7 @@ msgstr "Titel"
 
 #: ../gui/GUI_Filter.py:60 ../gui/GUI_Filter.py:62 ../gui/GUI_Filter.py:64
 #: ../gui/GUI_Filter.py:154 ../gui/GUI_Filter.py:179 ../gui/GUI_Filter.py:200
-#: ../gui/GUI_Filter.py:221 ../gui/GUI_Settings.py:143
+#: ../gui/GUI_Filter.py:221 ../gui/GUI_Settings.py:141
 msgid "Select"
 msgstr "Auswählen"
 
@@ -102,7 +102,7 @@ msgstr "Daten:"
 msgid "Show grid"
 msgstr "Gitter anzeigen"
 
-#: ../gui/GUI_ItemInfo.py:56 ../gui/GUI_Popups.py:527
+#: ../gui/GUI_ItemInfo.py:56 ../gui/GUI_Popups.py:529
 msgid "Purchase price"
 msgstr "Kaufpreis"
 
@@ -122,11 +122,11 @@ msgstr "Modul"
 msgid "Quit"
 msgstr "Beenden"
 
-#: ../gui/GUI_Menu.py:20 ../gui/GUI_Popups.py:252
+#: ../gui/GUI_Menu.py:20 ../gui/GUI_Popups.py:254
 msgid "Search for item"
 msgstr "Eintrag suchen"
 
-#: ../gui/GUI_Menu.py:24 ../gui/GUI_Popups.py:124
+#: ../gui/GUI_Menu.py:24 ../gui/GUI_Popups.py:126
 msgid "Download collection"
 msgstr "Sammlung herunterladen"
 
@@ -154,11 +154,11 @@ msgstr "Über VGC Analyzer"
 msgid "File"
 msgstr "Datei"
 
-#: ../gui/GUI_Menu.py:41 ../gui/GUI_Popups.py:274
+#: ../gui/GUI_Menu.py:41 ../gui/GUI_Popups.py:276
 msgid "Search"
 msgstr "Suchen"
 
-#: ../gui/GUI_Menu.py:42 ../gui/GUI_Popups.py:149 ../gui/GUI_Settings.py:92
+#: ../gui/GUI_Menu.py:42 ../gui/GUI_Popups.py:151
 msgid "Download"
 msgstr "Herunterladen"
 
@@ -170,20 +170,20 @@ msgstr "Fenster"
 msgid "About"
 msgstr "Über"
 
-#: ../gui/GUI_Popups.py:143
+#: ../gui/GUI_Popups.py:145
 msgid "VGC Username"
 msgstr "VGC Benutzername"
 
-#: ../gui/GUI_Popups.py:145
+#: ../gui/GUI_Popups.py:147
 msgid "Password"
 msgstr "Passwort"
 
-#: ../gui/GUI_Popups.py:147 ../gui/GUI_Popups.py:272 ../gui/GUI_Popups.py:389
+#: ../gui/GUI_Popups.py:149 ../gui/GUI_Popups.py:274 ../gui/GUI_Popups.py:391
 #: ../gui/GUI_Settings.py:60
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: ../gui/GUI_Popups.py:166
+#: ../gui/GUI_Popups.py:168
 msgid ""
 "The provided login credentials will be used to\n"
 "download a backup of your collection from\n"
@@ -219,43 +219,43 @@ msgstr ""
 "\n"
 "3) \tStarte VGC Analyzer neu"
 
-#: ../gui/GUI_Popups.py:178
+#: ../gui/GUI_Popups.py:180
 msgid "VGCollect.com user profile"
 msgstr "VGCollect.com Benutzerprofil"
 
-#: ../gui/GUI_Popups.py:208
+#: ../gui/GUI_Popups.py:210
 msgid "Login credentials incomplete"
 msgstr "Anmeldedaten unvollständig"
 
-#: ../gui/GUI_Popups.py:208 ../gui/GUI_Popups.py:215 ../gui/GUI_Popups.py:220
+#: ../gui/GUI_Popups.py:210 ../gui/GUI_Popups.py:217 ../gui/GUI_Popups.py:222
 msgid "Collection download"
 msgstr "Sammlung herunterladen"
 
-#: ../gui/GUI_Popups.py:215
+#: ../gui/GUI_Popups.py:217
 msgid "Download successful"
 msgstr "Download erfolgreich"
 
-#: ../gui/GUI_Popups.py:268
+#: ../gui/GUI_Popups.py:270
 msgid "Search for"
 msgstr "Suchen nach"
 
-#: ../gui/GUI_Popups.py:351
+#: ../gui/GUI_Popups.py:353
 msgid "Couldn't find"
 msgstr "Nicht gefunden"
 
-#: ../gui/GUI_Popups.py:376
+#: ../gui/GUI_Popups.py:378
 msgid "Select "
 msgstr "Auswählen "
 
-#: ../gui/GUI_Popups.py:390
+#: ../gui/GUI_Popups.py:392
 msgid "Reset"
 msgstr "Zurücksetzten"
 
-#: ../gui/GUI_Popups.py:391
+#: ../gui/GUI_Popups.py:393
 msgid "Select all"
 msgstr "Alle auswählen"
 
-#: ../gui/GUI_Popups.py:392 ../gui/GUI_Settings.py:62
+#: ../gui/GUI_Popups.py:394 ../gui/GUI_Settings.py:62
 msgid "OK"
 msgstr "OK"
 
@@ -263,8 +263,8 @@ msgstr "OK"
 msgid "Group"
 msgstr "Gruppe"
 
-#: ../gui/GUI_Popups.py:521 ../gui/GUI_Settings.py:219
-#: ../gui/GUI_Settings.py:266 ../lib/Var.py:107
+#: ../gui/GUI_Popups.py:523 ../gui/GUI_Settings.py:217
+#: ../gui/GUI_Settings.py:264 ../lib/Var.py:107
 msgid "Platform"
 msgstr "Plattform"
 
@@ -332,11 +332,11 @@ msgstr "Plattformhalter"
 msgid "regions"
 msgstr "Regionen"
 
-#: ../gui/GUI_Settings.py:90 ../gui/GUI_Settings.py:130
+#: ../gui/GUI_Settings.py:89 ../gui/GUI_Settings.py:128
 msgid "Locale"
 msgstr "Gebietsschema"
 
-#: ../gui/GUI_Settings.py:91
+#: ../gui/GUI_Settings.py:90
 msgid "Display"
 msgstr "Anzeige"
 
@@ -364,36 +364,36 @@ msgstr "Am wenigsten Gruppenelemente:"
 msgid "Most group items:"
 msgstr "Am meisten Gruppenelemente:"
 
-#: ../gui/GUI_Popups.py:69
+#: ../gui/GUI_Popups.py:71
 msgid "front cover"
 msgstr "Vorderseite"
 
-#: ../gui/GUI_Popups.py:72
+#: ../gui/GUI_Popups.py:74
 msgid "back cover"
 msgstr "Rückseite"
 
-#: ../gui/GUI_Popups.py:75
+#: ../gui/GUI_Popups.py:77
 msgid "cart cover"
 msgstr "Modul"
 
-#: ../gui/GUI_Popups.py:525 ../gui/GUI_Settings.py:156
-#: ../gui/GUI_Settings.py:205
+#: ../gui/GUI_Popups.py:527 ../gui/GUI_Settings.py:154
+#: ../gui/GUI_Settings.py:203
 msgid "Platform holder"
 msgstr "Plattformhalter"
 
-#: ../gui/GUI_Settings.py:159 ../gui/GUI_Settings.py:206
+#: ../gui/GUI_Settings.py:157 ../gui/GUI_Settings.py:204
 msgid "Platform keywords"
 msgstr "Plattform Schlüsselwörter"
 
-#: ../gui/GUI_Settings.py:161
+#: ../gui/GUI_Settings.py:159
 msgid "(comma separated)"
 msgstr "(kommagetrennt)"
 
-#: ../gui/GUI_Settings.py:126
+#: ../gui/GUI_Settings.py:124
 msgid "Language (requires restart)"
 msgstr "Sprache (erfordert Neustart)"
 
-#: ../gui/GUI_Settings.py:222 ../gui/GUI_Settings.py:267
+#: ../gui/GUI_Settings.py:220 ../gui/GUI_Settings.py:265
 msgid "Overwrite with"
 msgstr "Überschreiben mit"
 
@@ -421,11 +421,11 @@ msgstr "Min. Datum (hinzugefügt)"
 msgid "Max. date (added)"
 msgstr "Max. Datum (hinzugefügt)"
 
-#: ../gui/GUI_Settings.py:140
+#: ../gui/GUI_Settings.py:138
 msgid "Table columns"
 msgstr "Tabellenspalen"
 
-#: ../gui/GUI_Settings.py:274
+#: ../gui/GUI_Settings.py:272
 msgid "table columns"
 msgstr "Tabellenspalten"
 
@@ -485,7 +485,7 @@ msgstr "Anzahl Einträge (Wachstum)"
 msgid "Total price (growth)"
 msgstr "Gesamtpreis (Wachstum)"
 
-#: ../gui/GUI_Popups.py:523 ../lib/Var.py:108
+#: ../gui/GUI_Popups.py:525 ../lib/Var.py:108
 msgid "Region"
 msgstr "Region"
 
@@ -609,65 +609,89 @@ msgstr "Cover art aktualisieren"
 msgid "Item details"
 msgstr "Details"
 
-#: ../gui/GUI_Popups.py:492
+#: ../gui/GUI_Popups.py:494
 msgid "Detailed item info for "
 msgstr "Detailansicht für "
 
-#: ../gui/GUI_Popups.py:529
+#: ../gui/GUI_Popups.py:531
 msgid "Purchased"
 msgstr "Gekauft am"
 
-#: ../gui/GUI_Popups.py:531
+#: ../gui/GUI_Popups.py:533
 msgid "Added"
 msgstr "Hinzugefügt am"
 
-#: ../gui/GUI_Popups.py:549
+#: ../gui/GUI_Popups.py:551
 msgid "Alt-Name"
 msgstr "Alternativer name"
 
-#: ../gui/GUI_Popups.py:551
+#: ../gui/GUI_Popups.py:553
 msgid "Release Type"
 msgstr "Veröffentlichungsart"
 
-#: ../gui/GUI_Popups.py:553
+#: ../gui/GUI_Popups.py:555
 msgid "Developer(s)"
 msgstr "Entwickler"
 
-#: ../gui/GUI_Popups.py:555
+#: ../gui/GUI_Popups.py:557
 msgid "Publisher(s)"
 msgstr "Verleger"
 
-#: ../gui/GUI_Popups.py:557
+#: ../gui/GUI_Popups.py:559
 msgid "Genre"
 msgstr "Genre"
 
-#: ../gui/GUI_Popups.py:559
+#: ../gui/GUI_Popups.py:561
 msgid "Rating"
 msgstr "Altersfreigabe"
 
-#: ../gui/GUI_Popups.py:561
+#: ../gui/GUI_Popups.py:563
 msgid "Item Number"
 msgstr "Produktnummer"
 
-#: ../gui/GUI_Popups.py:563
+#: ../gui/GUI_Popups.py:565
 msgid "Barcode"
 msgstr "Barcode"
 
-#: ../gui/GUI_Popups.py:565
+#: ../gui/GUI_Popups.py:567
 msgid "Release Date"
 msgstr "Veröffentlicht am"
 
-#: ../gui/GUI_Popups.py:548
+#: ../gui/GUI_Popups.py:550
 msgid "Get VGC data"
 msgstr "VGC Daten abrufen"
 
-#: ../gui/GUI_Popups.py:622
+#: ../gui/GUI_Popups.py:624
 msgid "Refresh VGC data"
 msgstr "VGC Daten aktualisieren"
 
-#: ../gui/GUI_Settings.py:144
+#: ../gui/GUI_Settings.py:142
 msgid "Item details on double-click"
 msgstr "Bei Doppelklick Details anzeigen"
+
+#: ../gui/GUI_Popups.py:690
+msgid "A data analyzer for your VGCollect.com video game collection"
+msgstr "Ein Analyseprogramm für deine VGCollect.com Videospielsammlung"
+
+#: ../gui/GUI_Popups.py:694
+msgid "Close"
+msgstr "Schließen"
+
+#: ../gui/GUI_Popups.py:714
+msgid "VGC Analyze GitHub"
+msgstr "VGC Analyze GitHub"
+
+#: ../gui/GUI_Popups.py:671
+msgid "About VGC Analyze"
+msgstr "Über VGC Analyze"
+
+#: ../gui/GUI_Popups.py:691
+msgid ""
+"VGC Analyze is a hobby project, not affiliated with or endorsed by "
+"VGCollect.com"
+msgstr ""
+"VGC Analyze ist ein Hobbyprojekt und steht in keinem Zusammenhang mit "
+"VGCollect.com"
 
 #~ msgid "Get VGC Data"
 #~ msgstr "VGC Daten abrufen"

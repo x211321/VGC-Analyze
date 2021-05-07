@@ -18,6 +18,13 @@ def openUserProfileInBrowser(a):
 
 
 ######################
+# openGithub
+# --------------------
+def openGithub(a):
+    webbrowser.open("https://github.com/x211321/VGC_Analyze", new=0, autoraise=True)
+
+
+######################
 # openBrowser
 # --------------------
 def openBrowser(url):
