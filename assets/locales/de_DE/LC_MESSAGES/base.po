@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2021-04-28 22:10+0200\n"
-"PO-Revision-Date: 2021-05-07 23:08+0200\n"
+"PO-Revision-Date: 2021-05-08 00:10+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -20,15 +20,15 @@ msgstr ""
 msgid "items"
 msgstr "Einträge"
 
-#: ../gui/GUI_Filter.py:59 ../gui/GUI_Settings.py:92 ../lib/Var.py:62
+#: ../gui/GUI_Filter.py:60 ../gui/GUI_Settings.py:92 ../lib/Var.py:62
 msgid "Platforms"
 msgstr "Plattformen"
 
-#: ../gui/GUI_Filter.py:63 ../lib/Var.py:63
+#: ../gui/GUI_Filter.py:64 ../lib/Var.py:63
 msgid "Regions"
 msgstr "Regionen"
 
-#: ../gui/GUI_Filter.py:61 ../gui/GUI_Settings.py:91 ../lib/Var.py:64
+#: ../gui/GUI_Filter.py:62 ../gui/GUI_Settings.py:91 ../lib/Var.py:64
 msgid "Platform holders"
 msgstr "Plattformhalter"
 
@@ -64,25 +64,25 @@ msgstr "Aktive VGC-Datei:"
 msgid "Combine related platforms"
 msgstr "Verwandte Plattformen zusammenfassen"
 
-#: ../gui/GUI_Filter.py:49 ../gui/GUI_ItemInfo.py:50 ../lib/Var.py:106
+#: ../gui/GUI_Filter.py:50 ../gui/GUI_ItemInfo.py:50 ../lib/Var.py:106
 msgid "Title"
 msgstr "Titel"
 
-#: ../gui/GUI_Filter.py:60 ../gui/GUI_Filter.py:62 ../gui/GUI_Filter.py:64
-#: ../gui/GUI_Filter.py:154 ../gui/GUI_Filter.py:179 ../gui/GUI_Filter.py:200
-#: ../gui/GUI_Filter.py:221 ../gui/GUI_Settings.py:141
+#: ../gui/GUI_Filter.py:61 ../gui/GUI_Filter.py:63 ../gui/GUI_Filter.py:65
+#: ../gui/GUI_Filter.py:158 ../gui/GUI_Filter.py:183 ../gui/GUI_Filter.py:204
+#: ../gui/GUI_Filter.py:225 ../gui/GUI_Settings.py:141
 msgid "Select"
 msgstr "Auswählen"
 
-#: ../gui/GUI_Filter.py:54 ../lib/Var.py:118
+#: ../gui/GUI_Filter.py:55 ../lib/Var.py:118
 msgid "Notes"
 msgstr "Notizen"
 
-#: ../gui/GUI_Filter.py:73
+#: ../gui/GUI_Filter.py:74
 msgid "Min. purchase price"
 msgstr "Min. Kaufpreis"
 
-#: ../gui/GUI_Filter.py:75
+#: ../gui/GUI_Filter.py:76
 msgid "Max. purchase price"
 msgstr "Max. Kaufpreis"
 
@@ -263,56 +263,56 @@ msgstr "OK"
 msgid "Group"
 msgstr "Gruppe"
 
-#: ../gui/GUI_Popups.py:523 ../gui/GUI_Settings.py:217
-#: ../gui/GUI_Settings.py:264 ../lib/Var.py:107
+#: ../gui/GUI_Popups.py:523 ../gui/GUI_Settings.py:219
+#: ../gui/GUI_Settings.py:266 ../lib/Var.py:107
 msgid "Platform"
 msgstr "Plattform"
 
-#: ../gui/GUI_Filter.py:81 ../lib/Var.py:112
+#: ../gui/GUI_Filter.py:82 ../lib/Var.py:112
 msgid "Cart"
 msgstr "Modul"
 
-#: ../gui/GUI_Filter.py:82 ../lib/Var.py:113
+#: ../gui/GUI_Filter.py:83 ../lib/Var.py:113
 msgid "Box"
 msgstr "Verpackung"
 
-#: ../gui/GUI_Filter.py:87 ../lib/Var.py:114
+#: ../gui/GUI_Filter.py:88 ../lib/Var.py:114
 msgid "Manual"
 msgstr "Anleitung"
 
-#: ../gui/GUI_Filter.py:88 ../lib/Var.py:115
+#: ../gui/GUI_Filter.py:89 ../lib/Var.py:115
 msgid "Other"
 msgstr "Andere"
 
-#: ../gui/GUI_Filter.py:94 ../lib/Var.py:117
+#: ../gui/GUI_Filter.py:95 ../lib/Var.py:117
 msgid "Finished"
 msgstr "Abgeschlossen"
 
-#: ../gui/GUI_Filter.py:177 ../gui/GUI_Filter.py:198 ../gui/GUI_Filter.py:219
+#: ../gui/GUI_Filter.py:181 ../gui/GUI_Filter.py:202 ../gui/GUI_Filter.py:223
 msgid " selected"
 msgstr " ausgewählt"
 
-#: ../gui/GUI_Filter.py:77
+#: ../gui/GUI_Filter.py:78
 msgid "Group by"
 msgstr "Gruppieren"
 
-#: ../gui/GUI_Filter.py:93
+#: ../gui/GUI_Filter.py:94
 msgid "Bookmarked"
 msgstr "Lesezeichen"
 
-#: ../gui/GUI_Filter.py:99
+#: ../gui/GUI_Filter.py:100
 msgid "Sort by"
 msgstr "Sortieren"
 
-#: ../gui/GUI_Filter.py:100
+#: ../gui/GUI_Filter.py:101
 msgid "Sort direction"
 msgstr "Reihenfolge"
 
-#: ../gui/GUI_Filter.py:134
+#: ../gui/GUI_Filter.py:138
 msgid "Reset filter"
 msgstr "Zurücksetzten"
 
-#: ../gui/GUI_Filter.py:137
+#: ../gui/GUI_Filter.py:141
 msgid "Apply filter"
 msgstr "Anwenden"
 
@@ -320,15 +320,15 @@ msgstr "Anwenden"
 msgid "total price: "
 msgstr "Gesamtpreis: "
 
-#: ../gui/GUI_Filter.py:167
+#: ../gui/GUI_Filter.py:171
 msgid "platforms"
 msgstr "Plattformen"
 
-#: ../gui/GUI_Filter.py:188
+#: ../gui/GUI_Filter.py:192
 msgid "platform holders"
 msgstr "Plattformhalter"
 
-#: ../gui/GUI_Filter.py:209
+#: ../gui/GUI_Filter.py:213
 msgid "regions"
 msgstr "Regionen"
 
@@ -376,16 +376,16 @@ msgstr "Rückseite"
 msgid "cart cover"
 msgstr "Modul"
 
-#: ../gui/GUI_Popups.py:527 ../gui/GUI_Settings.py:154
-#: ../gui/GUI_Settings.py:203
+#: ../gui/GUI_Popups.py:527 ../gui/GUI_Settings.py:156
+#: ../gui/GUI_Settings.py:205
 msgid "Platform holder"
 msgstr "Plattformhalter"
 
-#: ../gui/GUI_Settings.py:157 ../gui/GUI_Settings.py:204
+#: ../gui/GUI_Settings.py:159 ../gui/GUI_Settings.py:206
 msgid "Platform keywords"
 msgstr "Plattform Schlüsselwörter"
 
-#: ../gui/GUI_Settings.py:159
+#: ../gui/GUI_Settings.py:161
 msgid "(comma separated)"
 msgstr "(kommagetrennt)"
 
@@ -393,7 +393,7 @@ msgstr "(kommagetrennt)"
 msgid "Language (requires restart)"
 msgstr "Sprache (erfordert Neustart)"
 
-#: ../gui/GUI_Settings.py:220 ../gui/GUI_Settings.py:265
+#: ../gui/GUI_Settings.py:222 ../gui/GUI_Settings.py:267
 msgid "Overwrite with"
 msgstr "Überschreiben mit"
 
@@ -405,19 +405,19 @@ msgstr "Datum (gekauft)"
 msgid "Date (added)"
 msgstr "Datum (hinzugefügt)"
 
-#: ../gui/GUI_Filter.py:65
+#: ../gui/GUI_Filter.py:66
 msgid "Min. date (purchased)"
 msgstr "Min. Datum (gekauft)"
 
-#: ../gui/GUI_Filter.py:67
+#: ../gui/GUI_Filter.py:68
 msgid "Max. date (purchased)"
 msgstr "Max. Datum (gekauft)"
 
-#: ../gui/GUI_Filter.py:69
+#: ../gui/GUI_Filter.py:70
 msgid "Min. date (added)"
 msgstr "Min. Datum (hinzugefügt)"
 
-#: ../gui/GUI_Filter.py:71
+#: ../gui/GUI_Filter.py:72
 msgid "Max. date (added)"
 msgstr "Max. Datum (hinzugefügt)"
 
@@ -425,7 +425,7 @@ msgstr "Max. Datum (hinzugefügt)"
 msgid "Table columns"
 msgstr "Tabellenspalen"
 
-#: ../gui/GUI_Settings.py:272
+#: ../gui/GUI_Settings.py:274
 msgid "table columns"
 msgstr "Tabellenspalten"
 
@@ -692,6 +692,10 @@ msgid ""
 msgstr ""
 "VGC Analyze ist ein Hobbyprojekt und steht in keinem Zusammenhang mit "
 "VGCollect.com"
+
+#: ../gui/GUI_Settings.py:144
+msgid "Refresh table on filter select"
+msgstr "Beim Ändern von Filtern die Tabelle aktualisieren"
 
 #~ msgid "Get VGC Data"
 #~ msgstr "VGC Daten abrufen"
