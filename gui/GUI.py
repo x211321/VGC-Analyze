@@ -438,7 +438,11 @@ class GUI(Tk):
     # --------------------
     def showItemDetails(self, a = None):
         if a == None or settings.get("display", "detailsOnDoubleClick", True):
-            self.pop_itemDetails.show(self.activeItem())
+
+            selection = self.view_frame.item_view.focus()
+
+            if not selection[0] == "#":
+                self.pop_itemDetails.show(self.activeItem())
 
 
     ######################
