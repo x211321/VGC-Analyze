@@ -21,11 +21,11 @@ Have you ever wondered how much you've spend on your collection, how many import
 
 
 # Limitations
-VGC_Analyze uses the CSV data that's provided by the VGCollect.com backup function.The data provided this way is rather limited and mostly includes information thats required for restoring a VGCollect.com collection. The data source doesn't include detailed item information like publishers, developers, or release dates and can therefore not be used by VGC_Analyze.
+VGC_Analyze uses the CSV data that's provided by the VGCollect.com backup function. The data provided this way is rather limited and mostly includes information that's required for restoring a VGCollect.com collection. The data source doesn't include detailed item information like publishers, developers, or release dates and can therefore not be used by VGC_Analyze.
 
 Date and price of purchase as well as the cart, box, manual and "others" attributes are included in the backup data, provided you have filled them in.
 
- * VGC_Analyze can't analyze data thats not there. Depending on the way you maintain your collection the program will be more or less useful to you.
+ * VGC_Analyze can't analyze data that's not there. Depending on the way you maintain your collection the program will be more or less useful to you.
 
  * VGC_Analyze is not able to query external price charting databases or similar data providers and probably never will be.
 
@@ -66,17 +66,17 @@ python VGC_Analyze.py
 
 
 ## Windows - Binary version
-The binary version of VGC_Analyze is a standalone bundle containing its own Python runtime as well as all required dependencies like matplot and pillow. Compared to the script version the binary version is much larger but provides the convenience of a selfcontained package without any extra setup.
+The binary version of VGC_Analyze is a standalone bundle containing its own Python runtime as well as all required dependencies like matplot and pillow. Compared to the script version the binary version is much larger but provides the convenience of a self-contained package without any extra setup.
 
-The binary version is created with Pyinstaller (https://www.pyinstaller.org/). Pyinstaller basically packs all files that are required to run a particular Python script into one self extracting archive. When the program is started Pyinstaller extract the archive into the windows temp folder and then runs the Python script from there. This behaviour can be seen as suspicious by anti-virus software and can cause false security alerts. If you run into trouble running the binary version it's reconmendet that you use the script version instead.
+The binary version is created with Pyinstaller (https://www.pyinstaller.org/). Pyinstaller basically packs all files that are required to run a particular Python script into one self extracting archive. When the program is started Pyinstaller extract the archive into the windows temp folder and then runs the Python script from there. This behavior can be seen as suspicious by anti-virus software and can cause false security alerts. If you run into trouble running the binary version it's recommended that you use the script version instead.
 
 
-Neither the script nor the binary version of VGC_VGC_Analyze must be traditionally "installed". Both versions run directly from the directory to which they were extracted. VGC_Analyze creates subfolders and files in the directory from which it is run, so to work properly the program should not be placed into a location thats not writable with limited access like "C:\Program Files".
+Neither the script nor the binary version of VGC_VGC_Analyze must be traditionally "installed". Both versions run directly from the directory to which they were extracted. VGC_Analyze creates sub-folders and files in the directory from which it is run, so to work properly the program should not be placed into a location that's not writable with limited access like "C:\Program Files".
 
 
 
 ## Linux
-VGC_Analyze has been tested to run on Ubuntu 20. Currently there is no binary version for Linux so the only way is to run the script version. The steps are similar to the Windows version. Python 3 should allready be provided by most Linux distributions and the required dependencies can be installed via the package manager.
+VGC_Analyze has been tested to run on Ubuntu 20.4. Currently there is no binary version for Linux so the only way is to run the script version. The steps are similar to the Windows version. Python 3 should already be provided by most Linux distributions and the required dependencies can be installed via the package manager.
 
 ```
 sudo apt-get install python3-tk
@@ -91,4 +91,4 @@ VGC_Analyze has not yet been tested on macOS. Provided the required Python versi
 
 
 # Future development
-VGC_Analyze is a hobby project, mostly as a way for us to get to know the Python programming language. Once the basic functionality is implemented the project probably won't be maintenaned a whole lot.
+VGC_Analyze is a hobby project, mostly as a way for us to get to know the Python programming language. Once the basic functionality is implemented the project probably won't be maintained a whole lot.
