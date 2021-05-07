@@ -1,25 +1,20 @@
-Duplikate finden
-Fehlende Cover auf Webseite finden
-Filter hilfe (regex, datumsformat, etc.)
-Eigene Messageboxen (positionierbar / Topmost)
-Einstellungsdialog
-	Anzahl heruntergeladener Dateien die aufbewahrt werden sollen
+Find duplicates
+Find missing covers on website
+Filter help (regex, date formats, etc.)
+Custom messegboxes
 Datepicker
-About Dialog
-	disclaimer project not affiliated with VGCollect
-Listview Pos1 / Ende / Bild auf / Bild ab
-Download history
-filter presets
+Listview home / end / page up / page down
+Filter presets
 
 ===Low priority===
-EXE virus https://stackoverflow.com/questions/43777106/program-made-with-pyinstaller-now-seen-as-a-trojan-horse-by-avg
 Multiselect
 	Bookmark all (selected) / contextmenu
 	Remove all bookmarks (selected) / contextmenu
 Graph canvas scroll bar
-Fehlende Barcodes auf Webseite finden
 
 ===DONE===
+About Dialog
+	disclaimer project not affiliated with VGCollect
 View double click -> detailed item view
 	CSV data
 	Local data
@@ -34,30 +29,30 @@ Date added
 	Filter
 	Group
 	Graph
-Einstellungsdialog
-	Währung
-	Datumsformat
+Settings
+	Currency
+	Date formats
 	Platformhalter keywords
 	Platform overwrite
-Multifilter (mehrere Regionen, Platformen, etc.)
-Dateiname anzeigen
+Multifilter
+Filename
 Combine platforms (x + x hardware + x accessories)
 Group by platfrom holder
 	Json keywords
 Cover mouse hover Buttons anzeigen
-Graphen ausgeben
-Gruppeninfos (Anzahl Gruppen / Durchschnittspreis)
-Suchfunktion (Strg + F - Suche im Listview ohne Filtern)
+Graphs
+Group info
+Search (Ctrl + F)
 Sort
 Group
-Summen ausgeben
-Durchschnittswerte ausgeben
-Letzes Downloaddatum anzeigen
-Downloader anzeigen wenn keine Daten
-Treeview gruppierungen
-Elementinformationen in Json
+Sums
+Averages
+Last download date
+Downloader when no data
+Treeview groups
+Json local data
 	Mark finished games
 	Bookmarks
 	Missing covers index
-Dateiauswahl
-Sortieren über Treeview header
+File select
+Sort view headers
