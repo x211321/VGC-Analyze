@@ -456,6 +456,7 @@ class GUI(Tk):
     # --------------------
     def collectionDownload_callback(self, result, newPath):
         self.filterData.filePath = newPath
+        self.view_frame.file_frame.file_select.set(os.path.basename(newPath))
 
         self.collectionData.setFilter(self.filterData)
         self.readData()
@@ -466,9 +467,12 @@ class GUI(Tk):
     # setCurrentVGCFile
     # --------------------
     def setCurrentVGCFile(self, a = None):
-        self.collectionData.csv_file = VAR.DATA_PATH + self.view_frame.file_frame.file_select.get()
-        self.readData()
-        self.showData()
+        file = self.view_frame.file_frame.file_select.get()
+
+        if len(file):
+            self.collectionData.csv_file = VAR.DATA_PATH + file
+            self.readData()
+            self.showData()
 
 
     ######################
