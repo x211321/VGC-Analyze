@@ -70,6 +70,8 @@ The binary version of VGC_Analyze is a standalone bundle containing its own Pyth
 
 The binary version is created with Pyinstaller (https://www.pyinstaller.org/). Pyinstaller basically packs all files that are required to run a particular Python script into one self extracting archive. When the program is started Pyinstaller extract the archive into the windows temp folder and then runs the Python script from there. This behavior can be seen as suspicious by anti-virus software and can cause false security alerts. If you run into trouble running the binary version it's recommended that you use the script version instead.
 
+In Windows 10 Microsoft implemented a warning message when an "unrecognised app" is executed for the first time. In this case you have to click on "More info" and confirm with the "Run anyway" button.
+
 
 Neither the script nor the binary version of VGC_VGC_Analyze must be traditionally "installed". Both versions run directly from the directory to which they were extracted. VGC_Analyze creates sub-folders and files in the directory from which it is run, so to work properly the program should not be placed into a location that's not writable with limited access like "C:\Program Files".
 
