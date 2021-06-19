@@ -16,6 +16,9 @@ shutil.copytree("../gui/", targetDir + "gui/")
 shutil.copytree("../lib/", targetDir + "lib/")
 shutil.copy("../VGC_Analyze.py", targetDir + "VGC_Analyze.py")
 
+shutil.rmtree(targetDir + "gui/__pycache__/")
+shutil.rmtree(targetDir + "lib/__pycache__/")
+
 os.chdir(targetDir + "..")
 
 zip = ZipFile("../VGC_Analyze.zip", "w")
