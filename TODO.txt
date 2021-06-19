@@ -6,15 +6,13 @@ Datepicker
 Listview home / end / page up / page down
 Filter presets
 
-===Bugs===
-Toggle related after fresh start/download doesnt work
-Settings ok not working
-
 ===Low priority===
 Multiselect
 	Bookmark all (selected) / contextmenu
 	Remove all bookmarks (selected) / contextmenu
+
 Graph canvas scroll bar
+Graph popup
 
 ===DONE===
 About Dialog
