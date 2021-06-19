@@ -91,7 +91,7 @@ msgstr ""
 msgid "Show grid"
 msgstr ""
 
-#: ../gui/GUI_ItemInfo.py:56 ../gui/GUI_Popups.py:529
+#: ../gui/GUI_ItemInfo.py:56 ../gui/GUI_Popups.py:534
 msgid "Purchase price"
 msgstr ""
 
@@ -111,7 +111,7 @@ msgstr ""
 msgid "Quit"
 msgstr ""
 
-#: ../gui/GUI_Menu.py:20 ../gui/GUI_Popups.py:254
+#: ../gui/GUI_Menu.py:20 ../gui/GUI_Popups.py:259
 msgid "Search for item"
 msgstr ""
 
@@ -143,7 +143,7 @@ msgstr ""
 msgid "File"
 msgstr ""
 
-#: ../gui/GUI_Menu.py:41 ../gui/GUI_Popups.py:276
+#: ../gui/GUI_Menu.py:41 ../gui/GUI_Popups.py:281
 msgid "Search"
 msgstr ""
 
@@ -167,12 +167,12 @@ msgstr ""
 msgid "Password"
 msgstr ""
 
-#: ../gui/GUI_Popups.py:149 ../gui/GUI_Popups.py:274 ../gui/GUI_Popups.py:391
+#: ../gui/GUI_Popups.py:149 ../gui/GUI_Popups.py:279 ../gui/GUI_Popups.py:396
 #: ../gui/GUI_Settings.py:60
 msgid "Cancel"
 msgstr ""
 
-#: ../gui/GUI_Popups.py:168
+#: ../gui/GUI_Popups.py:173
 msgid ""
 "The provided login credentials will be used to\n"
 "download a backup of your collection from\n"
@@ -192,43 +192,43 @@ msgid ""
 " 3) \tRestart VGC Analyzer"
 msgstr ""
 
-#: ../gui/GUI_Popups.py:180
+#: ../gui/GUI_Popups.py:185
 msgid "VGCollect.com user profile"
 msgstr ""
 
-#: ../gui/GUI_Popups.py:210
+#: ../gui/GUI_Popups.py:215
 msgid "Login credentials incomplete"
 msgstr ""
 
-#: ../gui/GUI_Popups.py:210 ../gui/GUI_Popups.py:217 ../gui/GUI_Popups.py:222
+#: ../gui/GUI_Popups.py:215 ../gui/GUI_Popups.py:222 ../gui/GUI_Popups.py:227
 msgid "Collection download"
 msgstr ""
 
-#: ../gui/GUI_Popups.py:217
+#: ../gui/GUI_Popups.py:222
 msgid "Download successful"
 msgstr ""
 
-#: ../gui/GUI_Popups.py:270
+#: ../gui/GUI_Popups.py:275
 msgid "Search for"
 msgstr ""
 
-#: ../gui/GUI_Popups.py:353
+#: ../gui/GUI_Popups.py:358
 msgid "Couldn't find"
 msgstr ""
 
-#: ../gui/GUI_Popups.py:378
+#: ../gui/GUI_Popups.py:383
 msgid "Select "
 msgstr ""
 
-#: ../gui/GUI_Popups.py:392
+#: ../gui/GUI_Popups.py:397
 msgid "Reset"
 msgstr ""
 
-#: ../gui/GUI_Popups.py:393
+#: ../gui/GUI_Popups.py:398
 msgid "Select all"
 msgstr ""
 
-#: ../gui/GUI_Popups.py:394 ../gui/GUI_Settings.py:62
+#: ../gui/GUI_Popups.py:399 ../gui/GUI_Settings.py:62
 msgid "OK"
 msgstr ""
 
@@ -236,7 +236,7 @@ msgstr ""
 msgid "Group"
 msgstr ""
 
-#: ../gui/GUI_Popups.py:523 ../gui/GUI_Settings.py:219
+#: ../gui/GUI_Popups.py:528 ../gui/GUI_Settings.py:219
 #: ../gui/GUI_Settings.py:266 ../lib/Var.py:107
 msgid "Platform"
 msgstr ""
@@ -349,7 +349,7 @@ msgstr ""
 msgid "cart cover"
 msgstr ""
 
-#: ../gui/GUI_Popups.py:527 ../gui/GUI_Settings.py:156
+#: ../gui/GUI_Popups.py:532 ../gui/GUI_Settings.py:156
 #: ../gui/GUI_Settings.py:205
 msgid "Platform holder"
 msgstr ""
@@ -458,7 +458,7 @@ msgstr ""
 msgid "Total price (growth)"
 msgstr ""
 
-#: ../gui/GUI_Popups.py:525 ../lib/Var.py:108
+#: ../gui/GUI_Popups.py:530 ../lib/Var.py:108
 msgid "Region"
 msgstr ""
 
@@ -582,59 +582,59 @@ msgstr ""
 msgid "Item details"
 msgstr ""
 
-#: ../gui/GUI_Popups.py:494
+#: ../gui/GUI_Popups.py:499
 msgid "Detailed item info for "
 msgstr ""
 
-#: ../gui/GUI_Popups.py:531
+#: ../gui/GUI_Popups.py:536
 msgid "Purchased"
 msgstr ""
 
-#: ../gui/GUI_Popups.py:533
+#: ../gui/GUI_Popups.py:538
 msgid "Added"
 msgstr ""
 
-#: ../gui/GUI_Popups.py:551
+#: ../gui/GUI_Popups.py:556
 msgid "Alt-Name"
 msgstr ""
 
-#: ../gui/GUI_Popups.py:553
+#: ../gui/GUI_Popups.py:558
 msgid "Release Type"
 msgstr ""
 
-#: ../gui/GUI_Popups.py:555
+#: ../gui/GUI_Popups.py:560
 msgid "Developer(s)"
 msgstr ""
 
-#: ../gui/GUI_Popups.py:557
+#: ../gui/GUI_Popups.py:562
 msgid "Publisher(s)"
 msgstr ""
 
-#: ../gui/GUI_Popups.py:559
+#: ../gui/GUI_Popups.py:564
 msgid "Genre"
 msgstr ""
 
-#: ../gui/GUI_Popups.py:561
+#: ../gui/GUI_Popups.py:566
 msgid "Rating"
 msgstr ""
 
-#: ../gui/GUI_Popups.py:563
+#: ../gui/GUI_Popups.py:568
 msgid "Item Number"
 msgstr ""
 
-#: ../gui/GUI_Popups.py:565
+#: ../gui/GUI_Popups.py:570
 msgid "Barcode"
 msgstr ""
 
-#: ../gui/GUI_Popups.py:567
+#: ../gui/GUI_Popups.py:572
 msgid "Release Date"
 msgstr ""
 
-#: ../gui/GUI_Popups.py:550
+#: ../gui/GUI_Popups.py:555
 msgid "Get VGC data"
 msgstr ""
 
-#: ../gui/GUI_Popups.py:624
+#: ../gui/GUI_Popups.py:629
 msgid "Refresh VGC data"
 msgstr ""
 
@@ -642,23 +642,23 @@ msgstr ""
 msgid "Item details on double-click"
 msgstr ""
 
-#: ../gui/GUI_Popups.py:690
+#: ../gui/GUI_Popups.py:695
 msgid "A data analyzer for your VGCollect.com video game collection"
 msgstr ""
 
-#: ../gui/GUI_Popups.py:694
+#: ../gui/GUI_Popups.py:699
 msgid "Close"
 msgstr ""
 
-#: ../gui/GUI_Popups.py:714
+#: ../gui/GUI_Popups.py:719
 msgid "VGC Analyze GitHub"
 msgstr ""
 
-#: ../gui/GUI_Popups.py:671
+#: ../gui/GUI_Popups.py:676
 msgid "About VGC Analyze"
 msgstr ""
 
-#: ../gui/GUI_Popups.py:691
+#: ../gui/GUI_Popups.py:696
 msgid ""
 "VGC Analyze is a hobby project, not affiliated with or endorsed by "
 "VGCollect.com"
@@ -667,6 +667,17 @@ msgstr ""
 #: ../gui/GUI_Settings.py:144
 msgid "Refresh table on filter select"
 msgstr ""
+
+#: ../gui/GUI_Popups.py:170
+msgid ""
+"VGC Analyze is an unofficial project, \n"
+"not affiliated with or endorsed by VGCollect.com."
+msgstr ""
+
+#~ msgid ""
+#~ "VGC_Analyze is an unofficial project, \n"
+#~ "not affiliated with or endorsed by VGCollect.com."
+#~ msgstr ""
 
 #~ msgid "VGC Analyze is not affiliated with or endorsed by VGCollect.com"
 #~ msgstr ""

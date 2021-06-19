@@ -142,15 +142,16 @@ class Pop_CollectionDownload(object):
 
         self.button_frame.columnconfigure(1, weight=1)
 
-        self.label_user   = Label_(self.input_frame, anchor="w", text=_("VGC Username"), bg=VAR.GUI_COLOR_PRIMARY)
-        self.input_user   = Entry_(self.input_frame, width=31, relief="solid")
-        self.label_pass   = Label_(self.input_frame, anchor="w", text=_("Password"), bg=VAR.GUI_COLOR_PRIMARY)
-        self.input_pass   = Entry_(self.input_frame, width=31, relief="solid", show="*")
-        self.btn_cancel   = Button(self.button_frame, width=18, text=_("Cancel"), relief="groove", bg=VAR.BUTTON_COLOR_BAD, command=self.close)
-        self.btn_spacer   = Label_(self.button_frame, bg=VAR.GUI_COLOR_SECONDARY)
-        self.btn_download = Button(self.button_frame, width=18, text=_("Download"), relief="groove", bg=VAR.BUTTON_COLOR_GOOD, command=self.download)
-        self.label_info   = Label_(self.button_frame, width=35, bg=VAR.GUI_COLOR_SECONDARY)
-        self.label_link   = Label_(self.button_frame, width=35, anchor="center", bg=VAR.GUI_COLOR_SECONDARY)
+        self.label_user       = Label_(self.input_frame, anchor="w", text=_("VGC Username"), bg=VAR.GUI_COLOR_PRIMARY)
+        self.input_user       = Entry_(self.input_frame, width=31, relief="solid")
+        self.label_pass       = Label_(self.input_frame, anchor="w", text=_("Password"), bg=VAR.GUI_COLOR_PRIMARY)
+        self.input_pass       = Entry_(self.input_frame, width=31, relief="solid", show="*")
+        self.btn_cancel       = Button(self.button_frame, width=18, text=_("Cancel"), relief="groove", bg=VAR.BUTTON_COLOR_BAD, command=self.close)
+        self.btn_spacer       = Label_(self.button_frame, bg=VAR.GUI_COLOR_SECONDARY)
+        self.btn_download     = Button(self.button_frame, width=18, text=_("Download"), relief="groove", bg=VAR.BUTTON_COLOR_GOOD, command=self.download)
+        self.label_disclaimer = Label_(self.button_frame, width=35, bg=VAR.GUI_COLOR_SECONDARY)
+        self.label_info       = Label_(self.button_frame, width=35, bg=VAR.GUI_COLOR_SECONDARY)
+        self.label_link       = Label_(self.button_frame, width=35, anchor="center", bg=VAR.GUI_COLOR_SECONDARY)
 
         self.label_user.grid(row=0, column=0, pady=(15,10), padx=10, sticky="w")
         self.input_user.grid(row=0, column=1, pady=(15,10), padx=10, sticky="w")
@@ -162,8 +163,12 @@ class Pop_CollectionDownload(object):
         self.btn_spacer.grid(row=0, column=1)
         self.btn_download.grid(row=0, column=2, pady=20, padx=10, sticky="w")
 
-        self.label_info.grid(row=1, column=0, pady=0, padx=10, sticky="nwse", columnspan=3)
-        self.label_link.grid(row=2, column=0, pady=(5, 10), padx=10, sticky="nwse", columnspan=3)
+        self.label_disclaimer.grid(row=1, column=0, pady=0, padx=10, sticky="nwse", columnspan=3)
+        self.label_info.grid(row=2, column=0, pady=0, padx=10, sticky="nwse", columnspan=3)
+        self.label_link.grid(row=3, column=0, pady=(5, 10), padx=10, sticky="nwse", columnspan=3)
+
+        self.label_disclaimer.set(_("VGC Analyze is an unofficial project, \nnot affiliated with or endorsed by VGCollect.com."))
+        self.label_disclaimer.config(fg="red")
 
         self.label_info.set(_("The provided login credentials will be used to\n"
                               "download a backup of your collection from\n"
