@@ -60,7 +60,8 @@ def defaultSettings():
                     "language": "en_US"
                 },
                 "display": {
-                    "detailsOnDoubleClick": 1
+                    "detailsOnDoubleClick": 1,
+                    "refreshOnFilterSelect": 1
                 }
             }
 
