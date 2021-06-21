@@ -45,7 +45,7 @@ https://www.python.org/downloads/
 
 **Download the VGC_Analyze.zip file from this page and extract it somewhere on your hard drive.**
 
-VGC_Analyze requires a couple third party Python modules that are not included in the zip file. These can be installed via the "package installer for Python" (pip). While the application can be run without those modules, it is recommended that you install them, otherwise certain function will be unavailable.
+VGC_Analyze requires a couple third party Python modules that are not included in the zip file. These can be installed via the "package installer for Python" (pip). **While the application can be run without those modules, it is recommended that you install them, otherwise certain function will be unavailable.**
 
 https://pypi.org
 
