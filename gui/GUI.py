@@ -53,7 +53,7 @@ class GUI(Tk):
         self.withdraw()
         self.title('VGC Analyzer')
         self.geometry('1000x750')
-        self.iconphoto(False, loadIcon("game-controller-outline", 15, 15))
+        self.iconphoto(False, loadIcon("game-controller-outline", 30, 30))
 
         if platform.system() == "Darwin" or platform.system() == "Windows":
             self.state('zoomed')

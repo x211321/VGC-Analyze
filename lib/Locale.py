@@ -1,5 +1,6 @@
 import os
 import sys
+import platform
 import gettext
 import locale
 from datetime import datetime
@@ -42,7 +43,13 @@ def setLocale(localeString = ""):
 
         print("Loading default locale")
 
-        locale.setlocale(locale.LC_ALL, "")
+        if platform.system() == "Darwin":
+            # Python doesn't like the default locale
+            # when running on darwin, for now
+            # set to en_US so the app can run
+            locale.setlocale(locale.LC_ALL, "en_US")
+        else:
+            locale.setlocale(locale.LC_ALL, "")
 
 
 def locCurrency(value):

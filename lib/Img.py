@@ -42,11 +42,12 @@ def loadImage(path, width = 0, padx = 0):
 # --------------------
 def loadIcon(name, width, height, padx = 0):
     iconPath     = VAR.ICON_PATH + name + ".png"
-    alt_iconPath = VAR.ICON_PATH + str(width) + "x" + str(height) + "/" + name + ".png"
+    alt_iconPath = VAR.ICON_PATH + str(width) + "x" + str(height) + "/" + name + ".gif"
 
     if pillow_available == False:
         # When Pillow is not available we try to find a fallback Icon
-        # that has been pre-resized
+        # thats a pre-resized gif file for better compatibility
+        # with the default image functions
         if os.path.exists(alt_iconPath):
             iconPath = alt_iconPath
     if pillow_available:
