@@ -89,7 +89,16 @@ sudo apt-get install python3-matplotlib
 
 
 ## macOS
-VGC_Analyze has not yet been tested on macOS. Provided the required Python version and dependencies are installed it should theoretically be able to run.
+VGC_Analyze has been tested on macOS 10.15.5 (Catalina) with Python 3.7.6.
+
+The installation process is similar to the Windows script version but currently the UI of VGC_Analyze shows several graphical errors that compromise the overall user experience on macOS.
+
+```
+python3 -m pip install Pillow
+python3 -m pip install matplotlib
+
+python3 ./VGC_Analyze.py
+```
 
 
 # Future development
