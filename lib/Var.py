@@ -46,8 +46,9 @@ except:
     ASSETS_PATH      = os.path.join("assets", "")
     print("Working locally")
 
-ICON_PATH      = os.path.join(ASSETS_PATH, "icons", "")
-IMG_COVER_NONE = os.path.join(ASSETS_PATH, "cover_placeholder.jpg")
+ICON_PATH             = os.path.join(ASSETS_PATH, "icons", "")
+IMG_COVER_NONE        = os.path.join(ASSETS_PATH, "cover_placeholder.png")
+IMG_COVER_PIL_MISSING = os.path.join(ASSETS_PATH, "cover_placeholder_pillow.png")
 
 # Graph vars
 GRAPH_TYPE_BAR                  = _("Bar")

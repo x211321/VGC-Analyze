@@ -1,8 +1,24 @@
 from lib.Locale import _
 from lib.Locale import locCurrency
 
-from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
-from matplotlib.figure import Figure
+try:
+    import PIL
+except ImportError:
+    pillow_available = False
+else:
+    pillow_available = True
+
+if pillow_available:
+    try:
+        from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
+        from matplotlib.figure import Figure
+    except ImportError:
+        matplotlib_available = False
+        print("Matplotlib not found")
+    else:
+        matplotlib_available = True
+else:
+    matplotlib_available = False
 
 from tkinter import *
 from tkinter import ttk
@@ -75,9 +91,13 @@ class GUI_Graph(Frame):
 
         self.graph_hover_info.grid(row=0, column=7)
 
-        self.graph_canvas = FigureCanvasTkAgg(master=self.graph_sub_frame, figure=Figure())
-        self.graph_sub_frame.pack_propagate(False)
-        self.graph_canvas.get_tk_widget().pack(expand=True, fill="both")
+        if matplotlib_available:
+            self.graph_canvas = FigureCanvasTkAgg(master=self.graph_sub_frame, figure=Figure())
+            self.graph_sub_frame.pack_propagate(False)
+            self.graph_canvas.get_tk_widget().pack(expand=True, fill="both")
+        else:
+            self.label_matplotlib_missing = Label_(self.graph_sub_frame, font=(20), bg=VAR.BUTTON_COLOR_BAD, text=_("matplotlib module not found, can't render graphs."))
+            self.label_matplotlib_missing.pack(pady=20)
 
         self.fillGraphTypeCombobox()
         self.fillGraphContentCombobox()
@@ -195,46 +215,47 @@ class GUI_Graph(Frame):
     # displayGraphs
     # --------------------
     def displayGraphs(self):
-        canvas       = self.graph_canvas
-        graphType    = self.graph_type.get()
-        graphContent = self.graph_content.get()
-        graphData    = self.graph_data.get()
+        if matplotlib_available:
+            canvas       = self.graph_canvas
+            graphType    = self.graph_type.get()
+            graphContent = self.graph_content.get()
+            graphData    = self.graph_data.get()
 
-        group    = ""
-        subGroup = ""
+            group    = ""
+            subGroup = ""
 
-        # Group data
-        if graphContent == VAR.GRAPH_CONTENT_YEARS:
-            group = VAR.GROUP_BY_YEAR
-        if graphContent == VAR.GRAPH_CONTENT_MONTHS:
-            group = VAR.GROUP_BY_MONTH
-        if graphContent == VAR.GRAPH_CONTENT_YEARS_ADDED:
-            group = VAR.GROUP_BY_YEAR_ADDED
-        if graphContent == VAR.GRAPH_CONTENT_MONTHS_ADDED:
-            group = VAR.GROUP_BY_MONTH_ADDED
-        if graphContent == VAR.GRAPH_CONTENT_PLATFORMS:
-            group = VAR.GROUP_BY_PLATFORM
-            if graphData == VAR.GRAPH_DATA_ITEMCOUNTGROWTH or graphData == VAR.GRAPH_DATA_TOTALPRICEGROWTH:
-                subGroup = VAR.GROUP_BY_YEAR
-        if graphContent == VAR.GRAPH_CONTENT_REGIONS:
-            group = VAR.GROUP_BY_REGION
-            if graphData == VAR.GRAPH_DATA_ITEMCOUNTGROWTH or graphData == VAR.GRAPH_DATA_TOTALPRICEGROWTH:
-                subGroup = VAR.GROUP_BY_YEAR
-        if graphContent == VAR.GRAPH_CONTENT_PLATFORM_HOLDERS:
-            group = VAR.GROUP_BY_PLATFORMHOLDER
-            if graphData == VAR.GRAPH_DATA_ITEMCOUNTGROWTH or graphData == VAR.GRAPH_DATA_TOTALPRICEGROWTH:
-                subGroup = VAR.GROUP_BY_YEAR
+            # Group data
+            if graphContent == VAR.GRAPH_CONTENT_YEARS:
+                group = VAR.GROUP_BY_YEAR
+            if graphContent == VAR.GRAPH_CONTENT_MONTHS:
+                group = VAR.GROUP_BY_MONTH
+            if graphContent == VAR.GRAPH_CONTENT_YEARS_ADDED:
+                group = VAR.GROUP_BY_YEAR_ADDED
+            if graphContent == VAR.GRAPH_CONTENT_MONTHS_ADDED:
+                group = VAR.GROUP_BY_MONTH_ADDED
+            if graphContent == VAR.GRAPH_CONTENT_PLATFORMS:
+                group = VAR.GROUP_BY_PLATFORM
+                if graphData == VAR.GRAPH_DATA_ITEMCOUNTGROWTH or graphData == VAR.GRAPH_DATA_TOTALPRICEGROWTH:
+                    subGroup = VAR.GROUP_BY_YEAR
+            if graphContent == VAR.GRAPH_CONTENT_REGIONS:
+                group = VAR.GROUP_BY_REGION
+                if graphData == VAR.GRAPH_DATA_ITEMCOUNTGROWTH or graphData == VAR.GRAPH_DATA_TOTALPRICEGROWTH:
+                    subGroup = VAR.GROUP_BY_YEAR
+            if graphContent == VAR.GRAPH_CONTENT_PLATFORM_HOLDERS:
+                group = VAR.GROUP_BY_PLATFORMHOLDER
+                if graphData == VAR.GRAPH_DATA_ITEMCOUNTGROWTH or graphData == VAR.GRAPH_DATA_TOTALPRICEGROWTH:
+                    subGroup = VAR.GROUP_BY_YEAR
 
-        self.collectionData.groupGraphData(group, subGroup = subGroup)
+            self.collectionData.groupGraphData(group, subGroup = subGroup)
 
-        if graphType == VAR.GRAPH_TYPE_BAR:
-            self.drawBarGraph(self.collectionData, canvas, graphContent, graphData)
-        if graphType == VAR.GRAPH_TYPE_PIE:
-            self.drawPieChart(self.collectionData, canvas, graphContent, graphData)
-        if graphType == VAR.GRAPH_TYPE_AREA:
-            self.drawStackPlot(self.collectionData, canvas, graphContent, graphData)
-        if graphType == VAR.GRAPH_TYPE_LINE:
-            self.drawLinePlot(self.collectionData, canvas, graphContent, graphData)
+            if graphType == VAR.GRAPH_TYPE_BAR:
+                self.drawBarGraph(self.collectionData, canvas, graphContent, graphData)
+            if graphType == VAR.GRAPH_TYPE_PIE:
+                self.drawPieChart(self.collectionData, canvas, graphContent, graphData)
+            if graphType == VAR.GRAPH_TYPE_AREA:
+                self.drawStackPlot(self.collectionData, canvas, graphContent, graphData)
+            if graphType == VAR.GRAPH_TYPE_LINE:
+                self.drawLinePlot(self.collectionData, canvas, graphContent, graphData)
 
 
     ######################
@@ -289,7 +310,6 @@ class GUI_Graph(Frame):
             labels = []
 
             maxLabelLen = 0
-            barWidth    = int(canvasWidth/len(data.graph_groups))
 
             # Get values and labels
             for groupKey in sorted(data.graph_groups.keys()):

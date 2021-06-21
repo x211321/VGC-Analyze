@@ -9,15 +9,15 @@ msgstr ""
 msgid "items"
 msgstr ""
 
-#: ../gui/GUI_Filter.py:60 ../gui/GUI_Settings.py:92 ../lib/Var.py:62
+#: ../gui/GUI_Filter.py:60 ../gui/GUI_Settings.py:92 ../lib/Var.py:63
 msgid "Platforms"
 msgstr ""
 
-#: ../gui/GUI_Filter.py:64 ../lib/Var.py:63
+#: ../gui/GUI_Filter.py:64 ../lib/Var.py:64
 msgid "Regions"
 msgstr ""
 
-#: ../gui/GUI_Filter.py:62 ../gui/GUI_Settings.py:91 ../lib/Var.py:64
+#: ../gui/GUI_Filter.py:62 ../gui/GUI_Settings.py:91 ../lib/Var.py:65
 msgid "Platform holders"
 msgstr ""
 
@@ -53,7 +53,7 @@ msgstr ""
 msgid "Combine related platforms"
 msgstr ""
 
-#: ../gui/GUI_Filter.py:50 ../gui/GUI_ItemInfo.py:50 ../lib/Var.py:106
+#: ../gui/GUI_Filter.py:50 ../gui/GUI_ItemInfo.py:50 ../lib/Var.py:107
 msgid "Title"
 msgstr ""
 
@@ -63,7 +63,7 @@ msgstr ""
 msgid "Select"
 msgstr ""
 
-#: ../gui/GUI_Filter.py:55 ../lib/Var.py:118
+#: ../gui/GUI_Filter.py:55 ../lib/Var.py:119
 msgid "Notes"
 msgstr ""
 
@@ -75,19 +75,19 @@ msgstr ""
 msgid "Max. purchase price"
 msgstr ""
 
-#: ../gui/GUI_Graph.py:48
+#: ../gui/GUI_Graph.py:64
 msgid "Graph type:"
 msgstr ""
 
-#: ../gui/GUI_Graph.py:52
+#: ../gui/GUI_Graph.py:68
 msgid "Content:"
 msgstr ""
 
-#: ../gui/GUI_Graph.py:56
+#: ../gui/GUI_Graph.py:72
 msgid "Data:"
 msgstr ""
 
-#: ../gui/GUI_Graph.py:61
+#: ../gui/GUI_Graph.py:77
 msgid "Show grid"
 msgstr ""
 
@@ -237,27 +237,27 @@ msgid "Group"
 msgstr ""
 
 #: ../gui/GUI_Popups.py:528 ../gui/GUI_Settings.py:219
-#: ../gui/GUI_Settings.py:266 ../lib/Var.py:107
+#: ../gui/GUI_Settings.py:266 ../lib/Var.py:108
 msgid "Platform"
 msgstr ""
 
-#: ../gui/GUI_Filter.py:82 ../lib/Var.py:112
+#: ../gui/GUI_Filter.py:82 ../lib/Var.py:113
 msgid "Cart"
 msgstr ""
 
-#: ../gui/GUI_Filter.py:83 ../lib/Var.py:113
+#: ../gui/GUI_Filter.py:83 ../lib/Var.py:114
 msgid "Box"
 msgstr ""
 
-#: ../gui/GUI_Filter.py:88 ../lib/Var.py:114
+#: ../gui/GUI_Filter.py:88 ../lib/Var.py:115
 msgid "Manual"
 msgstr ""
 
-#: ../gui/GUI_Filter.py:89 ../lib/Var.py:115
+#: ../gui/GUI_Filter.py:89 ../lib/Var.py:116
 msgid "Other"
 msgstr ""
 
-#: ../gui/GUI_Filter.py:95 ../lib/Var.py:117
+#: ../gui/GUI_Filter.py:95 ../lib/Var.py:118
 msgid "Finished"
 msgstr ""
 
@@ -370,11 +370,11 @@ msgstr ""
 msgid "Overwrite with"
 msgstr ""
 
-#: ../gui/GUI_ItemInfo.py:52 ../lib/Var.py:110
+#: ../gui/GUI_ItemInfo.py:52 ../lib/Var.py:111
 msgid "Date (purchased)"
 msgstr ""
 
-#: ../gui/GUI_ItemInfo.py:54 ../lib/Var.py:111
+#: ../gui/GUI_ItemInfo.py:54 ../lib/Var.py:112
 msgid "Date (added)"
 msgstr ""
 
@@ -426,87 +426,87 @@ msgstr ""
 msgid "Login error - Code: "
 msgstr ""
 
-#: ../lib/Var.py:53
+#: ../lib/Var.py:54
 msgid "Bar"
 msgstr ""
 
-#: ../lib/Var.py:54
+#: ../lib/Var.py:55
 msgid "Pie"
 msgstr ""
 
-#: ../lib/Var.py:55
+#: ../lib/Var.py:56
 msgid "Area"
 msgstr ""
 
-#: ../lib/Var.py:56
+#: ../lib/Var.py:57
 msgid "Line"
 msgstr ""
 
-#: ../lib/Var.py:69
+#: ../lib/Var.py:70
 msgid "Item count"
 msgstr ""
 
-#: ../lib/Var.py:70
+#: ../lib/Var.py:71
 msgid "Total price"
 msgstr ""
 
-#: ../lib/Var.py:71
+#: ../lib/Var.py:72
 msgid "Item count (growth)"
 msgstr ""
 
-#: ../lib/Var.py:72
+#: ../lib/Var.py:73
 msgid "Total price (growth)"
 msgstr ""
 
-#: ../gui/GUI_Popups.py:530 ../lib/Var.py:108
+#: ../gui/GUI_Popups.py:530 ../lib/Var.py:109
 msgid "Region"
 msgstr ""
 
-#: ../lib/Var.py:109
+#: ../lib/Var.py:110
 msgid "Price"
 msgstr ""
 
-#: ../lib/Var.py:116
+#: ../lib/Var.py:117
 msgid "Bookmark"
 msgstr ""
 
-#: ../lib/Var.py:81 ../lib/Var.py:88
+#: ../lib/Var.py:82 ../lib/Var.py:89
 msgid "name"
 msgstr ""
 
-#: ../lib/Var.py:82 ../lib/Var.py:92
+#: ../lib/Var.py:83 ../lib/Var.py:93
 msgid "region"
 msgstr ""
 
-#: ../lib/Var.py:83 ../lib/Var.py:93
+#: ../lib/Var.py:84 ../lib/Var.py:94
 msgid "platform"
 msgstr ""
 
-#: ../lib/Var.py:84
+#: ../lib/Var.py:85
 msgid "platform holder"
 msgstr ""
 
-#: ../lib/Var.py:85 ../lib/Var.py:94
+#: ../lib/Var.py:86 ../lib/Var.py:95
 msgid "notes"
 msgstr ""
 
-#: ../lib/Var.py:89
+#: ../lib/Var.py:90
 msgid "price"
 msgstr ""
 
-#: ../lib/Var.py:97
+#: ../lib/Var.py:98
 msgid "ascending"
 msgstr ""
 
-#: ../lib/Var.py:98
+#: ../lib/Var.py:99
 msgid "descending"
 msgstr ""
 
-#: ../lib/Var.py:100
+#: ../lib/Var.py:101
 msgid "Yes"
 msgstr ""
 
-#: ../lib/Var.py:101
+#: ../lib/Var.py:102
 msgid "No"
 msgstr ""
 
@@ -514,51 +514,51 @@ msgstr ""
 msgid "[None]"
 msgstr ""
 
-#: ../lib/Var.py:58
+#: ../lib/Var.py:59
 msgid "Years (purchased)"
 msgstr ""
 
-#: ../lib/Var.py:59
+#: ../lib/Var.py:60
 msgid "Months (purchased)"
 msgstr ""
 
-#: ../lib/Var.py:60
+#: ../lib/Var.py:61
 msgid "Years (added)"
 msgstr ""
 
-#: ../lib/Var.py:61
+#: ../lib/Var.py:62
 msgid "Months (added)"
 msgstr ""
 
-#: ../lib/Var.py:75
+#: ../lib/Var.py:76
 msgid "year (purchased)"
 msgstr ""
 
-#: ../lib/Var.py:76
+#: ../lib/Var.py:77
 msgid "month (purchased)"
 msgstr ""
 
-#: ../lib/Var.py:77
+#: ../lib/Var.py:78
 msgid "day (purchased)"
 msgstr ""
 
-#: ../lib/Var.py:78
+#: ../lib/Var.py:79
 msgid "year (added)"
 msgstr ""
 
-#: ../lib/Var.py:79
+#: ../lib/Var.py:80
 msgid "month (added)"
 msgstr ""
 
-#: ../lib/Var.py:80
+#: ../lib/Var.py:81
 msgid "day (added)"
 msgstr ""
 
-#: ../lib/Var.py:90
+#: ../lib/Var.py:91
 msgid "date (purchased)"
 msgstr ""
 
-#: ../lib/Var.py:91
+#: ../lib/Var.py:92
 msgid "date (added)"
 msgstr ""
 
@@ -672,6 +672,10 @@ msgstr ""
 msgid ""
 "VGC Analyze is an unofficial project, \n"
 "not affiliated with or endorsed by VGCollect.com."
+msgstr ""
+
+#: ../gui/GUI_Graph.py:99
+msgid "matplotlib module not found, can't render graphs."
 msgstr ""
 
 #~ msgid ""
