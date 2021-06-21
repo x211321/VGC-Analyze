@@ -1,5 +1,6 @@
 import os
 import sys
+import platform
 from lib.Locale import _
 
 FILE_PREFIX             = "collection-"
@@ -21,7 +22,11 @@ BUTTON_COLOR_BAD    = "#FF9999"
 BUTTON_COLOR_TOGGLE = "#FFDD99"
 
 GUI_COLOR_PRIMARY   = "white"
-GUI_COLOR_SECONDARY = "#F0F0F0"
+
+if platform.system() == "Darwin":
+    GUI_COLOR_SECONDARY = "white"
+else:
+    GUI_COLOR_SECONDARY = "#F0F0F0"
 
 INPUT_COLOR = "white"
 

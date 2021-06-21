@@ -1,6 +1,7 @@
 from lib.Locale import _
 
 import os
+import platform
 
 from tkinter import *
 from tkinter import ttk
@@ -12,9 +13,8 @@ from lib.Img import loadIcon
 
 from lib.Widgets  import Label_
 from lib.Widgets  import Entry_
-from lib.Widgets  import Checkbutton_
 from lib.Widgets  import Button_
-from lib.Data     import FilterData
+from lib.Widgets  import BorderButton_
 from lib.Browser  import openUserProfileInBrowser
 from lib.Browser  import openGithub
 from lib.Download import downloadCollection
@@ -87,7 +87,9 @@ class Pop_CoverViewer(object):
                 self.window.wm_title(item.name + " - " + title)
                 self.window.geometry("+"+str(x)+"+"+str(y))
                 self.window.resizable(False, False)
-                self.window.iconphoto(False, loadIcon("eye-outline", 30, 30))
+
+                if not platform.system() == "Darwin":
+                    self.window.iconphoto(False, loadIcon("eye-outline", 512, 512))
                 self.window.bind('<Escape>', lambda x:self.close())
                 self.window.focus_force()
 
@@ -125,7 +127,9 @@ class Pop_CollectionDownload(object):
         self.window.withdraw()
         self.window.wm_title(_("Download collection"))
         self.window.resizable(False, False)
-        self.window.iconphoto(False, loadIcon("cloud-download-outline", 30, 30))
+
+        if not platform.system() == "Darwin":
+            self.window.iconphoto(False, loadIcon("cloud-download-outline", 512, 512))
         self.window.bind('<Escape>', lambda x:self.close())
         # self.window.grab_set()
         self.window.focus_force()
@@ -258,7 +262,9 @@ class Pop_ItemSearch(object):
         self.window.withdraw()
         self.window.wm_title(_("Search for item"))
         self.window.resizable(False, False)
-        self.window.iconphoto(False, loadIcon("search-outline", 30, 30))
+
+        if not platform.system() == "Darwin":
+            self.window.iconphoto(False, loadIcon("search-outline", 512, 512))
         self.window.bind('<Escape>', lambda x:self.close())
         self.window.focus_force()
 
@@ -382,7 +388,9 @@ class Pop_FilterSelect(object):
         self.window.withdraw()
         self.window.wm_title(_("Select ") + filterType)
         self.window.resizable(False, False)
-        self.window.iconphoto(False, loadIcon("filter-outline", 30, 30))
+
+        if not platform.system() == "Darwin":
+            self.window.iconphoto(False, loadIcon("filter-outline", 512, 512))
         self.window.bind('<Escape>', lambda x:self.close())
         self.window.focus_force()
         # self.window.grab_set()
@@ -424,9 +432,9 @@ class Pop_FilterSelect(object):
         if maxCol == 0:
             maxCol = int(150 / maxLen)
 
-        # Create checkbuttons
+        # Create togglebuttons
         for option, data in options:
-            self.widgets[option] = Button_(self.frame_options, text=option, bg=VAR.GUI_COLOR_PRIMARY, width=maxLen, relief="groove", toggle=True)
+            self.widgets[option] = BorderButton_(self.frame_options, text=option, bg=VAR.GUI_COLOR_PRIMARY, width=maxLen, relief="groove", toggle=True)
             self.widgets[option].grid(row=row, column=col, sticky="w", padx=5, pady=5)
 
             if option in activeOptions:
@@ -498,7 +506,9 @@ class Pop_ItemDetails(object):
         self.window.withdraw()
         self.window.wm_title(_("Detailed item info for ") + self.item.name)
         self.window.resizable(False, False)
-        self.window.iconphoto(False, loadIcon("information-outline", 30, 30))
+
+        if not platform.system() == "Darwin":
+            self.window.iconphoto(False, loadIcon("information-outline", 512, 512))
         self.window.bind('<Escape>', lambda x:self.close())
         self.window.focus_force()
 
@@ -675,7 +685,9 @@ class Pop_About(object):
         self.window.withdraw()
         self.window.wm_title(_("About VGC Analyze"))
         self.window.resizable(False, False)
-        self.window.iconphoto(False, loadIcon("game-controller-outline", 30, 30))
+
+        if not platform.system() == "Darwin":
+            self.window.iconphoto(False, loadIcon("game-controller-outline", 512, 512))
         self.window.bind('<Escape>', lambda x:self.close())
         self.window.focus_force()
 

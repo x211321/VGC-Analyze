@@ -8,6 +8,7 @@ from lib.Widgets import Label_
 from lib.Widgets import Entry_
 from lib.Widgets import Combobox_
 from lib.Widgets import Button_
+from lib.Widgets import BorderButton_
 from lib.Img import loadIcon
 
 from gui.GUI_Popups import Pop_FilterSelect
@@ -50,12 +51,12 @@ class GUI_Filter(Frame):
         self.filterInputs["name_txt"]   = Label_(self, width=25, _pady=(0,0), text=_("Title"))
         self.filterInputs["name_frame"] = Frame(self)
         self.filterInputs["name"]       = Entry_(self.filterInputs["name_frame"], width=25, row=0, col=0, _padx=(0,10))
-        self.filterInputs["name_regex"] = Button_(self.filterInputs["name_frame"], width=15, row=0, col=1, height=13, image=self.regexIcon, relief="groove", bg=VAR.GUI_COLOR_PRIMARY, toggle=True)
+        self.filterInputs["name_regex"] = BorderButton_(self.filterInputs["name_frame"], width=15, row=0, col=1, height=13, image=self.regexIcon, relief="groove", bg=VAR.GUI_COLOR_PRIMARY, toggle=True)
 
         self.filterInputs["notes_txt"]   = Label_(self, width=25, _pady=(2,0), text=_("Notes"))
         self.filterInputs["notes_frame"] = Frame(self)
         self.filterInputs["notes"]       = Entry_(self.filterInputs["notes_frame"], width=25, row=0, col=0, _padx=(0,10))
-        self.filterInputs["notes_regex"] = Button_(self.filterInputs["notes_frame"], width=15, row=0, col=1, height=13, image=self.regexIcon, relief="groove", bg=VAR.GUI_COLOR_PRIMARY, toggle=True)
+        self.filterInputs["notes_regex"] = BorderButton_(self.filterInputs["notes_frame"], width=15, row=0, col=1, height=13, image=self.regexIcon, relief="groove", bg=VAR.GUI_COLOR_PRIMARY, toggle=True)
 
         self.filterInputs["platforms_txt"]          = Label_(self, width=25, _pady=(2,0), text=_("Platforms"))
         self.filterInputs["platforms_select"]       = Button_(self, width=25, id="select", text=_("Select"), relief="groove", command=self.selectPlatforms, bg=VAR.INPUT_COLOR)

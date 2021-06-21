@@ -1,6 +1,7 @@
 from lib.Locale import _
 
 import os
+import platform
 
 from tkinter import *
 from tkinter import ttk
@@ -131,12 +132,11 @@ class Combobox_(ttk.Combobox):
 
     # Constructor
     def __init__(self, master=None,
-                 id="", text="", col=None, row=None,
+                 id="", col=None, row=None,
                  justify="left",
                  width=0, height=10,
                  _padx=None, _pady=None,
-                 show="", values=None,
-                 state=""):
+                 values=None, state=""):
 
         super().__init__(master=master, justify=justify, width=width, height=height, values=values, state=state)
 
@@ -164,7 +164,7 @@ class Button_(Button):
                  state="normal", relief=None,
                  bg=None, fg=None,
                  image=None, command=None,
-                 toggle=False):
+                 toggle=False, borderButton=False):
 
         super().__init__(master=master, text=text, justify=justify, width=width, height=height, state=state, relief=relief, bg=bg, fg=fg, image=image, command=command)
 
@@ -176,6 +176,8 @@ class Button_(Button):
         self._pady       = _pady
         self.toggle      = toggle
         self.toggleState = False
+        self.master      = master
+        self.borderButton= borderButton
 
         if self.toggle:
             self.config(command=self.toggleButtonState)
@@ -188,8 +190,81 @@ class Button_(Button):
         else:
             self.config(bg=self.bg)
 
+        if self.borderButton == True:
+            self.master.setBorderToggle()
+
     def toggleButtonState(self):
         self.setToggle(not self.toggleState)
+
+
+
+######################
+# BorderButton_
+# --------------------
+# Combination of LabelFrame and Button
+# as a workaround for the missing button
+# colors under macOS
+class BorderButton_(LabelFrame):
+    # Constructor
+    def __init__(self, master=None,
+                 id="", text="", col=None, row=None,
+                 justify="left",
+                 width=None, height=None,
+                 _padx=None, _pady=None,
+                 state="normal", relief=None,
+                 bg=None, fg=None,
+                 image=None, command=None,
+                 toggle=False, border_bg=None, border_bd=0):
+
+        if platform.system() == "Darwin":
+            if border_bd == 0:
+                border_bd = 2
+
+        self.id          = id
+        self.col         = col
+        self.row         = row
+        self.bg          = bg
+        self._padx       = _padx
+        self._pady       = _pady
+        self.toggle      = toggle
+        self.toggleState = False
+        self.border_bd   = border_bd
+
+        super().__init__(master=master, padx=border_bd, pady=border_bd, bg=border_bg, bd=0)
+
+        if not border_bg == None:
+            self.border_bg = border_bg
+        else:
+            self.border_bg = self.cget("bg")
+
+        if not width == None and width > border_bd:
+            width = width - border_bd
+        if not height == None and height > border_bd:
+            height = height - border_bd
+
+        self.button = Button_(master=self, id=id, text=text, col=col, row=row, justify=justify,
+                              width=width, height=height, _padx=_padx, _pady=_pady, state=state,
+                              relief=relief, bg=bg, fg=fg, image=image, command=command, toggle=toggle, borderButton=True)
+
+        self.button.grid()
+
+    def setToggle(self, newToggleState):
+        self.button.setToggle(newToggleState)
+
+    def toggleButtonState(self):
+        self.button.toggleButtonState()
+
+    def setBorderToggle(self):
+        # Gets triggered by the button that's inside
+        # this LabelFrame
+        self.toggleState = self.button.toggleState
+
+        if self.toggleState:
+            self.config(bg=VAR.BUTTON_COLOR_TOGGLE)
+        else:
+            self.config(bg=self.border_bg)
+
+
 
 
 ######################
@@ -199,7 +274,7 @@ class Text_(Text):
 
     # Constructor
     def __init__(self, master=None,
-                 id="", text="", col=None, row=None,
+                 id="", col=None, row=None,
                  width=None, height=None,
                  _padx=None, _pady=None,
                  state="normal", wrap=None):

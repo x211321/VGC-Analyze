@@ -40,7 +40,9 @@ class GUI_Settings(Toplevel):
         # Window attributes
         self.wm_title(_("Settings"))
         self.resizable(False, False)
-        self.iconphoto(False, loadIcon("settings-outline", 15, 15))
+
+        if not platform.system() == "Darwin":
+            self.iconphoto(False, loadIcon("settings-outline", 512, 512))
         self.bind('<Escape>', self.close)
         self.focus_force()
         self.withdraw()
