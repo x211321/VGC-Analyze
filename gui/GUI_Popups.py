@@ -853,8 +853,8 @@ class Pop_DatePicker(object):
         self.frame_days.grid(row=2, column=0, sticky="nwse")
 
         # Buttons
-        self.btn_cancel= Button_(self.frame_buttons, width=18, text=_("Cancel"), relief="groove", command=self.close, bg=VAR.BUTTON_COLOR_BAD)
-        self.btn_ok    = Button_(self.frame_buttons, width=18, text=_("OK"), relief="groove", command=self.confirm, bg=VAR.BUTTON_COLOR_GOOD)
+        self.btn_cancel= Button_(self.frame_buttons, width=15, text=_("Cancel"), relief="groove", command=self.close, bg=VAR.BUTTON_COLOR_BAD)
+        self.btn_ok    = Button_(self.frame_buttons, width=15, text=_("OK"), relief="groove", command=self.confirm, bg=VAR.BUTTON_COLOR_GOOD)
 
         self.btn_cancel.grid(row=0, column=0, padx=10, pady=20, sticky="w")
         self.btn_ok.grid(row=0, column=1, padx=10, pady=20, sticky="e")
