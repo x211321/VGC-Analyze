@@ -4,8 +4,10 @@ import os
 import platform
 
 from tkinter import *
-from tkinter import ttk
 from tkinter import messagebox
+
+from datetime import date
+import calendar
 
 import lib.Var as VAR
 
@@ -131,7 +133,6 @@ class Pop_CollectionDownload(object):
         if not platform.system() == "Darwin":
             self.window.iconphoto(False, loadIcon("cloud-download-outline", 512, 512))
         self.window.bind('<Escape>', lambda x:self.close())
-        # self.window.grab_set()
         self.window.focus_force()
 
         self.window.columnconfigure(0, weight=1)
@@ -393,7 +394,6 @@ class Pop_FilterSelect(object):
             self.window.iconphoto(False, loadIcon("filter-outline", 512, 512))
         self.window.bind('<Escape>', lambda x:self.close())
         self.window.focus_force()
-        # self.window.grab_set()
 
         self.frame_options = Frame(self.window, bg=VAR.GUI_COLOR_PRIMARY)
         self.frame_buttons = Frame(self.window, bg=VAR.GUI_COLOR_SECONDARY)
@@ -753,3 +753,261 @@ class Pop_About(object):
     def close(self):
         if not self.window == None:
             self.window.destroy()
+
+
+######################
+# Pop_DatePicker
+# --------------------
+class Pop_DatePicker(object):
+
+    window = None
+
+    def __init__(self, parent, callback = None):
+
+        self.daylabels = {}
+
+        self.calendar = calendar.Calendar()
+
+        self.dateSelected  = date.today()
+        self.indexSelected = 0
+
+        self.setDate(self.dateSelected)
+
+        self.parent   = parent
+        self.callback = callback
+        self.iconPrev = loadIcon("chevron-back-outline", 20, 20)
+        self.iconNext = loadIcon("chevron-forward-outline", 20, 20)
+
+    def show(self, widget=None, restore_date=None):
+        # Attach coresponding entry widget
+        self.widget = widget
+
+        # Position next to corresponding entry widget
+        xPos = 0
+        yPos = 0
+
+        if not self.widget == None:
+            xPos = self.widget.winfo_rootx() + self.widget.winfo_width()
+            yPos = self.widget.winfo_rooty()
+
+        # Close previous window
+        self.close()
+
+        # Restore date
+        if not restore_date == None and not len(restore_date) == 0:
+            self.dateSelected = date.fromisoformat(restore_date)
+            self.setDate(self.dateSelected)
+
+        # Create new window
+        self.window = Toplevel(bg=VAR.GUI_COLOR_PRIMARY)
+        self.window.withdraw()
+        self.window.wm_title(_("Select date"))
+        self.window.resizable(False, False)
+        self.window.geometry("{0}x{1}+{2}+{3}".format(320, 385,xPos, yPos))
+
+        if not platform.system() == "Darwin":
+            self.window.iconphoto(False, loadIcon("calendar-outline", 512, 512))
+        self.window.bind('<Escape>', lambda x:self.close())
+        self.window.focus_force()
+
+        self.window.rowconfigure(1, weight=1)
+
+        # Main Frames
+        self.frame_calendar = Frame(self.window, bg=VAR.GUI_COLOR_PRIMARY)
+        self.frame_spacer   = Frame(self.window, bg=VAR.GUI_COLOR_PRIMARY)
+        self.frame_buttons  = Frame(self.window, bg=VAR.GUI_COLOR_SECONDARY)
+
+        self.frame_calendar.grid(row=0, column=0, padx=10, pady=10, sticky="nwse")
+        self.frame_spacer.grid(row=1, column=0, sticky="nwse")
+        self.frame_buttons.grid(row=2, column=0, sticky="nwse")
+
+        self.frame_calendar.columnconfigure(0, weight=1)
+
+        # Year Frame
+        self.frame_year     = Frame(self.frame_calendar, bg=VAR.GUI_COLOR_PRIMARY)
+        self.frame_year.grid(row=0, column=0, sticky="nwse", pady=(0, 5))
+        self.frame_year.columnconfigure(1, weight=1)
+
+        self.button_prev_year = Button_(self.frame_year, width=30, image=self.iconPrev, relief="groove", bg=VAR.GUI_COLOR_PRIMARY, command=lambda:self.changeYear(-1))
+        self.label_year       = Label_(self.frame_year, bg=VAR.GUI_COLOR_PRIMARY, text=str(self.year), font=(20))
+        self.button_next_year = Button_(self.frame_year, width=30, image=self.iconNext, relief="groove", bg=VAR.GUI_COLOR_PRIMARY, command=lambda:self.changeYear(+1))
+
+        self.button_prev_year.grid(row=0, column=0)
+        self.label_year.grid(row=0, column=1)
+        self.button_next_year.grid(row=0, column=2)
+
+        # Month Frame
+        self.frame_month     = Frame(self.frame_calendar, bg=VAR.GUI_COLOR_PRIMARY)
+        self.frame_month.grid(row=1, column=0, sticky="nwse", pady=(0, 5))
+        self.frame_month.columnconfigure(1, weight=1)
+
+        self.button_prev_month = Button_(self.frame_month, width=30, image=self.iconPrev, relief="groove", bg=VAR.GUI_COLOR_PRIMARY, command=lambda:self.changeMonth(-1))
+        self.label_month       = Label_(self.frame_month, bg=VAR.GUI_COLOR_PRIMARY, text=self.month_name, font=(15))
+        self.button_next_month = Button_(self.frame_month, width=30, image=self.iconNext, relief="groove", bg=VAR.GUI_COLOR_PRIMARY, command=lambda:self.changeMonth(+1))
+
+        self.button_prev_month.grid(row=0, column=0)
+        self.label_month.grid(row=0, column=1)
+        self.button_next_month.grid(row=0, column=2)
+
+        # Days Frame
+        self.frame_days      = Frame(self.frame_calendar, bg=VAR.GUI_COLOR_PRIMARY)
+        self.frame_days.grid(row=2, column=0, sticky="nwse")
+
+        # Buttons
+        self.btn_cancel= Button_(self.frame_buttons, width=18, text=_("Cancel"), relief="groove", command=self.close, bg=VAR.BUTTON_COLOR_BAD)
+        self.btn_ok    = Button_(self.frame_buttons, width=18, text=_("OK"), relief="groove", command=self.confirm, bg=VAR.BUTTON_COLOR_GOOD)
+
+        self.btn_cancel.grid(row=0, column=0, padx=10, pady=20, sticky="w")
+        self.btn_ok.grid(row=0, column=1, padx=10, pady=20, sticky="e")
+
+        self.frame_buttons.columnconfigure(0, weight=1)
+        self.frame_buttons.columnconfigure(1, weight=1)
+
+        # Show initial days
+        self.showDays()
+
+        # Show window
+        self.window.deiconify()
+
+        # Run main loop of new window
+        self.window.mainloop()
+
+
+    def close(self):
+        if not self.window == None:
+            self.window.destroy()
+
+
+    def confirm(self):
+        if not self.widget == None:
+            self.widget.set(self.dateSelected)
+
+        if not self.callback == None:
+            self.callback()
+
+        self.close()
+
+
+    def setDate(self, date, refresh=False):
+        self.dateSelected = date
+
+        self.year  = int(date.year)
+        self.month = int(date.month)
+        self.day   = int(date.day)
+
+        self.month_name = calendar.month_name[self.month]
+
+        if refresh:
+            self.showYear()
+            self.showMonth()
+
+
+    def changeYear(self, ammount):
+        self.year = self.year + ammount
+        self.showYear()
+
+
+    def showYear(self):
+        self.label_year.set(str(self.year))
+        self.showDays()
+
+
+    def changeMonth(self, ammount):
+        newMonth = self.month + ammount
+
+        if newMonth < 1:
+            newMonth = 12 + newMonth
+            self.changeYear(-1)
+        if newMonth > 12:
+            newMonth = newMonth - 12
+            self.changeYear(+1)
+
+        self.month = newMonth
+        self.showMonth()
+
+
+    def showMonth(self):
+        self.month_name = calendar.month_name[self.month]
+        self.label_month.set(self.month_name)
+        self.showDays()
+
+
+    def showDays(self):
+        col = 0
+        row = 0
+
+        # reset
+        for index in self.daylabels:
+            self.daylabels[index].destroy()
+
+        self.daylabels = {}
+
+        # generate day labels for current month
+        for i, day in enumerate(self.calendar.itermonthdates(self.year, self.month)):
+
+            index = i+1
+
+            bg           = self.getDayBG(day)
+            highlight_bg = self.getDayHighlightBG(day)
+
+            self.daylabels[index] = Label_(self.frame_days, text=day.day, width=5, height=2, anchor="center", bg=bg, highlight_bg=highlight_bg)
+            self.daylabels[index].grid(row=row, column=col, padx=1, pady=1)
+            self.daylabels[index].bind("<Enter>", lambda a, index=index:self.dayLabelEnter(a, index))
+            self.daylabels[index].bind("<Leave>", lambda a, index=index:self.dayLabelLeave(a, index))
+            self.daylabels[index].bind("<Button-1>", lambda a, index=index, day=day:self.dayLabelSelect(a, index, day))
+            self.daylabels[index].bind("<Double-1>", lambda a, index=index, day=day:self.dayLabelSelect(a, index, day, True))
+
+            col += 1
+
+            # Select current date
+            if day == self.dateSelected:
+                self.dayLabelSelect(None, index, day)
+
+            # Change row after every week
+            if index % 7 == 0:
+                row += 1
+                col  = 0
+
+
+    def getDayBG(self, day):
+        if day.month == self.month:
+            return VAR.CAL_COLOR_PRIMARY
+        else:
+            return VAR.CAL_COLOR_SECONDARY
+
+
+    def getDayHighlightBG(self, day):
+        if day.month == self.month:
+            return VAR.CAL_COLOR_HIGH_PRIMARY
+        else:
+            return VAR.CAL_COLOR_HIGH_SECONDARY
+
+
+    def dayLabelEnter(self, a, index):
+        self.daylabels[index].highlight()
+
+
+    def dayLabelLeave(self, a, index):
+        self.daylabels[index].restore_bg()
+
+
+    def dayLabelSelect(self, a, index, day, confirm=False):
+        self.dateSelected  = day
+
+        if day.year < self.year or (day.year == self.year and day.month < self.month):
+            self.changeMonth(-1)
+            return
+        if day.year > self.year or (day.year == self.year and day.month > self.month):
+            self.changeMonth(+1)
+            return
+
+
+        if self.indexSelected in self.daylabels:
+            self.daylabels[self.indexSelected].set_bg(VAR.CAL_COLOR_PRIMARY)
+
+        self.indexSelected = index
+        self.daylabels[index].set_bg(VAR.CAL_COLOR_SELECTED)
+
+        if confirm:
+            self.confirm()
+

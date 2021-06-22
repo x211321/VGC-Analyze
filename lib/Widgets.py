@@ -25,18 +25,23 @@ class Label_(Label):
                  wraplength=0, font=None,
                  img="", imgdef="", imgwidth=0,
                  bg=None, fg=None,
-                 relief=None):
+                 relief=None, highlight_bg=None):
 
-        super().__init__(master=master, width=width, height=height, anchor=anchor, justify=justify, wraplength=wraplength, bg=bg, fg=fg, relief=relief, font=font)
+        super().__init__(master=master, width=width, height=height, anchor=anchor,
+                         justify=justify, wraplength=wraplength, bg=bg, fg=fg,
+                         relief=relief, font=font)
 
-        self.id       = id
-        self.col      = col
-        self.row      = row
-        self._padx    = _padx
-        self._pady    = _pady
-        self.imgdef   = imgdef
-        self.text     = StringVar(self, text, id)
-        self.imgwidth = imgwidth
+        self.id           = id
+        self.col          = col
+        self.row          = row
+        self._padx        = _padx
+        self._pady        = _pady
+        self.imgdef       = imgdef
+        self.text         = StringVar(self, text, id)
+        self.imgwidth     = imgwidth
+        self.bg           = bg
+        self.highlight_bg = highlight_bg
+
         self.config(textvariable=self.text)
 
         self.setImage(img, self.imgwidth)
@@ -57,6 +62,18 @@ class Label_(Label):
         if len(img) > 0:
             self.image = loadImage(img, self.imgwidth)
             self.config(image=self.image)
+
+    def highlight(self):
+        if not self.highlight_bg == None:
+            self.config(bg=self.highlight_bg)
+
+    def restore_bg(self):
+        if not self.bg == None:
+            self.config(bg=self.bg)
+
+    def set_bg(self, bg):
+        self.bg = bg
+        self.restore_bg()
 
 
 ######################

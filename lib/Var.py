@@ -28,6 +28,12 @@ if platform.system() == "Darwin":
 else:
     GUI_COLOR_SECONDARY = "#F0F0F0"
 
+CAL_COLOR_PRIMARY        = "#EEEEEE"
+CAL_COLOR_SECONDARY      = "#DDDDDD"
+CAL_COLOR_HIGH_PRIMARY   = "#FFDD99"
+CAL_COLOR_HIGH_SECONDARY = "#FFE2A8"
+CAL_COLOR_SELECTED       = "#FFBF40"
+
 INPUT_COLOR = "white"
 
 # Categories
