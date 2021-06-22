@@ -44,3 +44,22 @@ def _YesNoToYesNo(_value):
         result = "Yes"
 
     return result
+
+######################
+# guessDate
+# --------------------
+def guessDate(date, mode):
+    if len(date) == 10:
+        return date
+    if len(date) == 7:
+        if mode == "start":
+            return date + "-01"
+        if mode == "end":
+            return date + "-31"
+    if len(date) == 4:
+        if mode == "start":
+            return date + "-01-01"
+        if mode == "end":
+            return date + "-12-31"
+
+    return date

@@ -74,21 +74,21 @@ class GUI_Filter(Frame):
         self.filterInputs["dateStart"]              = Entry_(self.filterInputs["dateStart_frame"], width=25, row=0, col=0, _padx=(0,10))
         self.filterInputs["dateStart_pick"]         = Button_(self.filterInputs["dateStart_frame"], width=15, row=0, col=1, height=13,
                                                               image=self.dateIcon, relief="groove", bg=VAR.GUI_COLOR_PRIMARY,
-                                                              command=lambda:self.datePicker.show(self.filterInputs["dateStart"], self.filterInputs["dateStart"].get()))
+                                                              command=lambda:self.datePicker.show(self.filterInputs["dateStart"], self.filterInputs["dateStart"].get(), "start"))
 
         self.filterInputs["dateEnd_txt"]            = Label_(self, width=25, _pady=(2,0), text=_("Max. date (purchased)"))
         self.filterInputs["dateEnd_frame"]          = Frame(self)
         self.filterInputs["dateEnd"]                = Entry_(self.filterInputs["dateEnd_frame"], width=25, row=0, col=0, _padx=(0,10))
         self.filterInputs["dateEnd_pick"]           = Button_(self.filterInputs["dateEnd_frame"], width=15, row=0, col=1, height=13,
                                                               image=self.dateIcon, relief="groove", bg=VAR.GUI_COLOR_PRIMARY,
-                                                              command=lambda:self.datePicker.show(self.filterInputs["dateEnd"], self.filterInputs["dateEnd"].get()))
+                                                              command=lambda:self.datePicker.show(self.filterInputs["dateEnd"], self.filterInputs["dateEnd"].get(), "end"))
 
         self.filterInputs["dateAddedStart_txt"]     = Label_(self, width=25, _pady=(2,0), text=_("Min. date (added)"))
         self.filterInputs["dateAddedStart_frame"]   = Frame(self)
         self.filterInputs["dateAddedStart"]         = Entry_(self.filterInputs["dateAddedStart_frame"], width=25, row=0, col=0, _padx=(0,10))
         self.filterInputs["dateAddedStart_pick"]    = Button_(self.filterInputs["dateAddedStart_frame"], width=15, row=0, col=1, height=13,
                                                               image=self.dateIcon, relief="groove", bg=VAR.GUI_COLOR_PRIMARY,
-                                                              command=lambda:self.datePicker.show(self.filterInputs["dateAddedStart"], self.filterInputs["dateAddedStart"].get()))
+                                                              command=lambda:self.datePicker.show(self.filterInputs["dateAddedStart"], self.filterInputs["dateAddedStart"].get(), "start"))
 
 
         self.filterInputs["dateAddedEnd_txt"]     = Label_(self, width=25, _pady=(2,0), text=_("Max. date (added)"))
@@ -96,7 +96,7 @@ class GUI_Filter(Frame):
         self.filterInputs["dateAddedEnd"]         = Entry_(self.filterInputs["dateAddedEnd_frame"], width=25, row=0, col=0, _padx=(0,10))
         self.filterInputs["dateAddedEnd_pick"]    = Button_(self.filterInputs["dateAddedEnd_frame"], width=15, row=0, col=1, height=13,
                                                               image=self.dateIcon, relief="groove", bg=VAR.GUI_COLOR_PRIMARY,
-                                                              command=lambda:self.datePicker.show(self.filterInputs["dateAddedEnd"], self.filterInputs["dateAddedEnd"].get()))
+                                                              command=lambda:self.datePicker.show(self.filterInputs["dateAddedEnd"], self.filterInputs["dateAddedEnd"].get(), "end"))
 
         self.filterInputs["priceStart_txt"]         = Label_(self, width=25, _pady=(2,0), text=_("Min. purchase price"))
         self.filterInputs["priceStart"]             = Entry_(self, width=30)

@@ -11,28 +11,9 @@ from os          import listdir
 
 from lib.Json    import readJson
 from lib.Lib     import _YesNoToYesNo
+from lib.Lib     import guessDate
 
 import lib.Var as VAR
-
-
-######################
-# guessDate
-# --------------------
-def guessDate(date, mode):
-    if len(date) == 10:
-        return date
-    if len(date) == 7:
-        if mode == "start":
-            return date + "-01"
-        if mode == "end":
-            return date + "-31"
-    if len(date) == 4:
-        if mode == "start":
-            return date + "-01-01"
-        if mode == "end":
-            return date + "-12-31"
-
-    return date
 
 
 ######################

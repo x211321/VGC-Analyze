@@ -14,6 +14,7 @@ import calendar
 import lib.Var as VAR
 
 from lib.Img import loadIcon
+from lib.Lib import guessDate
 
 from lib.Widgets  import Label_
 from lib.Widgets  import Entry_
@@ -781,7 +782,7 @@ class Pop_DatePicker(object):
         self.iconPrev = loadIcon("chevron-back-outline", 20, 20)
         self.iconNext = loadIcon("chevron-forward-outline", 20, 20)
 
-    def show(self, widget=None, restore_date=None):
+    def show(self, widget=None, restore_date=None, mode="start"):
         # Attach coresponding entry widget
         self.widget = widget
 
@@ -797,8 +798,13 @@ class Pop_DatePicker(object):
         self.close()
 
         # Restore date
-        if not restore_date == None and not len(restore_date) == 0:
-            self.dateSelected = date.fromisoformat(restore_date)
+        restore_date = guessDate(restore_date, mode)
+
+        if not restore_date == None and len(restore_date) == 10:
+            try:
+                self.dateSelected = date.fromisoformat(restore_date)
+            except ValueError:
+                self.dateSelected = date.today()
             self.setDate(self.dateSelected)
 
         # Create new window
