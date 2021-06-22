@@ -209,7 +209,8 @@ class GUI_Filter(Frame):
         else:
             self.filterInputs["platforms_select"].config(text=_("Select"), bg=VAR.GUI_COLOR_PRIMARY)
 
-        self.showData()
+        if settings.get("display", "refreshOnFilterSelect", True):
+            self.showData()
 
 
     ######################
@@ -230,7 +231,8 @@ class GUI_Filter(Frame):
         else:
             self.filterInputs["platformHolders_select"].config(text=_("Select"), bg=VAR.GUI_COLOR_PRIMARY)
 
-        self.showData()
+        if settings.get("display", "refreshOnFilterSelect", True):
+            self.showData()
 
 
     ######################
@@ -251,7 +253,8 @@ class GUI_Filter(Frame):
         else:
             self.filterInputs["regions_select"].config(text=_("Select"), bg=VAR.GUI_COLOR_PRIMARY)
 
-        self.showData()
+        if settings.get("display", "refreshOnFilterSelect", True):
+            self.showData()
 
 
     ######################
@@ -321,4 +324,5 @@ class GUI_Filter(Frame):
     # datePickerCallback
     # --------------------
     def datePickerCallback(self):
-        self.showData()
+        if settings.get("display", "refreshOnFilterSelect", True):
+            self.showData()
