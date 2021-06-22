@@ -26,6 +26,7 @@ def initMainMenu(gui):
 
     # Templates menu
     gui.templates_menu = Menu(gui.main_menu, tearoff=0)
+    gui.templates_menu.add_command(label=_("Manage templates"), command=gui.pop_templateManager.show, accelerator="Ctrl+B")
     generateTemplateMenu(gui)
 
     # Export menu
@@ -56,9 +57,8 @@ def initMainMenu(gui):
 def generateTemplateMenu(gui):
     settings.readTemplates()
 
-    gui.templates_menu.delete(0, END)
-
-    gui.templates_menu.add_command(label=_("Manage templates"), command=gui.pop_templateManager.show, accelerator="Ctrl+B")
+    if gui.templates_menu.index(END) > 0:
+        gui.templates_menu.delete(1, END)
 
     if len(settings.listTemplates()):
         gui.templates_menu.add_separator()
