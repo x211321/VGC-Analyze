@@ -1087,14 +1087,14 @@ class Pop_TemplateManager(object):
         self.view_left_scroll_y = Scrollbar(self.frame_view_left)
         self.view_left_scroll_y.pack(side=RIGHT, fill=Y)
 
-        self.view_left_scroll_x = Scrollbar(self.frame_view_left)
-        self.view_left_scroll_x.pack(side=BOTTOM, fill=X)
+        # self.view_left_scroll_x = Scrollbar(self.frame_view_left)
+        # self.view_left_scroll_x.pack(side=BOTTOM, fill=X)
 
         self.view_left.pack(expand=True, fill="both")
         self.view_left.config(yscrollcommand=self.view_left_scroll_y.set)
-        self.view_left.config(xscrollcommand=self.view_left_scroll_x.set)
+        # self.view_left.config(xscrollcommand=self.view_left_scroll_x.set)
         self.view_left_scroll_y.config(orient=VERTICAL, command=self.view_left.yview)
-        self.view_left_scroll_x.config(orient=HORIZONTAL, command=self.view_left.xview)
+        # self.view_left_scroll_x.config(orient=HORIZONTAL, command=self.view_left.xview)
 
 
         # Treeview right
@@ -1103,14 +1103,14 @@ class Pop_TemplateManager(object):
         self.view_right_scroll_y = Scrollbar(self.frame_view_right)
         self.view_right_scroll_y.pack(side=RIGHT, fill=Y)
 
-        self.view_right_scroll_x = Scrollbar(self.frame_view_right)
-        self.view_right_scroll_x.pack(side=BOTTOM, fill=X)
+        # self.view_right_scroll_x = Scrollbar(self.frame_view_right)
+        # self.view_right_scroll_x.pack(side=BOTTOM, fill=X)
 
         self.view_right.pack(expand=True, fill="both")
         self.view_right.config(yscrollcommand=self.view_right_scroll_y.set)
-        self.view_right.config(xscrollcommand=self.view_right_scroll_x.set)
+        # self.view_right.config(xscrollcommand=self.view_right_scroll_x.set)
         self.view_right_scroll_y.config(orient=VERTICAL, command=self.view_right.yview)
-        self.view_right_scroll_x.config(orient=HORIZONTAL, command=self.view_right.xview)
+        # self.view_right_scroll_x.config(orient=HORIZONTAL, command=self.view_right.xview)
 
 
         # Inputs and buttons
