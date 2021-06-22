@@ -1114,7 +1114,7 @@ class Pop_TemplateManager(object):
 
 
         # Inputs and buttons
-        self.label_template_name    = Label_(self.frame_inputs, text=_("Save " + VAR.TEMPLATE_CURRENT_CONFIG + " as:"), bg=VAR.GUI_COLOR_PRIMARY)
+        self.label_template_name    = Label_(self.frame_inputs, text=_("Save ") + VAR.TEMPLATE_CURRENT_CONFIG + _(" as:"), bg=VAR.GUI_COLOR_PRIMARY)
         self.input_template_name    = Entry_(self.frame_inputs, width=37)
 
         self.button_template_save   = Button_(self.frame_inputs,
