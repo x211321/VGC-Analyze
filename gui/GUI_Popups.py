@@ -803,7 +803,6 @@ class Pop_DatePicker(object):
         self.window.withdraw()
         self.window.wm_title(_("Select date"))
         self.window.resizable(False, False)
-        self.window.geometry("{0}x{1}+{2}+{3}".format(320, 385,xPos, yPos))
 
         if not platform.system() == "Darwin":
             self.window.iconphoto(False, loadIcon("calendar-outline", 512, 512))
@@ -865,6 +864,9 @@ class Pop_DatePicker(object):
 
         # Show initial days
         self.showDays()
+
+        # Set window position
+        self.window.geometry("+{0}+{1}".format(xPos, yPos))
 
         # Show window
         self.window.deiconify()
@@ -967,6 +969,11 @@ class Pop_DatePicker(object):
             if index % 7 == 0:
                 row += 1
                 col  = 0
+
+        # Add empty row for month with only 5 weeks
+        if row == 5:
+            self.daySpacer = Label_(self.frame_days, height=2, bg=VAR.GUI_COLOR_PRIMARY)
+            self.daySpacer.grid(row=row, column=0, padx=1, pady=1)
 
 
     def getDayBG(self, day):
