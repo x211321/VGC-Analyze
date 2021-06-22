@@ -1263,8 +1263,14 @@ class Pop_TemplateManager(object):
         # Get data
         if self.selectedTemplate == VAR.TEMPLATE_CURRENT_CONFIG:
             data = self.currentSettings
+
+            # Set input
+            self.input_template_name.set("")
         else:
             data = settings.getTemplate(self.selectedTemplate)
+
+            # Set input
+            self.input_template_name.set(self.selectedTemplate)
 
         # Show data
         for key in sorted(data, reverse=True):
