@@ -962,7 +962,7 @@ class Pop_DatePicker(object):
             col += 1
 
             # Select current date
-            if day == self.dateSelected:
+            if day == self.dateSelected and day.month == self.month:
                 self.dayLabelSelect(None, index, day)
 
             # Change row after every week
