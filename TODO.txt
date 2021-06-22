@@ -2,7 +2,6 @@ Find duplicates
 Find missing covers on website
 Filter help (regex, date formats, etc.)
 Custom messegboxes
-Datepicker
 Listview home / end / page up / page down
 Filter presets
 
@@ -15,6 +14,7 @@ Graph canvas scroll bar
 Graph popup
 
 ===DONE===
+Datepicker
 About Dialog
 	disclaimer project not affiliated with VGCollect
 View double click -> detailed item view
