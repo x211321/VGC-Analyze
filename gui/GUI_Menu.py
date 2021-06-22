@@ -1,3 +1,4 @@
+import lib.Settings as settings
 from lib.Locale import _
 
 from tkinter import *
@@ -25,11 +26,7 @@ def initMainMenu(gui):
 
     # Templates menu
     gui.templates_menu = Menu(gui.main_menu, tearoff=0)
-    gui.templates_menu.add_command(label=_("Manage templates"), command=gui.pop_templateManager.show, accelerator="Ctrl+B")
-
-    # Export menu
-    gui.export_menu = Menu(gui.main_menu, tearoff=0)
-    gui.export_menu.add_command(label=_("Export HTML"), command=gui.export, accelerator="Ctrl+E")
+    generateTemplateMenu(gui)
 
     # Window menu
     gui.window_menu = Menu(gui.main_menu, tearoff=0)
@@ -50,3 +47,21 @@ def initMainMenu(gui):
     gui.main_menu.add_cascade(label=_("About")    , menu=gui.about_menu)
 
     gui.config(menu=gui.main_menu)
+
+
+def generateTemplateMenu(gui):
+    settings.readTemplates()
+
+    gui.templates_menu.delete(0, END)
+
+    gui.templates_menu.add_command(label=_("Manage templates"), command=gui.pop_templateManager.show, accelerator="Ctrl+B")
+
+    if len(settings.listTemplates()):
+        gui.templates_menu.add_separator()
+
+        for template in settings.listTemplates():
+            gui.templates_menu.add_command(label=template, command=lambda template=template:gui.loadTemplate(template))
+
+        # Export menu
+        gui.export_menu = Menu(gui.main_menu, tearoff=0)
+        gui.export_menu.add_command(label=_("Export HTML"), command=gui.export, accelerator="Ctrl+E")

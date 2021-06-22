@@ -26,6 +26,7 @@ from gui.GUI_TreeView       import GUI_TreeView
 from gui.GUI_Graph          import GUI_Graph
 from gui.GUI_Settings       import GUI_Settings
 from gui.GUI_Menu           import initMainMenu
+from gui.GUI_Menu           import generateTemplateMenu
 from gui.GUI_Hotkeys        import initHotkeys
 from gui.GUI_Popups         import initPopups
 
@@ -466,8 +467,19 @@ class GUI(Tk):
     ######################
     # templateManager_callback
     # --------------------
-    def templateManager_callback(self, template):
-        self.filter_frame.restore(template)
+    def templateManager_callback(self, template=None):
+        generateTemplateMenu(self)
+
+        if template:
+            self.filter_frame.restore(template)
+            self.showData()
+
+
+    ######################
+    # loadTemplate
+    # --------------------
+    def loadTemplate(self, templateName):
+        self.filter_frame.restore(settings.getTemplate(templateName))
         self.showData()
 
 

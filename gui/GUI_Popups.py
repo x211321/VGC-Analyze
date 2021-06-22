@@ -1184,6 +1184,8 @@ class Pop_TemplateManager(object):
 
         self.center()
 
+        self.input_template_name.focus()
+
         self.window.deiconify()
 
         # Run main loop of new window
@@ -1193,14 +1195,16 @@ class Pop_TemplateManager(object):
         centerPopup(self.window, self.parent)
 
     def close(self):
+        if not self.callback == None:
+            self.callback()
         if not self.window == None:
             self.window.destroy()
 
     def confirm(self):
         if not self.callback == None:
-            if len(self.selectedTemplate):
-                self.callback(settings.getTemplate(self.selectedTemplate))
-            self.close()
+            self.callback(settings.getTemplate(self.selectedTemplate))
+        if not self.window == None:
+            self.window.destroy()
 
     def setCallback(self, callback):
         self.callback = callback
