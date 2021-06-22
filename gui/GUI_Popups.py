@@ -1074,7 +1074,7 @@ class Pop_TemplateManager(object):
         self.frame_delete       = Frame(self.window, bg=VAR.GUI_COLOR_PRIMARY)
         self.frame_buttons      = Frame(self.window, bg=VAR.GUI_COLOR_SECONDARY)
 
-        self.frame_inputs.grid(row=0, column=0, columnspan=2, padx=10, pady=(0, 10), sticky="nwse")
+        self.frame_inputs.grid(row=0, column=0, columnspan=2, padx=10, pady=(10, 10), sticky="nwse")
         self.frame_view_left.grid(row=1, column=0, padx=10, pady=(10,5), sticky="nwse")
         self.frame_view_right.grid(row=1, column=1, padx=10, pady=(10,5), sticky="nwse")
         self.frame_delete.grid(row=2, column=0, padx=10, pady=10, columnspan=2, sticky="nwse")
