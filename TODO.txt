@@ -1,18 +1,17 @@
-Find missing covers on website
+Find missing covers
 Filter help (regex, date formats, etc.)
-Custom messegboxes
-Listview home / end / page up / page down
-Filter presets
+Custom messagboxes
+Treeview home / end / page up / page down
+Graph canvas scroll bar
+Graph popup
 
 ===Low priority===
 Multiselect
 	Bookmark all (selected) / contextmenu
 	Remove all bookmarks (selected) / contextmenu
 
-Graph canvas scroll bar
-Graph popup
-
 ===DONE===
+Filter presets
 Find duplicates (group by VGC ID)
 Datepicker
 About Dialog
@@ -27,7 +26,7 @@ EXE bundle img
 html print
 settings scrollbars
 Date added
-	Listview
+	Treeview
 	Filter
 	Group
 	Graph

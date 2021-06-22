@@ -28,6 +28,10 @@ def initMainMenu(gui):
     gui.templates_menu = Menu(gui.main_menu, tearoff=0)
     generateTemplateMenu(gui)
 
+    # Export menu
+    gui.export_menu = Menu(gui.main_menu, tearoff=0)
+    gui.export_menu.add_command(label=_("Export HTML"), command=gui.export, accelerator="Ctrl+E")
+
     # Window menu
     gui.window_menu = Menu(gui.main_menu, tearoff=0)
     gui.window_menu.add_command(label=_("Filters"), command=gui.toggleFilterFrame, accelerator="Alt+F")
@@ -61,7 +65,3 @@ def generateTemplateMenu(gui):
 
         for template in settings.listTemplates():
             gui.templates_menu.add_command(label=template, command=lambda template=template:gui.loadTemplate(template))
-
-        # Export menu
-        gui.export_menu = Menu(gui.main_menu, tearoff=0)
-        gui.export_menu.add_command(label=_("Export HTML"), command=gui.export, accelerator="Ctrl+E")
