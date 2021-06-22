@@ -1255,7 +1255,7 @@ class Pop_TemplateManager(object):
     def selectTemplate(self, a = None):
         # Get Selection
         selection = self.view_left.focus()
-        self.selectedTemplate = self.view_left.item(selection)["values"][0]
+        self.selectedTemplate = str(self.view_left.item(selection)["values"][0])
 
         # Clear treeview
         self.view_right.delete(*self.view_right.get_children())
