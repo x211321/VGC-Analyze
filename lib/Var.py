@@ -95,6 +95,7 @@ GROUP_BY_REGION         = _("region")
 GROUP_BY_PLATFORM       = _("platform")
 GROUP_BY_PLATFORMHOLDER = _("platform holder")
 GROUP_BY_NOTES          = _("notes")
+GROUP_BY_VGCID          = _("VGC ID")
 
 # Order by
 ORDER_BY_NAME       = _("name")

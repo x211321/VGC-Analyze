@@ -273,6 +273,7 @@ class GUI_Filter(Frame):
         groups.append(VAR.GROUP_BY_PLATFORM)
         groups.append(VAR.GROUP_BY_PLATFORMHOLDER)
         groups.append(VAR.GROUP_BY_NOTES)
+        groups.append(VAR.GROUP_BY_VGCID)
 
         self.filterInputs["group"].setValues(groups)
 

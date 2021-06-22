@@ -1,4 +1,3 @@
-Find duplicates
 Find missing covers on website
 Filter help (regex, date formats, etc.)
 Custom messegboxes
@@ -14,6 +13,7 @@ Graph canvas scroll bar
 Graph popup
 
 ===DONE===
+Find duplicates (group by VGC ID)
 Datepicker
 About Dialog
 	disclaimer project not affiliated with VGCollect

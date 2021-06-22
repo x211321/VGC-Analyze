@@ -513,6 +513,9 @@ class CollectionData(object):
         if groupBy == VAR.GROUP_BY_NOTES:
             group =  item.notes
 
+        if groupBy == VAR.GROUP_BY_VGCID:
+            group =  str(item.VGC_id) + " (" + item.name + ")"
+
         if len(group.strip()) == 0:
             group = _("[None]")
 
