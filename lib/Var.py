@@ -129,3 +129,6 @@ VIEW_COLUMNS["Other"]            = {"name": _("Other")           , "anchor": "w"
 VIEW_COLUMNS["Bookmark"]         = {"name": _("Bookmark")        , "anchor": "w", "type": None , "grouptype": None , "width":  30}
 VIEW_COLUMNS["Finished"]         = {"name": _("Finished")        , "anchor": "w", "type": None , "grouptype": None , "width":  30}
 VIEW_COLUMNS["Notes"]            = {"name": _("Notes")           , "anchor": "w", "type": None , "grouptype": None , "width": 100}
+
+
+TEMPLATE_CURRENT_CONFIG = _("[current configuration]")

@@ -217,7 +217,7 @@ class FilterData(object):
         self.finishedFilter       = ""
 
         self.orderItems           = ""
-        self.orderItemsReverse    = False
+        self.orderDirection       = ""
         self.groupItems           = ""
         self.filePath             = ""
         self.graphStyle           = ""
@@ -236,66 +236,76 @@ class FilterData(object):
         self.guiMode              = False
         self.interactiveMode      = False
 
+        self.filterList = {}
+
+
+    def setFilterValue(self, key, value):
+        self.filterList[key] = value
+        return value
+
 
     def inputsToFilter(self, inputs, multiFilter):
 
+        self.filterList = {}
+
         for key in multiFilter:
             if key == "platforms":
-                self.platformFilter       = multiFilter[key]
+                self.platformFilter       = self.setFilterValue(key, multiFilter[key])
             if key == "platformHolders":
-                self.platformHolderFilter = multiFilter[key]
+                self.platformHolderFilter = self.setFilterValue(key, multiFilter[key])
             if key == "regions":
-                self.regionFilter         = multiFilter[key]
+                self.regionFilter         = self.setFilterValue(key, multiFilter[key])
+
 
         for key in inputs:
             if key == "name":
-                self.itemFilter           = inputs[key].get()
+                self.itemFilter           = self.setFilterValue(key, inputs[key].get())
             if key =="name_regex":
-                self.itemFilterRegEx      = inputs[key].toggleState
+                self.itemFilterRegEx      = self.setFilterValue(key, inputs[key].toggleState)
             if key == "notes":
-                self.notesFilter          = inputs[key].get()
+                self.notesFilter          = self.setFilterValue(key, inputs[key].get())
             if key =="notes_regex":
-                self.notesFilterRegEx     = inputs[key].toggleState
+                self.notesFilterRegEx     = self.setFilterValue(key, inputs[key].toggleState)
             if key == "dateStart":
-                self.dateFilterStart      = guessDate(inputs[key].get(), "start")
+                self.dateFilterStart      = self.setFilterValue(key, guessDate(inputs[key].get(), "start"))
             if key == "dateEnd":
-                self.dateFilterEnd        = guessDate(inputs[key].get(), "end")
+                self.dateFilterEnd        = self.setFilterValue(key, guessDate(inputs[key].get(), "end"))
             if key == "dateAddedStart":
-                self.dateAddedFilterStart = guessDate(inputs[key].get(), "start")
+                self.dateAddedFilterStart = self.setFilterValue(key, guessDate(inputs[key].get(), "start"))
             if key == "dateAddedEnd":
-                self.dateAddedFilterEnd   = guessDate(inputs[key].get(), "end")
+                self.dateAddedFilterEnd   = self.setFilterValue(key, guessDate(inputs[key].get(), "end"))
 
             if key == "priceStart":
                 if len(inputs[key].get()) > 0:
-                    self.priceFilterStart    = float(inputs[key].get())
+                    self.priceFilterStart    = self.setFilterValue(key, float(inputs[key].get()))
                     self.priceFilterStartSet = True
                 else:
                     self.priceFilterStartSet = False
             if key == "priceEnd":
                 if len(inputs[key].get()) > 0:
-                    self.priceFilterEnd    = float(inputs[key].get())
+                    self.priceFilterEnd    = self.setFilterValue(key, float(inputs[key].get()))
                     self.priceFilterEndSet = True
                 else:
                     self.priceFilterEndSet = False
 
             if key == "cart":
-                self.cartFilter        = _YesNoToYesNo(inputs[key].get())
+                self.cartFilter        = _YesNoToYesNo(self.setFilterValue(key, inputs[key].get()))
             if key == "box":
-                self.boxFilter         = _YesNoToYesNo(inputs[key].get())
+                self.boxFilter         = _YesNoToYesNo(self.setFilterValue(key, inputs[key].get()))
             if key == "manual":
-                self.manualFilter      = _YesNoToYesNo(inputs[key].get())
+                self.manualFilter      = _YesNoToYesNo(self.setFilterValue(key, inputs[key].get()))
             if key == "other":
-                self.otherFilter       = _YesNoToYesNo(inputs[key].get())
+                self.otherFilter       = _YesNoToYesNo(self.setFilterValue(key, inputs[key].get()))
             if key == "bookmarked":
-                self.bookmarkedFilter  = _YesNoToYesNo(inputs[key].get())
+                self.bookmarkedFilter  = _YesNoToYesNo(self.setFilterValue(key, inputs[key].get()))
             if key == "finished":
-                self.finishedFilter    = _YesNoToYesNo(inputs[key].get())
+                self.finishedFilter    = _YesNoToYesNo(self.setFilterValue(key, inputs[key].get()))
             if key == "group":
-                self.groupItems        = inputs[key].get()
+                self.groupItems        = self.setFilterValue(key, inputs[key].get())
             if key == "order":
-                self.orderItems        = inputs[key].get()
+                self.orderItems        = self.setFilterValue(key, inputs[key].get())
             if key == "orderDirection":
-                self.orderItemsReverse = (inputs[key].get() == VAR.ORDER_DIRECTION_DESCENDING)
+                self.orderDirection    = self.setFilterValue(key, inputs[key].get())
 
 
 ######################

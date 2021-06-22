@@ -23,6 +23,10 @@ def initMainMenu(gui):
     gui.download_menu = Menu(gui.main_menu, tearoff=0)
     gui.download_menu.add_command(label=_("Download collection"), command=gui.pop_collectionDownload.show, accelerator="Ctrl+D")
 
+    # Templates menu
+    gui.templates_menu = Menu(gui.main_menu, tearoff=0)
+    gui.templates_menu.add_command(label=_("Manage templates"), command=gui.pop_templateManager.show, accelerator="Ctrl+B")
+
     # Export menu
     gui.export_menu = Menu(gui.main_menu, tearoff=0)
     gui.export_menu.add_command(label=_("Export HTML"), command=gui.export, accelerator="Ctrl+E")
@@ -37,11 +41,12 @@ def initMainMenu(gui):
     gui.about_menu = Menu(gui.main_menu, tearoff=0)
     gui.about_menu.add_command(label=_("About VGC Analyzer"), command=gui.showAbout)
 
-    gui.main_menu.add_cascade(label=_("File")    , menu=gui.file_menu)
-    gui.main_menu.add_cascade(label=_("Search")  , menu=gui.search_menu)
-    gui.main_menu.add_cascade(label=_("Download"), menu=gui.download_menu)
-    gui.main_menu.add_cascade(label=_("Export")  , menu=gui.export_menu)
-    gui.main_menu.add_cascade(label=_("Window")  , menu=gui.window_menu)
-    gui.main_menu.add_cascade(label=_("About")   , menu=gui.about_menu)
+    gui.main_menu.add_cascade(label=_("File")     , menu=gui.file_menu)
+    gui.main_menu.add_cascade(label=_("Search")   , menu=gui.search_menu)
+    gui.main_menu.add_cascade(label=_("Download") , menu=gui.download_menu)
+    gui.main_menu.add_cascade(label=_("Templates"), menu=gui.templates_menu)
+    gui.main_menu.add_cascade(label=_("Export")   , menu=gui.export_menu)
+    gui.main_menu.add_cascade(label=_("Window")   , menu=gui.window_menu)
+    gui.main_menu.add_cascade(label=_("About")    , menu=gui.about_menu)
 
     gui.config(menu=gui.main_menu)

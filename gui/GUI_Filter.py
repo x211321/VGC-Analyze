@@ -172,7 +172,7 @@ class GUI_Filter(Frame):
     ######################
     # reset
     # --------------------
-    def reset(self):
+    def reset(self, noShow=False):
         for key in self.filterInputs:
             widget = self.filterInputs[key]
 
@@ -188,7 +188,32 @@ class GUI_Filter(Frame):
         self.multiFilter["platformHolders"] = []
         self.multiFilter["regions"] = []
 
-        self.showData()
+        if not noShow:
+            self.showData()
+
+
+    ######################
+    # restore
+    # --------------------
+    def restore(self, template):
+        self.reset(True)
+
+        for key in template:
+            if key in self.multiFilter:
+                if len(template[key]):
+                    self.multiFilter[key] = template[key]
+                    self.filterInputs[key + "_select"].config(text=str(len(template[key])) + _(" selected"), bg=VAR.BUTTON_COLOR_TOGGLE)
+                continue
+            if key in self.filterInputs:
+                widget = self.filterInputs[key]
+
+                if widget.__class__.__name__ == "Entry_":
+                    widget.set(template[key])
+                if widget.__class__.__name__ == "Combobox_":
+                    widget.set(template[key])
+                if widget.__class__.__name__ == "Button_" or widget.__class__.__name__ == "BorderButton_":
+                    if widget.toggle:
+                        widget.setToggle(template[key])
 
 
     ######################

@@ -1,9 +1,11 @@
+import lib.Settings as settings
 from lib.Locale import _
 
 import os
 import platform
 
 from tkinter import *
+from tkinter import ttk
 from tkinter import messagebox
 
 from datetime import date
@@ -27,6 +29,7 @@ from lib.Download import downloadCollection
 # --------------------
 def initPopups(gui):
     gui.pop_collectionDownload = Pop_CollectionDownload(gui, gui.collectionDownload_callback)
+    gui.pop_templateManager    = Pop_TemplateManager(gui, gui.templateManager_callback)
     gui.pop_itemSearch         = Pop_ItemSearch(gui, gui.view_frame.item_view)
     gui.pop_itemDetails        = Pop_ItemDetails(gui)
     gui.pop_about              = Pop_About(gui)
@@ -1017,4 +1020,249 @@ class Pop_DatePicker(object):
 
         if confirm:
             self.confirm()
+
+
+
+######################
+# Pop_TemplateManager
+# --------------------
+class Pop_TemplateManager(object):
+
+    window   = None
+    parent   = None
+    callback = None
+
+    def __init__(self, parent, callback = None):
+        self.parent      = parent
+        self.callback    = callback
+        self.icon_save   = loadIcon("save-outline", 20, 20)
+        self.icon_delete = loadIcon("trash-outline", 20, 20)
+
+    def show(self):
+
+        self.close()
+        self.selectedTemplate = ""
+
+        # Read saved templates
+        settings.readTemplates()
+
+        # Apply current filter settings
+        self.parent.showData()
+
+        # Create new window
+        self.window = Toplevel(bg=VAR.GUI_COLOR_PRIMARY)
+        self.window.withdraw()
+        self.window.wm_title(_("Manage templates"))
+        self.window.resizable(False, False)
+
+        if not platform.system() == "Darwin":
+            self.window.iconphoto(False, loadIcon("options-outline", 512, 512))
+        self.window.bind('<Escape>', lambda x:self.close())
+        self.window.focus_force()
+
+
+        # Frames
+        self.frame_inputs       = Frame(self.window, bg=VAR.GUI_COLOR_PRIMARY)
+        self.frame_view_left    = Frame(self.window, bg=VAR.GUI_COLOR_PRIMARY)
+        self.frame_view_right   = Frame(self.window, bg=VAR.GUI_COLOR_PRIMARY)
+        self.frame_delete       = Frame(self.window, bg=VAR.GUI_COLOR_PRIMARY)
+        self.frame_buttons      = Frame(self.window, bg=VAR.GUI_COLOR_SECONDARY)
+
+        self.frame_inputs.grid(row=0, column=0, columnspan=2, padx=10, pady=(0, 10), sticky="nwse")
+        self.frame_view_left.grid(row=1, column=0, padx=10, pady=(10,5), sticky="nwse")
+        self.frame_view_right.grid(row=1, column=1, padx=10, pady=(10,5), sticky="nwse")
+        self.frame_delete.grid(row=2, column=0, padx=10, pady=10, columnspan=2, sticky="nwse")
+        self.frame_buttons.grid(row=3, column=0, columnspan=2, sticky="nwse")
+
+
+        # Treeview left
+        self.view_left = ttk.Treeview(self.frame_view_left)
+
+        self.view_left_scroll_y = Scrollbar(self.frame_view_left)
+        self.view_left_scroll_y.pack(side=RIGHT, fill=Y)
+
+        self.view_left_scroll_x = Scrollbar(self.frame_view_left)
+        self.view_left_scroll_x.pack(side=BOTTOM, fill=X)
+
+        self.view_left.pack(expand=True, fill="both")
+        self.view_left.config(yscrollcommand=self.view_left_scroll_y.set)
+        self.view_left.config(xscrollcommand=self.view_left_scroll_x.set)
+        self.view_left_scroll_y.config(orient=VERTICAL, command=self.view_left.yview)
+        self.view_left_scroll_x.config(orient=HORIZONTAL, command=self.view_left.xview)
+
+
+        # Treeview right
+        self.view_right = ttk.Treeview(self.frame_view_right)
+
+        self.view_right_scroll_y = Scrollbar(self.frame_view_right)
+        self.view_right_scroll_y.pack(side=RIGHT, fill=Y)
+
+        self.view_right_scroll_x = Scrollbar(self.frame_view_right)
+        self.view_right_scroll_x.pack(side=BOTTOM, fill=X)
+
+        self.view_right.pack(expand=True, fill="both")
+        self.view_right.config(yscrollcommand=self.view_right_scroll_y.set)
+        self.view_right.config(xscrollcommand=self.view_right_scroll_x.set)
+        self.view_right_scroll_y.config(orient=VERTICAL, command=self.view_right.yview)
+        self.view_right_scroll_x.config(orient=HORIZONTAL, command=self.view_right.xview)
+
+
+        # Inputs and buttons
+        self.label_template_name    = Label_(self.frame_inputs, text=_("Save " + VAR.TEMPLATE_CURRENT_CONFIG + " as:"), bg=VAR.GUI_COLOR_PRIMARY)
+        self.input_template_name    = Entry_(self.frame_inputs, width=37)
+
+        self.button_template_save   = Button_(self.frame_inputs,
+                                              image=self.icon_save, bg=VAR.BUTTON_COLOR_GOOD,
+                                              relief="groove", command=self.saveTemplate)
+
+
+
+        self.label_template_name.grid(row=0, column=0)
+        self.input_template_name.grid(row=0, column=1, padx=(10,0))
+        self.button_template_save.grid(row=0, column=2, padx=(10,0))
+
+
+        # Input bindings
+        self.input_template_name.bind("<Return>", self.saveTemplate)
+
+
+        # Remove template button
+        self.button_template_remove = Button_(self.frame_delete,
+                                              image=self.icon_delete,
+                                              bg=VAR.BUTTON_COLOR_BAD,
+                                              relief="groove", command=self.removeTemplate)
+        self.button_template_remove.grid(row=0, column=0)
+
+
+        # Buttons
+        self.btn_cancel = Button_(self.frame_buttons, width=15, text=_("Close"), relief="groove", command=self.close, bg=VAR.BUTTON_COLOR_BAD)
+        self.btn_load   = Button_(self.frame_buttons, width=15, text=_("Load"), relief="groove", command=self.confirm, bg=VAR.BUTTON_COLOR_GOOD)
+
+        self.btn_cancel.grid(row=0, column=0, padx=10, pady=20, sticky="w")
+        self.btn_load.grid(row=0, column=1, padx=10, pady=20, sticky="e")
+
+        self.frame_buttons.columnconfigure(0, weight=1)
+        self.frame_buttons.columnconfigure(1, weight=1)
+
+
+        # Treeview left definition
+        self.view_left['columns'] = ("Templates",)
+
+        # # Treeview left columns
+        self.view_left.column("#0"       , anchor="w", width=0, stretch="No")
+        self.view_left.column("Templates", anchor="w", width=300)
+
+        # Treeview left column headers
+        self.view_left.heading("#0"       , text=""            , anchor="w")
+        self.view_left.heading("Templates", text=_("Templates"), anchor="w")
+
+        # Treeview left bindings
+        self.view_left.bind('<<TreeviewSelect>>', self.selectTemplate)
+
+
+        # Treeview right definition
+        self.view_right['columns'] = ("Attributes", "Values",)
+
+        # # Treeview right columns
+        self.view_right.column("#0"        , anchor="w", width=0, stretch="No")
+        self.view_right.column("Attributes", anchor="w", width=150)
+        self.view_right.column("Values"    , anchor="w", width=450)
+
+        # Treeview right column headers
+        self.view_right.heading("#0"        , text=""             , anchor="w")
+        self.view_right.heading("Attributes", text=_("Attributes"), anchor="w")
+        self.view_right.heading("Values"    , text=_("Values")    , anchor="w")
+
+
+        self.restoreTemplates()
+
+        self.center()
+
+        self.window.deiconify()
+
+        # Run main loop of new window
+        self.window.mainloop()
+
+    def center(self):
+        centerPopup(self.window, self.parent)
+
+    def close(self):
+        if not self.window == None:
+            self.window.destroy()
+
+    def confirm(self):
+        if not self.callback == None:
+            if len(self.selectedTemplate):
+                self.callback(settings.getTemplate(self.selectedTemplate))
+            self.close()
+
+    def setCallback(self, callback):
+        self.callback = callback
+
+    def saveTemplate(self, a = None):
+        templateName = self.input_template_name.get()
+
+        if len(templateName) > 0 and not templateName.lower() == VAR.TEMPLATE_CURRENT_CONFIG.lower():
+            settings.setTemplate(templateName, self.currentSettings)
+            settings.writeTemplates()
+            self.restoreTemplates(templateName)
+            self.input_template_name.set("")
+
+    def removeTemplate(self, a = None):
+        if len(self.selectedTemplate) > 0 and not self.selectedTemplate.lower() == VAR.TEMPLATE_CURRENT_CONFIG.lower():
+            settings.removeTemplate(self.selectedTemplate)
+            settings.writeTemplates()
+            self.restoreTemplates()
+
+    def restoreTemplates(self, scrollTo = ""):
+        # Clear treeview
+        self.view_left.delete(*self.view_left.get_children())
+
+        # Fill left Treeview
+        self.currentSettings = self.parent.collectionData.filterData.filterList
+
+        # Insert saved templates
+        for template in sorted(settings.listTemplates(), reverse=True):
+            self.view_left.insert(parent="", index=0, values=(template, ))
+
+        # Insert current configuration
+        self.view_left.insert(parent="", iid=VAR.TEMPLATE_CURRENT_CONFIG, index=0, values=(VAR.TEMPLATE_CURRENT_CONFIG, ))
+
+        if len(scrollTo):
+            # Find item
+            for row in self.view_left.get_children():
+                if scrollTo == self.view_left.item(row)["values"][0]:
+                    # Scroll into view
+                    self.view_left.see(row)
+                    # Select row
+                    self.view_left.focus(row)
+                    self.view_left.selection_set(row)
+                    break
+        else:
+            self.view_left.focus(VAR.TEMPLATE_CURRENT_CONFIG)
+            self.view_left.selection_set(VAR.TEMPLATE_CURRENT_CONFIG)
+
+    def selectTemplate(self, a = None):
+        # Get Selection
+        selection = self.view_left.focus()
+        self.selectedTemplate = self.view_left.item(selection)["values"][0]
+
+        # Clear treeview
+        self.view_right.delete(*self.view_right.get_children())
+
+        # Get data
+        if self.selectedTemplate == VAR.TEMPLATE_CURRENT_CONFIG:
+            data = self.currentSettings
+        else:
+            data = settings.getTemplate(self.selectedTemplate)
+
+        # Show data
+        for key in sorted(data, reverse=True):
+            if data[key]:
+                if type(data[key]) == list:
+                    value = ", ".join(data[key])
+                else:
+                    value = data[key]
+
+                self.view_right.insert(parent="", index=0, values=(key, value, ))
 

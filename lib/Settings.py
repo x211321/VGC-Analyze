@@ -8,6 +8,7 @@ SETTINGS_PATH         = "./VGC_Analyze_data/settings/"
 SETTINGS_FILE         = SETTINGS_PATH + "settings.json"
 PLATFORM_HOLDERS_FILE = SETTINGS_PATH + "platform_holders.json"
 PLATFORMS_FILE        = SETTINGS_PATH + "platforms.json"
+TEMPLATES_FILE        = SETTINGS_PATH + "templates.json"
 
 from lib.Json import readJson
 from lib.Json import writeJson
@@ -15,6 +16,7 @@ from lib.Json import writeJson
 settings_data         = {}
 platform_holders_data = {}
 platforms_data        = {}
+templates_data        = {}
 
 def read():
     global settings_data
@@ -178,3 +180,39 @@ def defaultPlatforms():
             "Super Famicom": "Super Nintendo/Super Famicom",
             "Super Nintendo": "Super Nintendo/Super Famicom"
            }
+
+
+
+def readTemplates():
+    global templates_data
+
+    if os.path.exists(TEMPLATES_FILE):
+        templates_data = readJson(TEMPLATES_FILE)
+
+def writeTemplates():
+    global templates_data
+
+    writeJson(templates_data, TEMPLATES_FILE)
+
+def listTemplates():
+    global templates_data
+
+    return templates_data.keys()
+
+def getTemplate(template):
+    global templates_data
+
+    if template in templates_data:
+        return templates_data[template]
+
+    return ""
+
+def setTemplate(template, data):
+    global templates_data
+
+    templates_data[template] = data
+
+def removeTemplate(template):
+    global templates_data
+
+    templates_data.pop(template)

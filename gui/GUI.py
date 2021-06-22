@@ -328,21 +328,21 @@ class GUI(Tk):
     # sortViewItems
     # --------------------
     def sortViewItems(self, filterData, items):
-        if len(filterData.orderItems) or filterData.orderItemsReverse:
+        if len(filterData.orderItems) or filterData.orderDirection:
             if filterData.orderItems == VAR.ORDER_BY_NAME or len(filterData.orderItems) == 0:
-                return sorted(items, key=lambda item: item.name, reverse=filterData.orderItemsReverse)
+                return sorted(items, key=lambda item: item.name, reverse=(filterData.orderDirection == VAR.ORDER_DIRECTION_DESCENDING))
             if filterData.orderItems == VAR.ORDER_BY_PRICE:
-                return sorted(items, key=lambda item: item.price, reverse=filterData.orderItemsReverse)
+                return sorted(items, key=lambda item: item.price, reverse=(filterData.orderDirection == VAR.ORDER_DIRECTION_DESCENDING))
             if filterData.orderItems == VAR.ORDER_BY_DATE :
-                return sorted(items, key=lambda item: item.date, reverse=filterData.orderItemsReverse)
+                return sorted(items, key=lambda item: item.date, reverse=(filterData.orderDirection == VAR.ORDER_DIRECTION_DESCENDING))
             if filterData.orderItems == VAR.ORDER_BY_DATE_ADDED :
-                return sorted(items, key=lambda item: item.dateAdded, reverse=filterData.orderItemsReverse)
+                return sorted(items, key=lambda item: item.dateAdded, reverse=(filterData.orderDirection == VAR.ORDER_DIRECTION_DESCENDING))
             if filterData.orderItems == VAR.ORDER_BY_REGION :
-                return sorted(items, key=lambda item: item.region, reverse=filterData.orderItemsReverse)
+                return sorted(items, key=lambda item: item.region, reverse=(filterData.orderDirection == VAR.ORDER_DIRECTION_DESCENDING))
             if filterData.orderItems == VAR.ORDER_BY_PLATFORM :
-                return sorted(items, key=lambda item: item.platform, reverse=filterData.orderItemsReverse)
+                return sorted(items, key=lambda item: item.platform, reverse=(filterData.orderDirection == VAR.ORDER_DIRECTION_DESCENDING))
             if filterData.orderItems == VAR.ORDER_BY_NOTES :
-                return sorted(items, key=lambda item: item.notes, reverse=filterData.orderItemsReverse)
+                return sorted(items, key=lambda item: item.notes, reverse=(filterData.orderDirection == VAR.ORDER_DIRECTION_DESCENDING))
         else:
             return items
 
@@ -460,6 +460,14 @@ class GUI(Tk):
 
         self.collectionData.setFilter(self.filterData)
         self.readData()
+        self.showData()
+
+
+    ######################
+    # templateManager_callback
+    # --------------------
+    def templateManager_callback(self, template):
+        self.filter_frame.restore(template)
         self.showData()
 
 
