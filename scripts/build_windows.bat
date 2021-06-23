@@ -26,4 +26,4 @@ rmdir /S /Q .\virtual_env\Lib\site-packages\matplotlib\mpl-data\stylelib
 REM Run Pyinstaller
 pyinstaller --onefile --windowed --add-data "%CD%\..\..\assets;assets" --icon="%CD%\..\..\assets\icons\icon.ico" ..\..\VGC_Analyze.py
 
-REM pyinstaller --noconfirm --windowed --add-data "%CD%\..\..\assets;assets" --icon="%CD%\..\..\assets\icons\icon.ico" ..\..\VGC_Analyze.py
+pyinstaller --noconfirm --windowed --add-data "%CD%\..\..\assets;assets" --icon="%CD%\..\..\assets\icons\icon.ico" ..\..\VGC_Analyze.py
