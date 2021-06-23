@@ -93,7 +93,7 @@ python3 ./VGC_Analyze.py
 ## macOS
 VGC_Analyze has been tested on macOS Big Sur with Python 3.9.5.
 
-The default version of Python3 that is distributed with macOS does not work well with VGC_Analyze. It is recommendet that you download and install the latest Version from https://python.org
+The default version of Python3, that is distributed with macOS, does not work well with VGC_Analyze. It is recommendet that you download and install the latest Version from https://python.org
 
 The rest of the installation process is similar to the Windows script version.
 
