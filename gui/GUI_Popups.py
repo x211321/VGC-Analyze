@@ -1164,6 +1164,7 @@ class Pop_TemplateManager(object):
 
         # Treeview left bindings
         self.view_left.bind('<<TreeviewSelect>>', self.selectTemplate)
+        self.view_left.bind("<Double-1>", self.confirm)
 
 
         # Treeview right definition
@@ -1200,7 +1201,7 @@ class Pop_TemplateManager(object):
         if not self.window == None:
             self.window.destroy()
 
-    def confirm(self):
+    def confirm(self, a = None):
         if not self.callback == None:
             self.callback(settings.getTemplate(self.selectedTemplate))
         if not self.window == None:
