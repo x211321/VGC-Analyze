@@ -48,9 +48,9 @@ You can download your preferred version from the [releases page](https://github.
 ## Windows - Installer
 The windows installer comes bundled with all required dependencies and brings its own Python runtime.
 
-```
-In Windows 10 Microsoft implemented a warning message when an "unrecognized app" is executed for the first time. In this case you have to click on "More info" and confirm with the "Run anyway" button before the installer can be run.
-```
+
+> ⚠ In Windows 10 Microsoft implemented a warning message when an "unrecognized app" is executed for the first time. In this case you have to click on "More info" and confirm with the "Run anyway" button before the installer can be run.
+
 
 
 ## Windows - Standalone executable
@@ -58,9 +58,8 @@ The standalone executable also comes pre bundled with all required dependences a
 
 The standalone version is created with [Pyinstaller](https://www.pyinstaller.org/). Pyinstaller combines all files that are required to run a particular Python script into one self extracting archive. When the standalone version is executed Pyinstaller extracts the program data into the windows temp folder and then runs the Python script from there. This behavior can be seen as suspicious by anti-virus software and can cause false security alerts. If you run into trouble running the standalone version, it is recommended that you use the installer instead.
 
-```
-In Windows 10 Microsoft implemented a warning message when an "unrecognised app" is executed for the first time. In this case you have to click on "More info" and confirm with the "Run anyway" button the first time the standalone version is executed.
-```
+
+> ⚠ In Windows 10 Microsoft implemented a warning message when an "unrecognised app" is executed for the first time. In this case you have to click on "More info" and confirm with the "Run
 
 ## Windows - Python script
 Make sure you have a recent version of Python 3 installed.
