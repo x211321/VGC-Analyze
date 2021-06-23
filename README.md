@@ -62,9 +62,7 @@ The standalone version is created with [Pyinstaller](https://www.pyinstaller.org
 > ⚠ In Windows 10 Microsoft implemented a warning message when an "unrecognised app" is executed for the first time. In this case you have to click on "More info" and confirm with the "Run anyway" button.
 
 ## Windows - Python script
-Make sure you have a recent version of Python 3 installed.
-
-https://www.python.org/downloads/
+Make sure you have a recent version of [Python 3](https://www.python.org/downloads/) installed.
 
 Download the VGC_Analyze.zip file from the [releases page](https://github.com/x211321/VGC_Analyze/releases) and extract it somewhere on your hard drive.
 
