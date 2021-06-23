@@ -108,29 +108,32 @@ class GUI_Filter(Frame):
         self.filterInputs["cb_frame"] = Frame(self)
         self.filterInputs["cart_txt"] = Label_(self.filterInputs["cb_frame"], width=10, _pady=(2,0), row=0, col=0, _padx=(0,18), text=_("Cart"))
         self.filterInputs["box_txt"]  = Label_(self.filterInputs["cb_frame"], width=10, _pady=(2,0), row=0, col=1, text=_("Box"))
-        self.filterInputs["cart"]     = Combobox_(self.filterInputs["cb_frame"], width=10, row=1, col=0, _padx=(0,18), values=("", VAR.ITEM_ATTRIBUTE_YES, VAR.ITEM_ATTRIBUTE_NO), state="readonly")
-        self.filterInputs["box"]      = Combobox_(self.filterInputs["cb_frame"], width=10, row=1, col=1, values=("", VAR.ITEM_ATTRIBUTE_YES, VAR.ITEM_ATTRIBUTE_NO), state="readonly")
+        self.filterInputs["cart"]     = Combobox_(self.filterInputs["cb_frame"], width=10, row=1, col=0, _padx=(0,18), state="readonly")
+        self.filterInputs["box"]      = Combobox_(self.filterInputs["cb_frame"], width=10, row=1, col=1, state="readonly")
 
         self.filterInputs["mo_frame"]   = Frame(self)
         self.filterInputs["manual_txt"] = Label_(self.filterInputs["mo_frame"], width=10, _pady=(2,0), row=0, col=0, _padx=(0,18), text=_("Manual"))
         self.filterInputs["other_txt"]  = Label_(self.filterInputs["mo_frame"], width=10, _pady=(2,0), row=0, col=1, text=_("Other"))
-        self.filterInputs["manual"]     = Combobox_(self.filterInputs["mo_frame"], width=10, row=1, col=0, _padx=(0,18), values=("", VAR.ITEM_ATTRIBUTE_YES, VAR.ITEM_ATTRIBUTE_NO), state="readonly")
-        self.filterInputs["other"]      = Combobox_(self.filterInputs["mo_frame"], width=10, row=1, col=1, values=("", VAR.ITEM_ATTRIBUTE_YES, VAR.ITEM_ATTRIBUTE_NO), state="readonly")
+        self.filterInputs["manual"]     = Combobox_(self.filterInputs["mo_frame"], width=10, row=1, col=0, _padx=(0,18), state="readonly")
+        self.filterInputs["other"]      = Combobox_(self.filterInputs["mo_frame"], width=10, row=1, col=1, state="readonly")
 
         self.filterInputs["bf_frame"]       = Frame(self)
         self.filterInputs["bookmarked_txt"] = Label_(self.filterInputs["bf_frame"], width=10, _pady=(2,0), row=0, col=0, _padx=(0,18), text=_("Bookmarked"))
         self.filterInputs["finished_txt"]   = Label_(self.filterInputs["bf_frame"], width=10, _pady=(2,0), row=0, col=1, text=_("Finished"))
-        self.filterInputs["bookmarked"]     = Combobox_(self.filterInputs["bf_frame"], width=10, row=1, col=0, _padx=(0,18), values=("", VAR.ITEM_ATTRIBUTE_YES, VAR.ITEM_ATTRIBUTE_NO), state="readonly")
-        self.filterInputs["finished"]       = Combobox_(self.filterInputs["bf_frame"], width=10, row=1, col=1, values=("", VAR.ITEM_ATTRIBUTE_YES, VAR.ITEM_ATTRIBUTE_NO), state="readonly")
+        self.filterInputs["bookmarked"]     = Combobox_(self.filterInputs["bf_frame"], width=10, row=1, col=0, _padx=(0,18), state="readonly")
+        self.filterInputs["finished"]       = Combobox_(self.filterInputs["bf_frame"], width=10, row=1, col=1, state="readonly")
 
         self.filterInputs["oo_frame"]       = Frame(self)
         self.filterInputs["order_txt"]      = Label_(self.filterInputs["oo_frame"], width=10, _pady=(2,0), row=0, col=0, _padx=(0,18), text=_("Sort by"))
         self.filterInputs["order_dir_txt"]  = Label_(self.filterInputs["oo_frame"], width=10, _pady=(2,0), row=0, col=1, text=_("Sort direction"))
         self.filterInputs["order"]          = Combobox_(self.filterInputs["oo_frame"], width=10, row=1, col=0, _padx=(0,18), state="readonly")
-        self.filterInputs["orderDirection"] = Combobox_(self.filterInputs["oo_frame"], width=10, row=1, col=1, values=("", VAR.ORDER_DIRECTION_ASCENDING, VAR.ORDER_DIRECTION_DESCENDING), state="readonly")
+        self.filterInputs["orderDirection"] = Combobox_(self.filterInputs["oo_frame"], width=10, row=1, col=1, state="readonly")
 
         if settings.get("display", "refreshOnFilterSelect", True):
             self.bindComboboxes()
+
+        self.fillYesNoComboboxes()
+        self.fillOrderDirectionCombobox()
 
         self.filter_button_frame = Frame(self)
         self.filter_apply = Button_(self.filter_button_frame, width=10, relief="groove", bg=VAR.BUTTON_COLOR_GOOD)
@@ -199,21 +202,26 @@ class GUI_Filter(Frame):
         self.reset(True)
 
         for key in template:
+
+            value = template[key]
+
+            if type(value) == str and len(value):
+                value = _(template[key])
+
             if key in self.multiFilter:
-                if len(template[key]):
-                    self.multiFilter[key] = template[key]
-                    self.filterInputs[key + "_select"].config(text=str(len(template[key])) + _(" selected"), bg=VAR.BUTTON_COLOR_TOGGLE)
+                if len(value):
+                    self.multiFilter[key] = value
+                    self.filterInputs[key + "_select"].config(text=str(len(value)) + _(" selected"), bg=VAR.BUTTON_COLOR_TOGGLE)
                 continue
             if key in self.filterInputs:
                 widget = self.filterInputs[key]
 
-                if widget.__class__.__name__ == "Entry_":
-                    widget.set(template[key])
-                if widget.__class__.__name__ == "Combobox_":
-                    widget.set(template[key])
+                if widget.__class__.__name__ == "Entry_" or widget.__class__.__name__ == "Combobox_":
+                    widget.set(value)
+
                 if widget.__class__.__name__ == "Button_" or widget.__class__.__name__ == "BorderButton_":
                     if widget.toggle:
-                        widget.setToggle(template[key])
+                        widget.setToggle(value)
 
 
     ######################
@@ -290,18 +298,9 @@ class GUI_Filter(Frame):
         self.filterInputs["group"].delete(0, END)
 
         groups.append("")
-        groups.append(VAR.GROUP_BY_YEAR)
-        groups.append(VAR.GROUP_BY_MONTH)
-        groups.append(VAR.GROUP_BY_DAY)
-        groups.append(VAR.GROUP_BY_YEAR_ADDED)
-        groups.append(VAR.GROUP_BY_MONTH_ADDED)
-        groups.append(VAR.GROUP_BY_DAY_ADDED)
-        groups.append(VAR.GROUP_BY_NAME)
-        groups.append(VAR.GROUP_BY_REGION)
-        groups.append(VAR.GROUP_BY_PLATFORM)
-        groups.append(VAR.GROUP_BY_PLATFORMHOLDER)
-        groups.append(VAR.GROUP_BY_NOTES)
-        groups.append(VAR.GROUP_BY_VGCID)
+
+        for key in VAR.GROUP_BY.keys():
+            groups.append(VAR.GROUP_BY[key])
 
         self.filterInputs["group"].setValues(groups)
 
@@ -314,15 +313,42 @@ class GUI_Filter(Frame):
         self.filterInputs["order"].delete(0, END)
 
         orders.append("")
-        orders.append(VAR.ORDER_BY_NAME)
-        orders.append(VAR.ORDER_BY_PRICE)
-        orders.append(VAR.ORDER_BY_DATE)
-        orders.append(VAR.ORDER_BY_DATE_ADDED)
-        orders.append(VAR.ORDER_BY_REGION)
-        orders.append(VAR.ORDER_BY_PLATFORM)
-        orders.append(VAR.ORDER_BY_NOTES)
+        for key in VAR.ORDER_BY.keys():
+            orders.append(VAR.ORDER_BY[key])
 
         self.filterInputs["order"].setValues(orders)
+
+
+    ######################
+    # fillOrderDirectionCombobox
+    # --------------------
+    def fillOrderDirectionCombobox(self):
+        directions = []
+        self.filterInputs["orderDirection"].delete(0, END)
+
+        directions.append("")
+        for key in VAR.ORDER_DIRECTION.keys():
+            directions.append(VAR.ORDER_DIRECTION[key])
+
+        self.filterInputs["orderDirection"].setValues(directions)
+
+
+    ######################
+    # fillYesNoComboboxes
+    # --------------------
+    def fillYesNoComboboxes(self):
+        options = []
+
+        options.append("")
+        for key in VAR.ATTRIBUTE_YN.keys():
+            options.append(VAR.ATTRIBUTE_YN[key])
+
+        self.filterInputs["cart"].setValues(options)
+        self.filterInputs["box"].setValues(options)
+        self.filterInputs["manual"].setValues(options)
+        self.filterInputs["other"].setValues(options)
+        self.filterInputs["bookmarked"].setValues(options)
+        self.filterInputs["finished"].setValues(options)
 
 
     ######################

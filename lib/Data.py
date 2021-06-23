@@ -1,4 +1,5 @@
 from lib.Locale import _
+from lib.Locale import i18nToRaw
 
 import lib.Settings as settings
 
@@ -10,7 +11,6 @@ from collections import OrderedDict
 from os          import listdir
 
 from lib.Json    import readJson
-from lib.Lib     import _YesNoToYesNo
 from lib.Lib     import guessDate
 
 import lib.Var as VAR
@@ -270,23 +270,23 @@ class FilterData(object):
                     self.priceFilterEndSet = False
 
             if key == "cart":
-                self.cartFilter        = _YesNoToYesNo(self.setFilterValue(key, inputs[key].get()))
+                self.cartFilter        = self.setFilterValue(key, i18nToRaw(VAR.ATTRIBUTE_YN, inputs[key].get()))
             if key == "box":
-                self.boxFilter         = _YesNoToYesNo(self.setFilterValue(key, inputs[key].get()))
+                self.boxFilter         = self.setFilterValue(key, i18nToRaw(VAR.ATTRIBUTE_YN, inputs[key].get()))
             if key == "manual":
-                self.manualFilter      = _YesNoToYesNo(self.setFilterValue(key, inputs[key].get()))
+                self.manualFilter      = self.setFilterValue(key, i18nToRaw(VAR.ATTRIBUTE_YN, inputs[key].get()))
             if key == "other":
-                self.otherFilter       = _YesNoToYesNo(self.setFilterValue(key, inputs[key].get()))
+                self.otherFilter       = self.setFilterValue(key, i18nToRaw(VAR.ATTRIBUTE_YN, inputs[key].get()))
             if key == "bookmarked":
-                self.bookmarkedFilter  = _YesNoToYesNo(self.setFilterValue(key, inputs[key].get()))
+                self.bookmarkedFilter  = self.setFilterValue(key, i18nToRaw(VAR.ATTRIBUTE_YN, inputs[key].get()))
             if key == "finished":
-                self.finishedFilter    = _YesNoToYesNo(self.setFilterValue(key, inputs[key].get()))
+                self.finishedFilter    = self.setFilterValue(key, i18nToRaw(VAR.ATTRIBUTE_YN, inputs[key].get()))
             if key == "group":
-                self.groupItems        = self.setFilterValue(key, inputs[key].get())
+                self.groupItems        = self.setFilterValue(key, i18nToRaw(VAR.GROUP_BY, inputs[key].get()))
             if key == "order":
-                self.orderItems        = self.setFilterValue(key, inputs[key].get())
+                self.orderItems        = self.setFilterValue(key, i18nToRaw(VAR.ORDER_BY, inputs[key].get()))
             if key == "orderDirection":
-                self.orderDirection    = self.setFilterValue(key, inputs[key].get())
+                self.orderDirection    = self.setFilterValue(key, i18nToRaw(VAR.ORDER_DIRECTION, inputs[key].get()))
 
 
 ######################

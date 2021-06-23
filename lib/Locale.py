@@ -166,4 +166,9 @@ def getAvailableLocaleNames():
 
     return localeNames
 
+def i18nToRaw(dict, i18n):
+    for key in dict:
+        if dict[key] == i18n:
+            return key
 
+    return i18n
