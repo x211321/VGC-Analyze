@@ -18,7 +18,7 @@ AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
-DefaultDirName={autopf}\{#MyAppName}
+DefaultDirName={commonpf64}\{#MyAppName}
 DisableProgramGroupPage=yes
 LicenseFile=..\license.txt
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
@@ -31,7 +31,6 @@ OutputBaseFilename={#MyAppName}_Setup
 OutputDir=.\build\dist\
 SetupIconFile=..\assets\icons\icon.ico
 UninstallDisplayIcon={app}\{#MyAppExeName}
-ArchitecturesInstallIn64BitMode=x64
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"

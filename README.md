@@ -6,15 +6,16 @@ VGC_Analyze is a graphical data analyzer for your VGCollect.com video game colle
 
 VGC_Analyze is meant to provide ways to view your collection data from different angels.
 
-Have you ever wondered how much you've spend on your collection, how many imported items you own or what percentage of your collection consists of Sega products? VGC_Analyze provides answers to all these questions and many more.
+Have you ever wondered how much you've spend on your collection, how many imported items you own or what percentage of your collection consists of SEGA products? VGC_Analyze provides answers to all these questions and many more.
 
 
 # Features
  * Download your collection data from your VGCollect.com profile
  * Sort, filter, group and compare your collection by various attributes
- * Chart your collection as a bar, pie, area or line chart
+ * Create templates for easy access to often used filter combinations
+ * Chart data as a bar, pie, area or line chart
  * Export your collection as a printable HTML page
- * Group your collection by platform holder
+ * Assign platform holders to specific keywords
  * Combine related platforms for better comparisons
  * Overwrite platform names to achieve a more cohesive data base
  * Expand your collection by settings bookmarks or marking items as completed
@@ -23,7 +24,7 @@ Have you ever wondered how much you've spend on your collection, how many import
 # Limitations
 VGC_Analyze uses the CSV data that's provided by the VGCollect.com backup function. The data provided this way is rather limited and mostly includes information that's required for restoring a VGCollect.com collection. The data source doesn't include detailed item information like publishers, developers, or release dates and can therefore not be used by VGC_Analyze.
 
-Date and price of purchase as well as the cart, box, manual and "others" attributes are included in the backup data, provided you have filled them in.
+Date and price of purchase as well as the "cart", "box", "manual" and "others" attributes are included in the data, provided you have filled them in.
 
  * VGC_Analyze can't analyze data that's not there. Depending on the way you maintain your collection the program will be more or less useful to you.
 
@@ -35,19 +36,42 @@ Date and price of purchase as well as the cart, box, manual and "others" attribu
 # Installation
 VGC_Analyze is written in Python, using the Tkinter/Tk GUI Toolkit and should thus run on most modern desktop operating systems.
 
-## Windows
-Currently there are two ways to run VGC_Analyze on windows. Provided on this page (sidebar - releases) you'll find a zip file including the raw Python script - which can be run through the Python interpreter - as well as a self containing binary bundle which provides its own Python runtime and all required dependencies.
+# Windows
+There are three ways to run VGC_Analyze on windows.
 
-## Windows - Script version
-**Make sure you have a recent version of Python 3 installed.**
+ * Installer
+ * Standalone executable
+ * Python script
+
+You can download your preferred version from the [releases page](https://github.com/x211321/VGC_Analyze/releases).
+
+## Windows - Installer
+The windows installer comes bundled with all required dependencies and brings its own Python runtime.
+
+```
+In Windows 10 Microsoft implemented a warning message when an "unrecognized app" is executed for the first time. In this case you have to click on "More info" and confirm with the "Run anyway" button before the installer can be run.
+```
+
+
+## Windows - Standalone executable
+The standalone executable also comes pre bundled with all required dependences and its own Python runtime but can be run without prior installation.
+
+The standalone version is created with [Pyinstaller](https://www.pyinstaller.org/). Pyinstaller combines all files that are required to run a particular Python script into one self extracting archive. When the standalone version is executed Pyinstaller extracts the program data into the windows temp folder and then runs the Python script from there. This behavior can be seen as suspicious by anti-virus software and can cause false security alerts. If you run into trouble running the standalone version, it is recommended that you use the installer instead.
+
+```
+In Windows 10 Microsoft implemented a warning message when an "unrecognised app" is executed for the first time. In this case you have to click on "More info" and confirm with the "Run anyway" button the first time the standalone version is executed.
+```
+
+## Windows - Python script
+Make sure you have a recent version of Python 3 installed.
 
 https://www.python.org/downloads/
 
-**Download the VGC_Analyze.zip file from this page and extract it somewhere on your hard drive.**
+Download the VGC_Analyze.zip file from the [releases page](https://github.com/x211321/VGC_Analyze/releases) and extract it somewhere on your hard drive.
 
-VGC_Analyze requires a couple third party Python modules that are not included in the zip file. These can be installed via the "package installer for Python" (pip). **While the application can be run without those modules, it is recommended that you install them, otherwise certain function will be unavailable.**
+VGC_Analyze requires a couple third party Python modules that are not included in the zip file. These can be installed via the "package installer for Python" ([pip]([https://pypi.org)). **While the application can be run without those modules, it is recommended that you install them, otherwise certain function will be unavailable.**
 
-https://pypi.org
+
 
 ```
 python -m pip install Pillow
@@ -58,49 +82,70 @@ python -m pip install matplotlib
  * Matplotlib provides comprehensive plotting functions
 
 
-You should now be able to run VGC_Analyze by starting the **VGC_Analyze.py** file from the directory you've extracted the zip file to. Depending on whether you have associated .py files with the Python launcher or not you can either double-click the file or run it from a command line.
+You should now be able to run VGC_Analyze by starting the **VGC_Analyze.py** file from the directory you've extracted the zip file to. Depending on whether you have associated .py files with the Python launcher, you can either double-click the file or run it from a command line.
 
 ```
 python VGC_Analyze.py
 ```
 
 
-## Windows - Binary version
-The binary version of VGC_Analyze is a standalone bundle containing its own Python runtime as well as all required dependencies like matplot and pillow. Compared to the script version the binary version is much larger but provides the convenience of a self-contained package without any extra setup.
+# Linux
+There are two ways to run VGC_Analyze on Linux.
 
-The binary version is created with Pyinstaller (https://www.pyinstaller.org/). Pyinstaller basically packs all files that are required to run a particular Python script into one self extracting archive. When the program is started Pyinstaller extract the archive into the windows temp folder and then runs the Python script from there. This behavior can be seen as suspicious by anti-virus software and can cause false security alerts. If you run into trouble running the binary version it's recommended that you use the script version instead.
+ * Standalone executable
+ * Python script
 
-In Windows 10 Microsoft implemented a warning message when an "unrecognised app" is executed for the first time. In this case you have to click on "More info" and confirm with the "Run anyway" button.
+You can download your preferred version from the [releases page](https://github.com/x211321/VGC_Analyze/releases).
 
+VGC_Analyze has been tested to run on Ubuntu 20.4 and Linux Mint 20.2.
 
-Neither the script nor the binary version of VGC_VGC_Analyze must be traditionally "installed". Both versions run directly from the directory to which they were extracted. VGC_Analyze creates sub-folders and files in the directory from which it is run, so to work properly the program should not be placed into a location that's not writable with limited access like "C:\Program Files".
+## Linux - Standalone executable
+Like the windows version, the standalone executable for Linux comes pre bundled with all required dependences and its own Python runtime and can be run without prior installation.
 
+It might be necessary to set the "execute" permission of the binary file before the standalone version can be run.
 
+```
+chmod +x ./VGC_Analyze
+./VGC_Analyze
+```
 
-## Linux
-VGC_Analyze has been tested to run on Ubuntu 20.4. Currently there is no binary version for Linux so the only way is to run the script version. The steps are similar to the Windows version. Python 3 should already be provided by most Linux distributions and the required dependencies can be installed via the package manager.
+If you run into any incompatibilities with the standalone version, it is recommended that you use the script version instead.
+
+## Linux - Python script
+Python 3 should already be provided by most Linux distributions and the required dependencies can be installed via the package manager.
 
 ```
 sudo apt-get install python3-tk
 sudo apt-get install python3-pil
 sudo apt-get install python3-pil.imagetk
 sudo apt-get install python3-matplotlib
+```
 
+After that you should be able to start the application by running:
+```
 python3 ./VGC_Analyze.py
 ```
 
 
-## macOS
+# macOS
+Currently there is no installer or standalone version of VGC_Analyze for macOS. Your only option is to run the Python script directly.
+
 VGC_Analyze has been tested on macOS Big Sur with Python 3.9.5.
 
-The default version of Python3, that is distributed with macOS, does not work well with VGC_Analyze. It is recommendet that you download and install the latest Version from https://python.org
+The default version of Python3, that is distributed with macOS, does not work well with VGC_Analyze. It is recommendet that you download and install the latest Version from [python.org](https://python.org).
 
-The rest of the installation process is similar to the Windows script version.
+The rest of the installation process is similar to the other script versions.
 
+Download the VGC_Analyze.zip file from the [releases page](https://github.com/x211321/VGC_Analyze/releases) and extract it somewhere on your hard drive.
+
+Install the dependencies via [pip]([https://pypi.org).
 ```
 sudo python3 -m pip install Pillow
 sudo python3 -m pip install matplotlib
+```
 
+Run the script with the python interpreter.
+```
 python3 ./VGC_Analyze.py
 ```
 
