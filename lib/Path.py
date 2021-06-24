@@ -19,12 +19,18 @@ if not os.path.exists(DATA_PATH):
     os.makedirs(DATA_PATH)
 
 
+# Cover types
+COVER_TYPE_FRONT = "front-box"
+COVER_TYPE_BACK  = "back-box"
+COVER_TYPE_CART  = "cart"
+
+
 # Img vars
 IMG_PATH         = DATA_PATH + "img/"
 IMG_CACHE_PATH   = IMG_PATH + "cache/"
-IMG_CACHE_FRONT  = IMG_CACHE_PATH + "front/"
-IMG_CACHE_BACK   = IMG_CACHE_PATH + "back/"
-IMG_CACHE_CART   = IMG_CACHE_PATH + "cart/"
+IMG_CACHE_FRONT  = IMG_CACHE_PATH + COVER_TYPE_FRONT + "/"
+IMG_CACHE_BACK   = IMG_CACHE_PATH + COVER_TYPE_BACK  + "/"
+IMG_CACHE_CART   = IMG_CACHE_PATH + COVER_TYPE_CART  + "/"
 COVER_WIDTH      = 120
 
 
@@ -39,6 +45,11 @@ except:
 ICON_PATH             = os.path.join(ASSETS_PATH, "icons", "")
 IMG_COVER_NONE        = os.path.join(ASSETS_PATH, "cover_placeholder.png")
 IMG_COVER_PIL_MISSING = os.path.join(ASSETS_PATH, "cover_placeholder_pillow.gif")
+IMG_COVER_LOADING_120 = os.path.join(ASSETS_PATH, "loading_120.gif")
+
+
+def getCoverPath(item, coverType):
+    return IMG_CACHE_PATH + coverType + "/" + str(item.VGC_id) + ".jpg"
 
 
 # Settings

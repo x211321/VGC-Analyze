@@ -53,7 +53,8 @@ def defaultSettings():
                 },
                 "display": {
                     "detailsOnDoubleClick": 1,
-                    "refreshOnFilterSelect": 1
+                    "refreshOnFilterSelect": 1,
+                    "hideCoverLoadingAnimation": 0
                 }
             }
 

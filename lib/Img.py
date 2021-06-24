@@ -37,6 +37,11 @@ def loadImage(path, width = 0, padx = 0):
         return PhotoImage(file=VAR.IMG_COVER_PIL_MISSING)
 
 
+def loadAnimationFrame(path, frame):
+    format = "gif -index " + str(frame)
+
+    return PhotoImage(file=path, format=format)
+
 ######################
 # loadIcon
 # --------------------

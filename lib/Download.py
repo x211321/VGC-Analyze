@@ -8,12 +8,7 @@ import urllib.request
 import http.cookiejar
 import getpass
 
-from lib.Var import FILE_PREFIX
-from lib.Var import IMG_CACHE_PATH
-from lib.Var import IMG_CACHE_FRONT
-from lib.Var import IMG_CACHE_BACK
-from lib.Var import IMG_CACHE_CART
-from lib.Var import DOWNLOAD_FILE
+import lib.Var as VAR
 
 from lib.FilePath import writeFile
 
@@ -57,9 +52,9 @@ def downloadCollection(username = "", password = ""):
 
                 if "\"VGC id\"" in str(contents[0:10]):
                     # Save downloaded collection data
-                    writeFile(DOWNLOAD_FILE, contents, "wb")
+                    writeFile(VAR.DOWNLOAD_FILE, contents, "wb")
 
-                    return None, DOWNLOAD_FILE
+                    return None, VAR.DOWNLOAD_FILE
                 else:
                     return _("Login error"), ""
             else:
@@ -80,34 +75,20 @@ def downloadCollection(username = "", password = ""):
         return _("Network error"), ""
 
 
-
-######################
-# downloadCovers
-# --------------------
-def downloadCovers(item, refresh = False, coverType = ""):
-    itemId = item.VGC_id
-
-    url_base  = "vgcollect.com"
-    url_https = "https://" + url_base
-    url_front = url_https + "/images/front-box-art/" + str(itemId) + ".jpg"
-    url_back  = url_https + "/images/back-box-art/" + str(itemId) + ".jpg"
-    url_cart  = url_https + "/images/cart-art/" + str(itemId) + ".jpg"
-
-    if len(coverType) == 0 or coverType == "front":
-        downloadCover(item, url_front, IMG_CACHE_FRONT, refresh, "Front")
-    if len(coverType) == 0 or coverType == "back":
-        downloadCover(item, url_back, IMG_CACHE_BACK, refresh, "Back")
-    if len(coverType) == 0 or coverType == "cart":
-        downloadCover(item, url_cart, IMG_CACHE_CART, refresh, "Cart")
-
-
 ######################
 # downloadCover
 # --------------------
-def downloadCover(item, url, path, refresh, coverType):
-    itemId = item.VGC_id
+def downloadCover(item, coverType, refresh = False):
+    itemId    = item.VGC_id
 
-    itemPath = path + str(itemId) + ".jpg"
+    url_base  = "vgcollect.com"
+    url_https = "https://" + url_base
+
+    url_cover = url_https + "/images/"+coverType+"-art/" + str(itemId) + ".jpg"
+
+    cache     = VAR.IMG_CACHE_PATH + coverType + "/"
+
+    itemPath = cache + str(itemId) + ".jpg"
 
     # Check if cover already cached
     if refresh == False:
@@ -116,11 +97,11 @@ def downloadCover(item, url, path, refresh, coverType):
             return
 
     # Create request
-    request = urllib.request.Request(url)
+    request = urllib.request.Request(url_cover)
 
     # Check if target path exists
-    if os.path.exists(path) == False:
-        os.makedirs(path)
+    if os.path.exists(cache) == False:
+        os.makedirs(cache)
 
     try:
         # Download cover

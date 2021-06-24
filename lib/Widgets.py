@@ -2,13 +2,63 @@ from lib.Locale import _
 
 import os
 import platform
+import threading
+import time
+import ctypes
 
 from tkinter import *
 from tkinter import ttk
 
 from lib.Img import loadImage
+from lib.Img import loadAnimationFrame
 
 import lib.Var as VAR
+
+
+######################
+# AnimationThread
+# --------------------
+class AnimationThread(threading.Thread):
+    def __init__(self, widget, animation, frames, interval):
+
+        self.widget    = widget
+        self.animation = animation
+        self.frames    = frames
+        self.interval  = interval
+
+        threading.Thread.__init__(self)
+
+    def run(self):
+        try:
+            frame = 0
+
+            while True:
+                time.sleep(self.interval / 1000)
+
+                self.image = loadAnimationFrame(self.animation, frame)
+                self.widget.config(image=self.image)
+
+                frame += 1
+
+                if frame == self.frames:
+                    frame = 0
+        finally:
+            pass
+
+    def get_id(self):
+        if hasattr(self, '_thread_id'):
+            return self._thread_id
+        for id, thread in threading._active.items():
+            if thread is self:
+                return id
+
+    def kill(self):
+        thread_id = self.get_id()
+
+        result = ctypes.pythonapi.PyThreadState_SetAsyncExc(thread_id,
+              ctypes.py_object(SystemExit))
+        if result > 1:
+            ctypes.pythonapi.PyThreadState_SetAsyncExc(thread_id, 0)
 
 
 ######################
@@ -42,6 +92,8 @@ class Label_(Label):
         self.bg           = bg
         self.highlight_bg = highlight_bg
 
+        self.animationThread = None
+
         self.config(textvariable=self.text)
 
         self.setImage(img, self.imgwidth)
@@ -62,6 +114,15 @@ class Label_(Label):
         if len(img) > 0:
             self.image = loadImage(img, self.imgwidth)
             self.config(image=self.image)
+
+    def startAnimation(self, img, frames, interval):
+        self.stopAnimation()
+        self.animationThread = AnimationThread(self, img, frames, interval)
+        self.animationThread.start()
+
+    def stopAnimation(self):
+        if not self.animationThread == None:
+            self.animationThread.kill()
 
     def highlight(self):
         if not self.highlight_bg == None:

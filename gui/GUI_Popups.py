@@ -73,13 +73,13 @@ class Pop_CoverViewer(object):
 
         if not item == None:
             # Get cover path
-            if coverType == "front":
+            if coverType == VAR.COVER_TYPE_FRONT:
                 img = VAR.IMG_CACHE_FRONT + str(item.VGC_id) + ".jpg"
                 title = _("front cover")
-            if coverType == "back":
+            if coverType == VAR.COVER_TYPE_BACK:
                 img = VAR.IMG_CACHE_BACK + str(item.VGC_id) + ".jpg"
                 title = _("back cover")
-            if coverType == "cart":
+            if coverType == VAR.COVER_TYPE_CART:
                 img = VAR.IMG_CACHE_CART + str(item.VGC_id) + ".jpg"
                 title = _("cart cover")
 
