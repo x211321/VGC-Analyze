@@ -30,7 +30,7 @@ pyinstaller --onefile ^
             --windowed ^
             --add-data="%CD%\..\..\assets;assets" ^
             --icon="%CD%\..\..\assets\icons\icon.ico" ^
-            --name="VGC_Analyze_(standalone)_win" ^
+            --name="VGC_Analyze_standalone_win" ^
             ..\..\VGC_Analyze.py
 
 REM Bundle for Inno setup installer
