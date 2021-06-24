@@ -1,6 +1,10 @@
 
 #!/bin/bash
 
+# Generate and read version info
+python3 ./versionInfoGen.py
+VERSION=$(<file_name_version)
+
 # Create virual environment
 mkdir ./build
 cd ./build
@@ -31,5 +35,5 @@ pyinstaller --onefile \
             --add-data $PWD/../../assets:assets \
             --icon=$PWD/../../assets/icons/icon.ico \
             --hidden-import='PIL._tkinter_finder' \
-            --name="VGC_Analyze_standalone_linux" \
+            --name="VGC_Analyze_${VERSION}_standalone_linux" \
             ../../VGC_Analyze.py

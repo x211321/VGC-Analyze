@@ -1,4 +1,8 @@
 
+REM Generate and read version info
+python ./versionInfoGen.py
+set /p VERSION=<.\file_name_version
+
 REM Create virual environment
 mkdir .\build
 cd .\build
@@ -30,7 +34,7 @@ pyinstaller --onefile ^
             --windowed ^
             --add-data="%CD%\..\..\assets;assets" ^
             --icon="%CD%\..\..\assets\icons\icon.ico" ^
-            --name="VGC_Analyze_standalone_win" ^
+            --name="VGC_Analyze_%VERSION%_standalone_win" ^
             ..\..\VGC_Analyze.py
 
 REM Bundle for Inno setup installer

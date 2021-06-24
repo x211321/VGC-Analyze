@@ -12,6 +12,7 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import ttk
 
+from lib.Version     import VERSION
 from lib.Data        import CollectionData
 from lib.Data        import FilterData
 from lib.Lib         import YNToX
@@ -52,8 +53,8 @@ class GUI(Tk):
         # Main window
         # ------------------
         self.withdraw()
-        self.title('VGC Analyzer')
-        self.geometry('1000x750')
+        self.title("VGC Analyzer" + " " + VERSION)
+        self.geometry("1000x750")
         self.iconphoto(False, loadIcon("game-controller-outline", 512, 512))
 
         if platform.system() == "Darwin" or platform.system() == "Windows":

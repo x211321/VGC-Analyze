@@ -13,6 +13,7 @@ import calendar
 
 import lib.Var as VAR
 
+from lib.Version import VERSION
 from lib.Img import loadIcon
 from lib.Lib import guessDate
 
@@ -687,7 +688,7 @@ class Pop_About(object):
         # Create new window
         self.window = Toplevel(bg=VAR.GUI_COLOR_PRIMARY)
         self.window.withdraw()
-        self.window.wm_title(_("About VGC Analyze"))
+        self.window.wm_title(_("About VGC Analyze") + " " + VERSION)
         self.window.resizable(False, False)
 
         if not platform.system() == "Darwin":
@@ -707,7 +708,7 @@ class Pop_About(object):
 
         self.button_frame.columnconfigure(0, weight=1)
 
-        self.label_title = Label_(self.label_frame, text="VGC Analyzer", font=(20), bg=VAR.GUI_COLOR_PRIMARY)
+        self.label_title = Label_(self.label_frame, text="VGC Analyzer" + " " + VERSION, font=(20), bg=VAR.GUI_COLOR_PRIMARY)
         self.label_description = Label_(self.label_frame, text=_("A data analyzer for your VGCollect.com video game collection"), bg=VAR.GUI_COLOR_PRIMARY)
         self.label_disclamer = Label_(self.label_frame, text=_("VGC Analyze is a hobby project, not affiliated with or endorsed by VGCollect.com"), bg=VAR.GUI_COLOR_PRIMARY)
         self.label_license = Label_(self.label_frame, bg=VAR.GUI_COLOR_PRIMARY)
