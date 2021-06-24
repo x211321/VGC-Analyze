@@ -10,5 +10,5 @@ file.close()
 
 # File name version
 file = open ("file_name_version", "w", encoding="utf-8")
-file.write(VERSION.replace(".", "_"))
+file.write(VERSION)
 file.close()

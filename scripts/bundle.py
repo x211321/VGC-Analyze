@@ -1,6 +1,12 @@
 import os
+import sys
 import shutil
 from zipfile import ZipFile
+
+import sys
+sys.path.append("../")
+
+from lib.Version import VERSION
 
 baseTargetDir = "./build/dist/bundle/"
 targetDir     = baseTargetDir + "pack/VGC_Analyze/"
@@ -21,7 +27,7 @@ shutil.rmtree(targetDir + "lib/__pycache__/")
 
 os.chdir(targetDir + "..")
 
-zip = ZipFile("../VGC_Analyze.zip", "w")
+zip = ZipFile("../../VGC_Analyze_"+VERSION+"_script.zip", "w")
 
 for root, dirs, files in os.walk("./"):
     for f in files:

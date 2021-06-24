@@ -49,3 +49,6 @@ REM The INNO_SETUP_HOME environment variable must point to
 REM the local Inno Setup installation
 cd ..
 "%INNO_SETUP_HOME%\ISCC.exe" .\setup_windows.iss
+
+REM Generate script bundle
+python ./bundle.py
