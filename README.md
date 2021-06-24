@@ -65,7 +65,7 @@ The standalone version is created with [Pyinstaller](https://www.pyinstaller.org
 ## Windows - Python script
 Make sure you have a recent version of [Python 3](https://www.python.org/downloads/) installed.
 
-Download the **VGC_Analyze.zip** file from the [releases page](https://github.com/x211321/VGC_Analyze/releases) and extract it somewhere on your hard drive.
+Download the **VGC_Analyze_script.zip** file from the [releases page](https://github.com/x211321/VGC_Analyze/releases) and extract it somewhere on your hard drive.
 
 VGC_Analyze requires a couple third party Python modules that are not included in the zip file. These can be installed via the "package installer for Python" ([pip]([https://pypi.org)). **While the application can be run without those modules, it is recommended that you install them, otherwise certain function will be unavailable.**
 
@@ -112,7 +112,7 @@ If you run into any incompatibilities with the standalone version, it is recomme
 ## Linux - Python script
 Python 3 should already be provided by most Linux distributions.
 
-Download the **VGC_Analyze.zip** file from the [releases page](https://github.com/x211321/VGC_Analyze/releases) and extract it somewhere on your hard drive.
+Download the **VGC_Analyze_script.zip** file from the [releases page](https://github.com/x211321/VGC_Analyze/releases) and extract it somewhere on your hard drive.
 
 The required dependencies can be installed via the package manager.
 ```
@@ -137,7 +137,7 @@ The default version of Python3, that is distributed with macOS, does not work we
 
 The rest of the installation process is similar to the other script versions.
 
-Download the **VGC_Analyze.zip** file from the [releases page](https://github.com/x211321/VGC_Analyze/releases) and extract it somewhere on your hard drive.
+Download the **VGC_Analyze_script.zip** file from the [releases page](https://github.com/x211321/VGC_Analyze/releases) and extract it somewhere on your hard drive.
 
 Install the dependencies via [pip]([https://pypi.org).
 ```
