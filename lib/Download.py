@@ -45,26 +45,40 @@ def downloadCollection(username = "", password = ""):
     data        = urllib.parse.urlencode(payload)
     binary_data = data.encode('UTF-8')
 
-    request  = urllib.request.Request(url_auth, binary_data, headers)
-    response = urllib.request.urlopen(request)
-
-    if response.getcode() == 200:
-        request  = urllib.request.Request(url_csv, binary_data, headers)
+    try:
+        request  = urllib.request.Request(url_auth, binary_data, headers)
         response = urllib.request.urlopen(request)
+
         if response.getcode() == 200:
-            contents = response.read()
+            request  = urllib.request.Request(url_csv, binary_data, headers)
+            response = urllib.request.urlopen(request)
+            if response.getcode() == 200:
+                contents = response.read()
 
-            if "\"VGC id\"" in str(contents[0:10]):
-                # Save downloaded collection data
-                writeFile(DOWNLOAD_FILE, contents, "wb")
+                if "\"VGC id\"" in str(contents[0:10]):
+                    # Save downloaded collection data
+                    writeFile(DOWNLOAD_FILE, contents, "wb")
 
-                return None, DOWNLOAD_FILE
+                    return None, DOWNLOAD_FILE
+                else:
+                    return _("Login error"), ""
             else:
-                return _("Login error"), ""
+                return _("Download error - Code: ") + str(response.getcode()), ""
         else:
-            return _("Download error - Code: ") + str(response.getcode()), ""
-    else:
-        return _("Login error - Code: ") + str(response.getcode()), ""
+            return _("Login error - Code: ") + str(response.getcode()), ""
+    except urllib.error.URLError as err:
+        try:
+            return _("Network error: ") + err.reason, ""
+        except:
+            return _("Network error"), ""
+    except urllib.error.HTTPError as err:
+        try:
+            return _("Network error: ") + str(err.code) + " " + err.reason, ""
+        except:
+            return _("Network error"), ""
+    except:
+        return _("Network error"), ""
+
 
 
 ######################
