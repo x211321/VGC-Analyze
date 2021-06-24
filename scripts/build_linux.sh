@@ -26,6 +26,4 @@ rm -Rf ./virtual_env/lib/python*.*/site-packages/matplotlib/mpl-data/sample_data
 rm -Rf ./virtual_env/lib/python*.*/site-packages/matplotlib/mpl-data/stylelib
 
 # Run Pyinstaller
-pyinstaller --onefile --windowed --add-data $PWD/../../assets:assets --icon=$PWD/../../assets/icons/icon.ico --hidden-import='PIL._tkinter_finder' ../../VGC_Analyze.py
-
-#pyinstaller --noconfirm --windowed --add-data $PWD/../../assets:assets --icon=$PWD/../../assets/icons/icon.ico ../../VGC_Analyze.py
+pyinstaller --onefile --windowed --add-data $PWD/../../assets:assets --icon=$PWD/../../assets/icons/icon.ico --hidden-import='PIL._tkinter_finder' --name="VGC_Analyze_(standalone)_linux" ../../VGC_Analyze.py

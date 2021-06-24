@@ -13,7 +13,7 @@ Have you ever wondered how much you've spend on your collection, how many import
  * Download your collection data from your VGCollect.com profile
  * Sort, filter, group and compare your collection by various attributes
  * Create templates for easy access to often used filter combinations
- * Chart data as a bar, pie, area or line chart
+ * Graph data as a bar, pie, area or line chart
  * Export your collection as a printable HTML page
  * Assign platform holders to specific keywords
  * Combine related platforms for better comparisons
@@ -45,12 +45,13 @@ There are three ways to run VGC_Analyze on windows.
 
 You can download your preferred version from the [releases page](https://github.com/x211321/VGC_Analyze/releases).
 
+> ⚠ VGC_analyze requires a current version of the [Microsoft Visual C++ redistributable runtime](https://support.microsoft.com/en-us/topic/the-latest-supported-visual-c-downloads-2647da03-1eea-4433-9aff-95f26a218cc0) for its graphing feature. On most machines this should already be installed. Check you system configuration in case of missing graphs.
+
 ## Windows - Installer
 The windows installer comes bundled with all required dependencies and brings its own Python runtime.
 
 
 > ⚠ In Windows 10 Microsoft implemented a warning message when an "unrecognized app" is executed for the first time. In this case you have to click on "More info" and confirm with the "Run anyway" button before the installer can be run.
-
 
 
 ## Windows - Standalone executable

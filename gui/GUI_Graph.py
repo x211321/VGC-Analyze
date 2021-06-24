@@ -10,7 +10,7 @@ else:
 
 if pillow_available:
     try:
-        from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
+        from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
         from matplotlib.figure import Figure
     except ImportError:
         matplotlib_available = False

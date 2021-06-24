@@ -1,6 +1,5 @@
 import os
 import sys
-import pathlib
 
 FILE_PREFIX = "collection-"
 
