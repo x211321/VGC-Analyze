@@ -17,7 +17,7 @@ from gui.GUI_Fileselect import GUI_File
 class GUI_TreeView(ttk.Frame):
 
     def __init__(self, master, width=0, height=0):
-        super().__init__(master=master, width=width, height=height)
+        super().__init__(master=master, width=width, height=height, style=VAR.FRAME_STYLE_SECONDARY)
 
         self.selectViewItem      = master.selectViewItem
         self.setCurrentVGCFile   = master.setCurrentVGCFile

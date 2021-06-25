@@ -25,7 +25,7 @@ import lib.Var as VAR
 class GUI_ItemInfo(ttk.Frame):
 
     def __init__(self, master, width=0, height=0):
-        super().__init__(master=master, width=width, height=height)
+        super().__init__(master=master, width=width, height=height, style=VAR.FRAME_STYLE_SECONDARY)
 
         # Icons
         # ------------------
@@ -100,8 +100,8 @@ class GUI_ItemInfo(ttk.Frame):
         self.item_cart.grid(row=14, column=1, sticky="nwe")
 
         # Frame for item toolbar
-        self.item_tool_frame = Frame(self , width=200 , height=10 , pady=0 , padx=0)
-        self.item_tool_frame.grid(row=0, column=0, sticky="nwe", columnspan=2)
+        self.item_tool_frame = ttk.Frame(self , width=200 , height=10, style=VAR.FRAME_STYLE_SECONDARY)
+        self.item_tool_frame.grid(row=0, column=0, sticky="nwe", columnspan=2, pady=0 , padx=0)
 
         # Item Toolbar
         self.item_open_website = Button(self.item_tool_frame, relief="groove", image=self.item_link_ico)

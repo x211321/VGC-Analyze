@@ -1,4 +1,6 @@
 import lib.Settings as settings
+
+from lib.Style import initStyles
 from lib.Locale import _
 from lib.Locale import locCurrency
 from lib.Locale import locDate
@@ -44,6 +46,9 @@ class GUI(Tk):
     def __init__(self):
 
         super().__init__()
+
+        # Init styles
+        initStyles()
 
         # Data
         self.filterData     = FilterData()

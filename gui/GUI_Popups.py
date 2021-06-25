@@ -144,8 +144,8 @@ class Pop_CollectionDownload(object):
 
         # Functions
         # ------------------
-        self.input_frame  = Frame(self.window, bg=VAR.GUI_COLOR_PRIMARY)
-        self.button_frame = Frame(self.window, bg=VAR.GUI_COLOR_SECONDARY)
+        self.input_frame  = ttk.Frame(self.window)
+        self.button_frame = ttk.Frame(self.window, style=VAR.FRAME_STYLE_SECONDARY)
 
         self.input_frame.grid(row=0, column=0, sticky="nwse")
         self.button_frame.grid(row=1, column=0, sticky="nwse")
@@ -276,8 +276,8 @@ class Pop_ItemSearch(object):
 
         # Functions
         # ------------------
-        self.input_frame  = Frame(self.window, bg=VAR.GUI_COLOR_PRIMARY)
-        self.button_frame = Frame(self.window, bg=VAR.GUI_COLOR_SECONDARY)
+        self.input_frame  = ttk.Frame(self.window)
+        self.button_frame = ttk.Frame(self.window, style=VAR.FRAME_STYLE_SECONDARY)
 
         self.input_frame.grid(row=0, column=0, sticky="nwse")
         self.button_frame.grid(row=1, column=0, sticky="nwse")
@@ -400,8 +400,8 @@ class Pop_FilterSelect(object):
         self.window.bind('<Escape>', lambda x:self.close())
         self.window.focus_force()
 
-        self.frame_options = Frame(self.window, bg=VAR.GUI_COLOR_PRIMARY)
-        self.frame_buttons = Frame(self.window, bg=VAR.GUI_COLOR_SECONDARY)
+        self.frame_options = ttk.Frame(self.window)
+        self.frame_buttons = ttk.Frame(self.window, style=VAR.FRAME_STYLE_SECONDARY)
 
         self.frame_options.grid(row=0, column=0, padx=10, pady=10, sticky="nesw")
         self.frame_buttons.grid(row=1, column=0, sticky="nesw")
@@ -517,14 +517,14 @@ class Pop_ItemDetails(object):
         self.window.bind('<Escape>', lambda x:self.close())
         self.window.focus_force()
 
-        self.container       = Frame(self.window, bg=VAR.GUI_COLOR_PRIMARY)
-        self.titleFrame      = Frame(self.container, bg=VAR.GUI_COLOR_PRIMARY)
-        self.infoframe_      = Frame(self.container, bg=VAR.GUI_COLOR_PRIMARY, highlightthickness=1, highlightbackground="black")
-        self.infoFrame       = Frame(self.infoframe_, bg=VAR.GUI_COLOR_PRIMARY)
-        self.onlineInfoFrame_= Frame(self.container, bg=VAR.GUI_COLOR_PRIMARY, highlightthickness=1, highlightbackground="black")
-        self.onlineInfoFrame = Frame(self.onlineInfoFrame_, bg=VAR.GUI_COLOR_PRIMARY)
-        self.coverFrame      = Frame(self.container, bg=VAR.GUI_COLOR_PRIMARY)
-        self.buttonFrame     = Frame(self.container, bg=VAR.GUI_COLOR_SECONDARY)
+        self.container       = ttk.Frame(self.window)
+        self.titleFrame      = ttk.Frame(self.container)
+        self.infoframe_      = ttk.Frame(self.container, borderwidth=1, relief="groove")
+        self.infoFrame       = ttk.Frame(self.infoframe_)
+        self.onlineInfoFrame_= ttk.Frame(self.container, borderwidth=1, relief="groove")
+        self.onlineInfoFrame = ttk.Frame(self.onlineInfoFrame_)
+        self.coverFrame      = ttk.Frame(self.container)
+        self.buttonFrame     = ttk.Frame(self.container, style=VAR.FRAME_STYLE_SECONDARY)
 
         self.container.grid(row=0, column=0, sticky="nwse")
         self.titleFrame.grid(row=0, column=0, sticky="nw", padx=20, pady=5, columnspan=2)
@@ -700,8 +700,8 @@ class Pop_About(object):
 
         # Functions
         # ------------------
-        self.label_frame  = Frame(self.window, bg=VAR.GUI_COLOR_PRIMARY)
-        self.button_frame = Frame(self.window, bg=VAR.GUI_COLOR_SECONDARY)
+        self.label_frame  = ttk.Frame(self.window)
+        self.button_frame = ttk.Frame(self.window, style=VAR.FRAME_STYLE_SECONDARY)
 
         self.label_frame.grid(row=0, column=0, sticky="nwse")
         self.button_frame.grid(row=1, column=0, sticky="nwse")
@@ -822,9 +822,9 @@ class Pop_DatePicker(object):
         self.window.rowconfigure(1, weight=1)
 
         # Main Frames
-        self.frame_calendar = Frame(self.window, bg=VAR.GUI_COLOR_PRIMARY)
-        self.frame_spacer   = Frame(self.window, bg=VAR.GUI_COLOR_PRIMARY)
-        self.frame_buttons  = Frame(self.window, bg=VAR.GUI_COLOR_SECONDARY)
+        self.frame_calendar = ttk.Frame(self.window)
+        self.frame_spacer   = ttk.Frame(self.window)
+        self.frame_buttons  = ttk.Frame(self.window, style=VAR.FRAME_STYLE_SECONDARY)
 
         self.frame_calendar.grid(row=0, column=0, padx=10, pady=10, sticky="nwse")
         self.frame_spacer.grid(row=1, column=0, sticky="nwse")
@@ -833,7 +833,7 @@ class Pop_DatePicker(object):
         self.frame_calendar.columnconfigure(0, weight=1)
 
         # Year Frame
-        self.frame_year     = Frame(self.frame_calendar, bg=VAR.GUI_COLOR_PRIMARY)
+        self.frame_year     = ttk.Frame(self.frame_calendar)
         self.frame_year.grid(row=0, column=0, sticky="nwse", pady=(0, 5))
         self.frame_year.columnconfigure(1, weight=1)
 
@@ -846,7 +846,7 @@ class Pop_DatePicker(object):
         self.button_next_year.grid(row=0, column=2)
 
         # Month Frame
-        self.frame_month     = Frame(self.frame_calendar, bg=VAR.GUI_COLOR_PRIMARY)
+        self.frame_month     = ttk.Frame(self.frame_calendar)
         self.frame_month.grid(row=1, column=0, sticky="nwse", pady=(0, 5))
         self.frame_month.columnconfigure(1, weight=1)
 
@@ -859,7 +859,7 @@ class Pop_DatePicker(object):
         self.button_next_month.grid(row=0, column=2)
 
         # Days Frame
-        self.frame_days      = Frame(self.frame_calendar, bg=VAR.GUI_COLOR_PRIMARY)
+        self.frame_days      = ttk.Frame(self.frame_calendar)
         self.frame_days.grid(row=2, column=0, sticky="nwse")
 
         # Buttons
@@ -1069,11 +1069,11 @@ class Pop_TemplateManager(object):
 
 
         # Frames
-        self.frame_inputs       = Frame(self.window, bg=VAR.GUI_COLOR_PRIMARY)
-        self.frame_view_left    = Frame(self.window, bg=VAR.GUI_COLOR_PRIMARY)
-        self.frame_view_right   = Frame(self.window, bg=VAR.GUI_COLOR_PRIMARY)
-        self.frame_delete       = Frame(self.window, bg=VAR.GUI_COLOR_PRIMARY)
-        self.frame_buttons      = Frame(self.window, bg=VAR.GUI_COLOR_SECONDARY)
+        self.frame_inputs       = ttk.Frame(self.window)
+        self.frame_view_left    = ttk.Frame(self.window)
+        self.frame_view_right   = ttk.Frame(self.window)
+        self.frame_delete       = ttk.Frame(self.window)
+        self.frame_buttons      = ttk.Frame(self.window, style=VAR.FRAME_STYLE_SECONDARY)
 
         self.frame_inputs.grid(row=0, column=0, columnspan=2, padx=10, pady=(10, 10), sticky="nwse")
         self.frame_view_left.grid(row=1, column=0, padx=10, pady=(10,5), sticky="nwse")

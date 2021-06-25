@@ -2,6 +2,8 @@ from lib.Locale import _
 from lib.Locale import locCurrency
 from lib.Locale import locDate
 
+import lib.Var as VAR
+
 import os
 from datetime import datetime
 
@@ -17,7 +19,7 @@ from lib.Img     import loadIcon
 # --------------------
 class GUI_CollectionInfo(ttk.Frame):
     def __init__(self, master, width=0, height=0):
-        super().__init__(master=master, width=width, height=height)
+        super().__init__(master=master, width=width, height=height, style=VAR.FRAME_STYLE_SECONDARY)
 
         self.toggleGraphFrame = master.toggleGraphFrame
         self.toggleGraphIcon  = loadIcon("bar-chart-outline", 30, 30)
@@ -30,12 +32,12 @@ class GUI_CollectionInfo(ttk.Frame):
         # ------------------
 
         # Collection info sub-frame
-        self.info_sub_frame = Frame(self)
+        self.info_sub_frame = ttk.Frame(self, style=VAR.FRAME_STYLE_SECONDARY)
         self.info_sub_frame.grid(row=0, column=1, sticky="nws", padx=(0,10))
 
         # Graph functions sub-frame
-        self.info_tool_frame = Frame(self , width=200 , height=200, pady=0 , padx=0)
-        self.info_tool_frame.grid(row=0, column=2, sticky="nes")
+        self.info_tool_frame = ttk.Frame(self, style=VAR.FRAME_STYLE_SECONDARY, width=200 , height=200)
+        self.info_tool_frame.grid(row=0, column=2, sticky="nes", pady=0 , padx=0)
 
         self.grid_columnconfigure(1, weight=1)
 

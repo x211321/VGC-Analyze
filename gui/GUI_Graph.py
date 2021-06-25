@@ -36,7 +36,7 @@ from lib.Widgets import Checkbutton_
 class GUI_Graph(ttk.Frame):
 
     def __init__(self, master, width=0, height=0):
-        super().__init__(master=master, width=width, height=height)
+        super().__init__(master=master, width=width, height=height, style=VAR.FRAME_STYLE_SECONDARY)
 
         self.collectionData = master.collectionData
 
@@ -49,8 +49,8 @@ class GUI_Graph(ttk.Frame):
     def init(self):
         # Graph
         # ------------------
-        self.graph_tool_frame = Frame(self)
-        self.graph_sub_frame  = Frame(self, highlightthickness=1, highlightbackground="black", height=350)
+        self.graph_tool_frame = ttk.Frame(self, style=VAR.FRAME_STYLE_SECONDARY)
+        self.graph_sub_frame  = ttk.Frame(self, style=VAR.FRAME_STYLE_SECONDARY, borderwidth=1, relief="groove", height=350)
 
         self.graph_tool_frame.grid(row=0, column=0, sticky="nwse", padx=(0,17), pady=10)
         self.graph_sub_frame.grid(row=1, column=0, sticky="nwse", padx=(0,17))

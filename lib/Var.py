@@ -16,6 +16,11 @@ else:
     GUI_COLOR_PRIMARY    = "white"
     GUI_COLOR_SECONDARY  = "#F0F0F0"
 
+FRAME_STYLE_PRIMARY   = "frame_primary.TFrame"
+FRAME_STYLE_SECONDARY = "frame_secondary.TFrame"
+
+
+
 CAL_COLOR_PRIMARY        = "#EEEEEE"
 CAL_COLOR_SECONDARY      = "#DDDDDD"
 CAL_COLOR_HIGH_PRIMARY   = "#FFDD99"

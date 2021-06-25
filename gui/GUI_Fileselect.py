@@ -19,7 +19,7 @@ from lib.Widgets import Checkbutton_
 class GUI_File(ttk.Frame):
 
     def __init__(self, master, width=0, height=0):
-        super().__init__(master=master, width=width, height=height)
+        super().__init__(master=master, width=width, height=height, style=VAR.FRAME_STYLE_SECONDARY)
 
         self.setCurrentVGCFile = master.setCurrentVGCFile
         self.collectionData    = master.collectionData

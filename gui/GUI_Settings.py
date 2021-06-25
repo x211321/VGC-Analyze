@@ -49,8 +49,8 @@ class GUI_Settings(Toplevel):
         # self.grab_set()
 
         # Add frames
-        self.tab_frame = Frame(self, bg=VAR.GUI_COLOR_PRIMARY)
-        self.btn_frame = Frame(self, bg=VAR.GUI_COLOR_SECONDARY)
+        self.tab_frame = ttk.Frame(self)
+        self.btn_frame = ttk.Frame(self, style=VAR.FRAME_STYLE_SECONDARY)
 
         self.tab_frame.grid(row=0, column=0, sticky="nwse")
         self.btn_frame.grid(row=1, column=0, sticky="nwse")
@@ -79,14 +79,13 @@ class GUI_Settings(Toplevel):
 
         # Add tab pages
         self.pages = {}
-        self.pages["locale"]          = Frame(self.tab)
-        self.pages["display"]         = Frame(self.tab)
-        self.pages["platformHolders"] = Frame(self.tab)
-        self.pages["platforms"]       = Frame(self.tab)
+        self.pages["locale"]          = ttk.Frame(self.tab)
+        self.pages["display"]         = ttk.Frame(self.tab)
+        self.pages["platformHolders"] = ttk.Frame(self.tab)
+        self.pages["platforms"]       = ttk.Frame(self.tab)
 
         for key in self.pages:
             self.pages[key].columnconfigure(0, weight=1)
-            self.pages[key].config(bg=VAR.GUI_COLOR_PRIMARY)
 
         self.tab.add(self.pages["locale"], text=_("Locale"))
         self.tab.add(self.pages["display"], text=_("Display"))
@@ -150,10 +149,10 @@ class GUI_Settings(Toplevel):
 
 
     def initPlatformHolders(self):
-        self.platformHolders_input   = Frame(self.pages["platformHolders"], bg=VAR.GUI_COLOR_PRIMARY)
-        self.platformHolders_buttons = Frame(self.platformHolders_input, bg=VAR.GUI_COLOR_PRIMARY)
+        self.platformHolders_input   = ttk.Frame(self.pages["platformHolders"])
+        self.platformHolders_buttons = ttk.Frame(self.platformHolders_input)
 
-        self.platformHoldersViewFrame = Frame(self.pages["platformHolders"], bg=VAR.GUI_COLOR_PRIMARY)
+        self.platformHoldersViewFrame = ttk.Frame(self.pages["platformHolders"])
         self.platformHoldersView      = ttk.Treeview(self.platformHoldersViewFrame)
         self.platformHoldersViewScroll= Scrollbar(self.platformHoldersViewFrame)
 
@@ -214,9 +213,9 @@ class GUI_Settings(Toplevel):
 
 
     def initPlatforms(self):
-        self.platforms_input    = Frame(self.pages["platforms"], bg=VAR.GUI_COLOR_PRIMARY)
-        self.platforms_buttons  = Frame(self.platforms_input, bg=VAR.GUI_COLOR_PRIMARY)
-        self.platformsViewFrame = Frame(self.pages["platforms"], bg=VAR.GUI_COLOR_PRIMARY)
+        self.platforms_input    = ttk.Frame(self.pages["platforms"])
+        self.platforms_buttons  = ttk.Frame(self.platforms_input)
+        self.platformsViewFrame = ttk.Frame(self.pages["platforms"])
         self.platformsView      = ttk.Treeview(self.platformsViewFrame)
         self.platformsViewScroll= Scrollbar(self.platformsViewFrame)
 

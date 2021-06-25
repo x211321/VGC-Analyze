@@ -23,7 +23,7 @@ import lib.Var as VAR
 class GUI_Filter(ttk.Frame):
 
     def __init__(self, master, width=0, height=0):
-        super().__init__(master=master, width=width, height=height)
+        super().__init__(master=master, width=width, height=height, style=VAR.FRAME_STYLE_SECONDARY)
 
         self.showData       = master.showData
         self.collectionData = master.collectionData
@@ -53,12 +53,12 @@ class GUI_Filter(ttk.Frame):
         self.filterInputs = {}
 
         self.filterInputs["name_txt"]   = Label_(self, width=25, _pady=(0,0), text=_("Title"))
-        self.filterInputs["name_frame"] = Frame(self)
+        self.filterInputs["name_frame"] = ttk.Frame(self, style=VAR.FRAME_STYLE_SECONDARY)
         self.filterInputs["name"]       = Entry_(self.filterInputs["name_frame"], width=25, row=0, col=0, _padx=(0,10))
         self.filterInputs["name_regex"] = BorderButton_(self.filterInputs["name_frame"], width=15, row=0, col=1, height=13, image=self.regexIcon, relief="groove", bg=VAR.GUI_COLOR_PRIMARY, toggle=True)
 
         self.filterInputs["notes_txt"]   = Label_(self, width=25, _pady=(2,0), text=_("Notes"))
-        self.filterInputs["notes_frame"] = Frame(self)
+        self.filterInputs["notes_frame"] = ttk.Frame(self, style=VAR.FRAME_STYLE_SECONDARY)
         self.filterInputs["notes"]       = Entry_(self.filterInputs["notes_frame"], width=25, row=0, col=0, _padx=(0,10))
         self.filterInputs["notes_regex"] = BorderButton_(self.filterInputs["notes_frame"], width=15, row=0, col=1, height=13, image=self.regexIcon, relief="groove", bg=VAR.GUI_COLOR_PRIMARY, toggle=True)
 
@@ -70,21 +70,21 @@ class GUI_Filter(ttk.Frame):
         self.filterInputs["regions_select"]         = Button_(self, width=25, id="select", text=_("Select"), relief="groove", command=self.selectRegions, bg=VAR.INPUT_COLOR)
 
         self.filterInputs["dateStart_txt"]          = Label_(self, width=25, _pady=(2,0), text=_("Min. date (purchased)"))
-        self.filterInputs["dateStart_frame"]        = Frame(self)
+        self.filterInputs["dateStart_frame"]        = ttk.Frame(self, style=VAR.FRAME_STYLE_SECONDARY)
         self.filterInputs["dateStart"]              = Entry_(self.filterInputs["dateStart_frame"], width=25, row=0, col=0, _padx=(0,10))
         self.filterInputs["dateStart_pick"]         = Button_(self.filterInputs["dateStart_frame"], width=15, row=0, col=1, height=13,
                                                               image=self.dateIcon, relief="groove", bg=VAR.GUI_COLOR_PRIMARY,
                                                               command=lambda:self.datePicker.show(self.filterInputs["dateStart"], self.filterInputs["dateStart"].get(), "start"))
 
         self.filterInputs["dateEnd_txt"]            = Label_(self, width=25, _pady=(2,0), text=_("Max. date (purchased)"))
-        self.filterInputs["dateEnd_frame"]          = Frame(self)
+        self.filterInputs["dateEnd_frame"]          = ttk.Frame(self, style=VAR.FRAME_STYLE_SECONDARY)
         self.filterInputs["dateEnd"]                = Entry_(self.filterInputs["dateEnd_frame"], width=25, row=0, col=0, _padx=(0,10))
         self.filterInputs["dateEnd_pick"]           = Button_(self.filterInputs["dateEnd_frame"], width=15, row=0, col=1, height=13,
                                                               image=self.dateIcon, relief="groove", bg=VAR.GUI_COLOR_PRIMARY,
                                                               command=lambda:self.datePicker.show(self.filterInputs["dateEnd"], self.filterInputs["dateEnd"].get(), "end"))
 
         self.filterInputs["dateAddedStart_txt"]     = Label_(self, width=25, _pady=(2,0), text=_("Min. date (added)"))
-        self.filterInputs["dateAddedStart_frame"]   = Frame(self)
+        self.filterInputs["dateAddedStart_frame"]   = ttk.Frame(self, style=VAR.FRAME_STYLE_SECONDARY)
         self.filterInputs["dateAddedStart"]         = Entry_(self.filterInputs["dateAddedStart_frame"], width=25, row=0, col=0, _padx=(0,10))
         self.filterInputs["dateAddedStart_pick"]    = Button_(self.filterInputs["dateAddedStart_frame"], width=15, row=0, col=1, height=13,
                                                               image=self.dateIcon, relief="groove", bg=VAR.GUI_COLOR_PRIMARY,
@@ -92,7 +92,7 @@ class GUI_Filter(ttk.Frame):
 
 
         self.filterInputs["dateAddedEnd_txt"]     = Label_(self, width=25, _pady=(2,0), text=_("Max. date (added)"))
-        self.filterInputs["dateAddedEnd_frame"]   = Frame(self)
+        self.filterInputs["dateAddedEnd_frame"]   = ttk.Frame(self, style=VAR.FRAME_STYLE_SECONDARY)
         self.filterInputs["dateAddedEnd"]         = Entry_(self.filterInputs["dateAddedEnd_frame"], width=25, row=0, col=0, _padx=(0,10))
         self.filterInputs["dateAddedEnd_pick"]    = Button_(self.filterInputs["dateAddedEnd_frame"], width=15, row=0, col=1, height=13,
                                                               image=self.dateIcon, relief="groove", bg=VAR.GUI_COLOR_PRIMARY,
@@ -105,25 +105,25 @@ class GUI_Filter(ttk.Frame):
         self.filterInputs["group_txt"]              = Label_(self, width=25, _pady=(2,0), text=_("Group by"))
         self.filterInputs["group"]                  = Combobox_(self, width=27, height=20, state="readonly")
 
-        self.filterInputs["cb_frame"] = Frame(self)
+        self.filterInputs["cb_frame"] = ttk.Frame(self, style=VAR.FRAME_STYLE_SECONDARY)
         self.filterInputs["cart_txt"] = Label_(self.filterInputs["cb_frame"], width=10, _pady=(2,0), row=0, col=0, _padx=(0,18), text=_("Cart"))
         self.filterInputs["box_txt"]  = Label_(self.filterInputs["cb_frame"], width=10, _pady=(2,0), row=0, col=1, text=_("Box"))
         self.filterInputs["cart"]     = Combobox_(self.filterInputs["cb_frame"], width=10, row=1, col=0, _padx=(0,18), state="readonly")
         self.filterInputs["box"]      = Combobox_(self.filterInputs["cb_frame"], width=10, row=1, col=1, state="readonly")
 
-        self.filterInputs["mo_frame"]   = Frame(self)
+        self.filterInputs["mo_frame"]   = ttk.Frame(self, style=VAR.FRAME_STYLE_SECONDARY)
         self.filterInputs["manual_txt"] = Label_(self.filterInputs["mo_frame"], width=10, _pady=(2,0), row=0, col=0, _padx=(0,18), text=_("Manual"))
         self.filterInputs["other_txt"]  = Label_(self.filterInputs["mo_frame"], width=10, _pady=(2,0), row=0, col=1, text=_("Other"))
         self.filterInputs["manual"]     = Combobox_(self.filterInputs["mo_frame"], width=10, row=1, col=0, _padx=(0,18), state="readonly")
         self.filterInputs["other"]      = Combobox_(self.filterInputs["mo_frame"], width=10, row=1, col=1, state="readonly")
 
-        self.filterInputs["bf_frame"]       = Frame(self)
+        self.filterInputs["bf_frame"]       = ttk.Frame(self, style=VAR.FRAME_STYLE_SECONDARY)
         self.filterInputs["bookmarked_txt"] = Label_(self.filterInputs["bf_frame"], width=10, _pady=(2,0), row=0, col=0, _padx=(0,18), text=_("Bookmarked"))
         self.filterInputs["finished_txt"]   = Label_(self.filterInputs["bf_frame"], width=10, _pady=(2,0), row=0, col=1, text=_("Finished"))
         self.filterInputs["bookmarked"]     = Combobox_(self.filterInputs["bf_frame"], width=10, row=1, col=0, _padx=(0,18), state="readonly")
         self.filterInputs["finished"]       = Combobox_(self.filterInputs["bf_frame"], width=10, row=1, col=1, state="readonly")
 
-        self.filterInputs["oo_frame"]       = Frame(self)
+        self.filterInputs["oo_frame"]       = ttk.Frame(self, style=VAR.FRAME_STYLE_SECONDARY)
         self.filterInputs["order_txt"]      = Label_(self.filterInputs["oo_frame"], width=10, _pady=(2,0), row=0, col=0, _padx=(0,18), text=_("Sort by"))
         self.filterInputs["order_dir_txt"]  = Label_(self.filterInputs["oo_frame"], width=10, _pady=(2,0), row=0, col=1, text=_("Sort direction"))
         self.filterInputs["order"]          = Combobox_(self.filterInputs["oo_frame"], width=10, row=1, col=0, _padx=(0,18), state="readonly")
@@ -135,7 +135,7 @@ class GUI_Filter(ttk.Frame):
         self.fillYesNoComboboxes()
         self.fillOrderDirectionCombobox()
 
-        self.filter_button_frame = Frame(self)
+        self.filter_button_frame = ttk.Frame(self, style=VAR.FRAME_STYLE_SECONDARY)
         self.filter_apply = Button_(self.filter_button_frame, width=10, relief="groove", bg=VAR.BUTTON_COLOR_GOOD)
         self.filter_reset = Button_(self.filter_button_frame, width=10, relief="groove", bg=VAR.BUTTON_COLOR_BAD)
 
