@@ -1,10 +1,14 @@
 import os
 import sys
+import platform
+import pathlib 
 
 FILE_PREFIX = "collection-"
 
-if sys.platform == "win32":
+if platform.system() == "Windows":
     DATA_PATH = os.path.expandvars("%APPDATA%") + "\VGC_Analyze_data\\"
+elif platform.system() == "Linux":
+    DATA_PATH = str(pathlib.Path.home()) + "/.VGC_Analyze_data/"
 else:
     DATA_PATH = "./VGC_Analyze_data/"
 

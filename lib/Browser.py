@@ -1,3 +1,5 @@
+import platform
+import subprocess
 from lib.Locale import _
 
 import webbrowser
@@ -29,3 +31,15 @@ def openGithub(a):
 # --------------------
 def openBrowser(url):
     webbrowser.open(url, new=0, autoraise=True)
+
+
+######################
+# openFileManager
+# --------------------
+def openFileManager(path):
+    if platform.system() == "Linux":
+        subprocess.Popen(["xdg-open", path])
+    if platform.system() == "Windows":
+        openBrowser(path)
+    if platform.system() == "Darwin":
+        subprocess.Popen(["open", path])
