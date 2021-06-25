@@ -1,6 +1,6 @@
 import lib.Settings as settings
 from lib.Locale import _
-from lib.Browser import openBrowser
+from lib.Browser import openFileManager
 import lib.Var as VAR
 
 from tkinter import *
@@ -16,7 +16,7 @@ def initMainMenu(gui):
     # File menu
     gui.file_menu = Menu(gui.main_menu, tearoff=0)
     gui.file_menu.add_command(label=_("Settings"), command=gui.showSettings)
-    gui.file_menu.add_command(label=_("Open data folder"), command=lambda:openBrowser(VAR.DATA_PATH))
+    gui.file_menu.add_command(label=_("Open data folder"), command=lambda:openFileManager(VAR.DATA_PATH))
     gui.file_menu.add_command(label=_("Quit"), command=gui.destroy, accelerator="Ctrl+Q")
 
     # Search menu
