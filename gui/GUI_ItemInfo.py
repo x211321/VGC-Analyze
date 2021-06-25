@@ -22,10 +22,10 @@ import lib.Var as VAR
 ######################
 # GUI_ItemInfo
 # --------------------
-class GUI_ItemInfo(Frame):
+class GUI_ItemInfo(ttk.Frame):
 
-    def __init__(self, master, width=0, height=0, pady=0, padx=0):
-        super().__init__(master=master, width=width, height=height, pady=pady, padx=padx)
+    def __init__(self, master, width=0, height=0):
+        super().__init__(master=master, width=width, height=height)
 
         # Icons
         # ------------------

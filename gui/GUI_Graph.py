@@ -33,10 +33,10 @@ from lib.Widgets import Checkbutton_
 ######################
 # GUI_Graph
 # --------------------
-class GUI_Graph(Frame):
+class GUI_Graph(ttk.Frame):
 
-    def __init__(self, master, width=0, height=0, pady=0, padx=0):
-        super().__init__(master=master, width=width, height=height, pady=pady, padx=padx)
+    def __init__(self, master, width=0, height=0):
+        super().__init__(master=master, width=width, height=height)
 
         self.collectionData = master.collectionData
 

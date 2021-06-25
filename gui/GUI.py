@@ -69,17 +69,17 @@ class GUI(Tk):
 
         # Frames
         # ------------------
-        self.filter_frame = GUI_Filter(self, width=200 , height=550, pady=0, padx=10)
-        self.view_frame   = GUI_TreeView(self, width=600 , height=550, pady=0 , padx=0)
-        self.item_frame   = GUI_ItemInfo(self, width=200 , height=550, pady=0 , padx=0)
-        self.graph_frame  = GUI_Graph(self, width=1000, height=200, pady=0 , padx=0)
-        self.info_frame   = GUI_CollectionInfo(self, width=1000, height=200, pady=10, padx=10)
+        self.filter_frame = GUI_Filter(self, width=200 , height=550)
+        self.view_frame   = GUI_TreeView(self, width=600 , height=550)
+        self.item_frame   = GUI_ItemInfo(self, width=200 , height=550)
+        self.graph_frame  = GUI_Graph(self, width=1000, height=200)
+        self.info_frame   = GUI_CollectionInfo(self, width=1000, height=200)
 
-        self.filter_frame.grid(row=0, column=0, sticky="nws", rowspan=4)
-        self.view_frame.grid(row=0, column=1, sticky="nwes")
-        self.item_frame.grid(row=0, column=2, sticky="nes", rowspan=4)
-        self.info_frame.grid(row=3, column=1, sticky="nwes")
-        self.graph_frame.grid(row=2, column=1, sticky="nwes")
+        self.filter_frame.grid(row=0, column=0, sticky="nws", rowspan=4, pady=0, padx=10)
+        self.view_frame.grid(row=0, column=1, sticky="nwes", pady=0 , padx=0)
+        self.item_frame.grid(row=0, column=2, sticky="nes", rowspan=4, pady=0 , padx=0)
+        self.graph_frame.grid(row=2, column=1, sticky="nwes", pady=0 , padx=0)
+        self.info_frame.grid(row=3, column=1, sticky="nwes", pady=10, padx=10)
         self.graph_frame.grid_forget()
 
         self.grid_rowconfigure(0, weight=1)

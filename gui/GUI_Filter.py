@@ -20,10 +20,10 @@ import lib.Var as VAR
 ######################
 # GUI_Filter
 # --------------------
-class GUI_Filter(Frame):
+class GUI_Filter(ttk.Frame):
 
-    def __init__(self, master, width=0, height=0, pady=0, padx=0):
-        super().__init__(master=master, width=width, height=height, pady=pady, padx=padx)
+    def __init__(self, master, width=0, height=0):
+        super().__init__(master=master, width=width, height=height)
 
         self.showData       = master.showData
         self.collectionData = master.collectionData

@@ -14,10 +14,10 @@ from gui.GUI_Fileselect import GUI_File
 ######################
 # GUI_TreeView
 # --------------------
-class GUI_TreeView(Frame):
+class GUI_TreeView(ttk.Frame):
 
-    def __init__(self, master, width=0, height=0, pady=0, padx=0):
-        super().__init__(master=master, width=width, height=height, pady=pady, padx=padx)
+    def __init__(self, master, width=0, height=0):
+        super().__init__(master=master, width=width, height=height)
 
         self.selectViewItem      = master.selectViewItem
         self.setCurrentVGCFile   = master.setCurrentVGCFile
@@ -70,8 +70,8 @@ class GUI_TreeView(Frame):
         self.item_view.config(xscrollcommand=self.view_scroll_horizontal.set)
         self.view_scroll_horizontal.config(orient=HORIZONTAL, command=self.item_view.xview)
 
-        self.file_frame = GUI_File(self, width=1000, height=100, pady=10, padx=0)
-        self.file_frame.pack(side=TOP, fill=X)
+        self.file_frame = GUI_File(self, width=1000, height=100)
+        self.file_frame.pack(side=TOP, fill=X, pady=10, padx=0)
 
         # Position view and scrollbar
         self.view_scroll_vertical.pack(side=RIGHT, fill=Y)

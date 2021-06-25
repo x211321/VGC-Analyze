@@ -15,9 +15,9 @@ from lib.Img     import loadIcon
 ######################
 # GUI_CollectionInfo
 # --------------------
-class GUI_CollectionInfo(Frame):
-    def __init__(self, master, width=0, height=0, pady=0, padx=0):
-        super().__init__(master=master, width=width, height=height, pady=pady, padx=padx)
+class GUI_CollectionInfo(ttk.Frame):
+    def __init__(self, master, width=0, height=0):
+        super().__init__(master=master, width=width, height=height)
 
         self.toggleGraphFrame = master.toggleGraphFrame
         self.toggleGraphIcon  = loadIcon("bar-chart-outline", 30, 30)

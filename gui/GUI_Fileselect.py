@@ -1,6 +1,7 @@
 from lib.Locale import _
 
 from tkinter import *
+from tkinter import ttk
 
 import os
 import glob
@@ -15,10 +16,10 @@ from lib.Widgets import Checkbutton_
 ######################
 # GUI_File
 # --------------------
-class GUI_File(Frame):
+class GUI_File(ttk.Frame):
 
-    def __init__(self, master, width=0, height=0, pady=0, padx=0):
-        super().__init__(master=master, width=width, height=height, pady=pady, padx=padx)
+    def __init__(self, master, width=0, height=0):
+        super().__init__(master=master, width=width, height=height)
 
         self.setCurrentVGCFile = master.setCurrentVGCFile
         self.collectionData    = master.collectionData
