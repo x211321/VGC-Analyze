@@ -183,9 +183,11 @@ class GUI_Filter(Frame):
                 widget.delete(0, END)
             if widget.__class__.__name__ == "Combobox_":
                 widget.set("")
-            if widget.__class__.__name__ == "Button_":
+            if widget.__class__.__name__ == "Button_" or widget.__class__.__name__ == "BorderButton_":
                 if widget.id == "select":
                     self.filterInputs[key].config(text=_("Select"), bg=VAR.GUI_COLOR_PRIMARY)
+                if widget.toggle:
+                    widget.setToggle(False)
 
         self.multiFilter["platforms"] = []
         self.multiFilter["platformHolders"] = []
