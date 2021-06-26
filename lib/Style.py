@@ -1,7 +1,21 @@
 import lib.Var as VAR
 from tkinter import ttk
+from tkinter import font
 
 def initStyles():
+
+    # Set default font sizes
+    font.nametofont("TkDefaultFont").configure(size=9, weight="normal")
+    font.nametofont("TkTextFont").configure(size=9, weight="normal")
+    font.nametofont("TkFixedFont").configure(size=10, weight="normal")
+    font.nametofont("TkMenuFont").configure(size=9, weight="normal")
+    font.nametofont("TkHeadingFont").configure(size=9, weight="normal")
+    font.nametofont("TkCaptionFont").configure(size=9, weight="normal")
+    font.nametofont("TkSmallCaptionFont").configure(size=9, weight="normal")
+    font.nametofont("TkIconFont").configure(size=9, weight="normal")
+    font.nametofont("TkTooltipFont").configure(size=9, weight="normal")
+
+
     ttk.Style().configure("TFrame", background=VAR.GUI_COLOR_PRIMARY)
     ttk.Style().configure(VAR.FRAME_STYLE_PRIMARY, background=VAR.GUI_COLOR_PRIMARY)
     ttk.Style().configure(VAR.FRAME_STYLE_SECONDARY, background=VAR.GUI_COLOR_SECONDARY)
@@ -32,6 +46,7 @@ def initStyles():
     ttk.Style().configure(VAR.LABELBUTTON_STYLE_CONFIRM, background=VAR.BUTTON_COLOR_CONFIRM)
     ttk.Style().configure(VAR.LABELBUTTON_STYLE_CANCEL , background=VAR.BUTTON_COLOR_CANCEL)
 
+    ttk.Style().configure("Treeview.Heading", background="white", relief="flat")
 
 
 

@@ -6,6 +6,7 @@ from lib.Locale import locDate
 import os
 import threading
 import time
+import platform
 
 from tkinter import *
 from tkinter import ttk
@@ -53,14 +54,19 @@ class GUI_ItemInfo(Frame_):
         # ------------------
         self.item_spacer    = Label_(self, width=2)
 
+        if platform.system() == "Linux":
+            labelWidth = 16
+        else:
+            labelWidth = 22
+
         self.item_title_txt     = Label_(self, text=_("Title"), anchor="nw")
-        self.item_title         = Label_(self, anchor="nw", width=22, wraplength=135)
+        self.item_title         = Label_(self, anchor="nw", width=labelWidth, wraplength=135)
         self.item_date_txt      = Label_(self, text=_("Date (purchased)"), anchor="nw")
-        self.item_date          = Label_(self, anchor="nw", width=22)
+        self.item_date          = Label_(self, anchor="nw", width=labelWidth)
         self.item_dateAdded_txt = Label_(self, text=_("Date (added)"), anchor="nw")
-        self.item_dateAdded     = Label_(self, anchor="nw", width=22)
+        self.item_dateAdded     = Label_(self, anchor="nw", width=labelWidth)
         self.item_price_txt     = Label_(self, text=_("Purchase price"), anchor="nw")
-        self.item_price         = Label_(self, anchor="nw", width=22)
+        self.item_price         = Label_(self, anchor="nw", width=labelWidth)
 
         # Front cover widgets
         self.item_front_txt  = Label_(self, text=_("Front cover"), anchor="w")
@@ -80,26 +86,26 @@ class GUI_ItemInfo(Frame_):
         self.item_cart.bind("<Enter>", lambda x:self.onCoverEnter(self.item_cart, VAR.COVER_TYPE_CART))
         self.item_cart.bind("<Leave>", lambda x:self.onCoverLeave(self.item_cart))
 
-        self.item_title_txt.grid(row=1, column=0, columnspan=2, sticky="nwe")
+        self.item_title_txt.grid(row=1, column=0, columnspan=2, sticky="nwe", pady=(5,0))
         self.item_spacer.grid(row=2, column=0, sticky="nwe")
         self.item_title.grid(row=2, column=1, sticky="nwe", padx=(0,10))
 
-        self.item_date_txt.grid(row=3, column=0, columnspan=2, sticky="nwe")
+        self.item_date_txt.grid(row=3, column=0, columnspan=2, sticky="nwe", pady=(5,0))
         self.item_date.grid(row=4, column=1, sticky="nwe")
 
-        self.item_dateAdded_txt.grid(row=5, column=0, columnspan=2, sticky="nwe")
+        self.item_dateAdded_txt.grid(row=5, column=0, columnspan=2, sticky="nwe", pady=(5,0))
         self.item_dateAdded.grid(row=6, column=1, sticky="nwe")
 
-        self.item_price_txt.grid(row=7, column=0, columnspan=2, sticky="nwe")
+        self.item_price_txt.grid(row=7, column=0, columnspan=2, sticky="nwe", pady=(5,0))
         self.item_price.grid(row=8, column=1, sticky="nwe")
 
-        self.item_front_txt.grid(row=9, column=0, columnspan=2, sticky="nwe")
+        self.item_front_txt.grid(row=9, column=0, columnspan=2, sticky="nwe", pady=(5,0))
         self.item_front.grid(row=10, column=1, sticky="nwe")
 
-        self.item_back_txt.grid(row=11, column=0, columnspan=2, sticky="nwe")
+        self.item_back_txt.grid(row=11, column=0, columnspan=2, sticky="nwe", pady=(5,0))
         self.item_back.grid(row=12, column=1, sticky="nwe")
 
-        self.item_cart_txt.grid(row=13, column=0, columnspan=2, sticky="nwe")
+        self.item_cart_txt.grid(row=13, column=0, columnspan=2, sticky="nwe", pady=(5,0))
         self.item_cart.grid(row=14, column=1, sticky="nwe")
 
         # Frame for item toolbar

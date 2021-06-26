@@ -67,10 +67,10 @@ class GUI(Tk):
             self.state('zoomed')
         if platform.system() == "Linux":
             self.attributes('-zoomed', True)
-            self.style = ttk.Style()
-            if len(self.style.theme_names()):
-                print("Using theme:", self.style.theme_names()[0])
-                self.style.theme_use(self.style.theme_names()[0])
+            #self.style = ttk.Style()
+            #if len(self.style.theme_names()):
+            #    print("Using theme:", self.style.theme_names()[0])
+            #    self.style.theme_use(self.style.theme_names()[0])
 
         self.protocol("WM_DELETE_WINDOW", self.onClose)
 
@@ -84,7 +84,7 @@ class GUI(Tk):
 
         self.filter_frame.grid(row=0, column=0, sticky="nws", rowspan=4, pady=0, padx=10)
         self.view_frame.grid(row=0, column=1, sticky="nwes", pady=0 , padx=0)
-        self.item_frame.grid(row=0, column=2, sticky="nes", rowspan=4, pady=0 , padx=0)
+        self.item_frame.grid(row=0, column=2, sticky="nes", rowspan=4, pady=0 , padx=5)
         self.graph_frame.grid(row=2, column=1, sticky="nwes", pady=0 , padx=0)
         self.info_frame.grid(row=3, column=1, sticky="nwes", pady=10, padx=10)
         self.graph_frame.grid_forget()
@@ -168,7 +168,7 @@ class GUI(Tk):
         if self.item_frame.winfo_ismapped():
             self.item_frame.grid_forget()
         else:
-            self.item_frame.grid(row=0, column=2, sticky="nes", rowspan=4)
+            self.item_frame.grid(row=0, column=2, sticky="nes", rowspan=4, padx=5)
             self.update()
 
 
