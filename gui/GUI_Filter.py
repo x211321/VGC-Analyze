@@ -8,7 +8,7 @@ from lib.Widgets import *
 from lib.Img import loadIcon
 
 from gui.GUI_Popups import Pop_FilterSelect
-from gui.GUI_Popups import Pop_DatePicker
+from gui.popups.DatePicker import DatePicker
 
 import lib.Var as VAR
 
@@ -30,7 +30,7 @@ class GUI_Filter(Frame_):
         self.platformHolderSelect = Pop_FilterSelect(master, self.selectPlatformHoldersCallback)
         self.regionSelect         = Pop_FilterSelect(master, self.selectRegionsCallback)
 
-        self.datePicker = Pop_DatePicker(master, self.datePickerCallback)
+        self.datePicker = DatePicker(master, self.datePickerCallback)
 
         self.regexIcon   = loadIcon("regex-outline", 13, 13)
         self.dateIcon    = loadIcon("calendar-outline", 13, 13)
@@ -92,25 +92,37 @@ class GUI_Filter(Frame_):
         self.filterInputs["dateStart"]           = Entry_(self.filterInputs["dateFrame"], _row=1, _col=0)
         self.filterInputs["dateStart_pick"]      = LabelButton_(self.filterInputs["dateFrame"], _row=1, _col=2,
                                                                 image=self.dateIcon,
-                                                                command=lambda:self.datePicker.show(self.filterInputs["dateStart"], self.filterInputs["dateStart"].get(), "start"))
+                                                                command=lambda:self.datePicker.show(self.filterInputs["dateStart"],
+                                                                                                    self.filterInputs["dateStart_pick"],
+                                                                                                    self.filterInputs["dateStart"].get(),
+                                                                                                    "start"))
 
         self.filterInputs["dateEnd_txt"]         = Label_(self.filterInputs["dateFrame"], _row=2, _col=0, text=_("Max. date (purchased)"), _pady=(2,0))
         self.filterInputs["dateEnd"]             = Entry_(self.filterInputs["dateFrame"], _row=3, _col=0)
         self.filterInputs["dateEnd_pick"]        = LabelButton_(self.filterInputs["dateFrame"], _row=3, _col=2,
                                                                 image=self.dateIcon,
-                                                                command=lambda:self.datePicker.show(self.filterInputs["dateEnd"], self.filterInputs["dateEnd"].get(), "end"))
+                                                                command=lambda:self.datePicker.show(self.filterInputs["dateEnd"],
+                                                                                                    self.filterInputs["dateEnd_pick"],
+                                                                                                    self.filterInputs["dateEnd"].get(),
+                                                                                                    "end"))
 
         self.filterInputs["dateAddedStart_txt"]  = Label_(self.filterInputs["dateFrame"], _row=4, _col=0, text=_("Min. date (added)"), _pady=(2,0))
         self.filterInputs["dateAddedStart"]      = Entry_(self.filterInputs["dateFrame"], _row=5, _col=0)
         self.filterInputs["dateAddedStart_pick"] = LabelButton_(self.filterInputs["dateFrame"], _row=5, _col=2,
                                                                 image=self.dateIcon,
-                                                                command=lambda:self.datePicker.show(self.filterInputs["dateAddedStart"], self.filterInputs["dateAddedStart"].get(), "start"))
+                                                                command=lambda:self.datePicker.show(self.filterInputs["dateAddedStart"],
+                                                                                                    self.filterInputs["dateAddedStart_pick"],
+                                                                                                    self.filterInputs["dateAddedStart"].get(),
+                                                                                                    "start"))
 
         self.filterInputs["dateAddedEnd_txt"]    = Label_(self.filterInputs["dateFrame"], _row=6, _col=0, text=_("Max. date (added)"), _pady=(2,0))
         self.filterInputs["dateAddedEnd"]        = Entry_(self.filterInputs["dateFrame"], _row=7, _col=0)
         self.filterInputs["dateAddedEnd_pick"]   = LabelButton_(self.filterInputs["dateFrame"], _row=7, _col=2,
                                                                 image=self.dateIcon,
-                                                                command=lambda:self.datePicker.show(self.filterInputs["dateAddedEnd"], self.filterInputs["dateAddedEnd"].get(), "end"))
+                                                                command=lambda:self.datePicker.show(self.filterInputs["dateAddedEnd"],
+                                                                                                    self.filterInputs["dateAddedEnd_pick"],
+                                                                                                    self.filterInputs["dateAddedEnd"].get(),
+                                                                                                    "end"))
 
 
         self.filterInputs["group_frame"]     = Frame_(self, style=VAR.FRAME_STYLE_SECONDARY)
