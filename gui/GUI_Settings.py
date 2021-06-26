@@ -11,7 +11,7 @@ from lib.Locale import getLocaleCode
 from lib.Locale import getLocaleName
 
 from gui.GUI_Popups import centerPopup
-from gui.GUI_Popups import Pop_FilterSelect
+from gui.popups.FilterSelect import FilterSelect
 
 import lib.Var as VAR
 
@@ -128,7 +128,7 @@ class GUI_Settings(Toplevel):
 
 
     def initDisplay(self):
-        self.columnSelectPop = Pop_FilterSelect(self, self.columnSelectCallback)
+        self.columnSelectPop = FilterSelect(self, self.columnSelectCallback)
 
         self.w["display"] = {}
         self.w["display"]["columns_txt"]                  = Label_(self.pages["display"], text=_("Table columns"))
@@ -273,7 +273,12 @@ class GUI_Settings(Toplevel):
 
 
     def columnSelect(self):
-        self.columnSelectPop.show(VAR.VIEW_COLUMNS.items(), settings.get("display", "columns", []), _("table columns"), maxCol=4)
+        self.columnSelectPop.show(VAR.VIEW_COLUMNS.items(),
+                                  settings.get("display", "columns", []),
+                                  _("table columns"),
+                                  maxCol=4,
+                                  focusWidget=self.w["display"]["columns_select"],
+                                  align="left")
 
 
     def columnSelectCallback(self, columns):
