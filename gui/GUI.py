@@ -156,7 +156,7 @@ class GUI(Tk):
         if self.filter_frame.winfo_ismapped():
             self.filter_frame.grid_forget()
         else:
-            self.filter_frame.grid(row=0, column=0, sticky="nws", rowspan=4)
+            self.filter_frame.grid(row=0, column=0, sticky="nws", rowspan=4, padx=10)
             self.update()
 
 
@@ -455,8 +455,11 @@ class GUI(Tk):
 
             selection = self.view_frame.item_view.focus()
 
-            if not selection[0] == "#":
-                self.pop_itemDetails.show(self.activeItem())
+            try:
+                if not selection[0] == "#":
+                    self.pop_itemDetails.show(self.activeItem())
+            except:
+                pass
 
 
     ######################

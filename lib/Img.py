@@ -47,12 +47,18 @@ def loadAnimationFrame(path, frame):
 # --------------------
 def loadIcon(name, width, height, padx = 0):
     iconPath     = VAR.ICON_PATH + name + ".png"
-    alt_iconPath = VAR.ICON_PATH + str(width) + "x" + str(height) + "/" + name + ".gif"
 
     if pillow_available == False:
         # When Pillow is not available we try to find a fallback Icon
         # thats a pre-resized gif file for better compatibility
         # with the default image functions
+        if width < VAR.MIN_ICON_WIDTH:
+            width = VAR.MIN_ICON_WIDTH
+        if height < VAR.MIN_ICON_HEIGHT:
+            height = VAR.MIN_ICON_HEIGHT
+
+        alt_iconPath = VAR.ICON_PATH + str(width) + "x" + str(height) + "/" + name + ".gif"
+
         if os.path.exists(alt_iconPath):
             iconPath = alt_iconPath
     if pillow_available:

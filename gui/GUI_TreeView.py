@@ -8,13 +8,14 @@ import lib.Var as VAR
 
 from tkinter import *
 from tkinter import ttk
+from lib.Widgets import Frame_
 
 from gui.GUI_Fileselect import GUI_File
 
 ######################
 # GUI_TreeView
 # --------------------
-class GUI_TreeView(ttk.Frame):
+class GUI_TreeView(Frame_):
 
     def __init__(self, master, width=0, height=0):
         super().__init__(master=master, width=width, height=height, style=VAR.FRAME_STYLE_SECONDARY)

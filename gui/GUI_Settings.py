@@ -19,12 +19,7 @@ from tkinter import *
 from tkinter import ttk
 from lib.Img import loadIcon
 
-from lib.Widgets import Label_
-from lib.Widgets import Entry_
-from lib.Widgets import Text_
-from lib.Widgets import Button_
-from lib.Widgets import Combobox_
-from lib.Widgets import Checkbutton_
+from lib.Widgets import *
 
 import lib.Var as VAR
 
@@ -49,8 +44,8 @@ class GUI_Settings(Toplevel):
         # self.grab_set()
 
         # Add frames
-        self.tab_frame = ttk.Frame(self)
-        self.btn_frame = ttk.Frame(self, style=VAR.FRAME_STYLE_SECONDARY)
+        self.tab_frame = Frame_(self)
+        self.btn_frame = Frame_(self, style=VAR.FRAME_STYLE_SECONDARY)
 
         self.tab_frame.grid(row=0, column=0, sticky="nwse")
         self.btn_frame.grid(row=1, column=0, sticky="nwse")
@@ -59,9 +54,9 @@ class GUI_Settings(Toplevel):
         self.columnconfigure(0, weight=1)
 
         # Add buttons
-        self.btn_cancel  = Button(self.btn_frame, text=_("Cancel"), width=20, relief="groove", bg=VAR.BUTTON_COLOR_BAD, command=self.close)
-        self.btn_spacer  = Label_(self.btn_frame, bg=VAR.GUI_COLOR_SECONDARY)
-        self.btn_confirm = Button(self.btn_frame, text=_("OK"), width=20, relief="groove", bg=VAR.BUTTON_COLOR_GOOD, command=self.apply)
+        self.btn_cancel  = Button_(self.btn_frame, text=_("Cancel"), width=20, style=VAR.BUTTON_STYLE_CANCEL, command=self.close)
+        self.btn_spacer  = Label_(self.btn_frame, style=VAR.LABEL_STYLE_SECONDARY)
+        self.btn_confirm = Button_(self.btn_frame, text=_("OK"), width=20, style=VAR.BUTTON_STYLE_CONFIRM, command=self.apply)
 
         self.btn_cancel.grid(row=0, column=0, sticky="e", padx=10, pady=20)
         self.btn_spacer.grid(row=0, column=1)
@@ -79,10 +74,10 @@ class GUI_Settings(Toplevel):
 
         # Add tab pages
         self.pages = {}
-        self.pages["locale"]          = ttk.Frame(self.tab)
-        self.pages["display"]         = ttk.Frame(self.tab)
-        self.pages["platformHolders"] = ttk.Frame(self.tab)
-        self.pages["platforms"]       = ttk.Frame(self.tab)
+        self.pages["locale"]          = Frame_(self.tab)
+        self.pages["display"]         = Frame_(self.tab)
+        self.pages["platformHolders"] = Frame_(self.tab)
+        self.pages["platforms"]       = Frame_(self.tab)
 
         for key in self.pages:
             self.pages[key].columnconfigure(0, weight=1)
@@ -123,11 +118,11 @@ class GUI_Settings(Toplevel):
         self.w["locale"] = {}
 
         self.w["locale"]["language_txt"] = Label_(self.pages["locale"], text=_("Language (requires restart)"))
-        self.w["locale"]["language"]     = Combobox_(self.pages["locale"], id="language", values=getAvailableLanguageNames(), width=25, state="readonly")
+        self.w["locale"]["language"]     = Combobox_(self.pages["locale"], _id="language", values=getAvailableLanguageNames(), width=25, state="readonly")
 
         if platform.system() == "Windows":
             self.w["locale"]["locale_txt"]   = Label_(self.pages["locale"], text=_("Locale"))
-            self.w["locale"]["locale"]       = Combobox_(self.pages["locale"], id="locale", values=getAvailableLocaleNames(), width=25, state="readonly")
+            self.w["locale"]["locale"]       = Combobox_(self.pages["locale"], _id="locale", values=getAvailableLocaleNames(), width=25, state="readonly")
 
         self.grid(self.w["locale"])
 
@@ -136,40 +131,40 @@ class GUI_Settings(Toplevel):
         self.columnSelectPop = Pop_FilterSelect(self, self.columnSelectCallback)
 
         self.w["display"] = {}
-        self.w["display"]["columns_txt"]                  = Label_(self.pages["display"], text=_("Table columns"), bg=VAR.GUI_COLOR_PRIMARY)
-        self.w["display"]["columns"]                      = Text_(self.pages["display"], width=50, height=4, wrap=WORD, state="disabled", id="columns")
-        self.w["display"]["columns_spacer"]               = Label_(self.pages["display"], bg=VAR.GUI_COLOR_PRIMARY)
-        self.w["display"]["columns_select"]               = Button_(self.pages["display"], text=_("Select"), width=20, relief="groove", bg=VAR.GUI_COLOR_PRIMARY, command=self.columnSelect)
-        self.w["display"]["details_on_dclick"]            = Checkbutton_(self.pages["display"], label=_("Item details on double-click"), id="detailsOnDoubleClick")
-        self.w["display"]["spacer1"]                      = Label_(self.pages["display"], bg=VAR.GUI_COLOR_PRIMARY)
-        self.w["display"]["refresh_on_filter"]            = Checkbutton_(self.pages["display"], label=_("Refresh table on filter select"), id="refreshOnFilterSelect")
-        self.w["display"]["spacer2"]                      = Label_(self.pages["display"], bg=VAR.GUI_COLOR_PRIMARY)
-        self.w["display"]["hide_cover_loading_animation"] = Checkbutton_(self.pages["display"], label=_("Hide cover loading animation"), id="hideCoverLoadingAnimation")
+        self.w["display"]["columns_txt"]                  = Label_(self.pages["display"], text=_("Table columns"))
+        self.w["display"]["columns"]                      = Text_(self.pages["display"], width=50, height=4, wrap=WORD, state="disabled", _id="columns")
+        self.w["display"]["columns_spacer"]               = Label_(self.pages["display"])
+        self.w["display"]["columns_select"]               = Button_(self.pages["display"], text=_("Select"), width=20, command=self.columnSelect)
+        self.w["display"]["details_on_dclick"]            = Checkbutton_(self.pages["display"], label=_("Item details on double-click"), _id="detailsOnDoubleClick")
+        self.w["display"]["spacer1"]                      = Label_(self.pages["display"])
+        self.w["display"]["refresh_on_filter"]            = Checkbutton_(self.pages["display"], label=_("Refresh table on filter select"), _id="refreshOnFilterSelect")
+        self.w["display"]["spacer2"]                      = Label_(self.pages["display"])
+        self.w["display"]["hide_cover_loading_animation"] = Checkbutton_(self.pages["display"], label=_("Hide cover loading animation"), _id="hideCoverLoadingAnimation")
         self.grid(self.w["display"])
 
 
     def initPlatformHolders(self):
-        self.platformHolders_input   = ttk.Frame(self.pages["platformHolders"])
-        self.platformHolders_buttons = ttk.Frame(self.platformHolders_input)
+        self.platformHolders_input   = Frame_(self.pages["platformHolders"])
+        self.platformHolders_buttons = Frame_(self.platformHolders_input)
 
-        self.platformHoldersViewFrame = ttk.Frame(self.pages["platformHolders"])
+        self.platformHoldersViewFrame = Frame_(self.pages["platformHolders"])
         self.platformHoldersView      = ttk.Treeview(self.platformHoldersViewFrame)
         self.platformHoldersViewScroll= Scrollbar(self.platformHoldersViewFrame)
 
-        self.platformHolder_txt = Label_(self.platformHolders_input, text=_("Platform holder"), bg=VAR.GUI_COLOR_PRIMARY)
+        self.platformHolder_txt = Label_(self.platformHolders_input, text=_("Platform holder"))
         self.platformHolder     = Entry_(self.platformHolders_input, width=25)
 
-        self.platformHolderKeywords_txt  = Label_(self.platformHolders_input, text=_("Platform keywords"), bg=VAR.GUI_COLOR_PRIMARY)
+        self.platformHolderKeywords_txt  = Label_(self.platformHolders_input, text=_("Platform keywords"))
         self.platformHolderKeywords      = Text_(self.platformHolders_input, width=50, height=4, wrap=WORD)
-        self.platformHolderKeywords_info = Label_(self.platformHolders_input, text=_("(comma separated)"), bg=VAR.GUI_COLOR_PRIMARY)
+        self.platformHolderKeywords_info = Label_(self.platformHolders_input, text=_("(comma separated)"))
 
         self.platformHolder_save   = Button_(self.platformHolders_buttons,
-                                             image=self.icon_save, bg=VAR.BUTTON_COLOR_GOOD,
-                                             relief="groove", command=self.savePlatformHolder)
+                                             image=self.icon_save, style=VAR.BUTTON_STYLE_CONFIRM,
+                                             command=self.savePlatformHolder)
         self.platformHolder_remove = Button_(self.platformHolders_buttons,
                                              image=self.icon_delete,
-                                             bg=VAR.BUTTON_COLOR_BAD,
-                                             relief="groove", command=self.removePlatformHolder)
+                                             style=VAR.BUTTON_STYLE_CANCEL,
+                                             command=self.removePlatformHolder)
 
         self.platformHolder_txt.grid(row=0, column=0, padx=(0, 10), sticky="nw")
         self.platformHolder.grid(row=0, column=1, padx=(0, 20), sticky="nw")
@@ -213,25 +208,25 @@ class GUI_Settings(Toplevel):
 
 
     def initPlatforms(self):
-        self.platforms_input    = ttk.Frame(self.pages["platforms"])
-        self.platforms_buttons  = ttk.Frame(self.platforms_input)
-        self.platformsViewFrame = ttk.Frame(self.pages["platforms"])
+        self.platforms_input    = Frame_(self.pages["platforms"])
+        self.platforms_buttons  = Frame_(self.platforms_input)
+        self.platformsViewFrame = Frame_(self.pages["platforms"])
         self.platformsView      = ttk.Treeview(self.platformsViewFrame)
         self.platformsViewScroll= Scrollbar(self.platformsViewFrame)
 
-        self.platform_txt = Label_(self.platforms_input, text=_("Platform"), bg=VAR.GUI_COLOR_PRIMARY)
+        self.platform_txt = Label_(self.platforms_input, text=_("Platform"))
         self.platform     = Entry_(self.platforms_input, width=37)
 
-        self.platformOverwrite_txt  = Label_(self.platforms_input, text=_("Overwrite with"), bg=VAR.GUI_COLOR_PRIMARY)
+        self.platformOverwrite_txt  = Label_(self.platforms_input, text=_("Overwrite with"))
         self.platformOverwrite      = Entry_(self.platforms_input, width=70)
 
         self.platform_save   = Button_(self.platforms_buttons,
-                                       image=self.icon_save, bg=VAR.BUTTON_COLOR_GOOD,
-                                       relief="groove", command=self.savePlatform)
+                                       image=self.icon_save, style=VAR.BUTTON_STYLE_CONFIRM,
+                                       command=self.savePlatform)
         self.platform_remove = Button_(self.platforms_buttons,
                                        image=self.icon_delete,
-                                       bg=VAR.BUTTON_COLOR_BAD,
-                                       relief="groove", command=self.removePlatform)
+                                       style=VAR.BUTTON_STYLE_CANCEL,
+                                       command=self.removePlatform)
 
         self.platform_txt.grid(row=0, column=0, padx=(0, 10), sticky="nw")
         self.platform.grid(row=0, column=1, padx=(0, 20), sticky="nw")
@@ -289,9 +284,6 @@ class GUI_Settings(Toplevel):
         col = 0
 
         for key in widgets:
-            if not widgets[key].__class__.__name__ == "Combobox_":
-                widgets[key].config(bg=VAR.GUI_COLOR_PRIMARY)
-
             if col == 0:
                 sticky = "nw"
             if col == 1:
@@ -419,8 +411,8 @@ class GUI_Settings(Toplevel):
             for widgetKey in section:
                 widget = section[widgetKey]
 
-                if len(widget.id):
-                    self.setValue(sectionKey, widget, settings.get(sectionKey, widget.id, ""))
+                if len(widget._id):
+                    self.setValue(sectionKey, widget, settings.get(sectionKey, widget._id, ""))
 
         self.restorePlatformHolders()
         self.restorePlatforms()
@@ -433,9 +425,9 @@ class GUI_Settings(Toplevel):
             for widgetKey in section:
                 widget = section[widgetKey]
 
-                if len(widget.id):
+                if len(widget._id):
                     value = self.getValue(sectionKey, widget)
-                    settings.set(sectionKey, widget.id, value)
+                    settings.set(sectionKey, widget._id, value)
 
         settings.write()
         settings.writePlatformHolders()
@@ -454,22 +446,22 @@ class GUI_Settings(Toplevel):
         value = widget.get()
 
         if (type(value) == str) and len(value):
-            if sectionKey == "locale" and widget.id == "language":
+            if sectionKey == "locale" and widget._id == "language":
                 return getLocaleCode(value)
-            if sectionKey == "locale" and widget.id == "locale":
+            if sectionKey == "locale" and widget._id == "locale":
                 return getLocaleCode(value)
-            if sectionKey == "display" and widget.id == "columns":
+            if sectionKey == "display" and widget._id == "columns":
                 return value.split(", ")
 
         return value
 
 
     def setValue(self, sectionKey, widget, value):
-        if sectionKey == "locale" and widget.id == "language":
+        if sectionKey == "locale" and widget._id == "language":
             value = getLocaleName(value)
-        if sectionKey == "locale" and widget.id == "locale":
+        if sectionKey == "locale" and widget._id == "locale":
             value = getLocaleName(value)
-        if sectionKey == "display" and widget.id =="columns":
+        if sectionKey == "display" and widget._id =="columns":
             value = ", ".join(value)
 
         widget.set(value)

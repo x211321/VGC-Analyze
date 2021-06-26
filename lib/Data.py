@@ -242,11 +242,11 @@ class FilterData(object):
             if key == "name":
                 self.itemFilter           = self.setFilterValue(key, inputs[key].get())
             if key =="name_regex":
-                self.itemFilterRegEx      = self.setFilterValue(key, inputs[key].toggleState)
+                self.itemFilterRegEx      = self.setFilterValue(key, inputs[key]._toggleState)
             if key == "notes":
                 self.notesFilter          = self.setFilterValue(key, inputs[key].get())
             if key =="notes_regex":
-                self.notesFilterRegEx     = self.setFilterValue(key, inputs[key].toggleState)
+                self.notesFilterRegEx     = self.setFilterValue(key, inputs[key]._toggleState)
             if key == "dateStart":
                 self.dateFilterStart      = self.setFilterValue(key, guessDate(inputs[key].get(), "start"))
             if key == "dateEnd":

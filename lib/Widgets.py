@@ -17,56 +17,70 @@ import lib.Var as VAR
 ######################
 # Label_
 # --------------------
-class Label_(Label):
+class Label_(ttk.Label):
 
     # Constructor
-    def __init__(self, master=None,
-                 id="", text="", col=None, row=None,
-                 anchor="nw", justify="left",
-                 width=0, height=0,
+    def __init__(self,
+                 master=None,
+                 text="",
+                 style="",
+                 anchor="nw",
+                 justify="left",
+                 width=0,
+                 wraplength=0,
+                 font=None,
+                 relief=None,
                  _padx=None, _pady=None,
-                 wraplength=0, font=None,
-                 img="", imgdef="", imgwidth=0,
-                 bg=None, fg=None,
-                 relief=None, highlight_bg=None):
+                 _id="",
+                 _col=None, _row=None,
+                 _img="",
+                 _imgdef="",
+                 _imgwidth=0,
+                 _highlight_style=None):
 
-        super().__init__(master=master, width=width, height=height, anchor=anchor,
-                         justify=justify, wraplength=wraplength, bg=bg, fg=fg,
-                         relief=relief, font=font)
+        # Get Style from parent if available
+        if not len(style) and hasattr(master, "defaultLabelStyle"):
+            style = master.defaultLabelStyle
 
-        self.id           = id
-        self.col          = col
-        self.row          = row
-        self._padx        = _padx
-        self._pady        = _pady
-        self.imgdef       = imgdef
-        self.text         = StringVar(self, text, id)
-        self.imgwidth     = imgwidth
-        self.bg           = bg
-        self.highlight_bg = highlight_bg
+        super().__init__(master=master, style=style, width=width, anchor=anchor,
+                         justify=justify, wraplength=wraplength,
+                         relief=relief, font=font, takefocus=False)
+
+        self._style           = style
+        self._id              = _id
+        self._col             = _col
+        self._row             = _row
+        self._padx            = _padx
+        self._pady            = _pady
+        self._imgdef          = _imgdef
+        self._text            = StringVar(self, text, _id)
+        self._imgwidth        = _imgwidth
+        self._highlight_style = _highlight_style
 
         self.animationThread = None
 
-        self.config(textvariable=self.text)
+        # Set display text
+        self.config(textvariable=self._text)
 
-        self.setImage(img, self.imgwidth)
+        # Set image
+        self.setImage(_img, self._imgwidth)
 
     def get(self):
-        return self.text.get()
+        return self._text.get()
 
     def set(self, text):
-        self.text.set(text)
+        self._text.set(text)
 
     def setImage(self, img, imgwidth=0):
         if imgwidth > 0:
-            self.imgwidth = imgwidth
+            self._imgwidth = imgwidth
 
         if not os.path.exists(img):
-            img = self.imgdef
+            img = self._imgdef
 
         if len(img) > 0:
-            self.image = loadImage(img, self.imgwidth)
-            self.config(image=self.image)
+            self._image = loadImage(img, self._imgwidth)
+            self.config(image=self._image)
 
     def startAnimation(self, animation, frames, interval):
         self.stopAnimation()
@@ -93,82 +107,118 @@ class Label_(Label):
                 frame = 0
 
     def highlight(self):
-        if not self.highlight_bg == None:
-            self.config(bg=self.highlight_bg)
+        if not self._highlight_style == None:
+            self.config(style=self._highlight_style)
 
-    def restore_bg(self):
-        if not self.bg == None:
-            self.config(bg=self.bg)
+    def restore_style(self):
+        if not self._style == None:
+            self.config(style=self._style)
 
-    def set_bg(self, bg):
-        self.bg = bg
-        self.restore_bg()
+    def set_style(self, style):
+        self._style = style
+        self.restore_style()
+
+
+######################
+# Frame_
+# --------------------
+class Frame_(ttk.Frame):
+    # Constructor
+    def __init__(self,
+                 master=None,
+                 style="",
+                 width=None,
+                 height=None,
+                 borderwidth=None,
+                 relief=None):
+
+        self._id   = ""
+        self._col  = None
+        self._row  = None
+        self._padx = None
+        self._pady = None
+
+        super().__init__(master=master, style=style, width=width, height=height, borderwidth=borderwidth, relief=relief)
+
+        self.defaultLabelStyle = ""
+
+        # Get Style from parent if available
+        if hasattr(master, "defaultLabelStyle"):
+            self.defaultLabelStyle = master.defaultLabelStyle
+
+    def setDefaultLabelStyle(self, style):
+        self.defaultLabelStyle = style
 
 
 ######################
 # Entry_
 # --------------------
-class Entry_(Entry):
+class Entry_(ttk.Entry):
 
     # Constructor
-    def __init__(self, master=None,
-                 id="", text="", col=None, row=None,
+    def __init__(self,
+                 master=None,
+                 text="",
+                 style="",
                  justify="left",
-                 width=0, show="",
+                 width=0,
+                 show="",
+                 font=None,
+                 _id="",
                  _padx=None, _pady=None,
-                 bg=VAR.INPUT_COLOR, fg=None,
-                 relief=None):
+                 _col=None, _row=None):
 
-        super().__init__(master=master, justify=justify, width=width, show=show, bg=bg, fg=fg, relief=relief)
+        super().__init__(master=master, justify=justify, width=width, show=show, style=style, font=font)
 
-        self.id    = id
-        self.col   = col
-        self.row   = row
+        self._id   = _id
+        self._col  = _col
+        self._row  = _row
         self._padx = _padx
         self._pady = _pady
-        self.text  = StringVar(self, text, id)
-        self.config(textvariable=self.text)
+        self._text  = StringVar(self, text, _id)
+        self.config(textvariable=self._text)
 
     def get(self):
-        return self.text.get()
+        return self._text.get()
 
     def set(self, text):
-        self.text.set(text)
+        self._text.set(text)
 
 
 ######################
 # Checkbutton_
 # --------------------
-class Checkbutton_(Checkbutton):
+class Checkbutton_(ttk.Checkbutton):
 
     # Constructor
-    def __init__(self, master=None,
-                 id="", check=0, col=None, row=None,
+    def __init__(self,
+                 master=None,
+                 style="",
+                 check=0,
                  label="",
-                 justify="left",
+                 anchor = None,
+                 width=0,
+                 command=None,
+                 _id="",
+                 _col=None, _row=None,
                  _padx=None, _pady=None,
-                 width=0, command=None,
-                 default = False,
-                 bg = None,
-                 anchor = None):
+                 ):
 
-        super().__init__(master=master, text=label, justify=justify, width=width, command=command, bg=bg, anchor=anchor)
+        super().__init__(master=master, text=label, style=style, width=width, command=command, anchor=anchor)
 
-        self.id    = id
-        self.col   = col
-        self.row   = row
-        self._padx = _padx
-        self._pady = _pady
-        self.value = IntVar(self, check, id)
-        self.config(variable=self.value)
-
-        self.set(default)
+        self._id    = _id
+        self._col   = _col
+        self._row   = _row
+        self._padx  = _padx
+        self._pady  = _pady
+        self._value = IntVar(self, check, _id)
+        self.config(variable=self._value)
 
     def get(self):
-        return self.value.get()
+        return self._value.get()
 
     def set(self, newValue):
-        self.value.set(newValue)
+        self._value.set(newValue)
 
 
 ######################
@@ -177,18 +227,22 @@ class Checkbutton_(Checkbutton):
 class Combobox_(ttk.Combobox):
 
     # Constructor
-    def __init__(self, master=None,
-                 id="", col=None, row=None,
+    def __init__(self,
+                 master=None,
+                 style="",
                  justify="left",
                  width=0, height=10,
-                 _padx=None, _pady=None,
-                 values=None, state=""):
+                 values=None,
+                 state="",
+                 _id="",
+                 _col=None, _row=None,
+                 _padx=None, _pady=None):
 
-        super().__init__(master=master, justify=justify, width=width, height=height, values=values, state=state)
+        super().__init__(master=master, justify=justify, width=width, height=height, values=values, state=state, style=style)
 
-        self.id    = id
-        self.col   = col
-        self.row   = row
+        self._id   = _id
+        self._col  = _col
+        self._row  = _row
         self._padx = _padx
         self._pady = _pady
 
@@ -199,48 +253,60 @@ class Combobox_(ttk.Combobox):
 ######################
 # Button_
 # --------------------
-class Button_(Button):
+class Button_(ttk.Button):
 
     # Constructor
-    def __init__(self, master=None,
-                 id="", text="", col=None, row=None,
-                 justify="left",
-                 width=None, height=None,
-                 _padx=None, _pady=None,
-                 state="normal", relief=None,
-                 bg=None, fg=None,
-                 image=None, command=None,
-                 toggle=False, borderButton=False):
+    def __init__(self,
+                 master=None,
+                 style="",
+                 text="",
+                 width=None,
+                 state="normal",
+                 image=None,
+                 command=None,
+                 compound=None,
+                 _toggle=False,
+                 _borderButton=False,
+                 _id="",
+                 _col=None, _row=None,
+                 _padx=None, _pady=None):
 
-        super().__init__(master=master, text=text, justify=justify, width=width, height=height, state=state, relief=relief, bg=bg, fg=fg, image=image, command=command)
+        if len(text) and image and compound == None:
+            compound = "left"
 
-        self.id          = id
-        self.col         = col
-        self.row         = row
-        self.bg          = bg
-        self._padx       = _padx
-        self._pady       = _pady
-        self.toggle      = toggle
-        self.toggleState = False
-        self.master      = master
-        self.borderButton= borderButton
+        super().__init__(master=master, style=style,
+                         text=text, width=width,
+                         state=state, command=command,
+                         image=image, compound=compound,
+                         takefocus=False)
 
-        if self.toggle:
+        self._style        = style
+        self._id           = _id
+        self._col          = _col
+        self._row          = _row
+        self._padx         = _padx
+        self._pady         = _pady
+        self._toggle       = _toggle
+        self._toggleState  = False
+        self._master       = master
+        self._borderButton = _borderButton
+
+        if self._toggle:
             self.config(command=self.toggleButtonState)
 
     def setToggle(self, newToggleState):
-        self.toggleState = newToggleState
+        self._toggleState = newToggleState
 
-        if self.toggleState:
-            self.config(bg=VAR.BUTTON_COLOR_TOGGLE)
+        if self._toggleState:
+            self.config(style=VAR.BUTTON_STYLE_TOGGLE)
         else:
-            self.config(bg=self.bg)
+            self.config(style=self._style)
 
-        if self.borderButton == True:
+        if self._borderButton == True:
             self.master.setBorderToggle()
 
     def toggleButtonState(self):
-        self.setToggle(not self.toggleState)
+        self.setToggle(not self._toggleState)
 
 
 
@@ -250,47 +316,50 @@ class Button_(Button):
 # Combination of LabelFrame and Button
 # as a workaround for the missing button
 # colors under macOS
-class BorderButton_(LabelFrame):
+class BorderButton_(ttk.LabelFrame):
     # Constructor
-    def __init__(self, master=None,
-                 id="", text="", col=None, row=None,
-                 justify="left",
-                 width=None, height=None,
-                 _padx=None, _pady=None,
-                 state="normal", relief=None,
-                 bg=None, fg=None,
-                 image=None, command=None,
-                 toggle=False, border_bg=None, border_bd=0):
+    def __init__(self,
+                 master=None,
+                 text="",
+                 width=None,
+                 state="normal",
+                 image=None,
+                 command=None,
+                 _toggle=False,
+                 _border_bg=None,
+                 _border_bd=0,
+                 _id="",
+                 _col=None, _row=None,
+                 _padx=None, _pady=None):
 
-        if platform.system() == "Darwin":
-            if border_bd == 0:
-                border_bd = 2
+        # if platform.system() == "Darwin":
+        #     if border_bd == 0:
+        #         border_bd = 2
 
-        self.id          = id
-        self.col         = col
-        self.row         = row
-        self.bg          = bg
-        self._padx       = _padx
-        self._pady       = _pady
-        self.toggle      = toggle
-        self.toggleState = False
-        self.border_bd   = border_bd
+        self._id          = _id
+        self._col         = _col
+        self._row         = _row
+        self._padx        = _padx
+        self._pady        = _pady
+        self._toggle      = _toggle
+        self._toggleState = False
+        self._border_bd   = _border_bd
 
-        super().__init__(master=master, padx=border_bd, pady=border_bd, bg=border_bg, bd=0)
+        super().__init__(master=master, padding=_border_bd)
 
-        if not border_bg == None:
-            self.border_bg = border_bg
-        else:
-            self.border_bg = self.cget("bg")
+        # if not border_bg == None:
+        #     self.border_bg = border_bg
+        # else:
+        #     self.border_bg = self.cget("bg")
 
-        if not width == None and width > border_bd:
-            width = width - border_bd
-        if not height == None and height > border_bd:
-            height = height - border_bd
+        # if not width == None and width > border_bd:
+        #     width = width - border_bd
+        # if not height == None and height > border_bd:
+        #     height = height - border_bd
 
-        self.button = Button_(master=self, id=id, text=text, col=col, row=row, justify=justify,
-                              width=width, height=height, _padx=_padx, _pady=_pady, state=state,
-                              relief=relief, bg=bg, fg=fg, image=image, command=command, toggle=toggle, borderButton=True)
+        self.button = Button_(master=self, _id=_id, text=text, _col=_col, _row=_row,
+                              width=width, _padx=_padx, _pady=_pady, state=state,
+                              image=image, command=command, _toggle=_toggle, _borderButton=True)
 
         self.button.grid()
 
@@ -303,12 +372,12 @@ class BorderButton_(LabelFrame):
     def setBorderToggle(self):
         # Gets triggered by the button that's inside
         # this LabelFrame
-        self.toggleState = self.button.toggleState
+        self._toggleState = self.button._toggleState
 
-        if self.toggleState:
-            self.config(bg=VAR.BUTTON_COLOR_TOGGLE)
-        else:
-            self.config(bg=self.border_bg)
+        # if self.toggleState:
+        #     self.config(bg=VAR.BUTTON_COLOR_TOGGLE)
+        # else:
+        #     self.config(bg=self.border_bg)
 
 
 
@@ -319,17 +388,21 @@ class BorderButton_(LabelFrame):
 class Text_(Text):
 
     # Constructor
-    def __init__(self, master=None,
-                 id="", col=None, row=None,
-                 width=None, height=None,
-                 _padx=None, _pady=None,
-                 state="normal", wrap=None):
+    def __init__(self,
+                 master=None,
+                 width=None,
+                 height=None,
+                 state="normal",
+                 wrap=None,
+                 _id="",
+                 _col=None, _row=None,
+                 _padx=None, _pady=None):
 
         super().__init__(master=master, width=width, height=height, state=state, wrap=wrap)
 
-        self.id    = id
-        self.col   = col
-        self.row   = row
+        self._id   = _id
+        self._col  = _col
+        self._row  = _row
         self._padx = _padx
         self._pady = _pady
 

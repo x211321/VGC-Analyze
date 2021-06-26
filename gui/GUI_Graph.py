@@ -25,6 +25,7 @@ from tkinter import ttk
 
 import lib.Var as VAR
 
+from lib.Widgets import Frame_
 from lib.Widgets import Label_
 from lib.Widgets import Combobox_
 from lib.Widgets import Checkbutton_
@@ -33,10 +34,12 @@ from lib.Widgets import Checkbutton_
 ######################
 # GUI_Graph
 # --------------------
-class GUI_Graph(ttk.Frame):
+class GUI_Graph(Frame_):
 
     def __init__(self, master, width=0, height=0):
         super().__init__(master=master, width=width, height=height, style=VAR.FRAME_STYLE_SECONDARY)
+
+        self.setDefaultLabelStyle(VAR.LABEL_STYLE_SECONDARY)
 
         self.collectionData = master.collectionData
 
@@ -49,8 +52,8 @@ class GUI_Graph(ttk.Frame):
     def init(self):
         # Graph
         # ------------------
-        self.graph_tool_frame = ttk.Frame(self, style=VAR.FRAME_STYLE_SECONDARY)
-        self.graph_sub_frame  = ttk.Frame(self, style=VAR.FRAME_STYLE_SECONDARY, borderwidth=1, relief="groove", height=350)
+        self.graph_tool_frame = Frame_(self, style=VAR.FRAME_STYLE_SECONDARY)
+        self.graph_sub_frame  = Frame_(self, style=VAR.FRAME_STYLE_SECONDARY, borderwidth=1, relief="groove", height=350)
 
         self.graph_tool_frame.grid(row=0, column=0, sticky="nwse", padx=(0,17), pady=10)
         self.graph_sub_frame.grid(row=1, column=0, sticky="nwse", padx=(0,17))
@@ -74,7 +77,7 @@ class GUI_Graph(ttk.Frame):
         self.graph_data.set(VAR.GRAPH_DATA_ITEMCOUNT)
         self.graph_data.bind("<<ComboboxSelected>>", self.onGraphDataSelect)
 
-        self.graph_show_grid   = Checkbutton_(self.graph_tool_frame, label=_("Show grid"), command=self.displayGraphs)
+        self.graph_show_grid   = Checkbutton_(self.graph_tool_frame, label=_("Show grid"), command=self.displayGraphs, style=VAR.CHECKBOX_STYLE_SECUNDARY)
 
         self.graph_hover_info  = Label_(self.graph_tool_frame)
 
@@ -96,7 +99,10 @@ class GUI_Graph(ttk.Frame):
             self.graph_sub_frame.pack_propagate(False)
             self.graph_canvas.get_tk_widget().pack(expand=True, fill="both")
         else:
-            self.label_matplotlib_missing = Label_(self.graph_sub_frame, font=(20), bg=VAR.BUTTON_COLOR_BAD, text=_("matplotlib module not found, can't render graphs."))
+            self.label_matplotlib_missing = Label_(self.graph_sub_frame,
+                                                   font=(20), style=VAR.LABEL_STYLE_WARNING,
+                                                   text=_("matplotlib module not found, can't render graphs."))
+
             self.label_matplotlib_missing.pack(pady=20)
 
         self.fillGraphTypeCombobox()

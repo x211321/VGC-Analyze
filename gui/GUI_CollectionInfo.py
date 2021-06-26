@@ -10,19 +10,24 @@ from datetime import datetime
 from tkinter import *
 from tkinter import ttk
 
+from lib.Widgets import Button_
 from lib.Widgets import Label_
+from lib.Widgets import Frame_
 from lib.Img     import loadIcon
 
 
 ######################
 # GUI_CollectionInfo
 # --------------------
-class GUI_CollectionInfo(ttk.Frame):
+class GUI_CollectionInfo(Frame_):
     def __init__(self, master, width=0, height=0):
-        super().__init__(master=master, width=width, height=height, style=VAR.FRAME_STYLE_SECONDARY)
+        super().__init__(master=master, style=VAR.FRAME_STYLE_SECONDARY, width=width, height=height)
 
-        self.toggleGraphFrame = master.toggleGraphFrame
-        self.toggleGraphIcon  = loadIcon("bar-chart-outline", 30, 30)
+        self.setDefaultLabelStyle(VAR.LABEL_STYLE_SECONDARY)
+
+        self.toggleGraphFrame  = master.toggleGraphFrame
+        self.toggleGraphIcon   = loadIcon("bar-chart-outline", 30, 30)
+        self.defaultLabelStyle = VAR.LABEL_STYLE_SECONDARY
 
         self.init()
 
@@ -32,11 +37,11 @@ class GUI_CollectionInfo(ttk.Frame):
         # ------------------
 
         # Collection info sub-frame
-        self.info_sub_frame = ttk.Frame(self, style=VAR.FRAME_STYLE_SECONDARY)
+        self.info_sub_frame = Frame_(self, style=VAR.FRAME_STYLE_SECONDARY)
         self.info_sub_frame.grid(row=0, column=1, sticky="nws", padx=(0,10))
 
         # Graph functions sub-frame
-        self.info_tool_frame = ttk.Frame(self, style=VAR.FRAME_STYLE_SECONDARY, width=200 , height=200)
+        self.info_tool_frame = Frame_(self, style=VAR.FRAME_STYLE_SECONDARY, width=200 , height=200)
         self.info_tool_frame.grid(row=0, column=2, sticky="nes", pady=0 , padx=0)
 
         self.grid_columnconfigure(1, weight=1)
@@ -129,8 +134,8 @@ class GUI_CollectionInfo(ttk.Frame):
 
 
         # Graph functions sub-frame widgets
-        self.info_toggle_graph = Button(self.info_tool_frame)
-        self.info_toggle_graph.config(command=self.toggleGraphFrame, image=self.toggleGraphIcon, relief="groove")
+        self.info_toggle_graph = Button_(self.info_tool_frame)
+        self.info_toggle_graph.config(command=self.toggleGraphFrame, image=self.toggleGraphIcon)
         self.info_toggle_graph.grid(row=0, column=0, padx=6)
 
 

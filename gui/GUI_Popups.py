@@ -17,10 +17,7 @@ from lib.Version import VERSION
 from lib.Img import loadIcon
 from lib.Lib import guessDate
 
-from lib.Widgets  import Label_
-from lib.Widgets  import Entry_
-from lib.Widgets  import Button_
-from lib.Widgets  import BorderButton_
+from lib.Widgets  import *
 from lib.Browser  import openUserProfileInBrowser
 from lib.Browser  import openGithub
 from lib.Download import downloadCollection
@@ -101,7 +98,7 @@ class Pop_CoverViewer(object):
                 self.window.focus_force()
 
                 # Create and place cover label
-                coverViewer_cover = Label_(self.window, img=img, imgwidth=self.coverSize)
+                coverViewer_cover = Label_(self.window, _img=img, _imgwidth=self.coverSize)
                 coverViewer_cover.pack(expand="Yes")
 
                 # Run main loop of new window
@@ -144,24 +141,24 @@ class Pop_CollectionDownload(object):
 
         # Functions
         # ------------------
-        self.input_frame  = ttk.Frame(self.window)
-        self.button_frame = ttk.Frame(self.window, style=VAR.FRAME_STYLE_SECONDARY)
+        self.input_frame  = Frame_(self.window)
+        self.button_frame = Frame_(self.window, style=VAR.FRAME_STYLE_SECONDARY)
 
         self.input_frame.grid(row=0, column=0, sticky="nwse")
         self.button_frame.grid(row=1, column=0, sticky="nwse")
 
         self.button_frame.columnconfigure(1, weight=1)
 
-        self.label_user       = Label_(self.input_frame, anchor="w", text=_("VGC Username"), bg=VAR.GUI_COLOR_PRIMARY)
-        self.input_user       = Entry_(self.input_frame, width=31, relief="solid")
-        self.label_pass       = Label_(self.input_frame, anchor="w", text=_("Password"), bg=VAR.GUI_COLOR_PRIMARY)
-        self.input_pass       = Entry_(self.input_frame, width=31, relief="solid", show="*")
-        self.btn_cancel       = Button_(self.button_frame, width=18, text=_("Cancel"), relief="groove", bg=VAR.BUTTON_COLOR_BAD, command=self.close)
-        self.btn_spacer       = Label_(self.button_frame, bg=VAR.GUI_COLOR_SECONDARY)
-        self.btn_download     = Button_(self.button_frame, width=18, text=_("Download"), relief="groove", bg=VAR.BUTTON_COLOR_GOOD, command=self.download)
-        self.label_disclaimer = Label_(self.button_frame, width=35, bg=VAR.GUI_COLOR_SECONDARY)
-        self.label_info       = Label_(self.button_frame, width=35, bg=VAR.GUI_COLOR_SECONDARY)
-        self.label_link       = Label_(self.button_frame, width=35, anchor="center", bg=VAR.GUI_COLOR_SECONDARY)
+        self.label_user       = Label_(self.input_frame, anchor="w", text=_("VGC Username"))
+        self.input_user       = Entry_(self.input_frame, width=31)
+        self.label_pass       = Label_(self.input_frame, anchor="w", text=_("Password"))
+        self.input_pass       = Entry_(self.input_frame, width=31, show="*")
+        self.btn_cancel       = Button_(self.button_frame, width=18, text=_("Cancel"), style=VAR.BUTTON_STYLE_CANCEL, command=self.close)
+        self.btn_spacer       = Label_(self.button_frame, style=VAR.LABEL_STYLE_SECONDARY)
+        self.btn_download     = Button_(self.button_frame, width=18, text=_("Download"), style=VAR.BUTTON_STYLE_CONFIRM, command=self.download)
+        self.label_disclaimer = Label_(self.button_frame, width=35, style=VAR.LABEL_STYLE_WARN_TEXT_SECONDARY)
+        self.label_info       = Label_(self.button_frame, width=35, style=VAR.LABEL_STYLE_SECONDARY)
+        self.label_link       = Label_(self.button_frame, width=35, anchor="center", style=VAR.LABEL_STYLE_LINK_SECONDARY)
 
         self.label_user.grid(row=0, column=0, pady=(15,10), padx=10, sticky="w")
         self.input_user.grid(row=0, column=1, pady=(15,10), padx=10, sticky="w")
@@ -178,7 +175,6 @@ class Pop_CollectionDownload(object):
         self.label_link.grid(row=3, column=0, pady=(5, 10), padx=10, sticky="nwse", columnspan=3)
 
         self.label_disclaimer.set(_("VGC Analyze is an unofficial project, \nnot affiliated with or endorsed by VGCollect.com."))
-        self.label_disclaimer.config(fg="red")
 
         self.label_info.set(_("The provided login credentials will be used to\n"
                               "download a backup of your collection from\n"
@@ -193,7 +189,7 @@ class Pop_CollectionDownload(object):
                               " 3) \tRestart VGC Analyzer"))
 
         self.label_link.set(_("VGCollect.com user profile"))
-        self.label_link.config(fg="blue", cursor="hand2")
+        self.label_link.config(cursor="hand2")
         self.label_link.bind("<Button-1>", openUserProfileInBrowser)
 
         self.input_pass.bind('<Return>', self.download)
@@ -276,21 +272,21 @@ class Pop_ItemSearch(object):
 
         # Functions
         # ------------------
-        self.input_frame  = ttk.Frame(self.window)
-        self.button_frame = ttk.Frame(self.window, style=VAR.FRAME_STYLE_SECONDARY)
+        self.input_frame  = Frame_(self.window)
+        self.button_frame = Frame_(self.window, style=VAR.FRAME_STYLE_SECONDARY)
 
         self.input_frame.grid(row=0, column=0, sticky="nwse")
         self.button_frame.grid(row=1, column=0, sticky="nwse")
 
         self.button_frame.columnconfigure(1, weight=1)
 
-        self.label_search = Label_(self.input_frame, anchor="w", text=_("Search for"), bg=VAR.GUI_COLOR_PRIMARY)
-        self.input_search = Entry_(self.input_frame, width=35, relief="solid")
-        self.label_info   = Label_(self.input_frame, width=35, anchor="w", fg="#F00", bg=VAR.GUI_COLOR_PRIMARY)
+        self.label_search = Label_(self.input_frame, anchor="w", text=_("Search for"))
+        self.input_search = Entry_(self.input_frame, width=35)
+        self.label_info   = Label_(self.input_frame, width=35, anchor="w", style=VAR.LABEL_STYLE_WARN_TEXT_PRIMARY)
 
-        self.btn_cancel   = Button_(self.button_frame, width=15, text=_("Cancel"), relief="groove", bg=VAR.BUTTON_COLOR_BAD, command=self.close)
-        self.btn_spacer   = Label_(self.button_frame, bg=VAR.GUI_COLOR_SECONDARY)
-        self.btn_search   = Button_(self.button_frame, width=15, text=_("Search"), relief="groove", bg=VAR.BUTTON_COLOR_GOOD, command=self.search)
+        self.btn_cancel   = Button_(self.button_frame, width=15, text=_("Cancel"), style=VAR.BUTTON_STYLE_CANCEL, command=self.close)
+        self.btn_spacer   = Label_(self.button_frame, style=VAR.LABEL_STYLE_SECONDARY)
+        self.btn_search   = Button_(self.button_frame, width=15, text=_("Search"), style=VAR.BUTTON_STYLE_CONFIRM, command=self.search)
 
         self.label_search.grid(row=0, column=0, pady=(15,10), padx=(15, 5), sticky="w")
         self.input_search.grid(row=0, column=1, pady=(15,10), padx=(5, 15), sticky="w")
@@ -400,16 +396,16 @@ class Pop_FilterSelect(object):
         self.window.bind('<Escape>', lambda x:self.close())
         self.window.focus_force()
 
-        self.frame_options = ttk.Frame(self.window)
-        self.frame_buttons = ttk.Frame(self.window, style=VAR.FRAME_STYLE_SECONDARY)
+        self.frame_options = Frame_(self.window)
+        self.frame_buttons = Frame_(self.window, style=VAR.FRAME_STYLE_SECONDARY)
 
         self.frame_options.grid(row=0, column=0, padx=10, pady=10, sticky="nesw")
         self.frame_buttons.grid(row=1, column=0, sticky="nesw")
 
-        self.btn_cancel= Button_(self.frame_buttons, width=20, text=_("Cancel"), relief="groove", command=self.close, bg=VAR.BUTTON_COLOR_BAD)
-        self.btn_reset = Button_(self.frame_buttons, width=20, text=_("Reset"), relief="groove", command=self.reset, bg=VAR.INPUT_COLOR)
-        self.btn_all   = Button_(self.frame_buttons, width=20, text=_("Select all"), relief="groove", command=self.selectAll, bg=VAR.INPUT_COLOR)
-        self.btn_ok    = Button_(self.frame_buttons, width=20, text=_("OK"), relief="groove", command=self.confirm, bg=VAR.BUTTON_COLOR_GOOD)
+        self.btn_cancel= Button_(self.frame_buttons, width=20, text=_("Cancel"), command=self.close, style=VAR.BUTTON_STYLE_CANCEL)
+        self.btn_reset = Button_(self.frame_buttons, width=20, text=_("Reset"), command=self.reset)
+        self.btn_all   = Button_(self.frame_buttons, width=20, text=_("Select all"), command=self.selectAll)
+        self.btn_ok    = Button_(self.frame_buttons, width=20, text=_("OK"), command=self.confirm, style=VAR.BUTTON_STYLE_CONFIRM)
 
         self.btn_cancel.grid(row=0, column=0, padx=10, pady=20, sticky="w")
         self.btn_reset.grid(row=0, column=1, padx=10, pady=20, sticky="w")
@@ -439,7 +435,7 @@ class Pop_FilterSelect(object):
 
         # Create togglebuttons
         for option, data in options:
-            self.widgets[option] = BorderButton_(self.frame_options, text=option, bg=VAR.GUI_COLOR_PRIMARY, width=maxLen, relief="groove", toggle=True)
+            self.widgets[option] = Button_(self.frame_options, text=option, width=maxLen, _toggle=True)
             self.widgets[option].grid(row=row, column=col, sticky="w", padx=5, pady=5)
 
             if option in activeOptions:
@@ -479,7 +475,7 @@ class Pop_FilterSelect(object):
         selectedOptions = []
 
         for widget in self.widgets:
-            if self.widgets[widget].toggleState == True:
+            if self.widgets[widget]._toggleState == True:
                 selectedOptions.append(widget)
 
         if not self.callback == None:
@@ -517,14 +513,14 @@ class Pop_ItemDetails(object):
         self.window.bind('<Escape>', lambda x:self.close())
         self.window.focus_force()
 
-        self.container       = ttk.Frame(self.window)
-        self.titleFrame      = ttk.Frame(self.container)
-        self.infoframe_      = ttk.Frame(self.container, borderwidth=1, relief="groove")
-        self.infoFrame       = ttk.Frame(self.infoframe_)
-        self.onlineInfoFrame_= ttk.Frame(self.container, borderwidth=1, relief="groove")
-        self.onlineInfoFrame = ttk.Frame(self.onlineInfoFrame_)
-        self.coverFrame      = ttk.Frame(self.container)
-        self.buttonFrame     = ttk.Frame(self.container, style=VAR.FRAME_STYLE_SECONDARY)
+        self.container       = Frame_(self.window)
+        self.titleFrame      = Frame_(self.container)
+        self.infoframe_      = Frame_(self.container, borderwidth=1, relief="groove")
+        self.infoFrame       = Frame_(self.infoframe_)
+        self.onlineInfoFrame_= Frame_(self.container, borderwidth=1, relief="groove")
+        self.onlineInfoFrame = Frame_(self.onlineInfoFrame_)
+        self.coverFrame      = Frame_(self.container)
+        self.buttonFrame     = Frame_(self.container, style=VAR.FRAME_STYLE_SECONDARY)
 
         self.container.grid(row=0, column=0, sticky="nwse")
         self.titleFrame.grid(row=0, column=0, sticky="nw", padx=20, pady=5, columnspan=2)
@@ -536,22 +532,22 @@ class Pop_ItemDetails(object):
         self.buttonFrame.grid(row=3, column=0, sticky="nwse", columnspan=2)
 
         # Title
-        self.info_name = Label_(self.titleFrame, bg=VAR.GUI_COLOR_PRIMARY, text=self.item.name, font=(15))
+        self.info_name = Label_(self.titleFrame, text=self.item.name, font=(15))
         self.info_name.grid(row=0, column=0, sticky="nw", columnspan=2)
 
         # Info
-        self.info_platform_txt       = Label_(self.infoFrame, bg=VAR.GUI_COLOR_PRIMARY, text=_("Platform"))
-        self.info_platform           = Label_(self.infoFrame, bg=VAR.GUI_COLOR_PRIMARY, text=self.item.platform)
-        self.info_region_txt         = Label_(self.infoFrame, bg=VAR.GUI_COLOR_PRIMARY, text=_("Region"))
-        self.info_region             = Label_(self.infoFrame, bg=VAR.GUI_COLOR_PRIMARY, text=self.item.region)
-        self.info_platformHolder_txt = Label_(self.infoFrame, bg=VAR.GUI_COLOR_PRIMARY, text=_("Platform holder"))
-        self.info_platformHolder     = Label_(self.infoFrame, bg=VAR.GUI_COLOR_PRIMARY, text=self.item.platformHolder)
-        self.info_price_txt          = Label_(self.infoFrame, bg=VAR.GUI_COLOR_PRIMARY, text=_("Purchase price"))
-        self.info_price              = Label_(self.infoFrame, bg=VAR.GUI_COLOR_PRIMARY, text=self.item.price)
-        self.info_date_txt           = Label_(self.infoFrame, bg=VAR.GUI_COLOR_PRIMARY, text=_("Purchased"))
-        self.info_date               = Label_(self.infoFrame, bg=VAR.GUI_COLOR_PRIMARY, text=self.item.date)
-        self.info_dateAdded_txt      = Label_(self.infoFrame, bg=VAR.GUI_COLOR_PRIMARY, text=_("Added"))
-        self.info_dateAdded          = Label_(self.infoFrame, bg=VAR.GUI_COLOR_PRIMARY, text=self.item.dateTimeAdded)
+        self.info_platform_txt       = Label_(self.infoFrame, text=_("Platform"))
+        self.info_platform           = Label_(self.infoFrame, text=self.item.platform)
+        self.info_region_txt         = Label_(self.infoFrame, text=_("Region"))
+        self.info_region             = Label_(self.infoFrame, text=self.item.region)
+        self.info_platformHolder_txt = Label_(self.infoFrame, text=_("Platform holder"))
+        self.info_platformHolder     = Label_(self.infoFrame, text=self.item.platformHolder)
+        self.info_price_txt          = Label_(self.infoFrame, text=_("Purchase price"))
+        self.info_price              = Label_(self.infoFrame, text=self.item.price)
+        self.info_date_txt           = Label_(self.infoFrame, text=_("Purchased"))
+        self.info_date               = Label_(self.infoFrame, text=self.item.date)
+        self.info_dateAdded_txt      = Label_(self.infoFrame, text=_("Added"))
+        self.info_dateAdded          = Label_(self.infoFrame, text=self.item.dateTimeAdded)
 
         self.info_platform_txt.grid(row=1, column=0, sticky="nw")
         self.info_platform.grid(row=1, column=1, sticky="nw")
@@ -567,32 +563,32 @@ class Pop_ItemDetails(object):
         self.info_dateAdded.grid(row=6, column=1, sticky="nw")
 
         # Online info
-        self.button_getOnlineInfo        = Button_(self.onlineInfoFrame, text=_("Get VGC data"), bg=VAR.GUI_COLOR_PRIMARY, width=25, relief="groove", command=self.getOnline)
-        self.onlineInfo_altname_text     = Label_(self.onlineInfoFrame, text=_("Alt-Name"), bg=VAR.GUI_COLOR_PRIMARY)
-        self.onlineInfo_altname          = Label_(self.onlineInfoFrame, bg=VAR.GUI_COLOR_PRIMARY)
-        self.onlineInfo_releasetype_text = Label_(self.onlineInfoFrame, text=_("Release Type"), bg=VAR.GUI_COLOR_PRIMARY)
-        self.onlineInfo_releasetype      = Label_(self.onlineInfoFrame, bg=VAR.GUI_COLOR_PRIMARY)
-        self.onlineInfo_developer_text   = Label_(self.onlineInfoFrame, text=_("Developer(s)"), bg=VAR.GUI_COLOR_PRIMARY)
-        self.onlineInfo_developer        = Label_(self.onlineInfoFrame, bg=VAR.GUI_COLOR_PRIMARY)
-        self.onlineInfo_publisher_text   = Label_(self.onlineInfoFrame, text=_("Publisher(s)"), bg=VAR.GUI_COLOR_PRIMARY)
-        self.onlineInfo_publisher        = Label_(self.onlineInfoFrame, bg=VAR.GUI_COLOR_PRIMARY)
-        self.onlineInfo_genre_text       = Label_(self.onlineInfoFrame, text=_("Genre"), bg=VAR.GUI_COLOR_PRIMARY)
-        self.onlineInfo_genre            = Label_(self.onlineInfoFrame, bg=VAR.GUI_COLOR_PRIMARY)
-        self.onlineInfo_rating_text      = Label_(self.onlineInfoFrame, text=_("Rating"), bg=VAR.GUI_COLOR_PRIMARY)
-        self.onlineInfo_rating           = Label_(self.onlineInfoFrame, bg=VAR.GUI_COLOR_PRIMARY)
-        self.onlineInfo_itemnumber_text  = Label_(self.onlineInfoFrame, text=_("Item Number"), bg=VAR.GUI_COLOR_PRIMARY)
-        self.onlineInfo_itemnumber       = Label_(self.onlineInfoFrame, bg=VAR.GUI_COLOR_PRIMARY)
-        self.onlineInfo_barcode_text     = Label_(self.onlineInfoFrame, text=_("Barcode"), bg=VAR.GUI_COLOR_PRIMARY)
-        self.onlineInfo_barcode          = Label_(self.onlineInfoFrame, bg=VAR.GUI_COLOR_PRIMARY)
-        self.onlineInfo_releasedate_text = Label_(self.onlineInfoFrame, text=_("Release Date"), bg=VAR.GUI_COLOR_PRIMARY)
-        self.onlineInfo_releasedate      = Label_(self.onlineInfoFrame, bg=VAR.GUI_COLOR_PRIMARY)
+        self.button_getOnlineInfo        = Button_(self.onlineInfoFrame, text=_("Get VGC data"), width=25, command=self.getOnline)
+        self.onlineInfo_altname_text     = Label_(self.onlineInfoFrame, text=_("Alt-Name"))
+        self.onlineInfo_altname          = Label_(self.onlineInfoFrame)
+        self.onlineInfo_releasetype_text = Label_(self.onlineInfoFrame, text=_("Release Type"))
+        self.onlineInfo_releasetype      = Label_(self.onlineInfoFrame)
+        self.onlineInfo_developer_text   = Label_(self.onlineInfoFrame, text=_("Developer(s)"))
+        self.onlineInfo_developer        = Label_(self.onlineInfoFrame)
+        self.onlineInfo_publisher_text   = Label_(self.onlineInfoFrame, text=_("Publisher(s)"))
+        self.onlineInfo_publisher        = Label_(self.onlineInfoFrame)
+        self.onlineInfo_genre_text       = Label_(self.onlineInfoFrame, text=_("Genre"))
+        self.onlineInfo_genre            = Label_(self.onlineInfoFrame)
+        self.onlineInfo_rating_text      = Label_(self.onlineInfoFrame, text=_("Rating"))
+        self.onlineInfo_rating           = Label_(self.onlineInfoFrame)
+        self.onlineInfo_itemnumber_text  = Label_(self.onlineInfoFrame, text=_("Item Number"))
+        self.onlineInfo_itemnumber       = Label_(self.onlineInfoFrame)
+        self.onlineInfo_barcode_text     = Label_(self.onlineInfoFrame, text=_("Barcode"))
+        self.onlineInfo_barcode          = Label_(self.onlineInfoFrame)
+        self.onlineInfo_releasedate_text = Label_(self.onlineInfoFrame, text=_("Release Date"))
+        self.onlineInfo_releasedate      = Label_(self.onlineInfoFrame)
 
         self.showOnline()
 
         # Covers
-        self.cover_front = Label_(self.coverFrame, imgdef=VAR.IMG_COVER_NONE, imgwidth=VAR.COVER_WIDTH*2)
-        self.cover_back  = Label_(self.coverFrame, imgdef=VAR.IMG_COVER_NONE, imgwidth=VAR.COVER_WIDTH*2)
-        self.cover_cart  = Label_(self.coverFrame, imgdef=VAR.IMG_COVER_NONE, imgwidth=VAR.COVER_WIDTH*2)
+        self.cover_front = Label_(self.coverFrame, _imgdef=VAR.IMG_COVER_NONE, _imgwidth=VAR.COVER_WIDTH*2)
+        self.cover_back  = Label_(self.coverFrame, _imgdef=VAR.IMG_COVER_NONE, _imgwidth=VAR.COVER_WIDTH*2)
+        self.cover_cart  = Label_(self.coverFrame, _imgdef=VAR.IMG_COVER_NONE, _imgwidth=VAR.COVER_WIDTH*2)
 
         if os.path.exists(VAR.IMG_CACHE_FRONT + str(self.item.VGC_id) + ".jpg"):
             self.cover_front.setImage(VAR.IMG_CACHE_FRONT + str(self.item.VGC_id) + ".jpg")
@@ -606,7 +602,7 @@ class Pop_ItemDetails(object):
 
         # Buttons
         self.buttonFrame.columnconfigure(0, weight=1)
-        self.button_close = Button_(self.buttonFrame, text="Close", width=25, command=self.close, bg=VAR.GUI_COLOR_PRIMARY, relief="groove")
+        self.button_close = Button_(self.buttonFrame, text="Close", width=25, command=self.close)
         self.button_close.grid(row=0, column=0, padx=10, pady=20)
 
         # Center window
@@ -700,20 +696,20 @@ class Pop_About(object):
 
         # Functions
         # ------------------
-        self.label_frame  = ttk.Frame(self.window)
-        self.button_frame = ttk.Frame(self.window, style=VAR.FRAME_STYLE_SECONDARY)
+        self.label_frame  = Frame_(self.window)
+        self.button_frame = Frame_(self.window, style=VAR.FRAME_STYLE_SECONDARY)
 
         self.label_frame.grid(row=0, column=0, sticky="nwse")
         self.button_frame.grid(row=1, column=0, sticky="nwse")
 
         self.button_frame.columnconfigure(0, weight=1)
 
-        self.label_title = Label_(self.label_frame, text="VGC Analyzer" + " " + VERSION, font=(20), bg=VAR.GUI_COLOR_PRIMARY)
-        self.label_description = Label_(self.label_frame, text=_("A data analyzer for your VGCollect.com video game collection"), bg=VAR.GUI_COLOR_PRIMARY)
-        self.label_disclamer = Label_(self.label_frame, text=_("VGC Analyze is a hobby project, not affiliated with or endorsed by VGCollect.com"), bg=VAR.GUI_COLOR_PRIMARY)
-        self.label_license = Label_(self.label_frame, bg=VAR.GUI_COLOR_PRIMARY)
-        self.label_link = Label_(self.label_frame, bg=VAR.GUI_COLOR_PRIMARY)
-        self.btn_close = Button_(self.button_frame, width=18, text=_("Close"), relief="groove", bg=VAR.GUI_COLOR_PRIMARY, command=self.close)
+        self.label_title       = Label_(self.label_frame, text="VGC Analyzer" + " " + VERSION, font=(20))
+        self.label_description = Label_(self.label_frame, text=_("A data analyzer for your VGCollect.com video game collection"))
+        self.label_disclamer   = Label_(self.label_frame, text=_("VGC Analyze is a hobby project, not affiliated with or endorsed by VGCollect.com"))
+        self.label_license     = Label_(self.label_frame)
+        self.label_link        = Label_(self.label_frame, style=VAR.LABEL_STYLE_LINK_PRIMARY)
+        self.btn_close = Button_(self.button_frame, width=18, text=_("Close"), command=self.close)
 
         self.label_license.set( 'MIT License\n\n'
                                 'Copyright (c) 2021 x211321, pfochel\n\n'
@@ -734,7 +730,7 @@ class Pop_About(object):
                                 'SOFTWARE.')
 
         self.label_link.set(_("VGC Analyze GitHub"))
-        self.label_link.config(fg="blue", cursor="hand2")
+        self.label_link.config(cursor="hand2")
         self.label_link.bind("<Button-1>", openGithub)
 
         self.label_title.grid(row=0, column=0, padx=10, pady=10)
@@ -822,9 +818,9 @@ class Pop_DatePicker(object):
         self.window.rowconfigure(1, weight=1)
 
         # Main Frames
-        self.frame_calendar = ttk.Frame(self.window)
-        self.frame_spacer   = ttk.Frame(self.window)
-        self.frame_buttons  = ttk.Frame(self.window, style=VAR.FRAME_STYLE_SECONDARY)
+        self.frame_calendar = Frame_(self.window)
+        self.frame_spacer   = Frame_(self.window)
+        self.frame_buttons  = Frame_(self.window, style=VAR.FRAME_STYLE_SECONDARY)
 
         self.frame_calendar.grid(row=0, column=0, padx=10, pady=10, sticky="nwse")
         self.frame_spacer.grid(row=1, column=0, sticky="nwse")
@@ -833,38 +829,38 @@ class Pop_DatePicker(object):
         self.frame_calendar.columnconfigure(0, weight=1)
 
         # Year Frame
-        self.frame_year     = ttk.Frame(self.frame_calendar)
+        self.frame_year     = Frame_(self.frame_calendar)
         self.frame_year.grid(row=0, column=0, sticky="nwse", pady=(0, 5))
         self.frame_year.columnconfigure(1, weight=1)
 
-        self.button_prev_year = Button_(self.frame_year, width=30, image=self.iconPrev, relief="groove", bg=VAR.GUI_COLOR_PRIMARY, command=lambda:self.changeYear(-1))
-        self.label_year       = Label_(self.frame_year, bg=VAR.GUI_COLOR_PRIMARY, text=str(self.year), font=(20))
-        self.button_next_year = Button_(self.frame_year, width=30, image=self.iconNext, relief="groove", bg=VAR.GUI_COLOR_PRIMARY, command=lambda:self.changeYear(+1))
+        self.button_prev_year = Button_(self.frame_year, width=30, image=self.iconPrev, command=lambda:self.changeYear(-1))
+        self.label_year       = Label_(self.frame_year, text=str(self.year), font=(20))
+        self.button_next_year = Button_(self.frame_year, width=30, image=self.iconNext, command=lambda:self.changeYear(+1))
 
         self.button_prev_year.grid(row=0, column=0)
         self.label_year.grid(row=0, column=1)
         self.button_next_year.grid(row=0, column=2)
 
         # Month Frame
-        self.frame_month     = ttk.Frame(self.frame_calendar)
+        self.frame_month     = Frame_(self.frame_calendar)
         self.frame_month.grid(row=1, column=0, sticky="nwse", pady=(0, 5))
         self.frame_month.columnconfigure(1, weight=1)
 
-        self.button_prev_month = Button_(self.frame_month, width=30, image=self.iconPrev, relief="groove", bg=VAR.GUI_COLOR_PRIMARY, command=lambda:self.changeMonth(-1))
-        self.label_month       = Label_(self.frame_month, bg=VAR.GUI_COLOR_PRIMARY, text=self.month_name, font=(15))
-        self.button_next_month = Button_(self.frame_month, width=30, image=self.iconNext, relief="groove", bg=VAR.GUI_COLOR_PRIMARY, command=lambda:self.changeMonth(+1))
+        self.button_prev_month = Button_(self.frame_month, width=30, image=self.iconPrev, command=lambda:self.changeMonth(-1))
+        self.label_month       = Label_(self.frame_month, text=self.month_name, font=(15))
+        self.button_next_month = Button_(self.frame_month, width=30, image=self.iconNext, command=lambda:self.changeMonth(+1))
 
         self.button_prev_month.grid(row=0, column=0)
         self.label_month.grid(row=0, column=1)
         self.button_next_month.grid(row=0, column=2)
 
         # Days Frame
-        self.frame_days      = ttk.Frame(self.frame_calendar)
+        self.frame_days      = Frame_(self.frame_calendar)
         self.frame_days.grid(row=2, column=0, sticky="nwse")
 
         # Buttons
-        self.btn_cancel= Button_(self.frame_buttons, width=15, text=_("Cancel"), relief="groove", command=self.close, bg=VAR.BUTTON_COLOR_BAD)
-        self.btn_ok    = Button_(self.frame_buttons, width=15, text=_("OK"), relief="groove", command=self.confirm, bg=VAR.BUTTON_COLOR_GOOD)
+        self.btn_cancel= Button_(self.frame_buttons, width=15, text=_("Cancel"), command=self.close, style=VAR.BUTTON_STYLE_CANCEL)
+        self.btn_ok    = Button_(self.frame_buttons, width=15, text=_("OK"), command=self.confirm, style=VAR.BUTTON_STYLE_CONFIRM)
 
         self.btn_cancel.grid(row=0, column=0, padx=10, pady=20, sticky="w")
         self.btn_ok.grid(row=0, column=1, padx=10, pady=20, sticky="e")
@@ -959,10 +955,10 @@ class Pop_DatePicker(object):
 
             index = i+1
 
-            bg           = self.getDayBG(day)
-            highlight_bg = self.getDayHighlightBG(day)
+            style           = self.getDayStyle(day)
+            highlight_style = self.getDayHighlightStyle(day)
 
-            self.daylabels[index] = Label_(self.frame_days, text=day.day, width=5, height=2, anchor="center", bg=bg, highlight_bg=highlight_bg)
+            self.daylabels[index] = Label_(self.frame_days, text=day.day, width=5, anchor="center", style=style, _highlight_style=highlight_style)
             self.daylabels[index].grid(row=row, column=col, padx=1, pady=1)
             self.daylabels[index].bind("<Enter>", lambda a, index=index:self.dayLabelEnter(a, index))
             self.daylabels[index].bind("<Leave>", lambda a, index=index:self.dayLabelLeave(a, index))
@@ -982,22 +978,22 @@ class Pop_DatePicker(object):
 
         # Add empty row for month with only 5 weeks
         if row == 5:
-            self.daySpacer = Label_(self.frame_days, height=2, bg=VAR.GUI_COLOR_PRIMARY)
+            self.daySpacer = Label_(self.frame_days)
             self.daySpacer.grid(row=row, column=0, padx=1, pady=1)
 
 
-    def getDayBG(self, day):
+    def getDayStyle(self, day):
         if day.month == self.month:
-            return VAR.CAL_COLOR_PRIMARY
+            return VAR.LABEL_STYLE_CAL_PRIMARY
         else:
-            return VAR.CAL_COLOR_SECONDARY
+            return VAR.LABEL_STYLE_CAL_SECONDARY
 
 
-    def getDayHighlightBG(self, day):
+    def getDayHighlightStyle(self, day):
         if day.month == self.month:
-            return VAR.CAL_COLOR_HIGH_PRIMARY
+            return VAR.LABEL_STYLE_CAL_HIGH_PRIMARY
         else:
-            return VAR.CAL_COLOR_HIGH_SECONDARY
+            return VAR.LABEL_STYLE_CAL_HIGH_SECONDARY
 
 
     def dayLabelEnter(self, a, index):
@@ -1042,7 +1038,7 @@ class Pop_TemplateManager(object):
     def __init__(self, parent, callback = None):
         self.parent      = parent
         self.callback    = callback
-        self.icon_save   = loadIcon("save-outline", 20, 20)
+        self.icon_save   = loadIcon("save-outline", 13, 13)
         self.icon_delete = loadIcon("trash-outline", 20, 20)
 
     def show(self):
@@ -1069,11 +1065,11 @@ class Pop_TemplateManager(object):
 
 
         # Frames
-        self.frame_inputs       = ttk.Frame(self.window)
-        self.frame_view_left    = ttk.Frame(self.window)
-        self.frame_view_right   = ttk.Frame(self.window)
-        self.frame_delete       = ttk.Frame(self.window)
-        self.frame_buttons      = ttk.Frame(self.window, style=VAR.FRAME_STYLE_SECONDARY)
+        self.frame_inputs       = Frame_(self.window)
+        self.frame_view_left    = Frame_(self.window)
+        self.frame_view_right   = Frame_(self.window)
+        self.frame_delete       = Frame_(self.window)
+        self.frame_buttons      = Frame_(self.window, style=VAR.FRAME_STYLE_SECONDARY)
 
         self.frame_inputs.grid(row=0, column=0, columnspan=2, padx=10, pady=(10, 10), sticky="nwse")
         self.frame_view_left.grid(row=1, column=0, padx=10, pady=(10,5), sticky="nwse")
@@ -1115,12 +1111,12 @@ class Pop_TemplateManager(object):
 
 
         # Inputs and buttons
-        self.label_template_name    = Label_(self.frame_inputs, text=_("Save ") + VAR.TEMPLATE_CURRENT_CONFIG + _(" as:"), bg=VAR.GUI_COLOR_PRIMARY)
+        self.label_template_name    = Label_(self.frame_inputs, text=_("Save ") + VAR.TEMPLATE_CURRENT_CONFIG + _(" as:"))
         self.input_template_name    = Entry_(self.frame_inputs, width=37)
 
         self.button_template_save   = Button_(self.frame_inputs,
-                                              image=self.icon_save, bg=VAR.BUTTON_COLOR_GOOD,
-                                              relief="groove", command=self.saveTemplate)
+                                              image=self.icon_save, style=VAR.BUTTON_STYLE_CONFIRM,
+                                              command=self.saveTemplate)
 
 
 
@@ -1136,14 +1132,14 @@ class Pop_TemplateManager(object):
         # Remove template button
         self.button_template_remove = Button_(self.frame_delete,
                                               image=self.icon_delete,
-                                              bg=VAR.BUTTON_COLOR_BAD,
-                                              relief="groove", command=self.removeTemplate)
+                                              style=VAR.BUTTON_STYLE_CANCEL,
+                                              command=self.removeTemplate)
         self.button_template_remove.grid(row=0, column=0)
 
 
         # Buttons
-        self.btn_cancel = Button_(self.frame_buttons, width=15, text=_("Close"), relief="groove", command=self.close, bg=VAR.BUTTON_COLOR_BAD)
-        self.btn_load   = Button_(self.frame_buttons, width=15, text=_("Load"), relief="groove", command=self.confirm, bg=VAR.BUTTON_COLOR_GOOD)
+        self.btn_cancel = Button_(self.frame_buttons, width=15, text=_("Close"), command=self.close, style=VAR.BUTTON_STYLE_CANCEL)
+        self.btn_load   = Button_(self.frame_buttons, width=15, text=_("Load"), command=self.confirm, style=VAR.BUTTON_STYLE_CONFIRM)
 
         self.btn_cancel.grid(row=0, column=0, padx=10, pady=20, sticky="w")
         self.btn_load.grid(row=0, column=1, padx=10, pady=20, sticky="e")

@@ -5,9 +5,11 @@ from lib.Locale import _
 
 
 # Colors
-BUTTON_COLOR_GOOD        = "#CAFF99"
-BUTTON_COLOR_BAD         = "#FF9999"
-BUTTON_COLOR_TOGGLE      = "#FFDD99"
+BUTTON_COLOR_PRIMARY     = "white"
+BUTTON_COLOR_CONFIRM     = "green"
+BUTTON_COLOR_CANCEL      = "red"
+BUTTON_COLOR_TOGGLE      = "#FFA90D"
+LABEL_COLOR_WARN_TEXT    = "red"
 
 if platform.system() == "Darwin":
     GUI_COLOR_PRIMARY    = "white"
@@ -16,10 +18,26 @@ else:
     GUI_COLOR_PRIMARY    = "white"
     GUI_COLOR_SECONDARY  = "#F0F0F0"
 
+GUI_COLOR_WARNING = "#FF9999"
+
 FRAME_STYLE_PRIMARY   = "frame_primary.TFrame"
 FRAME_STYLE_SECONDARY = "frame_secondary.TFrame"
 
+LABEL_STYLE_PRIMARY             = "label_primary.TLabel"
+LABEL_STYLE_SECONDARY           = "label_secondary.TLabel"
+LABEL_STYLE_WARNING             = "label_warning.TLabel"
+LABEL_STYLE_WARN_TEXT_PRIMARY   = "label_warn_text_primary.TLabel"
+LABEL_STYLE_WARN_TEXT_SECONDARY = "label_warn_text_secondary.TLabel"
+LABEL_STYLE_LINK_PRIMARY        = "label_link_primary.TLabel"
+LABEL_STYLE_LINK_SECONDARY      = "label_link_secondary.TLabel"
 
+BUTTON_STYLE_PRIMARY  = "button_primary.TButton"
+BUTTON_STYLE_CONFIRM  = "button_confirm.TButton"
+BUTTON_STYLE_CANCEL   = "button_cancel.TButton"
+BUTTON_STYLE_TOGGLE   = "button_toggle.TButton"
+
+CHECKBOX_STYLE_PRIMARY   = "checkbox_style_primary.TCheckbutton"
+CHECKBOX_STYLE_SECUNDARY = "checkbox_style_secundary.TCheckbutton"
 
 CAL_COLOR_PRIMARY        = "#EEEEEE"
 CAL_COLOR_SECONDARY      = "#DDDDDD"
@@ -150,3 +168,7 @@ VIEW_COLUMNS["Notes"]            = {"name": _("Notes")           , "anchor": "w"
 
 # Templates
 TEMPLATE_CURRENT_CONFIG = _("[current configuration]")
+
+# Icons
+MIN_ICON_WIDTH  = 15
+MIN_ICON_HEIGHT = 15
