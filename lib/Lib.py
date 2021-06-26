@@ -38,7 +38,10 @@ def guessDate(date, mode):
             return date + "-31"
     if len(date) == 4:
         if mode == "start":
-            return date + "-01-01"
+            if date == "0000":
+                return date + "-00-00"
+            else:
+                return date + "-01-01"
         if mode == "end":
             return date + "-12-31"
 

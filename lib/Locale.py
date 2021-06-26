@@ -64,26 +64,51 @@ def locStrToNum(str):
 
 def locDate(dateStr, showDay=False):
     # Deactivated for now
+    # return dateStr
+
+    if len(dateStr) > 10:
+        dateStr = dateStr[0:10]
+
+    if len(dateStr) == 10:
+        # Format date
+        if int(dateStr[0:4]) > 0 and int(dateStr[5:7]) > 0 and int(dateStr[8:10]) > 0:
+            date = datetime.strptime(dateStr, "%Y-%m-%d")
+
+            if showDay:
+                return date.strftime('%a, %x')
+            else:
+                return date.strftime('%x')
+
     return dateStr
 
-    # Fix invalid dates
-    if int(dateStr[0:4]) == 0:
-        dateStr = dateStr.replace(dateStr[0:4], "1900")
-    if int(dateStr[5:7]) == 0:
-        dateStr = dateStr.replace(dateStr[5:7], "01")
-    if int(dateStr[8:10]) == 0:
-        dateStr = dateStr.replace(dateStr[8:10], "01")
 
-    # Format date
-    if int(dateStr[0:4]) > 0 and int(dateStr[5:7]) > 0 and int(dateStr[8:10]) > 0:
-        date = datetime.strptime(dateStr, "%Y-%m-%d")
+def locDateTime(dateTimeStr, showDay=False, showDate=True, showTime=True):
+    # Deactivated for now
+    # return dateStr
 
-        if showDay:
-            return date.strftime('%a, %x')
-        else:
-            return date.strftime('%x')
-    else:
-        return dateStr
+    if len(dateTimeStr) > 19:
+        dateTimeStr = dateTimeStr[0:19]
+
+    if len(dateTimeStr) == 19:
+        # Format date
+        if (int(dateTimeStr[0:4]) > 0 and int(dateTimeStr[5:7]) > 0 and int(dateTimeStr[8:10]) > 0):
+
+            dateTime = datetime.strptime(dateTimeStr, "%Y-%m-%d %H:%M:%S")
+
+            format = ""
+
+            if showDay:
+                format += "%a, "
+            if showDate:
+                format += "%x"
+            if showTime:
+                if len(format):
+                    format += " - "
+                format += "%X"
+
+            return dateTime.strftime(format)
+
+    return dateTimeStr
 
 
 def getLanguageName(code, native = False):

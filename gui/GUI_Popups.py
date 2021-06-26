@@ -1,5 +1,8 @@
 import lib.Settings as settings
 from lib.Locale import _
+from lib.Locale import locDate
+from lib.Locale import locDateTime
+from lib.Locale import locCurrency
 
 import os
 import platform
@@ -290,11 +293,12 @@ class Pop_ItemDetails(object):
         self.info_platformHolder_txt = Label_(self.infoFrame, text=_("Platform holder"))
         self.info_platformHolder     = Label_(self.infoFrame, text=self.item.platformHolder)
         self.info_price_txt          = Label_(self.infoFrame, text=_("Purchase price"))
-        self.info_price              = Label_(self.infoFrame, text=self.item.price)
+        self.info_price              = Label_(self.infoFrame, text=locCurrency(self.item.price))
         self.info_date_txt           = Label_(self.infoFrame, text=_("Purchased"))
-        self.info_date               = Label_(self.infoFrame, text=self.item.date)
+        self.info_date               = Label_(self.infoFrame, text=locDate(self.item.date, True))
         self.info_dateAdded_txt      = Label_(self.infoFrame, text=_("Added"))
-        self.info_dateAdded          = Label_(self.infoFrame, text=self.item.dateTimeAdded)
+        self.info_dateAdded          = Label_(self.infoFrame, text=locDateTime(self.item.dateTimeAdded, True, True, False))
+        self.info_timeAdded          = Label_(self.infoFrame, text=locDateTime(self.item.dateTimeAdded, False, False, True))
 
         self.info_platform_txt.grid(row=1, column=0, sticky="nw")
         self.info_platform.grid(row=1, column=1, sticky="nw")
@@ -308,6 +312,7 @@ class Pop_ItemDetails(object):
         self.info_date.grid(row=5, column=1, sticky="nw")
         self.info_dateAdded_txt.grid(row=6, column=0, sticky="nw")
         self.info_dateAdded.grid(row=6, column=1, sticky="nw")
+        self.info_timeAdded.grid(row=7, column=1, sticky="nw")
 
         # Online info
         self.button_getOnlineInfo        = LabelButton_(self.onlineInfoFrame, text=_("Get VGC data"), width=25, command=self.getOnline)

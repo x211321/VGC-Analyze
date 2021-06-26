@@ -65,10 +65,6 @@ class GUI(Tk):
             self.state('zoomed')
         if platform.system() == "Linux":
             self.attributes('-zoomed', True)
-            #self.style = ttk.Style()
-            #if len(self.style.theme_names()):
-            #    print("Using theme:", self.style.theme_names()[0])
-            #    self.style.theme_use(self.style.theme_names()[0])
 
         self.protocol("WM_DELETE_WINDOW", self.onClose)
 
