@@ -1,3 +1,4 @@
+import platform
 from lib.Img import loadIcon
 from lib.Widgets import *
 
