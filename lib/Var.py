@@ -17,12 +17,8 @@ LABEL_COLOR_WARN_TEXT    = "red"
 MENU_BG_HOVER = "#0078D7"
 MENU_FG_HOVER = "white"
 
-if platform.system() == "Darwin":
-    GUI_COLOR_PRIMARY    = "white"
-    GUI_COLOR_SECONDARY  = "white"
-else:
-    GUI_COLOR_PRIMARY    = "white"
-    GUI_COLOR_SECONDARY  = "#F0F0F0"
+GUI_COLOR_PRIMARY    = "white"
+GUI_COLOR_SECONDARY  = "#F0F0F0"
 
 GUI_COLOR_WARNING = "#FF9999"
 

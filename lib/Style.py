@@ -46,7 +46,11 @@ def initStyles():
     ttk.Style().configure(VAR.LABELBUTTON_STYLE_CONFIRM, background=VAR.BUTTON_COLOR_CONFIRM)
     ttk.Style().configure(VAR.LABELBUTTON_STYLE_CANCEL , background=VAR.BUTTON_COLOR_CANCEL)
 
-    ttk.Style().configure("Treeview.Heading", background="white", relief="flat")
+    ttk.Style().configure("Treeview.Heading", background=VAR.INPUT_COLOR, relief="flat")
+
+    ttk.Style().configure("TCombobox", background=VAR.INPUT_COLOR, fieldbackground=VAR.INPUT_COLOR)
+    ttk.Style().map("TCombobox", fieldbackground=[("readonly", VAR.INPUT_COLOR)])
+
 
 
 

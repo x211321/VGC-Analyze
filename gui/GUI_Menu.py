@@ -14,7 +14,7 @@ def initMainMenu(gui):
     gui.main_menu = Menu(gui, bg=VAR.GUI_COLOR_SECONDARY)
 
     # File menu
-    gui.file_menu = Menu(gui.main_menu, tearoff=0, bg=VAR.GUI_COLOR_SECONDARY, 
+    gui.file_menu = Menu(gui.main_menu, tearoff=0, bg=VAR.GUI_COLOR_SECONDARY,
                                                    activebackground=VAR.MENU_BG_HOVER,
                                                    activeforeground=VAR.MENU_FG_HOVER)
     gui.file_menu.add_command(label=_("Settings"), command=gui.showSettings)
@@ -22,32 +22,32 @@ def initMainMenu(gui):
     gui.file_menu.add_command(label=_("Quit"), command=gui.destroy, accelerator="Ctrl+Q")
 
     # Search menu
-    gui.search_menu = Menu(gui.main_menu, tearoff=0, bg=VAR.GUI_COLOR_SECONDARY, 
+    gui.search_menu = Menu(gui.main_menu, tearoff=0, bg=VAR.GUI_COLOR_SECONDARY,
                                                      activebackground=VAR.MENU_BG_HOVER,
                                                      activeforeground=VAR.MENU_FG_HOVER)
     gui.search_menu.add_command(label=_("Search for item"), command=gui.pop_itemSearch.show, accelerator="Ctrl+F")
 
     # Download menu
-    gui.download_menu = Menu(gui.main_menu, tearoff=0, bg=VAR.GUI_COLOR_SECONDARY, 
+    gui.download_menu = Menu(gui.main_menu, tearoff=0, bg=VAR.GUI_COLOR_SECONDARY,
                                                        activebackground=VAR.MENU_BG_HOVER,
                                                        activeforeground=VAR.MENU_FG_HOVER)
     gui.download_menu.add_command(label=_("Download collection"), command=gui.pop_collectionDownload.show, accelerator="Ctrl+D")
 
     # Templates menu
-    gui.templates_menu = Menu(gui.main_menu, tearoff=0, bg=VAR.GUI_COLOR_SECONDARY, 
+    gui.templates_menu = Menu(gui.main_menu, tearoff=0, bg=VAR.GUI_COLOR_SECONDARY,
                                                         activebackground=VAR.MENU_BG_HOVER,
                                                         activeforeground=VAR.MENU_FG_HOVER)
     gui.templates_menu.add_command(label=_("Manage templates"), command=gui.pop_templateManager.show, accelerator="Ctrl+B")
     generateTemplateMenu(gui)
 
     # Export menu
-    gui.export_menu = Menu(gui.main_menu, tearoff=0, bg=VAR.GUI_COLOR_SECONDARY, 
+    gui.export_menu = Menu(gui.main_menu, tearoff=0, bg=VAR.GUI_COLOR_SECONDARY,
                                                      activebackground=VAR.MENU_BG_HOVER,
                                                      activeforeground=VAR.MENU_FG_HOVER)
     gui.export_menu.add_command(label=_("Export HTML"), command=gui.export, accelerator="Ctrl+E")
 
     # Window menu
-    gui.window_menu = Menu(gui.main_menu, tearoff=0, bg=VAR.GUI_COLOR_SECONDARY, 
+    gui.window_menu = Menu(gui.main_menu, tearoff=0, bg=VAR.GUI_COLOR_SECONDARY,
                                                      activebackground=VAR.MENU_BG_HOVER,
                                                      activeforeground=VAR.MENU_FG_HOVER)
     gui.window_menu.add_command(label=_("Filters"), command=gui.toggleFilterFrame, accelerator="Alt+F")
@@ -55,7 +55,7 @@ def initMainMenu(gui):
     gui.window_menu.add_command(label=_("Graphs"), command=gui.toggleGraphFrame, accelerator="Alt+G")
 
     # About menu
-    gui.about_menu = Menu(gui.main_menu, tearoff=0, bg=VAR.GUI_COLOR_SECONDARY, 
+    gui.about_menu = Menu(gui.main_menu, tearoff=0, bg=VAR.GUI_COLOR_SECONDARY,
                                                     activebackground=VAR.MENU_BG_HOVER,
                                                     activeforeground=VAR.MENU_FG_HOVER)
     gui.about_menu.add_command(label=_("About VGC Analyzer"), command=gui.showAbout)
