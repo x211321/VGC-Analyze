@@ -60,7 +60,8 @@ class DatePicker(object):
 
         # Create new window
         self.window = Toplevel(bg=VAR.GUI_COLOR_PRIMARY)
-        self.window.wm_overrideredirect(True)
+        if not platform.system() == "Darwin":
+            self.window.wm_overrideredirect(True)
         self.window.withdraw()
         self.window.wm_title(_("Select date"))
         self.window.resizable(False, False)
