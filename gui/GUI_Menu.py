@@ -67,7 +67,7 @@ def initMainMenu(gui):
     gui.about_menu = Menu(gui.main_menu, tearoff=0, bg=bg,
                                                     activebackground=bg_active,
                                                     activeforeground=fg_active)
-    gui.about_menu.add_command(label=_("About VGC Analyzer"), command=gui.showAbout)
+    gui.about_menu.add_command(label=_("About VGC Analyze"), command=gui.showAbout)
 
     gui.main_menu.add_cascade(label=_("File")     , menu=gui.file_menu)
     gui.main_menu.add_cascade(label=_("Search")   , menu=gui.search_menu)

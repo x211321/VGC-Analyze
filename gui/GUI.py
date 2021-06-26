@@ -56,7 +56,7 @@ class GUI(Tk):
         # Main window
         # ------------------
         self.withdraw()
-        self.title("VGC Analyzer" + " " + VERSION)
+        self.title("VGC Analyze" + " " + VERSION)
         self.geometry("1000x750")
         self.configure(bg=VAR.GUI_COLOR_SECONDARY)
         self.iconphoto(False, loadIcon("game-controller-outline", 512, 512))

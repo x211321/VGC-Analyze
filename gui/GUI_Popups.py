@@ -187,7 +187,7 @@ class Pop_CollectionDownload(object):
                               "\tVGCollect.com user profile\n\n"
                               " 2) \tPlace the resulting file into the\n"
                               "\tVGC Analyze data folder\n\n"
-                              " 3) \tRestart VGC Analyzer"))
+                              " 3) \tRestart VGC Analyze"))
 
         self.label_link.set(_("VGCollect.com user profile"))
         self.label_link.config(cursor="hand2")
@@ -456,7 +456,7 @@ class Pop_About(object):
 
         self.button_frame.columnconfigure(0, weight=1)
 
-        self.label_title       = Label_(self.label_frame, text="VGC Analyzer" + " " + VERSION, font=(20))
+        self.label_title       = Label_(self.label_frame, text="VGC Analyze" + " " + VERSION, font=(20))
         self.label_description = Label_(self.label_frame, text=_("A data analyzer for your VGCollect.com video game collection"))
         self.label_disclamer   = Label_(self.label_frame, text=_("VGC Analyze is a hobby project, not affiliated with or endorsed by VGCollect.com"))
         self.label_license     = Label_(self.label_frame)
