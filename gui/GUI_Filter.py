@@ -7,7 +7,7 @@ from tkinter import ttk
 from lib.Widgets import *
 from lib.Img import loadIcon
 
-from gui.GUI_Popups import Pop_FilterSelect
+from gui.popups.FilterSelect import FilterSelect
 from gui.popups.DatePicker import DatePicker
 
 import lib.Var as VAR
@@ -26,9 +26,9 @@ class GUI_Filter(Frame_):
         self.showData       = master.showData
         self.collectionData = master.collectionData
 
-        self.platformSelect       = Pop_FilterSelect(master, self.selectPlatformsCallback)
-        self.platformHolderSelect = Pop_FilterSelect(master, self.selectPlatformHoldersCallback)
-        self.regionSelect         = Pop_FilterSelect(master, self.selectRegionsCallback)
+        self.platformSelect       = FilterSelect(master, self.selectPlatformsCallback)
+        self.platformHolderSelect = FilterSelect(master, self.selectPlatformHoldersCallback)
+        self.regionSelect         = FilterSelect(master, self.selectRegionsCallback)
 
         self.datePicker = DatePicker(master, self.datePickerCallback)
 
@@ -270,7 +270,7 @@ class GUI_Filter(Frame_):
     # selectPlatforms
     # --------------------
     def selectPlatforms(self):
-        self.platformSelect.show(sorted(self.collectionData.platforms_all.items()), self.multiFilter["platforms"], _("platforms"))
+        self.platformSelect.show(sorted(self.collectionData.platforms_all.items()), self.multiFilter["platforms"], _("platforms"), focusWidget=self.filterInputs["platforms_select"])
 
 
     ######################
@@ -294,7 +294,7 @@ class GUI_Filter(Frame_):
     # selectPlatformHolders
     # --------------------
     def selectPlatformHolders(self):
-        self.platformHolderSelect.show(sorted(self.collectionData.platformHolders_all.items()), self.multiFilter["platformHolders"], _("platform holders"))
+        self.platformHolderSelect.show(sorted(self.collectionData.platformHolders_all.items()), self.multiFilter["platformHolders"], _("platform holders"), focusWidget=self.filterInputs["platformHolders_select"])
 
 
     ######################
@@ -318,7 +318,7 @@ class GUI_Filter(Frame_):
     # selectRegions
     # --------------------
     def selectRegions(self):
-        self.regionSelect.show(sorted(self.collectionData.regions_all.items()), self.multiFilter["regions"], _("regions"))
+        self.regionSelect.show(sorted(self.collectionData.regions_all.items()), self.multiFilter["regions"], _("regions"), focusWidget=self.filterInputs["regions_select"])
 
 
     ######################
