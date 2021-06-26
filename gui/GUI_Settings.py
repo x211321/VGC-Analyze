@@ -54,9 +54,9 @@ class GUI_Settings(Toplevel):
         self.columnconfigure(0, weight=1)
 
         # Add buttons
-        self.btn_cancel  = Button_(self.btn_frame, text=_("Cancel"), width=20, style=VAR.BUTTON_STYLE_CANCEL, command=self.close)
+        self.btn_cancel  = LabelButton_(self.btn_frame, text=_("Cancel"), width=20, style=VAR.LABELBUTTON_STYLE_CANCEL, command=self.close)
         self.btn_spacer  = Label_(self.btn_frame, style=VAR.LABEL_STYLE_SECONDARY)
-        self.btn_confirm = Button_(self.btn_frame, text=_("OK"), width=20, style=VAR.BUTTON_STYLE_CONFIRM, command=self.apply)
+        self.btn_confirm = LabelButton_(self.btn_frame, text=_("OK"), width=20, style=VAR.LABELBUTTON_STYLE_CONFIRM, command=self.apply)
 
         self.btn_cancel.grid(row=0, column=0, sticky="e", padx=10, pady=20)
         self.btn_spacer.grid(row=0, column=1)
@@ -134,7 +134,7 @@ class GUI_Settings(Toplevel):
         self.w["display"]["columns_txt"]                  = Label_(self.pages["display"], text=_("Table columns"))
         self.w["display"]["columns"]                      = Text_(self.pages["display"], width=50, height=4, wrap=WORD, state="disabled", _id="columns")
         self.w["display"]["columns_spacer"]               = Label_(self.pages["display"])
-        self.w["display"]["columns_select"]               = Button_(self.pages["display"], text=_("Select"), width=20, command=self.columnSelect)
+        self.w["display"]["columns_select"]               = LabelButton_(self.pages["display"], text=_("Select"), width=20, command=self.columnSelect)
         self.w["display"]["details_on_dclick"]            = Checkbutton_(self.pages["display"], label=_("Item details on double-click"), _id="detailsOnDoubleClick")
         self.w["display"]["spacer1"]                      = Label_(self.pages["display"])
         self.w["display"]["refresh_on_filter"]            = Checkbutton_(self.pages["display"], label=_("Refresh table on filter select"), _id="refreshOnFilterSelect")
@@ -158,13 +158,15 @@ class GUI_Settings(Toplevel):
         self.platformHolderKeywords      = Text_(self.platformHolders_input, width=50, height=4, wrap=WORD)
         self.platformHolderKeywords_info = Label_(self.platformHolders_input, text=_("(comma separated)"))
 
-        self.platformHolder_save   = Button_(self.platformHolders_buttons,
-                                             image=self.icon_save, style=VAR.BUTTON_STYLE_CONFIRM,
-                                             command=self.savePlatformHolder)
-        self.platformHolder_remove = Button_(self.platformHolders_buttons,
-                                             image=self.icon_delete,
-                                             style=VAR.BUTTON_STYLE_CANCEL,
-                                             command=self.removePlatformHolder)
+        self.platformHolder_save   = LabelButton_(self.platformHolders_buttons,
+                                                  image=self.icon_save,
+                                                  style=VAR.LABELBUTTON_STYLE_CONFIRM,
+                                                  command=self.savePlatformHolder)
+
+        self.platformHolder_remove = LabelButton_(self.platformHolders_buttons,
+                                                  image=self.icon_delete,
+                                                  style=VAR.LABELBUTTON_STYLE_CANCEL,
+                                                  command=self.removePlatformHolder)
 
         self.platformHolder_txt.grid(row=0, column=0, padx=(0, 10), sticky="nw")
         self.platformHolder.grid(row=0, column=1, padx=(0, 20), sticky="nw")
@@ -220,13 +222,15 @@ class GUI_Settings(Toplevel):
         self.platformOverwrite_txt  = Label_(self.platforms_input, text=_("Overwrite with"))
         self.platformOverwrite      = Entry_(self.platforms_input, width=70)
 
-        self.platform_save   = Button_(self.platforms_buttons,
-                                       image=self.icon_save, style=VAR.BUTTON_STYLE_CONFIRM,
-                                       command=self.savePlatform)
-        self.platform_remove = Button_(self.platforms_buttons,
-                                       image=self.icon_delete,
-                                       style=VAR.BUTTON_STYLE_CANCEL,
-                                       command=self.removePlatform)
+        self.platform_save   = LabelButton_(self.platforms_buttons,
+                                            image=self.icon_save,
+                                            style=VAR.LABELBUTTON_STYLE_CONFIRM,
+                                            command=self.savePlatform)
+
+        self.platform_remove = LabelButton_(self.platforms_buttons,
+                                            image=self.icon_delete,
+                                            style=VAR.LABELBUTTON_STYLE_CANCEL,
+                                            command=self.removePlatform)
 
         self.platform_txt.grid(row=0, column=0, padx=(0, 10), sticky="nw")
         self.platform.grid(row=0, column=1, padx=(0, 20), sticky="nw")

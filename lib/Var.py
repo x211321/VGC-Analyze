@@ -5,9 +5,12 @@ from lib.Locale import _
 
 
 # Colors
-BUTTON_COLOR_PRIMARY     = "white"
-BUTTON_COLOR_CONFIRM     = "green"
-BUTTON_COLOR_CANCEL      = "red"
+BUTTON_COLOR_DEFAULT     = "white"
+BUTTON_COLOR_HOVER       = "#E5F1FB"
+BUTTON_COLOR_PRESSED     = "#CCE4F7"
+BUTTON_COLOR_TOGGLED     = "#FFDD99"
+BUTTON_COLOR_CONFIRM     = "#BDF593"
+BUTTON_COLOR_CANCEL      = "#F59398"
 BUTTON_COLOR_TOGGLE      = "#FFA90D"
 LABEL_COLOR_WARN_TEXT    = "red"
 
@@ -37,10 +40,13 @@ LABEL_STYLE_CAL_HIGH_PRIMARY    = "label_cal_high_primary.TLabel"
 LABEL_STYLE_CAL_HIGH_SECONDARY  = "label_cal_high_secondary.TLabel"
 LABEL_STYLE_CAL_SELECTED        = "label_cal_selected.TLabel"
 
-BUTTON_STYLE_PRIMARY  = "button_primary.TButton"
-BUTTON_STYLE_CONFIRM  = "button_confirm.TButton"
-BUTTON_STYLE_CANCEL   = "button_cancel.TButton"
-BUTTON_STYLE_TOGGLE   = "button_toggle.TButton"
+LABELBUTTON_STYLE         = "labelbutton.TLabel"
+LABELBUTTON_STYLE_DEFAULT = "default." + LABELBUTTON_STYLE
+LABELBUTTON_STYLE_HOVER   = "hover."   + LABELBUTTON_STYLE
+LABELBUTTON_STYLE_PRESSED = "pressed." + LABELBUTTON_STYLE
+LABELBUTTON_STYLE_TOGGLED = "toggled." + LABELBUTTON_STYLE
+LABELBUTTON_STYLE_CONFIRM = "confirm." + LABELBUTTON_STYLE
+LABELBUTTON_STYLE_CANCEL  = "cancel."  + LABELBUTTON_STYLE
 
 CHECKBOX_STYLE_PRIMARY   = "checkbox_style_primary.TCheckbutton"
 CHECKBOX_STYLE_SECUNDARY = "checkbox_style_secundary.TCheckbutton"

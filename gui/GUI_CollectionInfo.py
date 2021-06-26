@@ -10,7 +10,7 @@ from datetime import datetime
 from tkinter import *
 from tkinter import ttk
 
-from lib.Widgets import Button_
+from lib.Widgets import LabelButton_
 from lib.Widgets import Label_
 from lib.Widgets import Frame_
 from lib.Img     import loadIcon
@@ -134,8 +134,8 @@ class GUI_CollectionInfo(Frame_):
 
 
         # Graph functions sub-frame widgets
-        self.info_toggle_graph = Button_(self.info_tool_frame)
-        self.info_toggle_graph.config(command=self.toggleGraphFrame, image=self.toggleGraphIcon)
+        self.info_toggle_graph = LabelButton_(self.info_tool_frame, command=self.toggleGraphFrame)
+        self.info_toggle_graph.config(image=self.toggleGraphIcon)
         self.info_toggle_graph.grid(row=0, column=0, padx=6)
 
 

@@ -52,87 +52,110 @@ class GUI_Filter(Frame_):
         # ------------------
         self.filterInputs = {}
 
-        self.filterInputs["name_txt"]   = Label_(self, width=31, _pady=(4,0), text=_("Title"))
         self.filterInputs["name_frame"] = Frame_(self, style=VAR.FRAME_STYLE_SECONDARY)
-        self.filterInputs["name"]       = Entry_(self.filterInputs["name_frame"], width=31, _row=0, _col=0, _padx=(0,5))
-        self.filterInputs["name_regex"] = Button_(self.filterInputs["name_frame"], width=15, _row=0, _col=1, image=self.regexIcon, _toggle=True)
+        self.filterInputs["name_frame"].columnconfigure(0, minsize=205)
+        self.filterInputs["name_frame"].columnconfigure(1, minsize=10)
+        self.filterInputs["name_txt"]   = Label_(self.filterInputs["name_frame"], _row=0, _col=0, text=_("Title"), _pady=(4,0))
+        self.filterInputs["name"]       = Entry_(self.filterInputs["name_frame"], _row=1, _col=0)
+        self.filterInputs["name_regex"] = LabelButton_(self.filterInputs["name_frame"], _row=1, _col=2, image=self.regexIcon, _toggle=True)
 
-        self.filterInputs["notes_txt"]   = Label_(self, width=31, _pady=(2,0), text=_("Notes"))
         self.filterInputs["notes_frame"] = Frame_(self, style=VAR.FRAME_STYLE_SECONDARY)
-        self.filterInputs["notes"]       = Entry_(self.filterInputs["notes_frame"], width=31, _row=0, _col=0, _padx=(0,5))
-        self.filterInputs["notes_regex"] = Button_(self.filterInputs["notes_frame"], width=15, _row=0, _col=1, image=self.regexIcon, _toggle=True)
+        self.filterInputs["notes_frame"].columnconfigure(0, minsize=205)
+        self.filterInputs["notes_frame"].columnconfigure(1, minsize=10)
+        self.filterInputs["notes_txt"]   = Label_(self.filterInputs["notes_frame"], _row=0, _col=0, text=_("Notes"),  _pady=(2,0))
+        self.filterInputs["notes"]       = Entry_(self.filterInputs["notes_frame"], _row=1, _col=0)
+        self.filterInputs["notes_regex"] = LabelButton_(self.filterInputs["notes_frame"], _row=1, _col=2, image=self.regexIcon, _toggle=True)
 
 
         self.filterInputs["platReg_frame"]          = Frame_(self, style=VAR.FRAME_STYLE_SECONDARY)
-        self.filterInputs["platforms_txt"]          = Label_(self.filterInputs["platReg_frame"], width=16, _row=0, _col=0, _padx=(0, 14), _pady=(2,0), text=_("Platforms"))
-        self.filterInputs["regions_txt"]            = Label_(self.filterInputs["platReg_frame"], width=16, _row=0, _col=1, _pady=(2,0), text=_("Regions"))
-        self.filterInputs["platforms_select"]       = Button_(self.filterInputs["platReg_frame"], width=16, _row=1, _col=0, _padx=(0, 14), _id="select", text=_("Select"), command=self.selectPlatforms)
-        self.filterInputs["regions_select"]         = Button_(self.filterInputs["platReg_frame"], width=15, _row=1, _col=1, _id="select", text=_("Select"), command=self.selectRegions)
+        self.filterInputs["platReg_frame"].columnconfigure(0, minsize=116)
+        self.filterInputs["platReg_frame"].columnconfigure(1, minsize=10)
+        self.filterInputs["platReg_frame"].columnconfigure(2, minsize=116)
+        self.filterInputs["platforms_txt"]          = Label_(self.filterInputs["platReg_frame"], _row=0, _col=0, _pady=(2,0), text=_("Platforms"))
+        self.filterInputs["regions_txt"]            = Label_(self.filterInputs["platReg_frame"], _row=0, _col=2, _pady=(2,0), text=_("Regions"))
+        self.filterInputs["platforms_select"]       = LabelButton_(self.filterInputs["platReg_frame"], _row=1, _col=0, _id="select", text=_("Select"), command=self.selectPlatforms)
+        self.filterInputs["regions_select"]         = LabelButton_(self.filterInputs["platReg_frame"], _row=1, _col=2, _id="select", text=_("Select"), command=self.selectRegions)
 
-        self.filterInputs["platformHolders_txt"]    = Label_(self, width=35, _pady=(4,0), text=_("Platform holders"))
-        self.filterInputs["platformHolders_select"] = Button_(self, width=35, _id="select", text=_("Select"), command=self.selectPlatformHolders)
+
+        self.filterInputs["platformHoldersFrame"]   = Frame_(self, style=VAR.FRAME_STYLE_SECONDARY)
+        self.filterInputs["platformHoldersFrame"].columnconfigure(0, minsize=242)
+
+        self.filterInputs["platformHolders_txt"]    = Label_(self.filterInputs["platformHoldersFrame"], _row=0, _col=0, _pady=(2,0), text=_("Platform holders"))
+        self.filterInputs["platformHolders_select"] = LabelButton_(self.filterInputs["platformHoldersFrame"], _row=1, _col=0, _id="select", text=_("Select"), command=self.selectPlatformHolders)
 
 
-        self.filterInputs["dateStart_txt"]          = Label_(self, width=31, _pady=(4,0), text=_("Min. date (purchased)"))
-        self.filterInputs["dateStart_frame"]        = Frame_(self, style=VAR.FRAME_STYLE_SECONDARY)
-        self.filterInputs["dateStart"]              = Entry_(self.filterInputs["dateStart_frame"], width=31, _row=0, _col=0, _padx=(0,5))
-        self.filterInputs["dateStart_pick"]         = Button_(self.filterInputs["dateStart_frame"], width=15, _row=0, _col=1,
-                                                              image=self.dateIcon,
-                                                              command=lambda:self.datePicker.show(self.filterInputs["dateStart"], self.filterInputs["dateStart"].get(), "start"))
+        self.filterInputs["dateFrame"]           = Frame_(self, style=VAR.FRAME_STYLE_SECONDARY)
+        self.filterInputs["dateFrame"].columnconfigure(0, minsize=205)
+        self.filterInputs["dateFrame"].columnconfigure(1, minsize=10)
 
-        self.filterInputs["dateEnd_txt"]            = Label_(self, width=31, _pady=(2,0), text=_("Max. date (purchased)"))
-        self.filterInputs["dateEnd_frame"]          = Frame_(self, style=VAR.FRAME_STYLE_SECONDARY)
-        self.filterInputs["dateEnd"]                = Entry_(self.filterInputs["dateEnd_frame"], width=31, _row=0, _col=0, _padx=(0,5))
-        self.filterInputs["dateEnd_pick"]           = Button_(self.filterInputs["dateEnd_frame"], width=15, _row=0, _col=1,
-                                                              image=self.dateIcon,
-                                                              command=lambda:self.datePicker.show(self.filterInputs["dateEnd"], self.filterInputs["dateEnd"].get(), "end"))
+        self.filterInputs["dateStart_txt"]       = Label_(self.filterInputs["dateFrame"], _row=0, _col=0, text=_("Min. date (purchased)"), _pady=(2,0))
+        self.filterInputs["dateStart"]           = Entry_(self.filterInputs["dateFrame"], _row=1, _col=0)
+        self.filterInputs["dateStart_pick"]      = LabelButton_(self.filterInputs["dateFrame"], _row=1, _col=2,
+                                                                image=self.dateIcon,
+                                                                command=lambda:self.datePicker.show(self.filterInputs["dateStart"], self.filterInputs["dateStart"].get(), "start"))
 
-        self.filterInputs["dateAddedStart_txt"]     = Label_(self, width=31, _pady=(2,0), text=_("Min. date (added)"))
-        self.filterInputs["dateAddedStart_frame"]   = Frame_(self, style=VAR.FRAME_STYLE_SECONDARY)
-        self.filterInputs["dateAddedStart"]         = Entry_(self.filterInputs["dateAddedStart_frame"], width=31, _row=0, _col=0, _padx=(0,5))
-        self.filterInputs["dateAddedStart_pick"]    = Button_(self.filterInputs["dateAddedStart_frame"], width=15, _row=0, _col=1,
-                                                              image=self.dateIcon,
-                                                              command=lambda:self.datePicker.show(self.filterInputs["dateAddedStart"], self.filterInputs["dateAddedStart"].get(), "start"))
+        self.filterInputs["dateEnd_txt"]         = Label_(self.filterInputs["dateFrame"], _row=2, _col=0, text=_("Max. date (purchased)"), _pady=(2,0))
+        self.filterInputs["dateEnd"]             = Entry_(self.filterInputs["dateFrame"], _row=3, _col=0)
+        self.filterInputs["dateEnd_pick"]        = LabelButton_(self.filterInputs["dateFrame"], _row=3, _col=2,
+                                                                image=self.dateIcon,
+                                                                command=lambda:self.datePicker.show(self.filterInputs["dateEnd"], self.filterInputs["dateEnd"].get(), "end"))
 
-        self.filterInputs["dateAddedEnd_txt"]     = Label_(self, width=31, _pady=(2,0), text=_("Max. date (added)"))
-        self.filterInputs["dateAddedEnd_frame"]   = Frame_(self, style=VAR.FRAME_STYLE_SECONDARY)
-        self.filterInputs["dateAddedEnd"]         = Entry_(self.filterInputs["dateAddedEnd_frame"], width=31, _row=0, _col=0, _padx=(0,5))
-        self.filterInputs["dateAddedEnd_pick"]    = Button_(self.filterInputs["dateAddedEnd_frame"], width=15, _row=0, _col=1,
-                                                              image=self.dateIcon,
-                                                              command=lambda:self.datePicker.show(self.filterInputs["dateAddedEnd"], self.filterInputs["dateAddedEnd"].get(), "end"))
+        self.filterInputs["dateAddedStart_txt"]  = Label_(self.filterInputs["dateFrame"], _row=4, _col=0, text=_("Min. date (added)"), _pady=(2,0))
+        self.filterInputs["dateAddedStart"]      = Entry_(self.filterInputs["dateFrame"], _row=5, _col=0)
+        self.filterInputs["dateAddedStart_pick"] = LabelButton_(self.filterInputs["dateFrame"], _row=5, _col=2,
+                                                                image=self.dateIcon,
+                                                                command=lambda:self.datePicker.show(self.filterInputs["dateAddedStart"], self.filterInputs["dateAddedStart"].get(), "start"))
 
-        self.filterInputs["priceRange_txt"]       = Label_(self, width=35, _pady=(2,0), text=_("Price range"))
-        self.filterInputs["price_frame"]          = Frame_(self, style=VAR.FRAME_STYLE_SECONDARY)
-        self.filterInputs["priceStart"]           = Entry_(self.filterInputs["price_frame"], width=16, _row=0, _col=0)
-        self.filterInputs["priceRange"]           = Label_(self.filterInputs["price_frame"], width=2, _padx=(1,0), _row=0, _col=1, text="-", anchor="center")
-        self.filterInputs["priceEnd"]             = Entry_(self.filterInputs["price_frame"], width=16, _row=0, _col=2)
+        self.filterInputs["dateAddedEnd_txt"]    = Label_(self.filterInputs["dateFrame"], _row=6, _col=0, text=_("Max. date (added)"), _pady=(2,0))
+        self.filterInputs["dateAddedEnd"]        = Entry_(self.filterInputs["dateFrame"], _row=7, _col=0)
+        self.filterInputs["dateAddedEnd_pick"]   = LabelButton_(self.filterInputs["dateFrame"], _row=7, _col=2,
+                                                                image=self.dateIcon,
+                                                                command=lambda:self.datePicker.show(self.filterInputs["dateAddedEnd"], self.filterInputs["dateAddedEnd"].get(), "end"))
 
-        self.filterInputs["group_txt"]            = Label_(self, width=33, _pady=(2,0), text=_("Group by"))
-        self.filterInputs["group"]                = Combobox_(self, width=33, height=20, state="readonly")
 
-        self.filterInputs["cb_frame"] = Frame_(self, style=VAR.FRAME_STYLE_SECONDARY)
-        self.filterInputs["cart_txt"] = Label_(self.filterInputs["cb_frame"], width=13, _pady=(2,0), _row=0, _col=0, _padx=(0,18), text=_("Cart"))
-        self.filterInputs["box_txt"]  = Label_(self.filterInputs["cb_frame"], width=13, _pady=(2,0), _row=0, _col=1, text=_("Box"))
-        self.filterInputs["cart"]     = Combobox_(self.filterInputs["cb_frame"], width=13, _row=1, _col=0, _padx=(0,18), state="readonly")
-        self.filterInputs["box"]      = Combobox_(self.filterInputs["cb_frame"], width=13, _row=1, _col=1, state="readonly")
+        self.filterInputs["group_frame"]     = Frame_(self, style=VAR.FRAME_STYLE_SECONDARY)
+        self.filterInputs["group_frame"].columnconfigure(0, minsize=240)
 
-        self.filterInputs["mo_frame"]   = Frame_(self, style=VAR.FRAME_STYLE_SECONDARY)
-        self.filterInputs["manual_txt"] = Label_(self.filterInputs["mo_frame"], width=13, _pady=(2,0), _row=0, _col=0, _padx=(0,18), text=_("Manual"))
-        self.filterInputs["other_txt"]  = Label_(self.filterInputs["mo_frame"], width=13, _pady=(2,0), _row=0, _col=1, text=_("Other"))
-        self.filterInputs["manual"]     = Combobox_(self.filterInputs["mo_frame"], width=13, _row=1, _col=0, _padx=(0,18), state="readonly")
-        self.filterInputs["other"]      = Combobox_(self.filterInputs["mo_frame"], width=13, _row=1, _col=1, state="readonly")
+        self.filterInputs["group_txt"]       = Label_(self.filterInputs["group_frame"], _pady=(2,0), _row=0, _col=0, text=_("Group by"))
+        self.filterInputs["group"]           = Combobox_(self.filterInputs["group_frame"], height=20, _row=1, _col=0, state="readonly")
 
-        self.filterInputs["bf_frame"]       = Frame_(self, style=VAR.FRAME_STYLE_SECONDARY)
-        self.filterInputs["bookmarked_txt"] = Label_(self.filterInputs["bf_frame"], width=13, _pady=(2,0), _row=0, _col=0, _padx=(0,18), text=_("Bookmarked"))
-        self.filterInputs["finished_txt"]   = Label_(self.filterInputs["bf_frame"], width=13, _pady=(2,0), _row=0, _col=1, text=_("Finished"))
-        self.filterInputs["bookmarked"]     = Combobox_(self.filterInputs["bf_frame"], width=13, _row=1, _col=0, _padx=(0,18), state="readonly")
-        self.filterInputs["finished"]       = Combobox_(self.filterInputs["bf_frame"], width=13, _row=1, _col=1, state="readonly")
+        self.filterInputs["priceRange_txt"]  = Label_(self, text=_("Price range"), _pady=(2,0))
 
-        self.filterInputs["oo_frame"]       = Frame_(self, style=VAR.FRAME_STYLE_SECONDARY)
-        self.filterInputs["order_txt"]      = Label_(self.filterInputs["oo_frame"], width=13, _pady=(2,0), _row=0, _col=0, _padx=(0,18), text=_("Sort by"))
-        self.filterInputs["order_dir_txt"]  = Label_(self.filterInputs["oo_frame"], width=13, _pady=(2,0), _row=0, _col=1, text=_("Sort direction"))
-        self.filterInputs["order"]          = Combobox_(self.filterInputs["oo_frame"], width=13, _row=1, _col=0, _padx=(0,18), state="readonly")
-        self.filterInputs["orderDirection"] = Combobox_(self.filterInputs["oo_frame"], width=13, _row=1, _col=1, state="readonly")
+
+        self.filterInputs["column_frame"]    = Frame_(self, style=VAR.FRAME_STYLE_SECONDARY)
+        self.filterInputs["column_frame"].columnconfigure(0, minsize=111)
+        self.filterInputs["column_frame"].columnconfigure(1, minsize=18)
+        self.filterInputs["column_frame"].columnconfigure(2, minsize=111)
+
+        self.filterInputs["priceStart"]     = Entry_(self.filterInputs["column_frame"], _row=0, _col=0)
+        self.filterInputs["priceRange"]     = Label_(self.filterInputs["column_frame"], _row=0, _col=1, text="-", anchor="center")
+        self.filterInputs["priceEnd"]       = Entry_(self.filterInputs["column_frame"], _row=0, _col=2)
+
+        self.filterInputs["cart_txt"]       = Label_(self.filterInputs["column_frame"], _row=1, _col=0, text=_("Cart"), _pady=(2,0))
+        self.filterInputs["box_txt"]        = Label_(self.filterInputs["column_frame"], _row=1, _col=2, text=_("Box"), _pady=(2,0))
+        self.filterInputs["cart"]           = Combobox_(self.filterInputs["column_frame"], _row=2, _col=0, state="readonly")
+        self.filterInputs["box"]            = Combobox_(self.filterInputs["column_frame"], _row=2, _col=2, state="readonly")
+
+        self.filterInputs["manual_txt"]     = Label_(self.filterInputs["column_frame"], _row=3, _col=0, text=_("Manual"), _pady=(2,0))
+        self.filterInputs["other_txt"]      = Label_(self.filterInputs["column_frame"], _row=3, _col=2, text=_("Other"), _pady=(2,0))
+        self.filterInputs["manual"]         = Combobox_(self.filterInputs["column_frame"], _row=4, _col=0, state="readonly")
+        self.filterInputs["other"]          = Combobox_(self.filterInputs["column_frame"], _row=4, _col=2, state="readonly")
+
+        self.filterInputs["bookmarked_txt"] = Label_(self.filterInputs["column_frame"], _row=5, _col=0, text=_("Bookmarked"), _pady=(2,0))
+        self.filterInputs["finished_txt"]   = Label_(self.filterInputs["column_frame"], _row=5, _col=2, text=_("Finished"), _pady=(2,0))
+        self.filterInputs["bookmarked"]     = Combobox_(self.filterInputs["column_frame"], _row=6, _col=0, state="readonly")
+        self.filterInputs["finished"]       = Combobox_(self.filterInputs["column_frame"], _row=6, _col=2, state="readonly")
+
+        self.filterInputs["order_txt"]      = Label_(self.filterInputs["column_frame"], _row=7, _col=0, text=_("Sort by"), _pady=(2,0))
+        self.filterInputs["order_dir_txt"]  = Label_(self.filterInputs["column_frame"], _row=7, _col=2, text=_("Sort direction"), _pady=(2,0))
+        self.filterInputs["order"]          = Combobox_(self.filterInputs["column_frame"], _row=8, _col=0, state="readonly")
+        self.filterInputs["orderDirection"] = Combobox_(self.filterInputs["column_frame"], _row=8, _col=2, state="readonly")
+
+        self.filterInputs["filter_reset"]   = LabelButton_(self.filterInputs["column_frame"], _row=9, _col=0, _pady=(10,0), command=self.reset, style=VAR.LABELBUTTON_STYLE_CANCEL)
+        self.filterInputs["filter_apply"]   = LabelButton_(self.filterInputs["column_frame"], _row=9, _col=2, _pady=(10,0), command=self.showData, style=VAR.LABELBUTTON_STYLE_CONFIRM)
+        self.filterInputs["filter_reset"].config(text=_("Reset filter"), image=self.cancelIcon, compound="left")
+        self.filterInputs["filter_apply"].config(text=_("Apply filter"), image=self.confirmIcon, compound="left")
+
 
         if settings.get("display", "refreshOnFilterSelect", True):
             self.bindComboboxes()
@@ -140,9 +163,8 @@ class GUI_Filter(Frame_):
         self.fillYesNoComboboxes()
         self.fillOrderDirectionCombobox()
 
-        self.filter_button_frame = Frame_(self, style=VAR.FRAME_STYLE_SECONDARY)
-        self.filter_apply = Button_(self.filter_button_frame, width=12, style=VAR.BUTTON_STYLE_CONFIRM)
-        self.filter_reset = Button_(self.filter_button_frame, width=12, style=VAR.BUTTON_STYLE_CANCEL)
+        # self.filter_button_frame = Frame_(self, style=VAR.FRAME_STYLE_SECONDARY)
+
 
         rowCount = 0
 
@@ -164,17 +186,16 @@ class GUI_Filter(Frame_):
                 if not widget._pady == None:
                     pady = widget._pady
 
-            widget.grid(row=row, column=col, sticky="nw", padx=padx, pady=pady)
+            widget.grid(row=row, column=col, sticky="we", padx=padx, pady=pady)
             widget.bind("<Return>", self.showData)
             rowCount += 1
 
-        self.filter_button_frame.grid(row=rowCount, column=0, padx=0, pady=0, sticky="nw")
+        # self.filter_button_frame.grid(row=rowCount, column=0, padx=0, pady=0, sticky="nw")
 
-        self.filter_reset.config(text=_("Reset filter"), image=self.cancelIcon, compound="left", command=self.reset)
-        self.filter_reset.grid(row=0, column=0, sticky="nw", padx=(0,18), pady=(10, 5))
 
-        self.filter_apply.config(text=_("Apply filter"), image=self.confirmIcon, compound="left", command=self.showData)
-        self.filter_apply.grid(row=0, column=1, sticky="nw", pady=(10, 5))
+        # self.filter_reset.grid(row=0, column=0, sticky="nw", padx=(0,18), pady=(10, 5))
+
+        # self.filter_apply.grid(row=0, column=1, sticky="nw", pady=(10, 5))
 
 
     ######################
@@ -188,9 +209,10 @@ class GUI_Filter(Frame_):
                 widget.delete(0, END)
             if widget.__class__.__name__ == "Combobox_":
                 widget.set("")
-            if widget.__class__.__name__ == "Button_" or widget.__class__.__name__ == "BorderButton_":
+            if widget.__class__.__name__ == "LabelButton_":
                 if widget._id == "select":
-                    self.filterInputs[key].config(text=_("Select"), style=VAR.BUTTON_STYLE_PRIMARY)
+                    self.filterInputs[key].config(text=_("Select"))
+                    self.filterInputs[key].setStyle(VAR.LABELBUTTON_STYLE_DEFAULT)
                 if widget._toggle:
                     widget.setToggle(False)
 
@@ -218,7 +240,8 @@ class GUI_Filter(Frame_):
             if key in self.multiFilter:
                 if len(value):
                     self.multiFilter[key] = value
-                    self.filterInputs[key + "_select"].config(text=str(len(value)) + _(" selected"), style=VAR.BUTTON_STYLE_TOGGLE)
+                    self.filterInputs[key + "_select"].config(text=str(len(value)) + _(" selected"))
+                    self.filterInputs[key + "_select"].setStyle(VAR.LABELBUTTON_STYLE_TOGGLED)
                 continue
             if key in self.filterInputs:
                 widget = self.filterInputs[key]
@@ -226,7 +249,7 @@ class GUI_Filter(Frame_):
                 if widget.__class__.__name__ == "Entry_" or widget.__class__.__name__ == "Combobox_":
                     widget.set(value)
 
-                if widget.__class__.__name__ == "Button_" or widget.__class__.__name__ == "BorderButton_":
+                if widget.__class__.__name__ == "LabelButton_":
                     if widget._toggle:
                         widget.setToggle(value)
 
@@ -245,9 +268,11 @@ class GUI_Filter(Frame_):
         self.multiFilter["platforms"] = platforms
 
         if len(platforms):
-            self.filterInputs["platforms_select"].config(text=str(len(platforms)) + _(" selected"), style=VAR.BUTTON_STYLE_TOGGLE)
+            self.filterInputs["platforms_select"].config(text=str(len(platforms)) + _(" selected"))
+            self.filterInputs["platforms_select"].setStyle(VAR.LABELBUTTON_STYLE_TOGGLED)
         else:
-            self.filterInputs["platforms_select"].config(text=_("Select"), style=VAR.BUTTON_STYLE_PRIMARY)
+            self.filterInputs["platforms_select"].config(text=_("Select"))
+            self.filterInputs["platforms_select"].setStyle(VAR.LABELBUTTON_STYLE_DEFAULT)
 
         if settings.get("display", "refreshOnFilterSelect", True):
             self.showData()
@@ -267,9 +292,11 @@ class GUI_Filter(Frame_):
         self.multiFilter["platformHolders"] = platformHolders
 
         if len(platformHolders):
-            self.filterInputs["platformHolders_select"].config(text=str(len(platformHolders)) + _(" selected"), style=VAR.BUTTON_STYLE_TOGGLE)
+            self.filterInputs["platformHolders_select"].config(text=str(len(platformHolders)) + _(" selected"))
+            self.filterInputs["platformHolders_select"].setStyle(VAR.LABELBUTTON_STYLE_TOGGLED)
         else:
-            self.filterInputs["platformHolders_select"].config(text=_("Select"), style=VAR.BUTTON_STYLE_PRIMARY)
+            self.filterInputs["platformHolders_select"].config(text=_("Select"))
+            self.filterInputs["platformHolders_select"].setStyle(VAR.LABELBUTTON_STYLE_DEFAULT)
 
         if settings.get("display", "refreshOnFilterSelect", True):
             self.showData()
@@ -289,9 +316,11 @@ class GUI_Filter(Frame_):
         self.multiFilter["regions"] = regions
 
         if len(regions):
-            self.filterInputs["regions_select"].config(text=str(len(regions)) + _(" selected"), style=VAR.BUTTON_STYLE_TOGGLE)
+            self.filterInputs["regions_select"].config(text=str(len(regions)) + _(" selected"))
+            self.filterInputs["regions_select"].setStyle(VAR.LABELBUTTON_STYLE_TOGGLED)
         else:
-            self.filterInputs["regions_select"].config(text=_("Select"), style=VAR.BUTTON_STYLE_PRIMARY)
+            self.filterInputs["regions_select"].config(text=_("Select"), style=VAR.LABELBUTTON_STYLE_DEFAULT)
+            self.filterInputs["regions_select"].setStyle(VAR.LABELBUTTON_STYLE_DEFAULT)
 
         if settings.get("display", "refreshOnFilterSelect", True):
             self.showData()

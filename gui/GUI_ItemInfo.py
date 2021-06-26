@@ -11,7 +11,7 @@ from tkinter import *
 from tkinter import ttk
 
 from lib.Widgets    import Frame_
-from lib.Widgets    import Button_
+from lib.Widgets    import LabelButton_
 from lib.Widgets    import Label_
 from lib.Img        import loadIcon
 from lib.Browser    import openItemInBrowser
@@ -33,9 +33,9 @@ class GUI_ItemInfo(Frame_):
 
         # Icons
         # ------------------
-        self.item_bookmark_ico = loadIcon("bookmark-outline", 20, 20)
-        self.item_finished_ico = loadIcon("checkmark-circle-outline", 20, 20)
-        self.item_link_ico     = loadIcon("link-outline", 20, 20)
+        self.item_bookmark_ico = loadIcon("bookmark-outline", 15, 15)
+        self.item_finished_ico = loadIcon("checkmark-circle-outline", 15, 15)
+        self.item_link_ico     = loadIcon("link-outline", 15, 15)
         self.item_refresh_ico  = loadIcon("refresh-outline", 15, 15)
         self.item_view_ico     = loadIcon("eye-outline", 15, 15)
 
@@ -104,28 +104,23 @@ class GUI_ItemInfo(Frame_):
 
         # Frame for item toolbar
         self.item_tool_frame = Frame_(self , width=200 , height=10, style=VAR.FRAME_STYLE_SECONDARY)
-        self.item_tool_frame.grid(row=0, column=0, sticky="nwe", columnspan=2, pady=0 , padx=0)
+        self.item_tool_frame.grid(row=0, column=0, sticky="nwe", columnspan=2, pady=0 , padx=(0,10))
 
         # Item Toolbar
-        self.item_open_website = Button_(self.item_tool_frame, image=self.item_link_ico)
-        self.item_bookmark     = Button_(self.item_tool_frame, image=self.item_bookmark_ico)
-        self.item_finished     = Button_(self.item_tool_frame, image=self.item_finished_ico)
+        self.item_open_website = LabelButton_(self.item_tool_frame, image=self.item_link_ico, command=self.openOnVGCollect)
+        self.item_bookmark     = LabelButton_(self.item_tool_frame, image=self.item_bookmark_ico, command=self.toggleBookmark)
+        self.item_finished     = LabelButton_(self.item_tool_frame, image=self.item_finished_ico, command=self.toggleFinished)
         self.item_id           = Label_(self.item_tool_frame)
         self.item_spacer       = Label_(self.item_tool_frame)
 
         self.item_tool_frame.columnconfigure(0, weight=1)
 
-        self.item_open_website.config(command=self.openOnVGCollect)
         self.item_open_website.grid(row=0, column=1, sticky="ne", padx=3, pady=5)
-
-        self.item_bookmark.config(command=self.toggleBookmark)
-        self.item_bookmark.grid(row=0, column=2, sticky="ne", padx=(3), pady=5)
-
-        self.item_finished.config(command=self.toggleFinished)
-        self.item_finished.grid(row=0, column=3, sticky="ne", padx=(3), pady=5)
+        self.item_bookmark.grid(row=0, column=2, sticky="ne", padx=(3,0), pady=5)
+        self.item_finished.grid(row=0, column=3, sticky="ne", padx=(3,0), pady=5)
 
         self.item_spacer.grid(row=1, column=0)
-        self.item_id.grid(row=1, column=1, columnspan=4, sticky="e", padx=(3,10))
+        self.item_id.grid(row=1, column=1, columnspan=4, sticky="e", padx=(3,0))
 
 
     ######################
@@ -197,13 +192,13 @@ class GUI_ItemInfo(Frame_):
     # onCoverEnter
     # --------------------
     def onCoverEnter(self, label, type):
-        self.coverButton_coverViewer = Button_(label, image=self.item_view_ico,
-                                              command=lambda:self.pop_coverViewer.show(type, self.activeItem()))
-        self.coverButton_coverViewer.place(height=25, width=25, x=29, y=2)
+        self.coverButton_coverViewer = LabelButton_(label, image=self.item_view_ico,
+                                                    command=lambda:self.pop_coverViewer.show(type, self.activeItem()))
+        self.coverButton_coverViewer.place(height=35, width=35, x=39, y=2)
 
-        self.coverButton_coverUpdate = Button_(label, image=self.item_refresh_ico,
-                                              command=lambda:self.updateCover(self.activeItem(), type, label, True))
-        self.coverButton_coverUpdate.place(height=25, width=25, x=2, y=2)
+        self.coverButton_coverUpdate = LabelButton_(label, image=self.item_refresh_ico,
+                                                    command=lambda:self.updateCover(self.activeItem(), type, label, True))
+        self.coverButton_coverUpdate.place(height=35, width=35, x=2, y=2)
 
 
     ######################

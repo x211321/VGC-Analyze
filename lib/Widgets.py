@@ -251,9 +251,9 @@ class Combobox_(ttk.Combobox):
 
 
 ######################
-# Button_
+# LabelButton_
 # --------------------
-class Button_(ttk.Button):
+class LabelButton_(ttk.Label):
 
     # Constructor
     def __init__(self,
@@ -266,7 +266,6 @@ class Button_(ttk.Button):
                  command=None,
                  compound=None,
                  _toggle=False,
-                 _borderButton=False,
                  _id="",
                  _col=None, _row=None,
                  _padx=None, _pady=None):
@@ -274,13 +273,17 @@ class Button_(ttk.Button):
         if len(text) and image and compound == None:
             compound = "left"
 
+        if not len(style):
+            style = VAR.LABELBUTTON_STYLE_DEFAULT
+
         super().__init__(master=master, style=style,
                          text=text, width=width,
-                         state=state, command=command,
+                         state=state,
                          image=image, compound=compound,
                          takefocus=False)
 
         self._style        = style
+        self._command      = command
         self._id           = _id
         self._col          = _col
         self._row          = _row
@@ -289,97 +292,45 @@ class Button_(ttk.Button):
         self._toggle       = _toggle
         self._toggleState  = False
         self._master       = master
-        self._borderButton = _borderButton
+
+        self.bind("<Enter>", self._enter)
+        self.bind("<Leave>", self._leave)
+        self.bind("<Button-1>", self._press)
+        self.bind("<ButtonRelease-1>", self._click)
 
         if self._toggle:
-            self.config(command=self.toggleButtonState)
+            self._command = self.toggleButtonState
+
+    def _click(self, a = None):
+        self.config(style=VAR.LABELBUTTON_STYLE_HOVER)
+        self._command()
+
+    def _press(self, a = None):
+        self.config(style=VAR.LABELBUTTON_STYLE_PRESSED)
+
+    def _enter(self, a = None):
+        self.config(style=VAR.LABELBUTTON_STYLE_HOVER)
+
+    def _leave(self, a = None):
+        if self._toggle and self._toggleState:
+            self.config(style=VAR.LABELBUTTON_STYLE_TOGGLED)
+        else:
+            self.config(style=self._style)
 
     def setToggle(self, newToggleState):
         self._toggleState = newToggleState
 
         if self._toggleState:
-            self.config(style=VAR.BUTTON_STYLE_TOGGLE)
+            self.config(style=VAR.LABELBUTTON_STYLE_TOGGLED)
         else:
             self.config(style=self._style)
-
-        if self._borderButton == True:
-            self.master.setBorderToggle()
 
     def toggleButtonState(self):
         self.setToggle(not self._toggleState)
 
-
-
-######################
-# BorderButton_
-# --------------------
-# Combination of LabelFrame and Button
-# as a workaround for the missing button
-# colors under macOS
-class BorderButton_(ttk.LabelFrame):
-    # Constructor
-    def __init__(self,
-                 master=None,
-                 text="",
-                 width=None,
-                 state="normal",
-                 image=None,
-                 command=None,
-                 _toggle=False,
-                 _border_bg=None,
-                 _border_bd=0,
-                 _id="",
-                 _col=None, _row=None,
-                 _padx=None, _pady=None):
-
-        # if platform.system() == "Darwin":
-        #     if border_bd == 0:
-        #         border_bd = 2
-
-        self._id          = _id
-        self._col         = _col
-        self._row         = _row
-        self._padx        = _padx
-        self._pady        = _pady
-        self._toggle      = _toggle
-        self._toggleState = False
-        self._border_bd   = _border_bd
-
-        super().__init__(master=master, padding=_border_bd)
-
-        # if not border_bg == None:
-        #     self.border_bg = border_bg
-        # else:
-        #     self.border_bg = self.cget("bg")
-
-        # if not width == None and width > border_bd:
-        #     width = width - border_bd
-        # if not height == None and height > border_bd:
-        #     height = height - border_bd
-
-        self.button = Button_(master=self, _id=_id, text=text, _col=_col, _row=_row,
-                              width=width, _padx=_padx, _pady=_pady, state=state,
-                              image=image, command=command, _toggle=_toggle, _borderButton=True)
-
-        self.button.grid()
-
-    def setToggle(self, newToggleState):
-        self.button.setToggle(newToggleState)
-
-    def toggleButtonState(self):
-        self.button.toggleButtonState()
-
-    def setBorderToggle(self):
-        # Gets triggered by the button that's inside
-        # this LabelFrame
-        self._toggleState = self.button._toggleState
-
-        # if self.toggleState:
-        #     self.config(bg=VAR.BUTTON_COLOR_TOGGLE)
-        # else:
-        #     self.config(bg=self.border_bg)
-
-
+    def setStyle(self, style):
+        self._style = style
+        self.config(style=self._style)
 
 
 ######################

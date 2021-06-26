@@ -153,9 +153,9 @@ class Pop_CollectionDownload(object):
         self.input_user       = Entry_(self.input_frame, width=31)
         self.label_pass       = Label_(self.input_frame, anchor="w", text=_("Password"))
         self.input_pass       = Entry_(self.input_frame, width=31, show="*")
-        self.btn_cancel       = Button_(self.button_frame, width=18, text=_("Cancel"), style=VAR.BUTTON_STYLE_CANCEL, command=self.close)
+        self.btn_cancel       = LabelButton_(self.button_frame, width=18, text=_("Cancel"), style=VAR.LABELBUTTON_STYLE_CANCEL, command=self.close)
         self.btn_spacer       = Label_(self.button_frame, style=VAR.LABEL_STYLE_SECONDARY)
-        self.btn_download     = Button_(self.button_frame, width=18, text=_("Download"), style=VAR.BUTTON_STYLE_CONFIRM, command=self.download)
+        self.btn_download     = LabelButton_(self.button_frame, width=18, text=_("Download"), style=VAR.LABELBUTTON_STYLE_CONFIRM, command=self.download)
         self.label_disclaimer = Label_(self.button_frame, width=35, style=VAR.LABEL_STYLE_WARN_TEXT_SECONDARY)
         self.label_info       = Label_(self.button_frame, width=35, style=VAR.LABEL_STYLE_SECONDARY)
         self.label_link       = Label_(self.button_frame, width=35, anchor="center", style=VAR.LABEL_STYLE_LINK_SECONDARY)
@@ -284,9 +284,9 @@ class Pop_ItemSearch(object):
         self.input_search = Entry_(self.input_frame, width=35)
         self.label_info   = Label_(self.input_frame, width=35, anchor="w", style=VAR.LABEL_STYLE_WARN_TEXT_PRIMARY)
 
-        self.btn_cancel   = Button_(self.button_frame, width=15, text=_("Cancel"), style=VAR.BUTTON_STYLE_CANCEL, command=self.close)
+        self.btn_cancel   = LabelButton_(self.button_frame, width=15, text=_("Cancel"), style=VAR.LABELBUTTON_STYLE_CANCEL, command=self.close)
         self.btn_spacer   = Label_(self.button_frame, style=VAR.LABEL_STYLE_SECONDARY)
-        self.btn_search   = Button_(self.button_frame, width=15, text=_("Search"), style=VAR.BUTTON_STYLE_CONFIRM, command=self.search)
+        self.btn_search   = LabelButton_(self.button_frame, width=15, text=_("Search"), style=VAR.LABELBUTTON_STYLE_CONFIRM, command=self.search)
 
         self.label_search.grid(row=0, column=0, pady=(15,10), padx=(15, 5), sticky="w")
         self.input_search.grid(row=0, column=1, pady=(15,10), padx=(5, 15), sticky="w")
@@ -402,10 +402,10 @@ class Pop_FilterSelect(object):
         self.frame_options.grid(row=0, column=0, padx=10, pady=10, sticky="nesw")
         self.frame_buttons.grid(row=1, column=0, sticky="nesw")
 
-        self.btn_cancel= Button_(self.frame_buttons, width=20, text=_("Cancel"), command=self.close, style=VAR.BUTTON_STYLE_CANCEL)
-        self.btn_reset = Button_(self.frame_buttons, width=20, text=_("Reset"), command=self.reset)
-        self.btn_all   = Button_(self.frame_buttons, width=20, text=_("Select all"), command=self.selectAll)
-        self.btn_ok    = Button_(self.frame_buttons, width=20, text=_("OK"), command=self.confirm, style=VAR.BUTTON_STYLE_CONFIRM)
+        self.btn_cancel= LabelButton_(self.frame_buttons, width=20, text=_("Cancel"), command=self.close, style=VAR.LABELBUTTON_STYLE_CANCEL)
+        self.btn_reset = LabelButton_(self.frame_buttons, width=20, text=_("Reset"), command=self.reset)
+        self.btn_all   = LabelButton_(self.frame_buttons, width=20, text=_("Select all"), command=self.selectAll)
+        self.btn_ok    = LabelButton_(self.frame_buttons, width=20, text=_("OK"), command=self.confirm, style=VAR.LABELBUTTON_STYLE_CONFIRM)
 
         self.btn_cancel.grid(row=0, column=0, padx=10, pady=20, sticky="w")
         self.btn_reset.grid(row=0, column=1, padx=10, pady=20, sticky="w")
@@ -435,7 +435,7 @@ class Pop_FilterSelect(object):
 
         # Create togglebuttons
         for option, data in options:
-            self.widgets[option] = Button_(self.frame_options, text=option, width=maxLen, _toggle=True)
+            self.widgets[option] = LabelButton_(self.frame_options, text=option, width=maxLen, _toggle=True)
             self.widgets[option].grid(row=row, column=col, sticky="w", padx=5, pady=5)
 
             if option in activeOptions:
@@ -563,7 +563,7 @@ class Pop_ItemDetails(object):
         self.info_dateAdded.grid(row=6, column=1, sticky="nw")
 
         # Online info
-        self.button_getOnlineInfo        = Button_(self.onlineInfoFrame, text=_("Get VGC data"), width=25, command=self.getOnline)
+        self.button_getOnlineInfo        = LabelButton_(self.onlineInfoFrame, text=_("Get VGC data"), width=25, command=self.getOnline)
         self.onlineInfo_altname_text     = Label_(self.onlineInfoFrame, text=_("Alt-Name"))
         self.onlineInfo_altname          = Label_(self.onlineInfoFrame)
         self.onlineInfo_releasetype_text = Label_(self.onlineInfoFrame, text=_("Release Type"))
@@ -602,7 +602,7 @@ class Pop_ItemDetails(object):
 
         # Buttons
         self.buttonFrame.columnconfigure(0, weight=1)
-        self.button_close = Button_(self.buttonFrame, text="Close", width=25, command=self.close)
+        self.button_close = LabelButton_(self.buttonFrame, text="Close", width=25, command=self.close)
         self.button_close.grid(row=0, column=0, padx=10, pady=20)
 
         # Center window
@@ -709,7 +709,7 @@ class Pop_About(object):
         self.label_disclamer   = Label_(self.label_frame, text=_("VGC Analyze is a hobby project, not affiliated with or endorsed by VGCollect.com"))
         self.label_license     = Label_(self.label_frame)
         self.label_link        = Label_(self.label_frame, style=VAR.LABEL_STYLE_LINK_PRIMARY)
-        self.btn_close = Button_(self.button_frame, width=18, text=_("Close"), command=self.close)
+        self.btn_close         = LabelButton_(self.button_frame, width=18, text=_("Close"), command=self.close)
 
         self.label_license.set( 'MIT License\n\n'
                                 'Copyright (c) 2021 x211321, pfochel\n\n'
@@ -833,9 +833,9 @@ class Pop_DatePicker(object):
         self.frame_year.grid(row=0, column=0, sticky="nwse", pady=(0, 5))
         self.frame_year.columnconfigure(1, weight=1)
 
-        self.button_prev_year = Button_(self.frame_year, width=30, image=self.iconPrev, command=lambda:self.changeYear(-1))
+        self.button_prev_year = LabelButton_(self.frame_year, width=30, image=self.iconPrev, command=lambda:self.changeYear(-1))
         self.label_year       = Label_(self.frame_year, text=str(self.year), font=(20))
-        self.button_next_year = Button_(self.frame_year, width=30, image=self.iconNext, command=lambda:self.changeYear(+1))
+        self.button_next_year = LabelButton_(self.frame_year, width=30, image=self.iconNext, command=lambda:self.changeYear(+1))
 
         self.button_prev_year.grid(row=0, column=0)
         self.label_year.grid(row=0, column=1)
@@ -846,9 +846,9 @@ class Pop_DatePicker(object):
         self.frame_month.grid(row=1, column=0, sticky="nwse", pady=(0, 5))
         self.frame_month.columnconfigure(1, weight=1)
 
-        self.button_prev_month = Button_(self.frame_month, width=30, image=self.iconPrev, command=lambda:self.changeMonth(-1))
+        self.button_prev_month = LabelButton_(self.frame_month, width=30, image=self.iconPrev, command=lambda:self.changeMonth(-1))
         self.label_month       = Label_(self.frame_month, text=self.month_name, font=(15))
-        self.button_next_month = Button_(self.frame_month, width=30, image=self.iconNext, command=lambda:self.changeMonth(+1))
+        self.button_next_month = LabelButton_(self.frame_month, width=30, image=self.iconNext, command=lambda:self.changeMonth(+1))
 
         self.button_prev_month.grid(row=0, column=0)
         self.label_month.grid(row=0, column=1)
@@ -859,8 +859,8 @@ class Pop_DatePicker(object):
         self.frame_days.grid(row=2, column=0, sticky="nwse")
 
         # Buttons
-        self.btn_cancel= Button_(self.frame_buttons, width=15, text=_("Cancel"), command=self.close, style=VAR.BUTTON_STYLE_CANCEL)
-        self.btn_ok    = Button_(self.frame_buttons, width=15, text=_("OK"), command=self.confirm, style=VAR.BUTTON_STYLE_CONFIRM)
+        self.btn_cancel= LabelButton_(self.frame_buttons, width=15, text=_("Cancel"), command=self.close, style=VAR.LABELBUTTON_STYLE_CANCEL)
+        self.btn_ok    = LabelButton_(self.frame_buttons, width=15, text=_("OK"), command=self.confirm, style=VAR.LABELBUTTON_STYLE_CONFIRM)
 
         self.btn_cancel.grid(row=0, column=0, padx=10, pady=20, sticky="w")
         self.btn_ok.grid(row=0, column=1, padx=10, pady=20, sticky="e")
@@ -1114,9 +1114,9 @@ class Pop_TemplateManager(object):
         self.label_template_name    = Label_(self.frame_inputs, text=_("Save ") + VAR.TEMPLATE_CURRENT_CONFIG + _(" as:"))
         self.input_template_name    = Entry_(self.frame_inputs, width=37)
 
-        self.button_template_save   = Button_(self.frame_inputs,
-                                              image=self.icon_save, style=VAR.BUTTON_STYLE_CONFIRM,
-                                              command=self.saveTemplate)
+        self.button_template_save   = LabelButton_(self.frame_inputs,
+                                                   image=self.icon_save, style=VAR.LABELBUTTON_STYLE_CONFIRM,
+                                                   command=self.saveTemplate)
 
 
 
@@ -1130,16 +1130,16 @@ class Pop_TemplateManager(object):
 
 
         # Remove template button
-        self.button_template_remove = Button_(self.frame_delete,
-                                              image=self.icon_delete,
-                                              style=VAR.BUTTON_STYLE_CANCEL,
-                                              command=self.removeTemplate)
+        self.button_template_remove = LabelButton_(self.frame_delete,
+                                                   image=self.icon_delete,
+                                                   style=VAR.LABELBUTTON_STYLE_CANCEL,
+                                                   command=self.removeTemplate)
         self.button_template_remove.grid(row=0, column=0)
 
 
         # Buttons
-        self.btn_cancel = Button_(self.frame_buttons, width=15, text=_("Close"), command=self.close, style=VAR.BUTTON_STYLE_CANCEL)
-        self.btn_load   = Button_(self.frame_buttons, width=15, text=_("Load"), command=self.confirm, style=VAR.BUTTON_STYLE_CONFIRM)
+        self.btn_cancel = LabelButton_(self.frame_buttons, width=15, text=_("Close"), command=self.close, style=VAR.LABELBUTTON_STYLE_CANCEL)
+        self.btn_load   = LabelButton_(self.frame_buttons, width=15, text=_("Load"), command=self.confirm, style=VAR.LABELBUTTON_STYLE_CONFIRM)
 
         self.btn_cancel.grid(row=0, column=0, padx=10, pady=20, sticky="w")
         self.btn_load.grid(row=0, column=1, padx=10, pady=20, sticky="e")
