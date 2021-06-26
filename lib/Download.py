@@ -1,12 +1,9 @@
 from lib.Locale import _
 
 import os
-import sys
-import shutil
 import urllib.parse
 import urllib.request
 import http.cookiejar
-import getpass
 
 import lib.Var as VAR
 

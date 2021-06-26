@@ -11,8 +11,6 @@ import re
 import urllib.request
 
 from tkinter import *
-from tkinter import ttk
-from tkinter import ttk
 
 from lib.Version     import VERSION
 from lib.Data        import CollectionData

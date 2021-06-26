@@ -1,8 +1,13 @@
+import platform
 import lib.Var as VAR
 from tkinter import ttk
 from tkinter import font
 
 def initStyles():
+
+    if platform.system() == "Linux" or platform.system() == "Darwin":
+        # Load themable base theme
+        ttk.Style().theme_use("alt")
 
     # Set default font sizes
     font.nametofont("TkDefaultFont").configure(size=9, weight="normal")

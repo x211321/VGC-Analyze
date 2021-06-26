@@ -2,11 +2,9 @@ from lib.Locale import _
 import lib.Settings as settings
 
 from tkinter import *
-from tkinter import ttk
 
 from lib.Widgets import *
 from lib.Img import loadIcon
-
 from gui.popups.FilterSelect import FilterSelect
 from gui.popups.DatePicker import DatePicker
 

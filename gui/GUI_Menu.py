@@ -4,7 +4,6 @@ from lib.Browser import openFileManager
 import lib.Var as VAR
 
 from tkinter import *
-from tkinter import ttk
 
 
 ######################

@@ -1,5 +1,4 @@
 import sys
-import trace
 import threading
 
 class Thread_(threading.Thread):

@@ -1,7 +1,6 @@
 from lib.Locale import _
 
 import os
-import platform
 import time
 
 from tkinter import *

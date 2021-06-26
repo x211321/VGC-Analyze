@@ -8,7 +8,6 @@ import os
 from datetime import datetime
 
 from tkinter import *
-from tkinter import ttk
 
 from lib.Widgets import LabelButton_
 from lib.Widgets import Label_

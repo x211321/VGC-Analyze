@@ -1,5 +1,3 @@
-import platform
-
 from lib.Path import *
 from lib.Locale import _
 
@@ -61,6 +59,7 @@ GRAPH_BAR_COLOR_ACTIVE   = "#547CFF"
 
 INPUT_COLOR              = "white"
 
+DEFAULT_THEME_NAME = "VGC_Analyze"
 
 # Categories
 CAT_HARDWARE     = "Hardware"

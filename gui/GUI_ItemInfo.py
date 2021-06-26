@@ -5,11 +5,9 @@ from lib.Locale import locDate
 
 import os
 import threading
-import time
 import platform
 
 from tkinter import *
-from tkinter import ttk
 
 from lib.Widgets    import Frame_
 from lib.Widgets    import LabelButton_
