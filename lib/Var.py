@@ -31,6 +31,12 @@ LABEL_STYLE_WARN_TEXT_SECONDARY = "label_warn_text_secondary.TLabel"
 LABEL_STYLE_LINK_PRIMARY        = "label_link_primary.TLabel"
 LABEL_STYLE_LINK_SECONDARY      = "label_link_secondary.TLabel"
 
+LABEL_STYLE_CAL_PRIMARY         = "label_cal_primary.TLabel"
+LABEL_STYLE_CAL_SECONDARY       = "label_cal_secondary.TLabel"
+LABEL_STYLE_CAL_HIGH_PRIMARY    = "label_cal_high_primary.TLabel"
+LABEL_STYLE_CAL_HIGH_SECONDARY  = "label_cal_high_secondary.TLabel"
+LABEL_STYLE_CAL_SELECTED        = "label_cal_selected.TLabel"
+
 BUTTON_STYLE_PRIMARY  = "button_primary.TButton"
 BUTTON_STYLE_CONFIRM  = "button_confirm.TButton"
 BUTTON_STYLE_CANCEL   = "button_cancel.TButton"

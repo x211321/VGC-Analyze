@@ -1001,7 +1001,7 @@ class Pop_DatePicker(object):
 
 
     def dayLabelLeave(self, a, index):
-        self.daylabels[index].restore_bg()
+        self.daylabels[index].restore_style()
 
 
     def dayLabelSelect(self, a, index, day, confirm=False):
@@ -1016,10 +1016,10 @@ class Pop_DatePicker(object):
 
 
         if self.indexSelected in self.daylabels:
-            self.daylabels[self.indexSelected].set_bg(VAR.CAL_COLOR_PRIMARY)
+            self.daylabels[self.indexSelected].set_style(VAR.LABEL_STYLE_CAL_PRIMARY)
 
         self.indexSelected = index
-        self.daylabels[index].set_bg(VAR.CAL_COLOR_SELECTED)
+        self.daylabels[index].set_style(VAR.LABEL_STYLE_CAL_SELECTED)
 
         if confirm:
             self.confirm()
