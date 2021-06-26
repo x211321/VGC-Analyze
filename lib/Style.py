@@ -10,15 +10,16 @@ def initStyles():
         ttk.Style().theme_use("alt")
 
     # Set default font sizes
-    font.nametofont("TkDefaultFont").configure(size=9, weight="normal")
-    font.nametofont("TkTextFont").configure(size=9, weight="normal")
-    font.nametofont("TkFixedFont").configure(size=10, weight="normal")
-    font.nametofont("TkMenuFont").configure(size=9, weight="normal")
-    font.nametofont("TkHeadingFont").configure(size=9, weight="normal")
-    font.nametofont("TkCaptionFont").configure(size=9, weight="normal")
-    font.nametofont("TkSmallCaptionFont").configure(size=9, weight="normal")
-    font.nametofont("TkIconFont").configure(size=9, weight="normal")
-    font.nametofont("TkTooltipFont").configure(size=9, weight="normal")
+    if platform.system() == "Linux":
+        font.nametofont("TkDefaultFont").configure(size=9, weight="normal")
+        font.nametofont("TkTextFont").configure(size=9, weight="normal")
+        font.nametofont("TkFixedFont").configure(size=10, weight="normal")
+        font.nametofont("TkMenuFont").configure(size=9, weight="normal")
+        font.nametofont("TkHeadingFont").configure(size=9, weight="normal")
+        font.nametofont("TkCaptionFont").configure(size=9, weight="normal")
+        font.nametofont("TkSmallCaptionFont").configure(size=9, weight="normal")
+        font.nametofont("TkIconFont").configure(size=9, weight="normal")
+        font.nametofont("TkTooltipFont").configure(size=9, weight="normal")
 
 
     ttk.Style().configure("TFrame", background=VAR.GUI_COLOR_PRIMARY)
