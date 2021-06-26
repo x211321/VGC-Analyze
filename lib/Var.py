@@ -14,6 +14,9 @@ BUTTON_COLOR_CANCEL      = "#F59398"
 BUTTON_COLOR_TOGGLE      = "#FFA90D"
 LABEL_COLOR_WARN_TEXT    = "red"
 
+MENU_BG_HOVER = "#0078D7"
+MENU_FG_HOVER = "white"
+
 if platform.system() == "Darwin":
     GUI_COLOR_PRIMARY    = "white"
     GUI_COLOR_SECONDARY  = "white"
