@@ -103,18 +103,18 @@ GROUP_BY_PLATFORMHOLDER = "platform holder"
 GROUP_BY_NOTES          = "notes"
 GROUP_BY_VGCID          = "VGC ID"
 
-GROUP_BY[GROUP_BY_YEAR          ] = _(GROUP_BY_YEAR          )
-GROUP_BY[GROUP_BY_MONTH         ] = _(GROUP_BY_MONTH         )
-GROUP_BY[GROUP_BY_DAY           ] = _(GROUP_BY_DAY           )
-GROUP_BY[GROUP_BY_YEAR_ADDED    ] = _(GROUP_BY_YEAR_ADDED    )
-GROUP_BY[GROUP_BY_MONTH_ADDED   ] = _(GROUP_BY_MONTH_ADDED   )
-GROUP_BY[GROUP_BY_DAY_ADDED     ] = _(GROUP_BY_DAY_ADDED     )
-GROUP_BY[GROUP_BY_NAME          ] = _(GROUP_BY_NAME          )
-GROUP_BY[GROUP_BY_REGION        ] = _(GROUP_BY_REGION        )
-GROUP_BY[GROUP_BY_PLATFORM      ] = _(GROUP_BY_PLATFORM      )
-GROUP_BY[GROUP_BY_PLATFORMHOLDER] = _(GROUP_BY_PLATFORMHOLDER)
-GROUP_BY[GROUP_BY_NOTES         ] = _(GROUP_BY_NOTES         )
-GROUP_BY[GROUP_BY_VGCID         ] = _(GROUP_BY_VGCID         )
+GROUP_BY[GROUP_BY_YEAR          ] = _("year (purchased)" )
+GROUP_BY[GROUP_BY_MONTH         ] = _("month (purchased)")
+GROUP_BY[GROUP_BY_DAY           ] = _("day (purchased)"  )
+GROUP_BY[GROUP_BY_YEAR_ADDED    ] = _("year (added)"     )
+GROUP_BY[GROUP_BY_MONTH_ADDED   ] = _("month (added)"    )
+GROUP_BY[GROUP_BY_DAY_ADDED     ] = _("day (added)"      )
+GROUP_BY[GROUP_BY_NAME          ] = _("name"             )
+GROUP_BY[GROUP_BY_REGION        ] = _("region"           )
+GROUP_BY[GROUP_BY_PLATFORM      ] = _("platform"         )
+GROUP_BY[GROUP_BY_PLATFORMHOLDER] = _("platform holder"  )
+GROUP_BY[GROUP_BY_NOTES         ] = _("notes"            )
+GROUP_BY[GROUP_BY_VGCID         ] = _("VGC ID"           )
 
 
 
@@ -129,13 +129,13 @@ ORDER_BY_REGION     = "region"
 ORDER_BY_PLATFORM   = "platform"
 ORDER_BY_NOTES      = "notes"
 
-ORDER_BY[ORDER_BY_NAME      ] = _(ORDER_BY_NAME      )
-ORDER_BY[ORDER_BY_PRICE     ] = _(ORDER_BY_PRICE     )
-ORDER_BY[ORDER_BY_DATE      ] = _(ORDER_BY_DATE      )
-ORDER_BY[ORDER_BY_DATE_ADDED] = _(ORDER_BY_DATE_ADDED)
-ORDER_BY[ORDER_BY_REGION    ] = _(ORDER_BY_REGION    )
-ORDER_BY[ORDER_BY_PLATFORM  ] = _(ORDER_BY_PLATFORM  )
-ORDER_BY[ORDER_BY_NOTES     ] = _(ORDER_BY_NOTES     )
+ORDER_BY[ORDER_BY_NAME      ] = _("name"            )
+ORDER_BY[ORDER_BY_PRICE     ] = _("price"           )
+ORDER_BY[ORDER_BY_DATE      ] = _("date (purchased)")
+ORDER_BY[ORDER_BY_DATE_ADDED] = _("date (added)"    )
+ORDER_BY[ORDER_BY_REGION    ] = _("region"          )
+ORDER_BY[ORDER_BY_PLATFORM  ] = _("platform"        )
+ORDER_BY[ORDER_BY_NOTES     ] = _("notes"           )
 
 
 # Order direction
@@ -144,8 +144,8 @@ ORDER_DIRECTION = {}
 ORDER_DIRECTION_ASCENDING  = "ascending"
 ORDER_DIRECTION_DESCENDING = "descending"
 
-ORDER_DIRECTION[ORDER_DIRECTION_ASCENDING ] = _(ORDER_DIRECTION_ASCENDING )
-ORDER_DIRECTION[ORDER_DIRECTION_DESCENDING] = _(ORDER_DIRECTION_DESCENDING)
+ORDER_DIRECTION[ORDER_DIRECTION_ASCENDING ] = _("ascending" )
+ORDER_DIRECTION[ORDER_DIRECTION_DESCENDING] = _("descending")
 
 
 # Attribute Yes / No
@@ -154,8 +154,8 @@ ATTRIBUTE_YN = {}
 ATTRIBUTE_YES = "Yes"
 ATTRIBUTE_NO  = "No"
 
-ATTRIBUTE_YN[ATTRIBUTE_YES] = _(ATTRIBUTE_YES)
-ATTRIBUTE_YN[ATTRIBUTE_NO]  = _(ATTRIBUTE_NO)
+ATTRIBUTE_YN[ATTRIBUTE_YES] = _("Yes")
+ATTRIBUTE_YN[ATTRIBUTE_NO]  = _("No" )
 
 
 # Treeview columns

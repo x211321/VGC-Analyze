@@ -33,6 +33,14 @@ for file in file_list:
     if file.endswith(".py"):
         files.append(path+file)
 
+path = "../gui/popups/"
+
+file_list = os.listdir(path)
+
+for file in file_list:
+    if file.endswith(".py"):
+        files.append(path+file)
+
 print("Generating .po for:")
 for file in files:
     print(file)
@@ -42,7 +50,7 @@ path = "../assets/locales/"
 if not os.path.exists(path):
     os.makedirs(path)
 
-os.system("\""+pyToolPath + "i18n/pygettext.py\" -d base -o ./base.pot " + " ".join(files))
+os.system("python \""+pyToolPath + "i18n/pygettext.py\" -d base -o ./base.pot " + " ".join(files))
 
 for language in languages:
 
