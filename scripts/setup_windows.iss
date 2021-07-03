@@ -4,6 +4,7 @@
 #include ".\setup_windows_version.iss"
 
 #define MyAppName "VGC Analyze"
+#define MyPackageName "VGC_Analyze"
 #define MyAppPublisher "x211321"
 #define MyAppURL "https://github.com/x211321/VGC_Analyze"
 #define MyAppExeName "VGC_Analyze.exe"
@@ -28,7 +29,7 @@ PrivilegesRequiredOverridesAllowed=dialog
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
-OutputBaseFilename={#MyAppName}_{#MyAppVersion}_setup_win
+OutputBaseFilename={#MyPackageName}_{#MyAppVersion}_setup_win
 OutputDir=.\build\dist\
 SetupIconFile=..\assets\icons\icon.ico
 UninstallDisplayIcon={app}\{#MyAppExeName}
