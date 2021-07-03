@@ -1,16 +1,20 @@
 import os
 import sys
 import platform
-import pathlib 
+import pathlib
 
 FILE_PREFIX = "collection-"
 
+DATA_FODLER = "VGC_Analyze_data"
+DATA_PATH   = "./"+DATA_FODLER+"/"
+
 if platform.system() == "Windows":
-    DATA_PATH = os.path.expandvars("%APPDATA%") + "\VGC_Analyze_data\\"
+    DATA_PATH = os.path.expandvars("%APPDATA%") + "\\"+DATA_FODLER+"\\"
 elif platform.system() == "Linux":
-    DATA_PATH = str(pathlib.Path.home()) + "/.VGC_Analyze_data/"
-else:
-    DATA_PATH = "./VGC_Analyze_data/"
+    DATA_PATH = str(pathlib.Path.home()) + "/."+DATA_FODLER+"/"
+elif platform.system() == "Darwin":
+    from AppKit import NSSearchPathForDirectoriesInDomains, NSApplicationSupportDirectory, NSUserDomainMask
+    DATA_PATH = os.path.join(NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, True)[0], DATA_FODLER)
 
 EXPORT_PATH             = DATA_PATH + "export/"
 LOCAL_DATA              = DATA_PATH + "local/"
