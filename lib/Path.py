@@ -13,8 +13,7 @@ if platform.system() == "Windows":
 elif platform.system() == "Linux":
     DATA_PATH = str(pathlib.Path.home()) + "/."+DATA_FODLER+"/"
 elif platform.system() == "Darwin":
-    from AppKit import NSSearchPathForDirectoriesInDomains, NSApplicationSupportDirectory, NSUserDomainMask
-    DATA_PATH = os.path.join(NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, True)[0], DATA_FODLER)
+    DATA_PATH = str(pathlib.Path.home()) + "/Library/Application Support/" + DATA_FODLER + "/"
 
 EXPORT_PATH             = DATA_PATH + "export/"
 LOCAL_DATA              = DATA_PATH + "local/"
