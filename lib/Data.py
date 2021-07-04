@@ -66,7 +66,7 @@ class CollectionItem(object):
             self.VGC_id       = int(csv_fields[CSVColumns.VGC_id])
             self.name         = csv_fields[CSVColumns.name]
             self.platform     = self.getPlatformName(csv_fields[CSVColumns.platform], combinePlatforms)
-            self.price        = float(csv_fields[CSVColumns.price])
+            self.price        = self.getPurchasePrice(csv_fields[CSVColumns.price])
             self.date         = csv_fields[CSVColumns.date]
             self.region       = self.getRegion(csv_fields[CSVColumns.platform])
             self.cart         = csv_fields[CSVColumns.cart]
@@ -106,6 +106,19 @@ class CollectionItem(object):
                 self.localData = localItemData_List[self.id()]
             if self.id() in onlineItemData_List.keys():
                 self.onlineData = onlineItemData_List[self.id()]
+
+    def getPurchasePrice(self, priceString):
+        # Remove all non-number charcters
+        priceString = "".join(char for char in priceString if char in ",.1234567890")
+
+        # Try formating the resulting price
+        # string as a floating point number
+        try:
+            price = float(priceString)
+        except:
+            price = 0.0
+
+        return price
 
     def getPlatformName(self, platformString, combinePlatforms):
 
