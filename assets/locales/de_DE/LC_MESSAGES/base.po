@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2021-04-28 22:10+0200\n"
-"PO-Revision-Date: 2021-07-03 12:59+0200\n"
+"PO-Revision-Date: 2021-07-04 13:00+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 "X-Generator: Poedit 2.4.3\n"
 
-#: ../gui/GUI.py:251
+#: ../gui/GUI.py:256
 msgid "items"
 msgstr "Einträge"
 
@@ -271,7 +271,7 @@ msgstr "Zurücksetzten"
 msgid "Apply filter"
 msgstr "Anwenden"
 
-#: ../gui/GUI.py:254
+#: ../gui/GUI.py:259
 msgid "total price: "
 msgstr "Gesamtpreis: "
 
@@ -452,7 +452,7 @@ msgstr "Preis"
 msgid "Bookmark"
 msgstr "Lesezeichen"
 
-#: ../lib/Data.py:81 ../lib/Data.py:511
+#: ../lib/Data.py:81 ../lib/Data.py:528
 msgid "[None]"
 msgstr "[Keine]"
 
@@ -472,23 +472,23 @@ msgstr "Jahre (hinzugefügt)"
 msgid "Months (added)"
 msgstr "Monate (hinzugefügt)"
 
-#: ../gui/GUI.py:93
+#: ../gui/GUI.py:94
 msgid "Toggle bookmark"
 msgstr "Lesezeichen umschalten"
 
-#: ../gui/GUI.py:94
+#: ../gui/GUI.py:95
 msgid "Toggle completed"
 msgstr "Abgeschlossen umschalten"
 
-#: ../gui/GUI.py:96
+#: ../gui/GUI.py:97
 msgid "Open on VGCollect.com"
 msgstr "Auf VGCollect.com öffnen"
 
-#: ../gui/GUI.py:95
+#: ../gui/GUI.py:96
 msgid "Update cover art"
 msgstr "Cover art aktualisieren"
 
-#: ../gui/GUI.py:92
+#: ../gui/GUI.py:93
 msgid "Item details"
 msgstr "Details"
 
@@ -760,6 +760,22 @@ msgstr "Datum (hinzugefügt)"
 #: ../lib/Var.py:117
 msgid "VGC ID"
 msgstr "VGC ID"
+
+#: ../gui/GUI.py:205
+msgid "Data error"
+msgstr "Datenfehler"
+
+#: ../lib/Data.py:343
+msgid ""
+"Error opening collection file, please make sure the file is not locked by "
+"another application"
+msgstr ""
+"Fehler beim öffnen der Sammlungsdatei, bitte stelle sicher, dass die Datei "
+"nicht von einer anderen Anwendung gesperrt ist"
+
+#: ../lib/Data.py:374
+msgid "Error parsing collection data"
+msgstr "Fehler beim Interpretieren der Sammlungsdaten"
 
 #~ msgid "Min. purchase price"
 #~ msgstr "Min. Kaufpreis"

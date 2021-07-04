@@ -11,6 +11,7 @@ import re
 import urllib.request
 
 from tkinter import *
+from tkinter import messagebox
 
 from lib.Version     import VERSION
 from lib.Data        import CollectionData
@@ -127,7 +128,7 @@ class GUI(Tk):
         self.showData()
 
         # Show downloader when there is no data
-        if len(self.collectionData.collection_items) == 0:
+        if not len(self.collectionData.collection_items) and not self.collectionData.dataError:
             self.pop_collectionDownload.show()
 
         # Run main loop
@@ -192,12 +193,16 @@ class GUI(Tk):
 
         # Read, parse and sum collection data
         #--------------------
-        self.collectionData.readData()
-        self.collectionData.parseData(self.view_frame.file_frame.combine_platforms.get())
-        self.collectionData.sumData()
+        readErr, readErr_   = self.collectionData.readData()
+        parseErr, parseErr_ = self.collectionData.parseData(self.view_frame.file_frame.combine_platforms.get())
 
-        self.filter_frame.fillGroupCombobox()
-        self.filter_frame.fillOrderCombobox()
+        if not len(readErr) and not len(parseErr):
+            self.collectionData.sumData()
+
+            self.filter_frame.fillGroupCombobox()
+            self.filter_frame.fillOrderCombobox()
+        else:
+            messagebox.showerror(_("Data error"), (readErr + "\n" + str(readErr_) + "\n" + parseErr + "\n" + str(parseErr_)).strip(), parent=self)
 
 
     ######################

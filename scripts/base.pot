@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2021-07-03 12:52+0200\n"
+"POT-Creation-Date: 2021-07-04 13:01+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,31 +15,35 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 
 
-#: ../gui/GUI.py:92
+#: ../gui/GUI.py:93
 msgid "Item details"
 msgstr ""
 
-#: ../gui/GUI.py:93
+#: ../gui/GUI.py:94
 msgid "Toggle bookmark"
 msgstr ""
 
-#: ../gui/GUI.py:94
+#: ../gui/GUI.py:95
 msgid "Toggle completed"
 msgstr ""
 
-#: ../gui/GUI.py:95
+#: ../gui/GUI.py:96
 msgid "Update cover art"
 msgstr ""
 
-#: ../gui/GUI.py:96
+#: ../gui/GUI.py:97
 msgid "Open on VGCollect.com"
 msgstr ""
 
-#: ../gui/GUI.py:251
+#: ../gui/GUI.py:205
+msgid "Data error"
+msgstr ""
+
+#: ../gui/GUI.py:256
 msgid "items"
 msgstr ""
 
-#: ../gui/GUI.py:254
+#: ../gui/GUI.py:259
 msgid "total price: "
 msgstr ""
 
@@ -573,12 +577,20 @@ msgstr ""
 msgid "Couldn't find"
 msgstr ""
 
-#: ../lib/Data.py:81 ../lib/Data.py:511
+#: ../lib/Data.py:81 ../lib/Data.py:528
 msgid "[None]"
 msgstr ""
 
 #: ../lib/Data.py:99
 msgid "[Other]"
+msgstr ""
+
+#: ../lib/Data.py:343
+msgid "Error opening collection file, please make sure the file is not locked by another application"
+msgstr ""
+
+#: ../lib/Data.py:374
+msgid "Error parsing collection data"
 msgstr ""
 
 #: ../lib/Download.py:56

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 
-#: ../gui/GUI.py:251
+#: ../gui/GUI.py:256
 msgid "items"
 msgstr ""
 
@@ -260,7 +260,7 @@ msgstr ""
 msgid "Apply filter"
 msgstr ""
 
-#: ../gui/GUI.py:254
+#: ../gui/GUI.py:259
 msgid "total price: "
 msgstr ""
 
@@ -441,7 +441,7 @@ msgstr ""
 msgid "Bookmark"
 msgstr ""
 
-#: ../lib/Data.py:81 ../lib/Data.py:511
+#: ../lib/Data.py:81 ../lib/Data.py:528
 msgid "[None]"
 msgstr ""
 
@@ -461,23 +461,23 @@ msgstr ""
 msgid "Months (added)"
 msgstr ""
 
-#: ../gui/GUI.py:93
+#: ../gui/GUI.py:94
 msgid "Toggle bookmark"
 msgstr ""
 
-#: ../gui/GUI.py:94
+#: ../gui/GUI.py:95
 msgid "Toggle completed"
 msgstr ""
 
-#: ../gui/GUI.py:96
+#: ../gui/GUI.py:97
 msgid "Open on VGCollect.com"
 msgstr ""
 
-#: ../gui/GUI.py:95
+#: ../gui/GUI.py:96
 msgid "Update cover art"
 msgstr ""
 
-#: ../gui/GUI.py:92
+#: ../gui/GUI.py:93
 msgid "Item details"
 msgstr ""
 
@@ -727,6 +727,20 @@ msgstr ""
 
 #: ../lib/Var.py:117
 msgid "VGC ID"
+msgstr ""
+
+#: ../gui/GUI.py:205
+msgid "Data error"
+msgstr ""
+
+#: ../lib/Data.py:343
+msgid ""
+"Error opening collection file, please make sure the file is not locked by "
+"another application"
+msgstr ""
+
+#: ../lib/Data.py:374
+msgid "Error parsing collection data"
 msgstr ""
 
 #~ msgid "Min. purchase price"

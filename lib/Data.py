@@ -295,6 +295,7 @@ class FilterData(object):
 class CollectionData(object):
     csv_file   = ""
     csv_lines  = ""
+    dataError  = False
     filterData = FilterData()
     collection_items = []
 
@@ -326,14 +327,20 @@ class CollectionData(object):
     # readData
     def readData(self):
         if len(self.csv_file) and os.path.exists(self.csv_file):
-            # Open file
-            file_handle    = open(self.csv_file, "r", encoding="utf-8")
+            try:
+                # Open file
+                file_handle    = open(self.csv_file, "r", encoding="utf-8")
 
-            # Read lines
-            self.csv_lines = file_handle.readlines()
+                # Read lines
+                self.csv_lines = file_handle.readlines()
 
-            # Close file
-            file_handle.close()
+                # Close file
+                file_handle.close()
+
+                return "", ""
+            except Exception as err:
+                self.dataError = True
+                return _("Error opening collection file, please make sure the file is not locked by another application"), err
 
     # buildSaveData
     def buildSaveData(self):
@@ -352,14 +359,24 @@ class CollectionData(object):
 
         index = 0
 
-        for line in self.csv_lines[1:]:
-            item = CollectionItem(line, localItemData_List=self.localData_list, onlineItemData_List=self.onlineData_list, combinePlatforms=combinePlatforms)
+        try:
+            for line in self.csv_lines[1:]:
+                item = CollectionItem(line, localItemData_List=self.localData_list, onlineItemData_List=self.onlineData_list, combinePlatforms=combinePlatforms)
 
-            item.index = index
+                item.index = index
 
-            self.collection_items.append(item)
+                self.collection_items.append(item)
 
-            index += 1
+                index += 1
+        except Exception as err:
+            self.dataError = True
+            self.collection_items = []
+            return _("Error parsing collection data"), err
+
+        if len(self.collection_items):
+            self.dataError = False
+
+        return "", ""
 
 
     # getFilteredData
