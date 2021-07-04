@@ -1,5 +1,3 @@
-Fix date sort when none standard locale is applied
-
 Find missing covers
 Filter help (regex, date formats, etc.)
 Custom messagboxes
@@ -14,6 +12,7 @@ Multiselect
 	Remove all bookmarks (selected) / contextmenu
 
 ===DONE===
+Fix date sort when none standard locale is applied
 Installer
 App data path
 Filter presets
