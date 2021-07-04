@@ -1,7 +1,7 @@
 import lib.Settings as settings
 
 from lib.Locale import _
-from lib.Locale import locCurrencySymbol
+from lib.Locale import locStrToDate
 from lib.Locale import locStrToNum
 
 import lib.Var as VAR
@@ -9,6 +9,7 @@ import lib.Var as VAR
 from tkinter import *
 from tkinter import ttk
 from lib.Widgets import Frame_
+from datetime import datetime
 
 from gui.GUI_Fileselect import GUI_File
 
@@ -101,8 +102,12 @@ class GUI_TreeView(Frame_):
 
         if groupMode and groupdatatype:
             itemList.sort(reverse=reverse, key=lambda tuple: groupdatatype(locStrToNum("".join(char for char in tuple[0].lower() if char in ",.1234567890"))))
-        elif datatype:
+        elif datatype == float:
             itemList.sort(reverse=reverse, key=lambda tuple: datatype(locStrToNum("".join(char for char in tuple[0].lower() if char in ",.1234567890"))))
+        elif datatype == datetime:
+            itemList.sort(reverse=reverse, key=lambda tuple: locStrToDate(tuple[0]))
+        elif datatype:
+            itemList.sort(reverse=reverse, key=lambda tuple: datatype(tuple[0].lower()))
         else:
             itemList.sort(reverse=reverse, key=lambda tuple: tuple[0].lower())
 

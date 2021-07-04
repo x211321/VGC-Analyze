@@ -1,5 +1,6 @@
 from lib.Path import *
 from lib.Locale import _
+from datetime import datetime
 
 
 # Colors
@@ -161,19 +162,19 @@ ATTRIBUTE_YN[ATTRIBUTE_NO]  = _("No" )
 # Treeview columns
 VIEW_COLUMNS = {}
 
-VIEW_COLUMNS["Title"]            = {"name": _("Title")           , "anchor": "w", "type": None , "grouptype": int  , "width": 200}
-VIEW_COLUMNS["Platform"]         = {"name": _("Platform")        , "anchor": "w", "type": None , "grouptype": None , "width": 100}
-VIEW_COLUMNS["Region"]           = {"name": _("Region")          , "anchor": "w", "type": None , "grouptype": None , "width":  30}
-VIEW_COLUMNS["Price"]            = {"name": _("Price")           , "anchor": "e", "type": float, "grouptype": float, "width":  50}
-VIEW_COLUMNS["Date (purchased)"] = {"name": _("Date (purchased)"), "anchor": "w", "type": None , "grouptype": None , "width":  50}
-VIEW_COLUMNS["Date (added)"]     = {"name": _("Date (added)")    , "anchor": "w", "type": None , "grouptype": None , "width":  50}
-VIEW_COLUMNS["Cart"]             = {"name": _("Cart")            , "anchor": "w", "type": None , "grouptype": None , "width":  30}
-VIEW_COLUMNS["Box"]              = {"name": _("Box")             , "anchor": "w", "type": None , "grouptype": None , "width":  30}
-VIEW_COLUMNS["Manual"]           = {"name": _("Manual")          , "anchor": "w", "type": None , "grouptype": None , "width":  30}
-VIEW_COLUMNS["Other"]            = {"name": _("Other")           , "anchor": "w", "type": None , "grouptype": None , "width":  30}
-VIEW_COLUMNS["Bookmark"]         = {"name": _("Bookmark")        , "anchor": "w", "type": None , "grouptype": None , "width":  30}
-VIEW_COLUMNS["Finished"]         = {"name": _("Finished")        , "anchor": "w", "type": None , "grouptype": None , "width":  30}
-VIEW_COLUMNS["Notes"]            = {"name": _("Notes")           , "anchor": "w", "type": None , "grouptype": None , "width": 100}
+VIEW_COLUMNS["Title"]            = {"name": _("Title")           , "anchor": "w", "type": None    , "grouptype": int  , "width": 200}
+VIEW_COLUMNS["Platform"]         = {"name": _("Platform")        , "anchor": "w", "type": None    , "grouptype": None , "width": 100}
+VIEW_COLUMNS["Region"]           = {"name": _("Region")          , "anchor": "w", "type": None    , "grouptype": None , "width":  30}
+VIEW_COLUMNS["Price"]            = {"name": _("Price")           , "anchor": "e", "type": float   , "grouptype": float, "width":  50}
+VIEW_COLUMNS["Date (purchased)"] = {"name": _("Date (purchased)"), "anchor": "w", "type": datetime, "grouptype": None , "width":  50}
+VIEW_COLUMNS["Date (added)"]     = {"name": _("Date (added)")    , "anchor": "w", "type": datetime, "grouptype": None , "width":  50}
+VIEW_COLUMNS["Cart"]             = {"name": _("Cart")            , "anchor": "w", "type": None    , "grouptype": None , "width":  30}
+VIEW_COLUMNS["Box"]              = {"name": _("Box")             , "anchor": "w", "type": None    , "grouptype": None , "width":  30}
+VIEW_COLUMNS["Manual"]           = {"name": _("Manual")          , "anchor": "w", "type": None    , "grouptype": None , "width":  30}
+VIEW_COLUMNS["Other"]            = {"name": _("Other")           , "anchor": "w", "type": None    , "grouptype": None , "width":  30}
+VIEW_COLUMNS["Bookmark"]         = {"name": _("Bookmark")        , "anchor": "w", "type": None    , "grouptype": None , "width":  30}
+VIEW_COLUMNS["Finished"]         = {"name": _("Finished")        , "anchor": "w", "type": None    , "grouptype": None , "width":  30}
+VIEW_COLUMNS["Notes"]            = {"name": _("Notes")           , "anchor": "w", "type": None    , "grouptype": None , "width": 100}
 
 
 # Templates

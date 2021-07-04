@@ -153,7 +153,7 @@ class GUI_CollectionInfo(Frame_):
                             gui.collectionData.totals.last.name)
 
         if os.path.exists(gui.collectionData.csv_file):
-            self.info_update.set(str(datetime.fromtimestamp(os.path.getmtime(gui.collectionData.csv_file))).split(".")[0])
+            self.info_update.set(locDate(str(datetime.fromtimestamp(os.path.getmtime(gui.collectionData.csv_file))).split(".")[0], showDay=True))
 
         if gui.collectionData.filterData.groupItems and len(gui.collectionData.groups):
             self.info_grp_number_txt.set(_("Group count:"))

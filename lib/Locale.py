@@ -59,13 +59,26 @@ def locCurrency(value):
 def locCurrencySymbol():
     return locale.localeconv()["currency_symbol"]
 
+
 def locStrToNum(str):
     return locale.atof(str)
 
-def locDate(dateStr, showDay=False):
-    # Deactivated for now
-    # return dateStr
 
+def locStrToDate(str, showDay=False):
+
+    # Handle invalid dates
+    if len(str) >= 10:
+        if str[0:5]  == "0000-" or str[4:7]  == "-00" or str[7:10] == "-00":
+            return str
+
+    # Convert locale date to iso date
+    if showDay:
+        return datetime.strptime(str, '%a, %x').isoformat()
+    else:
+        return datetime.strptime(str, '%x').isoformat()
+
+
+def locDate(dateStr, showDay=False):
     if len(dateStr) > 10:
         dateStr = dateStr[0:10]
 
@@ -145,6 +158,7 @@ def getCountryCode(name):
         if country["name"] == name:
             return country["code"]
 
+
 def getLocaleName(code):
     if len(code) > 0 and "_" in code:
         parts = code.split("_")
@@ -152,15 +166,18 @@ def getLocaleName(code):
         return getLanguageName(parts[0]) + " (" + getCountryName(parts[1]) + ")"
     return ""
 
+
 def getLocaleCode(name):
     parts = name.strip(")").split(" (")
 
     return getLanguageCode(parts[0]) + "_" + getCountryCode(parts[1])
 
+
 def getAvailableLanguageCodes():
     global langDir
 
     return sorted(os.listdir(langDir))
+
 
 def getAvailableLanguageNames():
     languageNames = []
@@ -169,6 +186,7 @@ def getAvailableLanguageNames():
         languageNames.append(getLocaleName(code))
 
     return languageNames
+
 
 def getAvailableLocaleCodes():
     locales = []
@@ -183,6 +201,7 @@ def getAvailableLocaleCodes():
 
     return locales
 
+
 def getAvailableLocaleNames():
     localeNames = []
 
@@ -190,6 +209,7 @@ def getAvailableLocaleNames():
         localeNames.append(getLocaleName(code))
 
     return localeNames
+
 
 def i18nToRaw(dict, i18n):
     for key in dict:
