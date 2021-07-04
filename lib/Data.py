@@ -109,7 +109,7 @@ class CollectionItem(object):
 
     def getPurchasePrice(self, priceString):
         # Remove all non-number charcters
-        priceString = "".join(char for char in priceString if char in ",.1234567890")
+        priceString = "".join(char for char in priceString if char in ".1234567890")
 
         # Try formating the resulting price
         # string as a floating point number
