@@ -131,3 +131,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+scripts/file_name_version
+scripts/setup_windows_version.iss
+scripts/base.pot
