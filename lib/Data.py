@@ -337,10 +337,10 @@ class CollectionData(object):
                 # Close file
                 file_handle.close()
 
-                return "", ""
             except Exception as err:
                 self.dataError = True
                 return _("Error opening collection file, please make sure the file is not locked by another application"), err
+        return "", ""
 
     # buildSaveData
     def buildSaveData(self):
