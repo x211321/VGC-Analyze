@@ -55,6 +55,9 @@ def defaultSettings():
                     "detailsOnDoubleClick": 1,
                     "refreshOnFilterSelect": 1,
                     "hideCoverLoadingAnimation": 0
+                },
+                "vgc": {
+                    "username": "",
                 }
             }
 

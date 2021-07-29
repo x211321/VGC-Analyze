@@ -4,16 +4,19 @@ from lib.Locale import locCurrency
 from lib.Locale import locDate
 
 import os
+import math
 import threading
 import platform
 
 from tkinter import *
+from tkinter import messagebox
 
 from lib.Widgets    import Frame_
 from lib.Widgets    import LabelButton_
 from lib.Widgets    import Label_
 from lib.Img        import loadIcon
 from lib.Browser    import openItemInBrowser
+from lib.Browser    import openVGCInBrowser
 from lib.Download   import downloadCover
 from gui.GUI_Popups import Pop_CoverViewer
 
@@ -38,9 +41,11 @@ class GUI_ItemInfo(Frame_):
         self.item_refresh_ico  = loadIcon("refresh-outline", 15, 15)
         self.item_view_ico     = loadIcon("eye-outline", 15, 15)
 
-        self.activeItem     = master.activeItem
-        self.toggleBookmark = master.toggleBookmark
-        self.toggleFinished = master.toggleFinished
+        self.activeItemIndex             = master.activeItemIndex
+        self.activeItem                  = master.activeItem
+        self.toggleBookmark              = master.toggleBookmark
+        self.toggleFinished              = master.toggleFinished
+        self.getOnlineCollectionListPage = master.getOnlineCollectionListPage
 
         self.pop_coverViewer = Pop_CoverViewer(self)
 
@@ -219,6 +224,28 @@ class GUI_ItemInfo(Frame_):
     def openOnVGCollect(self):
         if self.activeItem().VGC_id > 0:
             openItemInBrowser(str(self.activeItem().VGC_id))
+
+
+    ######################
+    # openVGCollectCollectionList
+    # --------------------
+    def openVGCollectCollectionList(self):
+        username = settings.get("vgc", "username", "")
+
+        if self.activeItem().VGC_id > 0:
+            if len(username) == 0:
+                messagebox.showinfo("VGC Analyze",
+                                  _("A VGCollect.com username is needed to access the online collection list.\n\n") +
+                                  _("Please provide a username at File > Settings > VGC"))
+            else:
+                page     = math.ceil((self.activeItemIndex()+1) / 25)
+                pageData = self.getOnlineCollectionListPage(username, str(page))
+
+                idStart  = pageData.find("item_" + str(self.activeItem().VGC_id) + "_")
+                idEnd    = pageData.find("\"", idStart)
+                id       = pageData[idStart:idEnd]
+
+                openVGCInBrowser(username + "/" + str(page) + "#" + id)
 
 
     ######################

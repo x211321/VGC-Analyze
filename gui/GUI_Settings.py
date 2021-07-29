@@ -78,6 +78,7 @@ class GUI_Settings(Toplevel):
         self.pages["display"]         = Frame_(self.tab)
         self.pages["platformHolders"] = Frame_(self.tab)
         self.pages["platforms"]       = Frame_(self.tab)
+        self.pages["vgc"]             = Frame_(self.tab)
 
         for key in self.pages:
             self.pages[key].columnconfigure(0, weight=1)
@@ -86,6 +87,7 @@ class GUI_Settings(Toplevel):
         self.tab.add(self.pages["display"], text=_("Display"))
         self.tab.add(self.pages["platformHolders"], text=_("Platform holders"))
         self.tab.add(self.pages["platforms"], text=_("Platforms"))
+        self.tab.add(self.pages["vgc"], text=_("VGC"))
 
         self.w = {}
 
@@ -100,6 +102,9 @@ class GUI_Settings(Toplevel):
 
         # Platforms
         self.initPlatforms()
+
+        # VGC
+        self.initVGC()
 
         # Restore settings
         self.restore()
@@ -271,6 +276,12 @@ class GUI_Settings(Toplevel):
         # Treeview bindings
         self.platformsView.bind('<<TreeviewSelect>>', self.selectPlatform)
 
+
+    def initVGC(self):
+        self.w["vgc"] = {}
+        self.w["vgc"]["username_txt"]   = Label_(self.pages["vgc"], text=_("VGC Username"))
+        self.w["vgc"]["username"]       = Entry_(self.pages["vgc"], _id="username", width=25)
+        self.grid(self.w["vgc"])
 
     def columnSelect(self):
         self.columnSelectPop.show(VAR.VIEW_COLUMNS.items(),

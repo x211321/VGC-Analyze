@@ -95,6 +95,7 @@ class GUI(Tk):
         self.treeMenu.add_command(label=_("Toggle completed"), command=self.toggleFinished)
         self.treeMenu.add_command(label=_("Update cover art"), command=lambda:self.item_frame.update(True))
         self.treeMenu.add_command(label=_("Open on VGCollect.com"), command=self.item_frame.openOnVGCollect)
+        self.treeMenu.add_command(label=_("Open VGCollect list at item position"), command=self.item_frame.openVGCollectCollectionList)
 
         # Init
         self.init()
@@ -184,6 +185,13 @@ class GUI(Tk):
     # --------------------
     def activeItem(self):
         return self.collectionData.collection_items[self.index]
+
+
+    ######################
+    # activeItemIndex
+    # --------------------
+    def activeItemIndex(self):
+        return self.index
 
 
     ######################
@@ -541,3 +549,19 @@ class GUI(Tk):
                 result[values[0].strip(": ")] = values[1].replace("</td>", "").replace("</tr>", "").strip()
 
         return result
+
+
+    ######################
+    # getOnlineCollectionListPage
+    # --------------------
+    def getOnlineCollectionListPage(self, username, page):
+        result = {}
+        url = "https://vgcollect.com/" + username + "/" + page
+
+        # Create request
+        request = urllib.request.Request(url)
+
+        # Get Page
+        response = urllib.request.urlopen(request)
+
+        return str(response.read())

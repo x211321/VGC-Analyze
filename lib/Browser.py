@@ -13,6 +13,13 @@ def openItemInBrowser(item):
 
 
 ######################
+# openVGCInBrowser
+# --------------------
+def openVGCInBrowser(subUrl):
+    webbrowser.open("https://vgcollect.com/"+subUrl, new=0, autoraise=True)
+
+
+######################
 # openUserProfileInBrowser
 # --------------------
 def openUserProfileInBrowser(a):

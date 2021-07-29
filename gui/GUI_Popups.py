@@ -195,7 +195,11 @@ class Pop_CollectionDownload(object):
 
         self.input_pass.bind('<Return>', self.download)
 
-        self.input_user.focus()
+        if len(settings.get("vgc", "username", "")):
+            self.input_user.set(settings.get("vgc", "username", ""))
+            self.input_pass.focus()
+        else:
+            self.input_user.focus()
 
         self.center()
 
