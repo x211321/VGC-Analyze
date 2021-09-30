@@ -4,7 +4,6 @@ Custom messagboxes
 Treeview home / end / page up / page down
 Graph canvas scroll bar
 Graph popup
-Offer app restart after language change
 
 ===Low priority===
 Multiselect
@@ -12,6 +11,8 @@ Multiselect
 	Remove all bookmarks (selected) / contextmenu
 
 ===DONE===
+Growth graphs based on added date
+Offer app restart after language change
 Fix date sort when none standard locale is applied
 Installer
 App data path
