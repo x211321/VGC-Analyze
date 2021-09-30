@@ -167,9 +167,11 @@ class GUI_Graph(Frame_):
         self.graph_data.delete(0, END)
 
         if graphType == VAR.GRAPH_TYPE_AREA or graphType == VAR.GRAPH_TYPE_LINE:
-            data.append(VAR.GRAPH_DATA_ITEMCOUNTGROWTH)
-            data.append(VAR.GRAPH_DATA_TOTALPRICEGROWTH)
-            self.graph_data.set(VAR.GRAPH_DATA_ITEMCOUNTGROWTH)
+            data.append(VAR.GRAPH_DATA_ITEMCOUNTGROWTH_PURCHASE)
+            data.append(VAR.GRAPH_DATA_ITEMCOUNTGROWTH_ADDED)
+            data.append(VAR.GRAPH_DATA_TOTALPRICEGROWTH_PURCHASE)
+            data.append(VAR.GRAPH_DATA_TOTALPRICEGROWTH_ADDED)
+            self.graph_data.set(VAR.GRAPH_DATA_ITEMCOUNTGROWTH_PURCHASE)
         else:
             data.append(VAR.GRAPH_DATA_ITEMCOUNT)
             data.append(VAR.GRAPH_DATA_TOTALPRICE)
@@ -241,16 +243,22 @@ class GUI_Graph(Frame_):
                 group = VAR.GROUP_BY_MONTH_ADDED
             if graphContent == VAR.GRAPH_CONTENT_PLATFORMS:
                 group = VAR.GROUP_BY_PLATFORM
-                if graphData == VAR.GRAPH_DATA_ITEMCOUNTGROWTH or graphData == VAR.GRAPH_DATA_TOTALPRICEGROWTH:
+                if graphData == VAR.GRAPH_DATA_ITEMCOUNTGROWTH_PURCHASE or graphData == VAR.GRAPH_DATA_TOTALPRICEGROWTH_PURCHASE:
                     subGroup = VAR.GROUP_BY_YEAR
+                if graphData == VAR.GRAPH_DATA_ITEMCOUNTGROWTH_ADDED or graphData == VAR.GRAPH_DATA_TOTALPRICEGROWTH_ADDED:
+                    subGroup = VAR.GROUP_BY_YEAR_ADDED
             if graphContent == VAR.GRAPH_CONTENT_REGIONS:
                 group = VAR.GROUP_BY_REGION
-                if graphData == VAR.GRAPH_DATA_ITEMCOUNTGROWTH or graphData == VAR.GRAPH_DATA_TOTALPRICEGROWTH:
+                if graphData == VAR.GRAPH_DATA_ITEMCOUNTGROWTH_PURCHASE or graphData == VAR.GRAPH_DATA_TOTALPRICEGROWTH_PURCHASE:
                     subGroup = VAR.GROUP_BY_YEAR
+                if graphData == VAR.GRAPH_DATA_ITEMCOUNTGROWTH_ADDED or graphData == VAR.GRAPH_DATA_TOTALPRICEGROWTH_ADDED:
+                    subGroup = VAR.GROUP_BY_YEAR_ADDED
             if graphContent == VAR.GRAPH_CONTENT_PLATFORM_HOLDERS:
                 group = VAR.GROUP_BY_PLATFORMHOLDER
-                if graphData == VAR.GRAPH_DATA_ITEMCOUNTGROWTH or graphData == VAR.GRAPH_DATA_TOTALPRICEGROWTH:
+                if graphData == VAR.GRAPH_DATA_ITEMCOUNTGROWTH_PURCHASE or graphData == VAR.GRAPH_DATA_TOTALPRICEGROWTH_PURCHASE:
                     subGroup = VAR.GROUP_BY_YEAR
+                if graphData == VAR.GRAPH_DATA_ITEMCOUNTGROWTH_ADDED or graphData == VAR.GRAPH_DATA_TOTALPRICEGROWTH_ADDED:
+                    subGroup = VAR.GROUP_BY_YEAR_ADDED
 
             self.collectionData.groupGraphData(group, subGroup = subGroup)
 
@@ -488,9 +496,9 @@ class GUI_Graph(Frame_):
 
                 for date in dates:
                     if date in data.graph_groups[groupKey].sub.keys():
-                        if graphData == VAR.GRAPH_DATA_ITEMCOUNTGROWTH:
+                        if graphData == VAR.GRAPH_DATA_ITEMCOUNTGROWTH_PURCHASE or graphData == VAR.GRAPH_DATA_ITEMCOUNTGROWTH_ADDED:
                             sum += data.graph_groups[groupKey].sub[date].item_count
-                        if graphData == VAR.GRAPH_DATA_TOTALPRICEGROWTH:
+                        if graphData == VAR.GRAPH_DATA_TOTALPRICEGROWTH_PURCHASE or graphData == VAR.GRAPH_DATA_TOTALPRICEGROWTH_ADDED:
                             sum += data.graph_groups[groupKey].sub[date].total_price
 
                     values[groupKey].append(sum)
@@ -552,9 +560,9 @@ class GUI_Graph(Frame_):
 
                 for date in dates:
                     if date in data.graph_groups[groupKey].sub.keys():
-                        if graphData == VAR.GRAPH_DATA_ITEMCOUNTGROWTH:
+                        if graphData == VAR.GRAPH_DATA_ITEMCOUNTGROWTH_PURCHASE or graphData == VAR.GRAPH_DATA_ITEMCOUNTGROWTH_ADDED:
                             sum += data.graph_groups[groupKey].sub[date].item_count
-                        if graphData == VAR.GRAPH_DATA_TOTALPRICEGROWTH:
+                        if graphData == VAR.GRAPH_DATA_TOTALPRICEGROWTH_PURCHASE or graphData == VAR.GRAPH_DATA_TOTALPRICEGROWTH_ADDED:
                             sum += data.graph_groups[groupKey].sub[date].total_price
 
                     values[groupKey].append(sum)

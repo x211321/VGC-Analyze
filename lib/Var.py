@@ -82,11 +82,12 @@ GRAPH_CONTENT_PLATFORMS         = _("Platforms")
 GRAPH_CONTENT_REGIONS           = _("Regions")
 GRAPH_CONTENT_PLATFORM_HOLDERS  = _("Platform holders")
 
-GRAPH_DATA_ITEMCOUNT        = _("Item count")
-GRAPH_DATA_TOTALPRICE       = _("Total price")
-GRAPH_DATA_ITEMCOUNTGROWTH  = _("Item count (growth)")
-GRAPH_DATA_TOTALPRICEGROWTH = _("Total price (growth)")
-
+GRAPH_DATA_ITEMCOUNT                 = _("Item count")
+GRAPH_DATA_TOTALPRICE                = _("Total price")
+GRAPH_DATA_ITEMCOUNTGROWTH_PURCHASE  = _("Item count (growth/purchased)")
+GRAPH_DATA_TOTALPRICEGROWTH_PURCHASE = _("Total price (growth/purchased)")
+GRAPH_DATA_ITEMCOUNTGROWTH_ADDED     = _("Item count (growth/added)")
+GRAPH_DATA_TOTALPRICEGROWTH_ADDED    = _("Total price (growth/added)")
 
 # Group by
 GROUP_BY = {}
