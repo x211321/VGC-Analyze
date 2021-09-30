@@ -1,5 +1,7 @@
 import lib.Settings as settings
 
+import os
+import sys
 import platform
 
 from lib.Locale import _
@@ -17,6 +19,7 @@ import lib.Var as VAR
 
 from tkinter import *
 from tkinter import ttk
+from tkinter import messagebox
 from lib.Img import loadIcon
 
 from lib.Widgets import *
@@ -31,6 +34,9 @@ class GUI_Settings(Toplevel):
 
         self.parent   = parent
         self.callback = callback
+
+        # Language thats selected on settings open
+        self.activeLanguage = settings.get("locale", "language", "")
 
         # Window attributes
         self.wm_title(_("Settings"))
@@ -455,6 +461,19 @@ class GUI_Settings(Toplevel):
 
         setLanguage(settings.get("locale", "language", ""))
         setLocale(settings.get("locale", "locale", ""))
+
+        # Check whether language was changed
+        # Ask user for restart if nessesary
+        if not self.activeLanguage == settings.get("locale", "language", ""):
+            if messagebox.askyesno(_("Restart required"), _("To apply the new language setting VGC_Analyze must be restarted. Do you want to restart now?")):
+                if sys.argv[0][-3:].upper() == ".PY":
+                    # Running from a script
+                    # Find Python interpreter and re-run script
+                    os.execv(sys.executable, ['python'] + sys.argv)
+                else:
+                    # Running from a binary bundle
+                    # Re-run binary directly
+                    os.execv(sys.argv[0], sys.argv)
 
         if not self.callback == None:
             self.callback()

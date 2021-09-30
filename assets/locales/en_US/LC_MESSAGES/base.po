@@ -9,7 +9,7 @@ msgstr ""
 msgid "items"
 msgstr ""
 
-#: ../gui/GUI_Filter.py:72 ../gui/GUI_Settings.py:89 ../lib/Var.py:81
+#: ../gui/GUI_Filter.py:72 ../gui/GUI_Settings.py:95 ../lib/Var.py:81
 msgid "Platforms"
 msgstr ""
 
@@ -17,7 +17,7 @@ msgstr ""
 msgid "Regions"
 msgstr ""
 
-#: ../gui/GUI_Filter.py:81 ../gui/GUI_Settings.py:88 ../lib/Var.py:83
+#: ../gui/GUI_Filter.py:81 ../gui/GUI_Settings.py:94 ../lib/Var.py:83
 msgid "Platform holders"
 msgstr ""
 
@@ -59,7 +59,7 @@ msgstr ""
 
 #: ../gui/GUI_Filter.py:74 ../gui/GUI_Filter.py:75 ../gui/GUI_Filter.py:82
 #: ../gui/GUI_Filter.py:224 ../gui/GUI_Filter.py:284 ../gui/GUI_Filter.py:308
-#: ../gui/GUI_Filter.py:332 ../gui/GUI_Settings.py:142
+#: ../gui/GUI_Filter.py:332 ../gui/GUI_Settings.py:148
 msgid "Select"
 msgstr ""
 
@@ -123,7 +123,7 @@ msgstr ""
 msgid "Graphs"
 msgstr ""
 
-#: ../gui/GUI_Menu.py:29 ../gui/GUI_Settings.py:36
+#: ../gui/GUI_Menu.py:29 ../gui/GUI_Settings.py:42
 msgid "Settings"
 msgstr ""
 
@@ -147,7 +147,7 @@ msgstr ""
 msgid "About"
 msgstr ""
 
-#: ../gui/GUI_Popups.py:153 ../gui/GUI_Settings.py:282
+#: ../gui/GUI_Popups.py:153 ../gui/GUI_Settings.py:288
 msgid "VGC Username"
 msgstr ""
 
@@ -155,7 +155,7 @@ msgstr ""
 msgid "Password"
 msgstr ""
 
-#: ../gui/GUI_Popups.py:157 ../gui/GUI_Settings.py:57
+#: ../gui/GUI_Popups.py:157 ../gui/GUI_Settings.py:63
 #: ../gui/popups/DatePicker.py:121 ../gui/popups/FilterSelect.py:49
 #: ../gui/popups/ItemSeach.py:59
 msgid "Cancel"
@@ -197,7 +197,7 @@ msgstr ""
 msgid "Select all"
 msgstr ""
 
-#: ../gui/GUI_Settings.py:59 ../gui/popups/DatePicker.py:122
+#: ../gui/GUI_Settings.py:65 ../gui/popups/DatePicker.py:122
 #: ../gui/popups/FilterSelect.py:52
 msgid "OK"
 msgstr ""
@@ -206,8 +206,8 @@ msgstr ""
 msgid "Group"
 msgstr ""
 
-#: ../gui/GUI_Popups.py:293 ../gui/GUI_Settings.py:224
-#: ../gui/GUI_Settings.py:273 ../lib/Var.py:167
+#: ../gui/GUI_Popups.py:293 ../gui/GUI_Settings.py:230
+#: ../gui/GUI_Settings.py:279 ../lib/Var.py:167
 msgid "Platform"
 msgstr ""
 
@@ -276,11 +276,11 @@ msgstr ""
 msgid "regions"
 msgstr ""
 
-#: ../gui/GUI_Settings.py:86 ../gui/GUI_Settings.py:129
+#: ../gui/GUI_Settings.py:92 ../gui/GUI_Settings.py:135
 msgid "Locale"
 msgstr ""
 
-#: ../gui/GUI_Settings.py:87
+#: ../gui/GUI_Settings.py:93
 msgid "Display"
 msgstr ""
 
@@ -320,24 +320,24 @@ msgstr ""
 msgid "cart cover"
 msgstr ""
 
-#: ../gui/GUI_Popups.py:297 ../gui/GUI_Settings.py:159
-#: ../gui/GUI_Settings.py:210
+#: ../gui/GUI_Popups.py:297 ../gui/GUI_Settings.py:165
+#: ../gui/GUI_Settings.py:216
 msgid "Platform holder"
 msgstr ""
 
-#: ../gui/GUI_Settings.py:162 ../gui/GUI_Settings.py:211
+#: ../gui/GUI_Settings.py:168 ../gui/GUI_Settings.py:217
 msgid "Platform keywords"
 msgstr ""
 
-#: ../gui/GUI_Settings.py:164
+#: ../gui/GUI_Settings.py:170
 msgid "(comma separated)"
 msgstr ""
 
-#: ../gui/GUI_Settings.py:125
+#: ../gui/GUI_Settings.py:131
 msgid "Language (requires restart)"
 msgstr ""
 
-#: ../gui/GUI_Settings.py:227 ../gui/GUI_Settings.py:274
+#: ../gui/GUI_Settings.py:233 ../gui/GUI_Settings.py:280
 msgid "Overwrite with"
 msgstr ""
 
@@ -365,11 +365,11 @@ msgstr ""
 msgid "Max. date (added)"
 msgstr ""
 
-#: ../gui/GUI_Settings.py:139
+#: ../gui/GUI_Settings.py:145
 msgid "Table columns"
 msgstr ""
 
-#: ../gui/GUI_Settings.py:289
+#: ../gui/GUI_Settings.py:295
 msgid "table columns"
 msgstr ""
 
@@ -529,7 +529,7 @@ msgstr ""
 msgid "Refresh VGC data"
 msgstr ""
 
-#: ../gui/GUI_Settings.py:143
+#: ../gui/GUI_Settings.py:149
 msgid "Item details on double-click"
 msgstr ""
 
@@ -555,7 +555,7 @@ msgid ""
 "VGCollect.com"
 msgstr ""
 
-#: ../gui/GUI_Settings.py:145
+#: ../gui/GUI_Settings.py:151
 msgid "Refresh table on filter select"
 msgstr ""
 
@@ -633,7 +633,7 @@ msgid ""
 " 3) \tRestart VGC Analyze"
 msgstr ""
 
-#: ../gui/GUI_Settings.py:147
+#: ../gui/GUI_Settings.py:153
 msgid "Hide cover loading animation"
 msgstr ""
 
@@ -745,7 +745,7 @@ msgid ""
 "\n"
 msgstr ""
 
-#: ../gui/GUI_Settings.py:90
+#: ../gui/GUI_Settings.py:96
 msgid "VGC"
 msgstr ""
 
@@ -767,6 +767,16 @@ msgstr ""
 
 #: ../lib/Var.py:90
 msgid "Total price (growth/added)"
+msgstr ""
+
+#: ../gui/GUI_Settings.py:468
+msgid "Restart required"
+msgstr ""
+
+#: ../gui/GUI_Settings.py:468
+msgid ""
+"To apply the new language setting VGC_Analyze must be restarted. Do you want"
+" to restart now?"
 msgstr ""
 
 #~ msgid "Item count (growth)"
