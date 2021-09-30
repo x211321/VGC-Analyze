@@ -73,7 +73,7 @@ class GUI_Graph(Frame_):
         self.graph_content.bind("<<ComboboxSelected>>", self.onGraphContentSelect)
 
         self.graph_data_txt    = Label_(self.graph_tool_frame, text=_("Data:"))
-        self.graph_data        = Combobox_(self.graph_tool_frame, width=30, state="readonly")
+        self.graph_data        = Combobox_(self.graph_tool_frame, width=35, state="readonly")
         self.graph_data.set(VAR.GRAPH_DATA_ITEMCOUNT)
         self.graph_data.bind("<<ComboboxSelected>>", self.onGraphDataSelect)
 

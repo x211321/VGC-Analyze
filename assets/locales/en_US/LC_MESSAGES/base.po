@@ -53,7 +53,7 @@ msgstr ""
 msgid "Combine related platforms"
 msgstr ""
 
-#: ../gui/GUI_Filter.py:56 ../gui/GUI_ItemInfo.py:65 ../lib/Var.py:165
+#: ../gui/GUI_Filter.py:56 ../gui/GUI_ItemInfo.py:65 ../lib/Var.py:166
 msgid "Title"
 msgstr ""
 
@@ -63,7 +63,7 @@ msgstr ""
 msgid "Select"
 msgstr ""
 
-#: ../gui/GUI_Filter.py:63 ../lib/Var.py:177
+#: ../gui/GUI_Filter.py:63 ../lib/Var.py:178
 msgid "Notes"
 msgstr ""
 
@@ -207,27 +207,27 @@ msgid "Group"
 msgstr ""
 
 #: ../gui/GUI_Popups.py:293 ../gui/GUI_Settings.py:224
-#: ../gui/GUI_Settings.py:273 ../lib/Var.py:166
+#: ../gui/GUI_Settings.py:273 ../lib/Var.py:167
 msgid "Platform"
 msgstr ""
 
-#: ../gui/GUI_Filter.py:144 ../lib/Var.py:171
+#: ../gui/GUI_Filter.py:144 ../lib/Var.py:172
 msgid "Cart"
 msgstr ""
 
-#: ../gui/GUI_Filter.py:145 ../lib/Var.py:172
+#: ../gui/GUI_Filter.py:145 ../lib/Var.py:173
 msgid "Box"
 msgstr ""
 
-#: ../gui/GUI_Filter.py:149 ../lib/Var.py:173
+#: ../gui/GUI_Filter.py:149 ../lib/Var.py:174
 msgid "Manual"
 msgstr ""
 
-#: ../gui/GUI_Filter.py:150 ../lib/Var.py:174
+#: ../gui/GUI_Filter.py:150 ../lib/Var.py:175
 msgid "Other"
 msgstr ""
 
-#: ../gui/GUI_Filter.py:155 ../lib/Var.py:176
+#: ../gui/GUI_Filter.py:155 ../lib/Var.py:177
 msgid "Finished"
 msgstr ""
 
@@ -341,11 +341,11 @@ msgstr ""
 msgid "Overwrite with"
 msgstr ""
 
-#: ../gui/GUI_ItemInfo.py:67 ../lib/Var.py:169
+#: ../gui/GUI_ItemInfo.py:67 ../lib/Var.py:170
 msgid "Date (purchased)"
 msgstr ""
 
-#: ../gui/GUI_ItemInfo.py:69 ../lib/Var.py:170
+#: ../gui/GUI_ItemInfo.py:69 ../lib/Var.py:171
 msgid "Date (added)"
 msgstr ""
 
@@ -421,23 +421,15 @@ msgstr ""
 msgid "Total price"
 msgstr ""
 
-#: ../lib/Var.py:87
-msgid "Item count (growth)"
-msgstr ""
-
-#: ../lib/Var.py:88
-msgid "Total price (growth)"
-msgstr ""
-
-#: ../gui/GUI_Popups.py:295 ../lib/Var.py:167
+#: ../gui/GUI_Popups.py:295 ../lib/Var.py:168
 msgid "Region"
 msgstr ""
 
-#: ../lib/Var.py:168
+#: ../lib/Var.py:169
 msgid "Price"
 msgstr ""
 
-#: ../lib/Var.py:175
+#: ../lib/Var.py:176
 msgid "Bookmark"
 msgstr ""
 
@@ -601,7 +593,7 @@ msgstr ""
 msgid "Values"
 msgstr ""
 
-#: ../lib/Var.py:181
+#: ../lib/Var.py:182
 msgid "[current configuration]"
 msgstr ""
 
@@ -653,79 +645,79 @@ msgstr ""
 msgid "Network error"
 msgstr ""
 
-#: ../lib/Var.py:113 ../lib/Var.py:133
+#: ../lib/Var.py:114 ../lib/Var.py:134
 msgid "name"
 msgstr ""
 
-#: ../lib/Var.py:114 ../lib/Var.py:137
+#: ../lib/Var.py:115 ../lib/Var.py:138
 msgid "region"
 msgstr ""
 
-#: ../lib/Var.py:115 ../lib/Var.py:138
+#: ../lib/Var.py:116 ../lib/Var.py:139
 msgid "platform"
 msgstr ""
 
-#: ../lib/Var.py:116
+#: ../lib/Var.py:117
 msgid "platform holder"
 msgstr ""
 
-#: ../lib/Var.py:117 ../lib/Var.py:139
+#: ../lib/Var.py:118 ../lib/Var.py:140
 msgid "notes"
 msgstr ""
 
-#: ../lib/Var.py:134
+#: ../lib/Var.py:135
 msgid "price"
 msgstr ""
 
-#: ../lib/Var.py:148
+#: ../lib/Var.py:149
 msgid "ascending"
 msgstr ""
 
-#: ../lib/Var.py:149
+#: ../lib/Var.py:150
 msgid "descending"
 msgstr ""
 
-#: ../lib/Var.py:158
+#: ../lib/Var.py:159
 msgid "Yes"
 msgstr ""
 
-#: ../lib/Var.py:159
+#: ../lib/Var.py:160
 msgid "No"
 msgstr ""
 
-#: ../lib/Var.py:107
+#: ../lib/Var.py:108
 msgid "year (purchased)"
 msgstr ""
 
-#: ../lib/Var.py:108
+#: ../lib/Var.py:109
 msgid "month (purchased)"
 msgstr ""
 
-#: ../lib/Var.py:109
+#: ../lib/Var.py:110
 msgid "day (purchased)"
 msgstr ""
 
-#: ../lib/Var.py:110
+#: ../lib/Var.py:111
 msgid "year (added)"
 msgstr ""
 
-#: ../lib/Var.py:111
+#: ../lib/Var.py:112
 msgid "month (added)"
 msgstr ""
 
-#: ../lib/Var.py:112
+#: ../lib/Var.py:113
 msgid "day (added)"
 msgstr ""
 
-#: ../lib/Var.py:135
+#: ../lib/Var.py:136
 msgid "date (purchased)"
 msgstr ""
 
-#: ../lib/Var.py:136
+#: ../lib/Var.py:137
 msgid "date (added)"
 msgstr ""
 
-#: ../lib/Var.py:118
+#: ../lib/Var.py:119
 msgid "VGC ID"
 msgstr ""
 
@@ -760,6 +752,28 @@ msgstr ""
 #: ../gui/GUI_ItemInfo.py:239
 msgid "Please provide a username at File > Settings > VGC"
 msgstr ""
+
+#: ../lib/Var.py:87
+msgid "Item count (growth/purchased)"
+msgstr ""
+
+#: ../lib/Var.py:88
+msgid "Total price (growth/purchased)"
+msgstr ""
+
+#: ../lib/Var.py:89
+msgid "Item count (growth/added)"
+msgstr ""
+
+#: ../lib/Var.py:90
+msgid "Total price (growth/added)"
+msgstr ""
+
+#~ msgid "Item count (growth)"
+#~ msgstr ""
+
+#~ msgid "Total price (growth)"
+#~ msgstr ""
 
 #~ msgid "Please provide a username at File Settings VGC"
 #~ msgstr ""
