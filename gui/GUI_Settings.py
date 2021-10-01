@@ -469,7 +469,7 @@ class GUI_Settings(Toplevel):
                 if sys.argv[0][-3:].upper() == ".PY":
                     # Running from a script
                     # Find Python interpreter and re-run script
-                    os.execv(sys.executable, ['python'] + sys.argv)
+                    os.execv(sys.executable, ['python3'] + sys.argv)
                 else:
                     # Running from a binary bundle
                     # Re-run binary directly
