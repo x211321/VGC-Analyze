@@ -115,11 +115,20 @@ Python 3 should already be provided by most Linux distributions.
 Download the **VGC_Analyze_script.zip** file from the [releases page](https://github.com/x211321/VGC_Analyze/releases) and extract it somewhere on your hard drive.
 
 The required dependencies can be installed via the package manager.
+
+Debian/Ubuntu/Mint
 ```
 sudo apt-get install python3-tk
 sudo apt-get install python3-pil
 sudo apt-get install python3-pil.imagetk
 sudo apt-get install python3-matplotlib
+```
+
+Arch Linux
+```
+sudo pacman -S tk
+sudo pacman -S python-pillow
+sudo pacman -S python-matplotlib
 ```
 
 After that you should be able to start the application by running:
