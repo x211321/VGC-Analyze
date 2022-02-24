@@ -46,7 +46,7 @@ try:
     ASSETS_PATH = os.path.join(sys._MEIPASS, "assets", "")
     print("Working from pyinstaller directory")
 except:
-    ASSETS_PATH = os.path.join("assets", "")
+    ASSETS_PATH = os.path.join(sys.path[0], "assets", "")
     print("Working locally")
 
 ICON_PATH             = os.path.join(ASSETS_PATH, "icons", "")
