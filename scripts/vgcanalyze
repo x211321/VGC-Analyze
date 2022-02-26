@@ -1,3 +1,4 @@
 #/bin/bash
 
-python3 /usr/local/lib/VGC_Analyze/VGC_Analyze.py
+cd /usr/local/lib/VGC_Analyze/
+python3 ./VGC_Analyze.py
