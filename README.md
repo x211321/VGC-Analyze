@@ -88,14 +88,24 @@ python VGC_Analyze.py
 
 
 # Linux
-There are two ways to run VGC_Analyze on Linux.
+There are three ways to run VGC_Analyze on Linux.
 
+ * .deb package
  * Standalone executable
  * Python script
 
 You can download your preferred version from the [releases page](https://github.com/x211321/VGC_Analyze/releases).
 
-VGC_Analyze has been tested to run on Ubuntu 20.4 and Linux Mint 20.2.
+VGC_Analyze has been tested to run on Ubuntu 20.4 and Linux Mint 20.3.
+
+## Linux - .deb package
+For Debian based distributions (Ubuntu, Mint, etc.) a .deb package is provided. Your system's package manager will manage all necessary dependencies. After installation VGC_Analyze should show up in your application launcher under the "Games" section. 
+
+Alternatively run VGC_Analyze from the command line:
+
+```
+> vgcanalyze
+```
 
 ## Linux - Standalone executable
 Like the windows version, the standalone executable for Linux comes pre bundled with all required dependences and its own Python runtime and can be run without prior installation.
