@@ -538,11 +538,18 @@ class GUI(Tk):
 
         # Parsing page text
         tableBodies = str(response.read()).split("<table class=\"table\">")
+
+        # Remove all CR+LF
         tableBody = tableBodies[1].replace("\\r\\n", "")
 
-        data = re.split("</*tbody>", tableBody)
+        # Remove all LF
+        tableBody = tableBodies[1].replace("\\n", "")
 
+        # Split data at </tbody>
+        data = re.split("</*tbody>", tableBody)
+        # Split data at <tr><td>                # Replace one or more whitespaces with exactly one space
         for line in re.split("<tr> * *<td.*?>", re.sub(" +", " ", data[1])):
+            # Split data at </td><td> while ignoring possible whitespaces between them
             values = re.split("</td> * *<td>", line)
 
             if len(values) >= 2:
