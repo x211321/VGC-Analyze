@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import lib.Settings as settings
 from lib.Locale import setLanguage
 from lib.Locale import setLocale
