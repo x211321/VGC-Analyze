@@ -9,6 +9,8 @@ VGC_Analyze is meant to provide ways to view your collection data from different
 Have you ever wondered how much you've spend on your collection, how many imported items you own or what percentage of your collection consists of SEGA products? VGC_Analyze provides answers to all these questions and many more.
 
 
+![Main window](./img/screenshots/main_window.jpg)
+
 # Features
  * Download your collection data from your VGCollect.com profile
  * Sort, filter, group and compare your collection by various attributes
