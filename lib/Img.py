@@ -27,7 +27,7 @@ def loadImage(path, width = 0, padx = 0):
             percent = width/float(img.size[0])
             height  = int(float(img.size[1]) * float(percent))
 
-            img = img.resize((width, height), Image.ANTIALIAS)
+            img = img.resize((width, height), Image.Resampling.LANCZOS)
 
             if padx:
                 img = padImage(img, width, height, padx)
@@ -64,7 +64,7 @@ def loadIcon(name, width, height, padx = 0):
     if pillow_available:
         if os.path.exists(iconPath):
             icon = Image.open(iconPath)
-            icon = icon.resize((width, height), Image.ANTIALIAS)
+            icon = icon.resize((width, height), Image.Resampling.LANCZOS)
 
             if padx:
                 icon = padImage(icon, width, height, padx)
