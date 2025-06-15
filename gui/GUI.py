@@ -525,9 +525,13 @@ class GUI(Tk):
     ######################
     # getOnlineItemData
     # --------------------
-    def getOnlineItemData(self):
+    def getOnlineItemData(self, VGC_id = 0):
         result = {}
-        url = "https://vgcollect.com/item/" + str(self.activeItem().VGC_id)
+
+        if VGC_id == 0:
+            VGC_id = self.activeItem().VGC_id
+
+        url = "https://vgcollect.com/item/" + str(VGC_id)
 
         # Create request
         request = urllib.request.Request(url)
@@ -540,20 +544,30 @@ class GUI(Tk):
         tableBodies = str(response.read()).split("<table class=\"table\">")
 
         # Remove all CR+LF
-        tableBody = tableBodies[1].replace("\\r\\n", "")
+        tableBodies[1] = tableBodies[1].replace("\\r\\n", "")
 
         # Remove all LF
         tableBody = tableBodies[1].replace("\\n", "")
 
         # Split data at </tbody>
         data = re.split("</*tbody>", tableBody)
+
+        responseSubData = re.sub(" +", " ", data[1])
+        responseList = re.split("<tr> * *<td.*?>", responseSubData)
         # Split data at <tr><td>                # Replace one or more whitespaces with exactly one space
-        for line in re.split("<tr> * *<td.*?>", re.sub(" +", " ", data[1])):
+        for line in responseList:
             # Split data at </td><td> while ignoring possible whitespaces between them
             values = re.split("</td> * *<td>", line)
 
             if len(values) >= 2:
-                result[values[0].strip(": ")] = values[1].replace("</td>", "").replace("</tr>", "").strip()
+                key = values[0].strip(": ")
+                value = values[1].replace("</td>", "").replace("</tr>", "").strip()
+                if key == "Rating":
+                    # Remove the Image data from ratings
+                    value = re.sub('<img .*alt=\"', '', value)
+                    value = re.sub('\">', '', value)
+
+                result[key] = value
 
         return result
 
@@ -573,7 +587,33 @@ class GUI(Tk):
 
         return str(response.read())
 
+
+    ######################
+    # getOnlineCollectionListPage
+    # --------------------
     def updateAllCovers(self, refresh=False):
         if len(self.collectionData.collection_items) > 0:
             for item in self.collectionData.collection_items:
                 GUI_ItemInfo.updateCoversOnly(self.item_frame, item, refresh)
+
+
+    def updateAllInfos(self):
+        if len(self.collectionData.collection_items) > 0:
+
+            # Set a limit how many items should be updated
+            # VGC has gets a call for every item to the corresponding item page
+            itemsToUpdate = 10
+            if len(settings.get("vgc", "vgc_data", "")):
+                itemsToUpdate = int(settings.get("vgc", "vgc_data", ""))
+
+            updatedItems = 0
+            for item in self.collectionData.collection_items:
+                if item.id() not in self.collectionData.onlineData_list.keys() and updatedItems < itemsToUpdate:
+                    # Store the response data in the corresponding variables
+                    item.onlineData = self.getOnlineItemData(item.VGC_id)
+                    self.collectionData.onlineData_list[item.id()] = item.onlineData
+                    updatedItems = updatedItems + 1
+                    print(updatedItems, " / ", itemsToUpdate, " updated")
+
+            # Set the Json
+            writeJson(self.collectionData.onlineData_list, VAR.ONLINE_DATA_FILE)

@@ -287,6 +287,8 @@ class GUI_Settings(Toplevel):
         self.w["vgc"] = {}
         self.w["vgc"]["username_txt"]   = Label_(self.pages["vgc"], text=_("VGC Username"))
         self.w["vgc"]["username"]       = Entry_(self.pages["vgc"], _id="username", width=25)
+        self.w["vgc"]["vgc_data_txt"]   = Label_(self.pages["vgc"], text=_("Number of simultaneous VGC data downloads"))
+        self.w["vgc"]["vgc_data"]       = Entry_(self.pages["vgc"], _id="vgc_data", width=25)
         self.grid(self.w["vgc"])
 
     def columnSelect(self):

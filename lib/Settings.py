@@ -58,6 +58,7 @@ def defaultSettings():
                 },
                 "vgc": {
                     "username": "",
+                    "vgc_data": 10
                 }
             }
 

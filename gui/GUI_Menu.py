@@ -42,6 +42,7 @@ def initMainMenu(gui):
                                                        activeforeground=fg_active)
     gui.download_menu.add_command(label=_("Download collection"), command=gui.pop_collectionDownload.show, accelerator="Ctrl+D")
     gui.download_menu.add_command(label=_("Download cover"), command=gui.updateAllCovers)
+    gui.download_menu.add_command(label=_("Download VGC Info"), command=gui.updateAllInfos)
 
     # Templates menu
     gui.templates_menu = Menu(gui.main_menu, tearoff=0, bg=bg,
