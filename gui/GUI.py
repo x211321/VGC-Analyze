@@ -572,3 +572,8 @@ class GUI(Tk):
         response = urllib.request.urlopen(request)
 
         return str(response.read())
+
+    def updateAllCovers(self, refresh=False):
+        if len(self.collectionData.collection_items) > 0:
+            for item in self.collectionData.collection_items:
+                GUI_ItemInfo.updateCoversOnly(self.item_frame, item, refresh)

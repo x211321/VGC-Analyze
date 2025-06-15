@@ -143,14 +143,21 @@ class GUI_ItemInfo(Frame_):
         self.item_price.set(locCurrency(self.activeItem().price))
         self.item_id.set("VGC ID: " + str(self.activeItem().VGC_id))
 
+        self.updateCoversOnly(self.activeItem(), refresh)
+
+
+    ######################
+    # updateCoversOnly
+    # --------------------
+    def updateCoversOnly(self, item, refresh = False):
         # Update front cover
-        self.updateCover(self.activeItem(), VAR.COVER_TYPE_FRONT, self.item_front, refresh)
+        self.updateCover(item, VAR.COVER_TYPE_FRONT, self.item_front, refresh)
 
         # Update back cover
-        self.updateCover(self.activeItem(), VAR.COVER_TYPE_BACK, self.item_back, refresh)
+        self.updateCover(item, VAR.COVER_TYPE_BACK, self.item_back, refresh)
 
         # Update cart cover
-        self.updateCover(self.activeItem(), VAR.COVER_TYPE_CART, self.item_cart, refresh)
+        self.updateCover(item, VAR.COVER_TYPE_CART, self.item_cart, refresh)
 
 
     ######################
