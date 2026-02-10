@@ -66,6 +66,7 @@ DEFAULT_THEME_NAME = "VGC_Analyze"
 CAT_HARDWARE     = "Hardware"
 CAT_ACCESSORY    = "Accessory"
 CAT_ACCESSORIES  = "Accessories"
+CAT_CONSOLES     = "Consoles"
 
 
 # Graph vars
@@ -123,21 +124,23 @@ GROUP_BY[GROUP_BY_VGCID         ] = _("VGC ID"           )
 # Order by
 ORDER_BY = {}
 
-ORDER_BY_NAME       = "name"
-ORDER_BY_PRICE      = "price"
-ORDER_BY_DATE       = "date (purchased)"
-ORDER_BY_DATE_ADDED = "date (added)"
-ORDER_BY_REGION     = "region"
-ORDER_BY_PLATFORM   = "platform"
-ORDER_BY_NOTES      = "notes"
+ORDER_BY_NAME           = "name"
+ORDER_BY_PRICE          = "price"
+ORDER_BY_DATE           = "date (purchased)"
+ORDER_BY_DATE_ADDED     = "date (added)"
+ORDER_BY_REGION         = "region"
+ORDER_BY_PLATFORM       = "platform"
+ORDER_BY_NOTES          = "notes"
+ORDER_BY_FINISHED_DATE  = "date (finished)"
 
-ORDER_BY[ORDER_BY_NAME      ] = _("name"            )
-ORDER_BY[ORDER_BY_PRICE     ] = _("price"           )
-ORDER_BY[ORDER_BY_DATE      ] = _("date (purchased)")
-ORDER_BY[ORDER_BY_DATE_ADDED] = _("date (added)"    )
-ORDER_BY[ORDER_BY_REGION    ] = _("region"          )
-ORDER_BY[ORDER_BY_PLATFORM  ] = _("platform"        )
-ORDER_BY[ORDER_BY_NOTES     ] = _("notes"           )
+ORDER_BY[ORDER_BY_NAME          ] = _("name"            )
+ORDER_BY[ORDER_BY_PRICE         ] = _("price"           )
+ORDER_BY[ORDER_BY_DATE          ] = _("date (purchased)")
+ORDER_BY[ORDER_BY_DATE_ADDED    ] = _("date (added)"    )
+ORDER_BY[ORDER_BY_REGION        ] = _("region"          )
+ORDER_BY[ORDER_BY_PLATFORM      ] = _("platform"        )
+ORDER_BY[ORDER_BY_NOTES         ] = _("notes"           )
+ORDER_BY[ORDER_BY_FINISHED_DATE ] = _("date (finished)" )
 
 
 # Order direction
@@ -176,6 +179,9 @@ VIEW_COLUMNS["Other"]            = {"name": _("Other")           , "anchor": "w"
 VIEW_COLUMNS["Bookmark"]         = {"name": _("Bookmark")        , "anchor": "w", "type": None    , "grouptype": None , "width":  30}
 VIEW_COLUMNS["Finished"]         = {"name": _("Finished")        , "anchor": "w", "type": None    , "grouptype": None , "width":  30}
 VIEW_COLUMNS["Notes"]            = {"name": _("Notes")           , "anchor": "w", "type": None    , "grouptype": None , "width": 100}
+VIEW_COLUMNS["Finished Notes"]   = {"name": _("Finished Notes")  , "anchor": "w", "type": None    , "grouptype": None , "width": 100}
+VIEW_COLUMNS["Self created"]     = {"name": _("Self created")    , "anchor": "w", "type": None    , "grouptype": None , "width": 100}
+VIEW_COLUMNS["Duplicate"]        = {"name": _("Duplicate")       , "anchor": "w", "type": None    , "grouptype": None , "width": 100}
 
 
 # Templates

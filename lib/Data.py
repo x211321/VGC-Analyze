@@ -209,6 +209,8 @@ class FilterData(object):
         self.otherFilter          = ""
         self.bookmarkedFilter     = ""
         self.finishedFilter       = ""
+        self.selfCreatedFilter    = ""
+        self.duplicateFilter      = ""
 
         self.orderItems           = ""
         self.orderDirection       = ""
@@ -294,6 +296,10 @@ class FilterData(object):
                 self.bookmarkedFilter  = self.setFilterValue(key, i18nToRaw(VAR.ATTRIBUTE_YN, inputs[key].get()))
             if key == "finished":
                 self.finishedFilter    = self.setFilterValue(key, i18nToRaw(VAR.ATTRIBUTE_YN, inputs[key].get()))
+            if key == "selfCreated":
+                self.selfCreatedFilter = self.setFilterValue(key, i18nToRaw(VAR.ATTRIBUTE_YN, inputs[key].get()))
+            if key == "duplicate":
+                self.duplicateFilter   = self.setFilterValue(key, i18nToRaw(VAR.ATTRIBUTE_YN, inputs[key].get()))
             if key == "group":
                 self.groupItems        = self.setFilterValue(key, i18nToRaw(VAR.GROUP_BY, inputs[key].get()))
             if key == "order":
@@ -417,7 +423,9 @@ class CollectionData(object):
             self.stringEqual(self.filterData.manualFilter, item.manual) and
             self.stringEqual(self.filterData.otherFilter, item.other) and
             self.stringEqual(self.filterData.bookmarkedFilter, item.getLocalData("bookmarked")) and
-            self.stringEqual(self.filterData.finishedFilter, item.getLocalData("finished"))):
+            self.stringEqual(self.filterData.finishedFilter, item.getLocalData("finished")) and
+            (len(self.filterData.selfCreatedFilter) == 0 or (self.filterData.selfCreatedFilter == "Yes" and item.getOnlineData("selfCreated") == "X") or self.filterData.selfCreatedFilter == "No" and item.getOnlineData("selfCreated") == "") and
+            (len(self.filterData.duplicateFilter) == 0 or (self.filterData.duplicateFilter == "Yes" and item.getLocalData("duplicate") == "X") or self.filterData.duplicateFilter == "No" and item.getLocalData("duplicate") == "")):
 
             return True
         else:

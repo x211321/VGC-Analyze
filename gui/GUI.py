@@ -207,6 +207,13 @@ class GUI(Tk):
         if not len(readErr) and not len(parseErr):
             self.collectionData.sumData()
 
+            itemID = 0
+            for item in self.collectionData.collection_items:
+                if item.VGC_id == itemID:
+                    item.localData["duplicate"] = "X"
+
+                itemID = item.VGC_id
+
             self.filter_frame.fillGroupCombobox()
             self.filter_frame.fillOrderCombobox()
         else:
@@ -224,6 +231,13 @@ class GUI(Tk):
 
         # Sum data acording to the user filter
         self.collectionData.sumData()
+
+        itemID = 0
+        for item in self.collectionData.collection_items:
+            if item.VGC_id == itemID:
+                item.localData["duplicate"] = "X"
+
+            itemID = item.VGC_id
 
         # Show group column
         if len(displayFilter.groupItems):
@@ -337,7 +351,22 @@ class GUI(Tk):
                 YNToX(item.other),
                 YNToX(item.getLocalData("bookmarked")),
                 YNToX(item.getLocalData("finished")),
-                item.notes)
+                item.notes,
+                item.getLocalData("finishedNotes"),
+                item.getOnlineData("selfCreated"),
+                item.getLocalData("duplicate"))
+
+    def getSortDateFinishedNotes(self, item):
+        finishedNote = item.getLocalData("finishedNotes")
+        if finishedNote.find(" - ") != -1:
+            dateStart = finishedNote.find(" - ") + 3
+            date = finishedNote[dateStart:dateStart+10]
+        else:
+            date = finishedNote.replace('Abgeschlossen: ', '')[0:10]
+
+        date = date[6:10] + "-" + date[3:5] + "-" + date[0:2]
+        return date
+
 
 
     ######################
@@ -359,6 +388,8 @@ class GUI(Tk):
                 return sorted(items, key=lambda item: item.platform, reverse=(filterData.orderDirection == VAR.ORDER_DIRECTION_DESCENDING))
             if filterData.orderItems == VAR.ORDER_BY_NOTES :
                 return sorted(items, key=lambda item: item.notes, reverse=(filterData.orderDirection == VAR.ORDER_DIRECTION_DESCENDING))
+            if filterData.orderItems == VAR.ORDER_BY_FINISHED_DATE :
+                return sorted(items, key=lambda item: self.getSortDateFinishedNotes(item) ,reverse=(filterData.orderDirection == VAR.ORDER_DIRECTION_DESCENDING))
         else:
             return items
 
@@ -540,8 +571,22 @@ class GUI(Tk):
         # Get Page
         response = urllib.request.urlopen(request)
 
+        responseText = str(response.read())
+        createdByPosStart = responseText.find("<td>Created</td>")
+        createdByPosStart = responseText.rfind("<tr>", 0, createdByPosStart)
+        createdByPosEnd = responseText.find("</tr>", createdByPosStart)
+
+        createdBy = responseText[createdByPosStart:createdByPosEnd]
+        createdByList = re.findall("<td><a .+</td>", createdBy)
+        if len(createdByList) > 0:
+            createdBy = createdByList[0]
+            createdBy = re.sub("<td><a href=.+\">", "", createdBy)
+            createdBy = re.sub("</a></td>.*", "", createdBy)
+
+        username = settings.get("vgc", "username", "")
+
         # Parsing page text
-        tableBodies = str(response.read()).split("<table class=\"table\">")
+        tableBodies = responseText.split("<table class=\"table\">")
 
         # Remove all CR+LF
         tableBodies[1] = tableBodies[1].replace("\\r\\n", "")
@@ -568,6 +613,9 @@ class GUI(Tk):
                     value = re.sub('\">', '', value)
 
                 result[key] = value
+
+        if len(username) > 0 and createdBy.lower() == username.lower():
+            result["selfCreated"] = "X"
 
         return result
 
@@ -617,3 +665,159 @@ class GUI(Tk):
 
             # Set the Json
             writeJson(self.collectionData.onlineData_list, VAR.ONLINE_DATA_FILE)
+
+
+    def showMissingInfos(self):
+        missingInfos = self.getMissingInfos()
+        for missingInfo in missingInfos:
+            print(missingInfo)
+        print(len(missingInfos))
+
+    def getMissingInfos(self):
+        count = 0
+        missingInfos = []
+
+        # The ignore list works but can't be populated without doing it in code.
+        # There should be a way in VGCAnalyze itself to do so but that isn't implemented yet.
+        ignoreList = {}
+
+        #ignoreList[98317] = ["Rating"]
+        #ignoreList[209778] = ["Item Number"]
+        #ignoreList[247695] = ["Rating"]
+        #ignoreList[183534] = ["Barcode"]
+        #ignoreList[211076] = ["Release Date"]
+        #ignoreList[173607] = ["Barcode"]
+        #ignoreList[214135] = ["Barcode"]
+        #ignoreList[96408] = ["Item Number"]
+        #ignoreList[135833] = ["Release Date"]
+        #ignoreList[178256] = ["Barcode"]
+        #ignoreList[173619] = ["Barcode"]
+        #ignoreList[191804] = ["Release Date"]
+        #ignoreList[198019] = ["Box Text"]
+        #ignoreList[138165] = ["Barcode", "Box Text"]
+        #ignoreList[17080] = ["Barcode", "Box Text", "Rating"]
+
+        combine_platforms = False
+        if combine_platforms != self.view_frame.file_frame.combine_platforms.get():
+            combine_platforms = self.view_frame.file_frame.combine_platforms.get()
+            self.view_frame.file_frame.combine_platforms.set(False)
+            self.setCurrentVGCFile()
+
+        for item in self.collectionData.collection_items:
+
+            platformFilterList = [VAR.CAT_HARDWARE, VAR.CAT_ACCESSORIES, VAR.CAT_ACCESSORY, VAR.CAT_CONSOLES]
+            skipPlatform = False
+            for filter in platformFilterList:
+                if len(item.platform) > len(filter) and filter == item.platform[-len(filter):]:
+                    skipPlatform = True
+
+            if item.id() in self.collectionData.onlineData_list.keys() and not skipPlatform:
+                if not os.path.exists(VAR.getCoverPath(item, VAR.COVER_TYPE_FRONT)):
+                    missingInfos.append(str(item.VGC_id) + " " + item.name + " " + VAR.COVER_TYPE_FRONT)
+                if not os.path.exists(VAR.getCoverPath(item, VAR.COVER_TYPE_BACK)):
+                    missingInfos.append(str(item.VGC_id) + " " + item.name + " " + VAR.COVER_TYPE_BACK)
+                if not os.path.exists(VAR.getCoverPath(item, VAR.COVER_TYPE_CART)):
+                    missingInfos.append(str(item.VGC_id) + " " + item.name + " " + VAR.COVER_TYPE_CART)
+
+
+                optionalKeylist = ["Alt-Name", "Description"]
+                keylist = ["Barcode", "Box Text", "Developer(s)", "Genre", "Item Number", "Publisher(s)", "Rating", "Release Date", "Release Type"]
+                for key in keylist:
+                    if item.getOnlineData(key) == "NA" and (item.VGC_id not in ignoreList or key not in ignoreList[item.VGC_id]):
+                        missingInfos.append(str(item.VGC_id) + " " + item.name + " " + key)
+                        count = count + 1
+
+        if combine_platforms == True:
+            self.view_frame.file_frame.combine_platforms.set(combine_platforms)
+            self.setCurrentVGCFile()
+
+        return missingInfos
+
+    def getFinishedPage(self, username, page):
+        url = "https://vgcollect.com/finished/"+ username + "/" + str(page)
+
+        # Create request
+        request = urllib.request.Request(url)
+
+        # Get Page
+        response = urllib.request.urlopen(request)
+
+        return str(response.read())
+
+    def getLastPage(self, pageData):
+        maxpage = 0
+        pageNavigationStart = pageData.find("<div class=\"row-fluid paginate\"")
+        pageStart = 0
+        if pageNavigationStart != -1:
+            pageNavigationEnd = pageData.find("<div class=\"clearfix\"", pageNavigationStart)
+            pageNavigationData = pageData[pageNavigationStart:pageNavigationEnd]
+
+            exitLoop = False
+            while not exitLoop:
+                pageStart = pageNavigationData.find("<a href=", pageStart)
+                if pageStart == -1:
+                    exitLoop = True
+                else:
+                    pageStart = pageNavigationData.find(">", pageStart) + 1
+                    pageEnd = pageNavigationData.find("</a>", pageStart)
+                    tempPage = pageNavigationData[pageStart:pageEnd]
+                    if tempPage.find("class") == -1:
+                        maxpage = max(maxpage, int(tempPage))
+
+            page = maxpage
+        else:
+            empty = pageData.find("<div id=\"tutor\"")
+
+            if empty != -1:
+                page = 0
+            else:
+                page = 1
+
+        return page
+
+
+
+    def refreshFinished(self):
+        username = settings.get("vgc", "username", "")
+        page = 1
+        lastPageReached = False
+        itemByVGCID = {}
+
+        for item in self.collectionData.collection_items:
+            item.localData["finished"] = VAR.ATTRIBUTE_NO
+            item.localData["finishedNotes"] = ""
+            itemByVGCID[str(item.VGC_id)] = item.index
+
+        while not lastPageReached:
+            print("Working on page: ", page)
+            itemStart = 0
+            pageData = self.getFinishedPage(username, page)
+            exitItemLoop = False
+
+            while not exitItemLoop:
+                itemStart = pageData.find("<div class=\"item\"", itemStart)
+                if itemStart == -1:
+                    exitItemLoop = True
+                else:
+                    itemEnd = pageData.find("</div>", itemStart)
+                    htmlItem = pageData[itemStart:itemEnd]
+                    id = htmlItem.split("_")[1]
+                    if str(id) in itemByVGCID:
+                        index = itemByVGCID[str(id)]
+                        item = self.collectionData.collection_items[index]
+                        item.localData["finished"] = toggleYN(item.getLocalData("finished"))
+
+                        # Entering notes of finished list
+                        notesItemStart = pageData.find("<div class=\"item-notes\"", itemEnd)
+                        noteStart = pageData.find("<span>", notesItemStart) + len("<span>")
+                        noteEnd = pageData.find("</span>", noteStart)
+                        note = pageData[noteStart:noteEnd]
+                        if note != "None":
+                            item.localData["finishedNotes"] = note
+                        self.updateViewItem(index, item)
+                    itemStart += 1
+
+            if self.getLastPage(pageData) <= page:
+                lastPageReached = True
+
+            page += 1

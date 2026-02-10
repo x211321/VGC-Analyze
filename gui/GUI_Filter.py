@@ -156,13 +156,18 @@ class GUI_Filter(Frame_):
         self.filterInputs["bookmarked"]     = Combobox_(self.filterInputs["column_frame"], _row=6, _col=0, state="readonly")
         self.filterInputs["finished"]       = Combobox_(self.filterInputs["column_frame"], _row=6, _col=2, state="readonly")
 
-        self.filterInputs["order_txt"]      = Label_(self.filterInputs["column_frame"], _row=7, _col=0, text=_("Sort by"), _pady=(2,0))
-        self.filterInputs["order_dir_txt"]  = Label_(self.filterInputs["column_frame"], _row=7, _col=2, text=_("Sort direction"), _pady=(2,0))
-        self.filterInputs["order"]          = Combobox_(self.filterInputs["column_frame"], _row=8, _col=0, state="readonly")
-        self.filterInputs["orderDirection"] = Combobox_(self.filterInputs["column_frame"], _row=8, _col=2, state="readonly")
+        self.filterInputs["selfCreated_txt"]= Label_(self.filterInputs["column_frame"], _row=7, _col=0, text=_("Self created"), _pady=(2,0))
+        self.filterInputs["duplicate_txt"]  = Label_(self.filterInputs["column_frame"], _row=7, _col=2, text=_("Duplicate"), _pady=(2,0))
+        self.filterInputs["selfCreated"]    = Combobox_(self.filterInputs["column_frame"], _row=8, _col=0, state="readonly")
+        self.filterInputs["duplicate"]      = Combobox_(self.filterInputs["column_frame"], _row=8, _col=2, state="readonly")
 
-        self.filterInputs["filter_reset"]   = LabelButton_(self.filterInputs["column_frame"], _row=9, _col=0, _pady=(10,0), command=self.reset, style=VAR.LABELBUTTON_STYLE_CANCEL)
-        self.filterInputs["filter_apply"]   = LabelButton_(self.filterInputs["column_frame"], _row=9, _col=2, _pady=(10,0), command=self.showData, style=VAR.LABELBUTTON_STYLE_CONFIRM)
+        self.filterInputs["order_txt"]      = Label_(self.filterInputs["column_frame"], _row=9, _col=0, text=_("Sort by"), _pady=(2,0))
+        self.filterInputs["order_dir_txt"]  = Label_(self.filterInputs["column_frame"], _row=9, _col=2, text=_("Sort direction"), _pady=(2,0))
+        self.filterInputs["order"]          = Combobox_(self.filterInputs["column_frame"], _row=10, _col=0, state="readonly")
+        self.filterInputs["orderDirection"] = Combobox_(self.filterInputs["column_frame"], _row=10, _col=2, state="readonly")
+
+        self.filterInputs["filter_reset"]   = LabelButton_(self.filterInputs["column_frame"], _row=11, _col=0, _pady=(10,0), command=self.reset, style=VAR.LABELBUTTON_STYLE_CANCEL)
+        self.filterInputs["filter_apply"]   = LabelButton_(self.filterInputs["column_frame"], _row=11, _col=2, _pady=(10,0), command=self.showData, style=VAR.LABELBUTTON_STYLE_CONFIRM)
         self.filterInputs["filter_reset"].config(text=_("Reset filter"), image=self.cancelIcon, compound="left")
         self.filterInputs["filter_apply"].config(text=_("Apply filter"), image=self.confirmIcon, compound="left")
 
@@ -395,6 +400,8 @@ class GUI_Filter(Frame_):
         self.filterInputs["other"].setValues(options)
         self.filterInputs["bookmarked"].setValues(options)
         self.filterInputs["finished"].setValues(options)
+        self.filterInputs["selfCreated"].setValues(options)
+        self.filterInputs["duplicate"].setValues(options)
 
 
     ######################
