@@ -94,9 +94,14 @@ def create_app_bundle():
     shutil.copytree("../../lib/", BUNDLE_DIR + "/lib/")
     shutil.copy("../../VGC_Analyze.py", BUNDLE_DIR + "/VGC_Analyze.py")
 
-    shutil.rmtree(BUNDLE_DIR + "/gui/__pycache__/")
-    shutil.rmtree(BUNDLE_DIR + "/gui/popups/__pycache__/")
-    shutil.rmtree(BUNDLE_DIR + "/lib/__pycache__/")
+    if os.path.exists(BUNDLE_DIR + "/gui/__pycache__/"):
+        shutil.rmtree(BUNDLE_DIR + "/gui/__pycache__/")
+
+    if os.path.exists(BUNDLE_DIR + "/gui/popups/__pycache__/"):
+        shutil.rmtree(BUNDLE_DIR + "/gui/popups/__pycache__/")
+
+    if os.path.exists(BUNDLE_DIR + "/lib/__pycache__/"):
+        shutil.rmtree(BUNDLE_DIR + "/lib/__pycache__/")
 
     # Create zip file
     zip = ZipFile(DIST_DIR + "/" + BUNDLE_DIR+"_script.zip", "w")

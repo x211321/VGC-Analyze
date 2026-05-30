@@ -22,8 +22,14 @@ shutil.copytree("../gui/", targetDir + "gui/")
 shutil.copytree("../lib/", targetDir + "lib/")
 shutil.copy("../VGC_Analyze.py", targetDir + "VGC_Analyze.py")
 
-shutil.rmtree(targetDir + "gui/__pycache__/")
-shutil.rmtree(targetDir + "lib/__pycache__/")
+if os.path.exists(targetDir + "gui/__pycache__/"):
+    shutil.rmtree(targetDir + "gui/__pycache__/")
+
+if os.path.exists(targetDir + "gui/popups/__pycache__/"):
+    shutil.rmtree(targetDir + "gui/popups/__pycache__/")
+
+if os.path.exists(targetDir + "lib/__pycache__/"):
+    shutil.rmtree(targetDir + "lib/__pycache__/")
 
 os.chdir(targetDir + "..")
 
