@@ -2,7 +2,7 @@
 Name=VGC_Analyze
 Comment=A visual VGCollect.com data analyzer
 Exec=vgcanalyze
-Icon=/usr/local/lib/VGC_Analyze/assets/icons/icon.png
+Icon=/usr/lib/vgcanalyze/assets/icons/icon.png
 Terminal=false
 Type=Application
 Categories=Game;
