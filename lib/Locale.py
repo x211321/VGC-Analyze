@@ -41,8 +41,14 @@ def setLocale(localeString = ""):
         locale.setlocale(locale.LC_ALL, localeString)
     else:
         print("Loading default locale")
-        locale.setlocale(locale.LC_ALL, "en_US.UTF-8")
 
+        try:
+            locale.setlocale(locale.LC_ALL, "en_US.UTF-8")
+        except:
+            try:
+                locale.setlocale(locale.LC_ALL, "en_US")
+            except:
+                locale.setlocale(locale.LC_ALL, "")
 
 def locCurrency(value):
     return locale.currency(value, grouping=True)
