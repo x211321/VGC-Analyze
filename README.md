@@ -67,7 +67,7 @@ The standalone version is created with [Pyinstaller](https://www.pyinstaller.org
 ## Windows - Python script
 Make sure you have a recent version of [Python 3](https://www.python.org/downloads/) installed.
 
-Download the **VGC_Analyze_script.zip** file from the [releases page](https://github.com/x211321/VGC_Analyze/releases) and extract it somewhere on your hard drive.
+Download the **VGC_Analyze_<version>_script.zip** file from the [releases page](https://github.com/x211321/VGC_Analyze/releases) and extract it somewhere on your hard drive.
 
 VGC_Analyze requires a couple third party Python modules that are not included in the zip file. These can be installed via the "package installer for Python" ([pip]([https://pypi.org)). **While the application can be run without those modules, it is recommended that you install them, otherwise certain function will be unavailable.**
 
@@ -100,8 +100,52 @@ You can download your preferred version from the [releases page](https://github.
 
 VGC_Analyze has been tested to run on Ubuntu 20.4 and Linux Mint 20.3.
 
-## Linux - .deb package
-For Debian based distributions (Ubuntu, Mint, etc.) a .deb package is provided. Your system's package manager will manage all necessary dependencies. After installation VGC_Analyze should show up in your application launcher under the "Games" section.
+## Linux - packages
+---
+
+## Debian / Ubuntu / Linux Mint / Pop!_OS
+For systems that use the **apt package manager** a **.deb** package is provided. Simply download the **.deb** file from the [releases page](https://github.com/x211321/VGC-Analyze/releases) and run the installation. In many systems **.deb** files can run directly from the file manager by (double) clicking.
+
+**Alternatively install the application from the command line:**
+```
+sudo apt install ./VGC_Analyze_v<VERSION>_deb.deb
+```
+
+---
+
+## Fedora
+A Fedora specific **.rpm** package can be found on the [releases page](https://github.com/x211321/VGC-Analyze/releases). Download the file that ends on **_fedora.rpm**. Most setups should allow the execution of **.rpm** files via the file manager.
+
+**Alternatively install the application from the command line:**
+```
+sudo dnf install ./VGC_Analyze_v<VERSION>_fedora.rpm
+```
+
+---
+
+## Arch Linux / Manjaro
+For Arch Linux based systems that use the pacman package manager a PKGBUILD is provided. Download the file that ends on **_PKGBUILD.tar.gz** from the [releases page](https://github.com/x211321/VGC-Analyze/releases).
+
+> ⚠ Make sure you have the base-devel package installed before preceding with the installation.
+
+The installation will proceed via the command line:
+
+**Extract the archive**
+```
+tar -xf VGC_Analyze_v<VERSION>_PKGBUILD.tar.gz
+```
+
+**Change into the newly extracted folder**
+```
+cd VGC_Analyze_v<VERSION>_PKGBUILD
+```
+
+**Run makepkg with external dependencies and install the package via pacman**
+```
+makepkg -si
+```
+
+After installation VGC_Analyze should show up in your application launcher under the "Games" section.
 
 Alternatively run VGC_Analyze from the command line:
 
@@ -115,8 +159,8 @@ Like the windows version, the standalone executable for Linux comes pre bundled 
 It might be necessary to set the "execute" permission of the binary file before the standalone version can be run.
 
 ```
-chmod +x ./VGC_Analyze
-./VGC_Analyze
+chmod +x ./VGC_Analyze_<version>_standalone_linux
+./VGC_Analyze_<version>_standalone_linux
 ```
 
 If you run into any incompatibilities with the standalone version, it is recommended that you use the script version instead.
@@ -124,7 +168,7 @@ If you run into any incompatibilities with the standalone version, it is recomme
 ## Linux - Python script
 Python 3 should already be provided by most Linux distributions.
 
-Download the **VGC_Analyze_script.zip** file from the [releases page](https://github.com/x211321/VGC_Analyze/releases) and extract it somewhere on your hard drive.
+Download the **VGC_Analyze_<version>_script.zip** file from the [releases page](https://github.com/x211321/VGC_Analyze/releases) and extract it somewhere on your hard drive.
 
 The required dependencies can be installed via the distributions package manager.
 
@@ -136,19 +180,19 @@ sudo apt-get install python3-pil.imagetk
 sudo apt-get install python3-matplotlib
 ```
 
-Arch Linux
-```
-sudo pacman -S tk
-sudo pacman -S python-pillow
-sudo pacman -S python-matplotlib
-```
-
 Fedora
 ```
 sudo dnf in python3-tkinter
 sudo dnf in python3-pillow
 sudo dnf in python3-pillow-tk
 sudo dnf in python3-matplotlib
+```
+
+Arch Linux
+```
+sudo pacman -S tk
+sudo pacman -S python-pillow
+sudo pacman -S python-matplotlib
 ```
 
 After that you should be able to start the application by running:
@@ -166,7 +210,7 @@ The default version of Python3, that is distributed with macOS, does not work we
 
 The rest of the installation process is similar to the other script versions.
 
-Download the **VGC_Analyze_script.zip** file from the [releases page](https://github.com/x211321/VGC_Analyze/releases) and extract it somewhere on your hard drive.
+Download the **VGC_Analyze_<version>_script.zip** file from the [releases page](https://github.com/x211321/VGC_Analyze/releases) and extract it somewhere on your hard drive.
 
 Install the dependencies via [pip]([https://pypi.org).
 ```
