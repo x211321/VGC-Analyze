@@ -28,7 +28,7 @@ def loadImage(path, width = 0, padx = 0):
             percent = width/float(img.size[0])
             height  = int(float(img.size[1]) * float(percent))
 
-            if (int(Image.__version__.split(".")[0]) > 10):
+            if (int(Image.__version__.split(".")[0]) >= 10):
                 img = img.resize((width, height), Image.Resampling.LANCZOS)
             else:
                 img = img.resize((width, height), Image.ANTIALIAS)
@@ -69,7 +69,7 @@ def loadIcon(name, width, height, padx = 0):
         if os.path.exists(iconPath):
             icon = Image.open(iconPath)
 
-            if (int(Image.__version__.split(".")[0]) > 10):
+            if (int(Image.__version__.split(".")[0]) >= 10):
                 icon = icon.resize((width, height), Image.Resampling.LANCZOS)
             else:
                 icon = icon.resize((width, height), Image.ANTIALIAS)
