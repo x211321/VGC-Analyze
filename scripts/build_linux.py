@@ -98,6 +98,15 @@ def create_app_bundle():
     shutil.rmtree(BUNDLE_DIR + "/gui/popups/__pycache__/")
     shutil.rmtree(BUNDLE_DIR + "/lib/__pycache__/")
 
+    # Create zip file
+    zip = ZipFile(DIST_DIR + "/" + BUNDLE_DIR+"_script.zip", "w")
+
+    for root, dirs, files in os.walk(BUNDLE_DIR):
+        for f in files:
+            zip.write(os.path.join(root, f))
+
+    zip.close()
+
 
 
 ##################################################
