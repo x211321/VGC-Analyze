@@ -1,3 +1,4 @@
+import sys
 import platform
 import lib.Settings as settings
 from lib.Locale import _
@@ -41,10 +42,12 @@ def initMainMenu(gui):
                                                        activebackground=bg_active,
                                                        activeforeground=fg_active)
     gui.download_menu.add_command(label=_("Download collection"), command=gui.pop_collectionDownload.show, accelerator="Ctrl+D")
-    gui.download_menu.add_command(label=_("Download cover"), command=gui.updateAllCovers)
-    gui.download_menu.add_command(label=_("Download VGC Info"), command=gui.updateAllInfos)
-    gui.download_menu.add_command(label=_("Show missing data"), command=gui.showMissingInfos)
-    gui.download_menu.add_command(label=_("Refresh Finished"), command=gui.refreshFinished)
+
+    if "--debug" in sys.argv:
+        gui.download_menu.add_command(label=_("Download covers"), command=gui.updateAllCovers)
+        gui.download_menu.add_command(label=_("Download VGC Info"), command=gui.updateAllInfos)
+        gui.download_menu.add_command(label=_("Show missing data"), command=gui.showMissingInfos)
+        gui.download_menu.add_command(label=_("Refresh Finished"), command=gui.refreshFinished)
 
     # Templates menu
     gui.templates_menu = Menu(gui.main_menu, tearoff=0, bg=bg,
