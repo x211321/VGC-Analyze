@@ -40,16 +40,8 @@ def setLocale(localeString = ""):
 
         locale.setlocale(locale.LC_ALL, localeString)
     else:
-
         print("Loading default locale")
-
-        if platform.system() == "Darwin":
-            # Python doesn't like the default locale
-            # when running on darwin, for now
-            # set to en_US so the app can run
-            locale.setlocale(locale.LC_ALL, "en_US")
-        else:
-            locale.setlocale(locale.LC_ALL, "")
+        locale.setlocale(locale.LC_ALL, "en_US")
 
 
 def locCurrency(value):

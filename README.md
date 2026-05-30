@@ -101,7 +101,7 @@ You can download your preferred version from the [releases page](https://github.
 VGC_Analyze has been tested to run on Ubuntu 20.4 and Linux Mint 20.3.
 
 ## Linux - .deb package
-For Debian based distributions (Ubuntu, Mint, etc.) a .deb package is provided. Your system's package manager will manage all necessary dependencies. After installation VGC_Analyze should show up in your application launcher under the "Games" section. 
+For Debian based distributions (Ubuntu, Mint, etc.) a .deb package is provided. Your system's package manager will manage all necessary dependencies. After installation VGC_Analyze should show up in your application launcher under the "Games" section.
 
 Alternatively run VGC_Analyze from the command line:
 
@@ -126,7 +126,7 @@ Python 3 should already be provided by most Linux distributions.
 
 Download the **VGC_Analyze_script.zip** file from the [releases page](https://github.com/x211321/VGC_Analyze/releases) and extract it somewhere on your hard drive.
 
-The required dependencies can be installed via the package manager.
+The required dependencies can be installed via the distributions package manager.
 
 Debian/Ubuntu/Mint
 ```
@@ -141,6 +141,14 @@ Arch Linux
 sudo pacman -S tk
 sudo pacman -S python-pillow
 sudo pacman -S python-matplotlib
+```
+
+Fedora
+```
+sudo dnf in python3-tkinter
+sudo dnf in python3-pillow
+sudo dnf in python3-pillow-tk
+sudo dnf in python3-matplotlib
 ```
 
 After that you should be able to start the application by running:
